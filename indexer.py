@@ -9,6 +9,7 @@
         #hashmapfile.close()
         #https://wiki.python.org/moin/UsingPickle
         ##ALLAGHHHGHGHGHG
+        #### test test test test test
 #######################################################################################################################
 from bs4 import BeautifulSoup
 from collections import Counter, defaultdict
@@ -69,7 +70,7 @@ for word in index:
     dbfile.write(str(index[word]))
     dbfile.write("\n")
     dbfile.write("\n")
-dbfile.write("}")
+dbfile.write("},")
 dbfile.close()
 
 dic = {"'":"", "(":"{", ")":"}"}
