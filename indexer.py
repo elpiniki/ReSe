@@ -67,10 +67,10 @@ dbfile.write("{\n\t")
 for word in index:
     dbfile.write(json.dumps(word) + ":")
     dbfile.write("\n\t")
-    dbfile.write(str(index[word]))
+    dbfile.write(str(index[word]) + ",")
     dbfile.write("\n")
     dbfile.write("\n")
-dbfile.write("},")
+dbfile.write("}")
 dbfile.close()
 
 dic = {"'":"", "(":"{", ")":"}"}
