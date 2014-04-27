@@ -1,0 +1,12 @@
+{
+  "name": "ReSe",
+  "version": "0.0.1",
+  "description": "ReSearch Engine of the Future",
+  "main": "index.js",
+  "scripts": {},
+  "author": "Elpiniki Apostolaki",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.1.0"
+  }
+}
