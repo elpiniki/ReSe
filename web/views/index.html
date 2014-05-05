@@ -30,7 +30,7 @@
                     },
                     error: function (resp) {
                         var resultDiv = document.getElementById('results');
-                        var respContents = "That's all folks!"
+                        var respContents = "<br /><br /><div class='alert alert-warning'>That's all folks!</div>"
                         resultDiv.innerHTML = respContents;
                         $("#results").fadeIn(1000);
                     }

@@ -11,6 +11,7 @@ app.get('/', function(req, res){
 });
 
 app.get('/getResults', function(req, res){
+  //if (!req.query.term) {}
   console.log("[Elpiniki's Server] Received term: " + req.query.term);
   var results = db[req.query.term];
   // grafeis ton algori8mo sou: apo ta results => sto 1 Result
