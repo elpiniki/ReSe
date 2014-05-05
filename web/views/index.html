@@ -14,37 +14,31 @@
     <script language="JavaScript" type="text/javascript">
         window.addEventListener('load', function() {
 
-            function invoke(term) {
-                alert("1");
-                return function() {
-                    alert(term);
-                    $.ajax({
-                        url: 'http://localhost:3000/getResults',
-                        data: 'term=' + term, // Send value of the clicked button
-                        dataType: 'json',
-                        success: function (data) {
-                            var resp = document.getElementById('results');
-                            var respContents = "<h4>University of Delaware | V2G <small>(Score: 12.32)</small></h4><blockquote>"
-                            respContents += "<h5><p><a href='http://www.udel.edu/v2g'>www.udel.edu/v2g</a></p></h5></blockquote>"
-                            resp.innerHTML = respContents;
-                            $("#results").fadeIn(1000);
-                        },
-                        error: function (data) {
-                            var resp = document.getElementById('results');
-                            var respContents = "<h4>University of Delaware | V2G <small>(Score: 12.32)</small></h4><blockquote>"
-                            respContents += "<h5><p><a href='http://www.udel.edu/v2g'>www.udel.edu/v2g</a></p></h5></blockquote>"
-                            resp.innerHTML = respContents;
-                            $("#results").fadeIn(1000);
-                        }
-                    });
-                    return true;
-                }
-
+            function invoke() {
+                var term = document.getElementById("search_input").value;
+                //alert(term);
+                $.ajax({
+                    url: 'http://localhost:3000/getResults',
+                    data: 'term=' + term, // Send value of the clicked button
+                    dataType: 'json',
+                    success: function (resp) {
+                        var resultDiv = document.getElementById('results');
+                        var respContents = "<h4>" + resp.title + " <small>(Score: " + resp.score + ")</small></h4><blockquote>";
+                        respContents += "<h5><p><a href='"+ resp.link +"'>" + resp.link.replace("http://","") + "</a></p></h5></blockquote>"
+                        resultDiv.innerHTML = respContents;
+                        $("#results").fadeIn(1000);
+                    },
+                    error: function (resp) {
+                        var resultDiv = document.getElementById('results');
+                        var respContents = "That's all folks!"
+                        resultDiv.innerHTML = respContents;
+                        $("#results").fadeIn(1000);
+                    }
+                });
+                return true;
             }
 
-            alert("Add listener");
-            var sterm = document.getElementById("koumpi").value;
-            document.getElementById("koumpi").addEventListener("click", invoke(sterm));
+            document.getElementById("koumpi").addEventListener("click", invoke);
         });
     </script>
 </head>
