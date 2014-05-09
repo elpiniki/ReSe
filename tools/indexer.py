@@ -9,6 +9,7 @@
         #hashmapfile.close()
         #https://wiki.python.org/moin/UsingPickle
         ##ALLAGHHHGHGHGHG
+        #library for stemming PorterStemmer--better than Lancaster one
         #### test test test test test
 #######################################################################################################################
 from bs4 import BeautifulSoup
@@ -16,6 +17,8 @@ from collections import Counter, defaultdict
 import re
 import os
 import json
+#from nltk.stem.lancaster import LancasterStemmer
+from nltk import PorterStemmer
 import pickle
 from pprint import pprint
 from sys import argv
@@ -25,7 +28,7 @@ path = "/home/elpiniki/Dropbox/rese/indexer/"
 stopWords = [ "a", "i", "it", "am", "at", "on", "in", "to", "too", "very", \
                  "of", "from", "here", "even", "the", "but", "and", "is", "my", \
                  "them", "then", "this", "that", "than", "though", "so", "are", " ", ""]
-stemEndings = [ "-s", "-es", "-ed", "-er", "-ly" "-ing", "-'s", "-s'"]
+#stemEndings = [ "-s", "-es", "-ed", "-er", "-ly" "-ing", "-'s", "-s'"]
 
 def parsetext(f):
     soup = BeautifulSoup(f)
@@ -38,6 +41,8 @@ def replace_all(file, dic):
             file.write(line.replace(i, j))
     return file
 
+st = PorterStemmer()
+new_word_list = []
 index = defaultdict(list) #includes all the terms of ALL the html files
 for file in os.listdir(path):
     #if file.endswith(".html"):
@@ -47,8 +52,15 @@ for file in os.listdir(path):
     if file.endswith(".txt"):
         text = open(file, "r").read()
         text = text.lower() #make all the letters lowercase to ignore the case during the retrieval
+        #print text
+        #text = st.stem(text)
+        #print text
         word_list = re.split('\s+|(?<!\d)[,.](?!\d)(?<!\))(?<!@)(?<!\t)(?<!-)', text)
-        word_count = Counter(word_list)
+        for i in word_list:
+            t = st.stem(i)
+            new_word_list.append(t)
+        print new_word_list
+        word_count = Counter(new_word_list)
 
         for word, count in word_count.iteritems():
             if word not in stopWords:
