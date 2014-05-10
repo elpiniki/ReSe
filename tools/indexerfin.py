@@ -1,17 +1,12 @@
 __author__ = 'elpiniki'
 #!/usr/env python
-#no duplicates
-#problem with lower and uppercase: I made all the text lower case. this is not good solution.
 #use of hashmap
 #try to repeat for all html files in the directory
                 #rec = {'Term' : word, 'TF' : word_count[word], 'Filename' : file}
                 #hashmapfile.write(str(rec) + "\n")
                 #print rec
         #hashmapfile.close()
-        #https://wiki.python.org/moin/UsingPickle
-        ##ALLAGHHHGHGHGHG
         #library for stemming PorterStemmer--better than Lancaster one
-        #### test test test test test
 #######################################################################################################################
 from bs4 import BeautifulSoup
 from collections import Counter, defaultdict
@@ -38,17 +33,31 @@ def replace_all(file, dic):
             file.write(line.replace(i, j))
     return file
 
+#function for url mapping
+def url(filename):
+    mapfile = open("data", "r")
+    mydict = {}
+    for line in mapfile:
+        t = line.split()
+        mydict[t[0]] = t[1]
+    #f = str(filename)
+    for key in mydict:
+        if filename == key:
+            urllink = mydict[key]
+            return urllink
+
 st = PorterStemmer()
 new_word_list = []
 index = defaultdict(list) #includes all the terms of ALL the html files
+mapfile = open("data", "r")
+
 for file in os.listdir(path):
     if file.endswith(".html"):
         htmlfile = open(file, "r")
         text = parsetext(htmlfile)
-#    if file.endswith(".txt"):
-#        text = open(file, "r").read()
         text = text.lower() #make all the letters lowercase to ignore the case during the retrieval
         word_list = re.split('\s+|(?<!\d)[,.](?!\d)(?<!\))(?<!@)(?<!\t)(?<!-)', text)
+
         for i in word_list:
             t = st.stem(i)
             new_word_list.append(t)
@@ -56,7 +65,7 @@ for file in os.listdir(path):
 
         for word, count in word_count.iteritems():
             if word not in stopWords:
-                index[word].append(("{" + json.dumps('tf')+ ": "  + str(count), json.dumps('doc') + ": " + json.dumps(str(file))+"}"))
+                index[word].append(("{" + json.dumps('tf')+ ": "  + str(count), json.dumps('doc') + ": " + json.dumps(str(url(file)))+"}"))
 newlist = list(index.items())
 
 t = json.dumps(newlist)
