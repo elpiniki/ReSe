@@ -1,5 +1,4 @@
 __author__ = 'elpiniki'
-
 #!/usr/env python
 #no duplicates
 #problem with lower and uppercase: I made all the text lower case. this is not good solution.
@@ -19,13 +18,9 @@ from collections import Counter, defaultdict
 import re
 import os
 import json
-#from nltk.stem.lancaster import LancasterStemmer
 from nltk import PorterStemmer
-import pickle
-from pprint import pprint
-from sys import argv
 
-path = "/home/elpiniki/Dropbox/rese/indexer/"
+path = "/home/elpiniki/Documents/ReSe/tools/"
 
 stopWords = [ "a", "i", "it", "am", "at", "on", "in", "to", "too", "very", \
                  "of", "from", "here", "even", "the", "but", "and", "is", "my", \
@@ -47,34 +42,24 @@ st = PorterStemmer()
 new_word_list = []
 index = defaultdict(list) #includes all the terms of ALL the html files
 for file in os.listdir(path):
-    #if file.endswith(".html"):
-    #    print file
-    #    htmlfile = open(file, "r")
-    #    text = parsetext(htmlfile)
-    if file.endswith(".txt"):
-        text = open(file, "r").read()
+    if file.endswith(".html"):
+        htmlfile = open(file, "r")
+        text = parsetext(htmlfile)
+#    if file.endswith(".txt"):
+#        text = open(file, "r").read()
         text = text.lower() #make all the letters lowercase to ignore the case during the retrieval
-        #print text
-        #text = st.stem(text)
-        #print text
         word_list = re.split('\s+|(?<!\d)[,.](?!\d)(?<!\))(?<!@)(?<!\t)(?<!-)', text)
         for i in word_list:
             t = st.stem(i)
             new_word_list.append(t)
-        print new_word_list
         word_count = Counter(new_word_list)
 
         for word, count in word_count.iteritems():
             if word not in stopWords:
                 index[word].append(("{" + json.dumps('tf')+ ": "  + str(count), json.dumps('doc') + ": " + json.dumps(str(file))+"}"))
-        #dbfile = open("db.txt", "a")
-        #dbfile.write(str(index))
-        #dbfile.close()
- #       print
 newlist = list(index.items())
 
 t = json.dumps(newlist)
-#print index
 
 dbfile = open("dbjson.json", "a")
 dbfile.write("{\n\t")
@@ -111,30 +96,3 @@ for line in dbfile3:
     dbfile4.write(line.replace(")",""))
 dbfile3.close()
 dbfile4.close()
-
-#test = json.dump(newlist, separators=(','))
-#print test
-#dbfile = open("db.txt", "a")
-#dbfile.write(str(newlist))
-#dbfile.close()
-
-#print newlist.pop(1)
-
-#"phoneNumbers": [
-     #   { "type": "home", "number": "212 555-1234" },
-      #  { "type": "fax",  "number": "646 555-4567" }
-   # ]
- #       print
-#pprint(index(1))
- #       print
-
-        #jsonfile = open("db.json", "a")
-        #for word in total_list:
-        #    try:
-        #       jsonfile.write("Term: " + word + "TF: " + str(word_count[word]) + "filename: " + file + "\n")
-        #    except UnicodeEncodeError:
-        #        pass
-
-        #jsonfile.close()
-
-pickle.dump( index, open( "inverted_index.p", "wb" ), -1 )
