@@ -65,7 +65,7 @@ for file in os.listdir(path):
 
         for word, count in word_count.iteritems():
             if word not in stopWords:
-                index[word].append(("{" + json.dumps('tf')+ ": "  + str(count), json.dumps('doc') + ": " + json.dumps(str(url(file)))+"}"))
+                index[word].append(("{" + json.dumps('tf')+ ": "  + str(count), json.dumps('doc') + ": " + json.dumps(str(url(file)))+", " + json.dumps('title') +": " + json.dumps('TITLE') +"}"))
 newlist = list(index.items())
 
 t = json.dumps(newlist)
