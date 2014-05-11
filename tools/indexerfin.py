@@ -10,6 +10,7 @@ __author__ = 'elpiniki'
 #######################################################################################################################
 from bs4 import BeautifulSoup
 from collections import Counter, defaultdict
+import urllib2
 import re
 import os
 import json
@@ -27,6 +28,11 @@ def parsetext(f):
     t = soup.get_text()
     return t
 
+def gettitle(f):
+    soup = BeautifulSoup(f)
+    titlef = soup.title.string
+    return titlef
+
 def replace_all(file, dic):
     for line in file:
         for i, j in dic.iteritems():
@@ -40,11 +46,15 @@ def url(filename):
     for line in mapfile:
         t = line.split()
         mydict[t[0]] = t[1]
-    #f = str(filename)
     for key in mydict:
         if filename == key:
             urllink = mydict[key]
             return urllink
+
+def titlefind(url):
+    soup = BeautifulSoup(urllib2.urlopen(url))
+    titlef = soup.title.string
+    return titlef
 
 st = PorterStemmer()
 new_word_list = []
@@ -64,8 +74,11 @@ for file in os.listdir(path):
         word_count = Counter(new_word_list)
 
         for word, count in word_count.iteritems():
+            print (word, " ", count);
             if word not in stopWords:
-                index[word].append(("{" + json.dumps('tf')+ ": "  + str(count), json.dumps('doc') + ": " + json.dumps(str(url(file)))+", " + json.dumps('title') +": " + json.dumps('TITLE') +"}"))
+                link = url(file)
+                title = titlefind(str(link))
+                index[word].append(("{" + json.dumps('tf')+ ": "  + str(count), json.dumps('doc') + ": " + json.dumps(str(link))+", " + json.dumps('title') +": " + json.dumps(str(link)) +"}"))
 newlist = list(index.items())
 
 t = json.dumps(newlist)
