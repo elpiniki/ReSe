@@ -10,7 +10,6 @@ __author__ = 'elpiniki'
 #######################################################################################################################
 from bs4 import BeautifulSoup
 from collections import Counter, defaultdict
-import urllib2
 import re
 import os
 import json
@@ -27,11 +26,6 @@ def parsetext(f):
     soup = BeautifulSoup(f)
     t = soup.get_text()
     return t
-
-def titlefind(urll):
-    soup = BeautifulSoup(urllib2.urlopen(urll))
-    titlef = soup.title.string
-    return titlef
 
 def replace_all(file, dic):
     for line in file:
@@ -71,7 +65,7 @@ for file in os.listdir(path):
 
         for word, count in word_count.iteritems():
             if word not in stopWords:
-                index[word].append(("{" + json.dumps('tf')+ ": "  + str(count), json.dumps('doc') + ": " + json.dumps(str(url(file))) + ", " + json.dumps('title') + ": " + json.dumps(titlefind(url(file))) + "}"))
+                index[word].append(("{" + json.dumps('tf')+ ": "  + str(count), json.dumps('doc') + ": " + json.dumps(str(url(file)))+"}"))
 newlist = list(index.items())
 
 t = json.dumps(newlist)
@@ -111,3 +105,4 @@ for line in dbfile3:
     dbfile4.write(line.replace(")",""))
 dbfile3.close()
 dbfile4.close()
+
