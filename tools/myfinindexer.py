@@ -21,26 +21,8 @@ path = "/home/elpiniki/ReSe/tools/"
 stopWords = [ "a", "i", "it", "am", "at", "on", "in", "to", "too", "very", \
                  "of", "from", "here", "even", "the", "but", "and", "is", "my", \
                  "them", "then", "this", "that", "than", "though", "so", "are", " ", ""]
-#stemEndings = [ "-s", "-es", "-ed", "-er", "-ly" "-ing", "-'s", "-s'"]
 
-#create the BeautifulSoupFunction
-#def Beautiful_Soup(url):
-#    r = requests.get(url)
-#    data = r.text
-#    return BeautifulSoup(data)
-
-#def parsetext(f):
-#    soup = BeautifulSoup(f)
-#    t = soup.get_text()
-#    return t
-
-#def replace_all(file, dic):
-#    for line in file:
-#        for i, j in dic.iteritems():
-#            file.write(line.replace(i, j))
-#    return file
-
-#function for url mapping
+#function for url mapping given the html file name created by crawler
 def find_url(filename):
     mapfile = open("data", "r")
     mydict = {}
@@ -52,14 +34,16 @@ def find_url(filename):
             urllink = mydict[key]
             return urllink
 
-st = PorterStemmer()
+##Initialization
+st = PorterStemmer() #stemmer
 new_word_list = []
-index = defaultdict(list) #includes all the terms of ALL the html files
-mapfile = open("data", "r")
+index = defaultdict(list) #includes all the terms of all the html files
+mapfile = open("data", "r") #open data file for the mapping
 
+##Main indexing
 for file in os.listdir(path):
     if file.endswith(".html"):
-        fileurl = find_url(file) #get the url fo the html file
+        fileurl = find_url(file) #get the url of the html file
         r = requests.get(fileurl)
         data = r.text
         soup = BeautifulSoup(data)
@@ -75,9 +59,6 @@ for file in os.listdir(path):
         for word, count in word_count.iteritems():
             if word not in stopWords:
                 index[word].append(("{" + json.dumps('tf')+ ": " + str(count), json.dumps('doc') + ": " + json.dumps(str(fileurl))+", " + json.dumps('title') +": " + json.dumps(str(filetitle)) +"}"))
-newlist = list(index.items())
-
-t = json.dumps(newlist)
 
 dbfile = open("dbjson.json", "a")
 dbfile.write("{\n\t")
