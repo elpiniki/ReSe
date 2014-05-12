@@ -58,7 +58,7 @@ while len(unvisited) > 0:
             Html_file.write(data) #at the data file we will have the mapping of file name (hash) and the url
             Html_file.close()
             DB_file = open('data', 'a')
-            DB_file.write(str(Html_name) + '    ' + str(url) + '\n')
+            DB_file.write(str(Html_name) + ".html" + '    ' + str(url) + '\n')
             DB_file.close()
         for tag in soup.findAll('a', href=True): #find the links to continue crawling
             link = tag['href']

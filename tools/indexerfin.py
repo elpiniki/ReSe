@@ -13,40 +13,34 @@ from collections import Counter, defaultdict
 import re
 import os
 import json
-import requests
 from nltk import PorterStemmer
 
-path = "/home/elpiniki/ReSe/tools/"
+path = "/home/elpiniki/Documents/ReSe/tools/"
 
 stopWords = [ "a", "i", "it", "am", "at", "on", "in", "to", "too", "very", \
                  "of", "from", "here", "even", "the", "but", "and", "is", "my", \
                  "them", "then", "this", "that", "than", "though", "so", "are", " ", ""]
 #stemEndings = [ "-s", "-es", "-ed", "-er", "-ly" "-ing", "-'s", "-s'"]
 
-#create the BeautifulSoupFunction
-#def Beautiful_Soup(url):
-#    r = requests.get(url)
-#    data = r.text
-#    return BeautifulSoup(data)
+def parsetext(f):
+    soup = BeautifulSoup(f)
+    t = soup.get_text()
+    return t
 
-#def parsetext(f):
-#    soup = BeautifulSoup(f)
-#    t = soup.get_text()
-#    return t
-
-#def replace_all(file, dic):
-#    for line in file:
-#        for i, j in dic.iteritems():
-#            file.write(line.replace(i, j))
-#    return file
+def replace_all(file, dic):
+    for line in file:
+        for i, j in dic.iteritems():
+            file.write(line.replace(i, j))
+    return file
 
 #function for url mapping
-def find_url(filename):
+def url(filename):
     mapfile = open("data", "r")
     mydict = {}
     for line in mapfile:
         t = line.split()
         mydict[t[0]] = t[1]
+    #f = str(filename)
     for key in mydict:
         if filename == key:
             urllink = mydict[key]
@@ -59,12 +53,9 @@ mapfile = open("data", "r")
 
 for file in os.listdir(path):
     if file.endswith(".html"):
-        fileurl = find_url(file) #get the url fo the html file
-        r = requests.get(fileurl)
-        data = r.text
-        soup = BeautifulSoup(data)
-        filetitle = soup.title.string #get the title of the html file
-        text = data.lower() #make all the letters lowercase to ignore the case during the retrieval
+        htmlfile = open(file, "r")
+        text = parsetext(htmlfile)
+        text = text.lower() #make all the letters lowercase to ignore the case during the retrieval
         word_list = re.split('\s+|(?<!\d)[,.](?!\d)(?<!\))(?<!@)(?<!\t)(?<!-)', text)
 
         for i in word_list:
@@ -74,7 +65,7 @@ for file in os.listdir(path):
 
         for word, count in word_count.iteritems():
             if word not in stopWords:
-                index[word].append(("{" + json.dumps('tf')+ ": " + str(count), json.dumps('doc') + ": " + json.dumps(str(fileurl))+", " + json.dumps('title') +": " + json.dumps(str(filetitle)) +"}"))
+                index[word].append(("{" + json.dumps('tf')+ ": "  + str(count), json.dumps('doc') + ": " + json.dumps(str(url(file)))+", " + json.dumps('title') +": " + json.dumps('TITLE') +"}"))
 newlist = list(index.items())
 
 t = json.dumps(newlist)
@@ -114,3 +105,4 @@ for line in dbfile3:
     dbfile4.write(line.replace(")",""))
 dbfile3.close()
 dbfile4.close()
+
