@@ -64,8 +64,13 @@ for file in os.listdir(path):
 
             for word, count in word_count.iteritems():
                 if word not in stopWords:
-                    index[word].append(("{" + json.dumps('tf')+ ": " + str(count), json.dumps('doc') + ": " + json.dumps(str(fileurl))+", " + json.dumps('title') +": " + json.dumps(str(filetitle)) +"}"))
+                    try:
+                        index[word].append(("{" + json.dumps('tf')+ ": " + str(count), json.dumps('doc') + ": " + json.dumps(str(fileurl))+", " + json.dumps('title') +": " + json.dumps(str(filetitle)) +"}"))
+                    except UnicodeEncodeError:
+                        pass
         except requests.exceptions.HTTPError: #by using requests check for errors at the http
+            pass
+        except requests.exceptions.MissingSchema:
             pass
 dbfile = open("dbjson.json", "a")
 dbfile.write("{\n\t")
