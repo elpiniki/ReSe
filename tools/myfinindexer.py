@@ -44,22 +44,29 @@ mapfile = open("data", "r") #open data file for the mapping
 for file in os.listdir(path):
     if file.endswith(".html"):
         fileurl = find_url(file) #get the url of the html file
-        r = requests.get(fileurl)
-        data = r.text
-        soup = BeautifulSoup(data)
-        filetitle = soup.title.string #get the title of the html file
-        text = data.lower() #make all the letters lowercase to ignore the case during the retrieval
-        word_list = re.split('\s+|(?<!\d)[,.](?!\d)(?<!\))(?<!@)(?<!\t)(?<!-)', text)
+        try:
+            r = requests.get(fileurl)
+            print fileurl
+            data = r.text
+            soup = BeautifulSoup(data)
+            try:
+                filetitle = soup.title.string #get the title of the html file
+                print filetitle
+            except AttributeError:
+                pass
+            text = data.lower() #make all the letters lowercase to ignore the case during the retrieval
+            word_list = re.split('\s+|(?<!\d)[,.](?!\d)(?<!\))(?<!@)(?<!\t)(?<!-)', text)
 
-        for i in word_list:
-            t = st.stem(i)
-            new_word_list.append(t)
-        word_count = Counter(new_word_list)
+            for i in word_list:
+                t = st.stem(i)
+                new_word_list.append(t)
+            word_count = Counter(new_word_list)
 
-        for word, count in word_count.iteritems():
-            if word not in stopWords:
-                index[word].append(("{" + json.dumps('tf')+ ": " + str(count), json.dumps('doc') + ": " + json.dumps(str(fileurl))+", " + json.dumps('title') +": " + json.dumps(str(filetitle)) +"}"))
-
+            for word, count in word_count.iteritems():
+                if word not in stopWords:
+                    index[word].append(("{" + json.dumps('tf')+ ": " + str(count), json.dumps('doc') + ": " + json.dumps(str(fileurl))+", " + json.dumps('title') +": " + json.dumps(str(filetitle)) +"}"))
+        except requests.exceptions.HTTPError: #by using requests check for errors at the http
+            pass
 dbfile = open("dbjson.json", "a")
 dbfile.write("{\n\t")
 for word in index:
