@@ -1,0 +1,349 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<!-- TemplateBeginEditable name="doctitle" -->
+<title>CSS Laboratory: Home</title>
+<!-- TemplateEndEditable -->
+<style type="text/css">
+<!--
+body {
+	margin: 0;
+	padding: 0;
+	color: #000;
+	background-attachment: fixed;
+	background-color: #42413C;
+	background-image: url(Images/bkgd.jpg);
+	background-position: center top;
+}
+
+/* ~~ Element/tag selectors ~~ */
+ul, ol, dl { /* Due to variations between browsers, it's best practices to zero padding and margin on lists. For consistency, you can either specify the amounts you want here, or on the list items (LI, DT, DD) they contain. Remember that what you do here will cascade to the .nav list unless you write a more specific selector. */
+	padding: 0;
+	margin: 0;
+}
+h1, h2, h3, h4, h5, h6, p {
+	margin-top: 0;	 /* removing the top margin gets around an issue where margins can escape from their containing div. The remaining bottom margin will hold it away from any elements that follow. */
+	padding-right: 15px;
+	padding-left: 15px; /* adding the padding to the sides of the elements within the divs, instead of the divs themselves, gets rid of any box model math. A nested div with side padding can also be used as an alternate method. */
+}
+a img { /* this selector removes the default blue border displayed in some browsers around an image when it is surrounded by a link */
+	border: none;
+}
+
+/* ~~ Styling for your site's links must remain in this order - including the group of selectors that create the hover effect. ~~ */
+a:link {
+	color: #096;
+	text-decoration: none; /* unless you style your links to look extremely unique, it's best to provide underlines for quick visual identification */
+}
+a:visited {
+	color: #066;
+	text-decoration: none;
+}
+a:hover, a:active, a:focus { /* this group of selectors will give a keyboard navigator the same hover experience as the person using a mouse. */
+	text-decoration: none;
+}
+
+/* ~~this fixed width container surrounds the other divs~~ */
+.container {
+	width: 960px;
+	background: #FFF;
+	margin: 0 auto; /* the auto value on the sides, coupled with the width, centers the layout */
+	background-color: #FFC;
+}
+
+/* ~~ the header is not given a width. It will extend the full width of your layout. It contains an image placeholder that should be replaced with your own linked logo ~~ */
+.header {
+	background: #ADB96E;
+}
+
+/* ~~ These are the columns for the layout. ~~ 
+
+1) Padding is only placed on the top and/or bottom of the divs. The elements within these divs have padding on their sides. This saves you from any "box model math". Keep in mind, if you add any side padding or border to the div itself, it will be added to the width you define to create the *total* width. You may also choose to remove the padding on the element in the div and place a second div within it with no width and the padding necessary for your design. You may also choose to remove the padding on the element in the div and place a second div within it with no width and the padding necessary for your design.
+
+2) No margin has been given to the columns since they are all floated. If you must add margin, avoid placing it on the side you're floating toward (for example: a right margin on a div set to float right). Many times, padding can be used instead. For divs where this rule must be broken, you should add a "display:inline" declaration to the div's rule to tame a bug where some versions of Internet Explorer double the margin.
+
+3) Since classes can be used multiple times in a document (and an element can also have multiple classes applied), the columns have been assigned class names instead of IDs. For example, two sidebar divs could be stacked if necessary. These can very easily be changed to IDs if that's your preference, as long as you'll only be using them once per document.
+
+4) If you prefer your nav on the right instead of the left, simply float these columns the opposite direction (all right instead of all left) and they'll render in reverse order. There's no need to move the divs around in the HTML source.
+
+*/
+.sidebar1 {
+	float: left;
+	width: 180px;
+	background: #EADCAE;
+	padding-bottom: 0px;
+	background-color: #FFC;
+	font-style: normal;
+	font-family: Arial, Helvetica, sans-serif;
+	font-weight: bold;
+}
+.content {
+	padding: 10px 0;
+	width: 780px;
+	float: left;
+	background-color: #FFC;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 100%;
+	height: auto;
+}
+
+/* ~~ This grouped selector gives the lists in the .content area space ~~ */
+.content ul, .content ol { 
+	padding: 0 15px 15px 40px; /* this padding mirrors the right padding in the headings and paragraph rule above. Padding was placed on the bottom for space between other elements on the lists and on the left to create the indention. These may be adjusted as you wish. */
+}
+
+/* ~~ The navigation list styles (can be removed if you choose to use a premade flyout menu like Spry) ~~ */
+ul.nav {
+	list-style: none; /* this removes the list marker */
+	border-top: 1px solid #666; /* this creates the top border for the links - all others are placed using a bottom border on the LI */
+	margin-bottom: 15px; /* this creates the space between the navigation on the content below */
+}
+ul.nav li {
+	border-bottom: 1px solid #666; /* this creates the button separation */
+}
+ul.nav a, ul.nav a:visited { /* grouping these selectors makes sure that your links retain their button look even after being visited */
+	padding: 5px 5px 5px 15px;
+	display: block; /* this gives the link block properties causing it to fill the whole LI containing it. This causes the entire area to react to a mouse click. */
+	width: 160px;  /*this width makes the entire button clickable for IE6. If you don't need to support IE6, it can be removed. Calculate the proper width by subtracting the padding on this link from the width of your sidebar container. */
+	text-decoration: none;
+	background: #C6D580;
+}
+ul.nav a:hover, ul.nav a:active, ul.nav a:focus { /* this changes the background and text color for both mouse and keyboard navigators */
+	background: #ADB96E;
+	color: #FFF;
+}
+
+/* ~~ The footer ~~ */
+.footer {
+	padding: 0px 0;
+	background: #CCC49F;
+	position: relative;/* this gives IE6 hasLayout to properly clear */
+	clear: both;
+	background-color: #FFC;
+}
+
+/* ~~ miscellaneous float/clear classes ~~ */
+.fltrt {  /* this class can be used to float an element right in your page. The floated element must precede the element it should be next to on the page. */
+	float: right;
+	margin-left: 8px;
+}
+.fltlft { /* this class can be used to float an element left in your page. The floated element must precede the element it should be next to on the page. */
+	float: left;
+	margin-right: 8px;
+}
+.clearfloat { /* this class can be placed on a <br /> or empty div as the final element following the last floated div (within the #container) if the #footer is removed or taken out of the #container */
+	clear:both;
+	height:0;
+	font-size: 1px;
+	line-height: 0px;
+}
+-->
+</style>
+<script src="SpryAssets/SpryMenuBar.js" type="text/javascript"></script>
+<link href="SpryAssets/SpryMenuBarVertical.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+h1 {
+	font-size: 22px;
+	color: #060;
+}
+body,td,th {
+	font-size: 85%;
+}
+h2 {
+	font-size: 18px;
+	color: #060;
+}
+h3 {
+	font-size: 16px;
+	color: #060;
+}
+h4 {
+	font-size: 14px;
+	color: #060;
+}
+h5 {
+	font-size: 12px;
+	color: #060;
+}
+h6 {
+	font-size: 10px;
+	color: #060;
+}
+a:hover {
+	color: #FFF;
+	background-color: #096;
+}
+a:active {
+	color: #FFF;
+	text-decoration: none;
+	background-color: #F00;
+}
+</style>
+<!-- TemplateBeginEditable name="head" -->
+<!-- TemplateEndEditable -->
+</head>
+
+<body bgcolor="#FFFFFF" background="Images/bkgd.jpg" text="#000000">
+
+<div class="container">
+  <div class="header"><a href="#"><img src="Images/header.jpg" alt="Insert Logo Here" name="Insert_logo" width="960" height="250" id="Insert_logo" style="background: #C6D580; display:block;" /></a> 
+    <!-- end .header --></div>
+  <div class="sidebar1">
+    <ul id="MenuBar1" class="MenuBarVertical">
+      <li><a href="css.html">Home</a></li>
+      <li><a href="#" class="MenuBarItemSubmenu">People</a>
+        <ul>
+          <li><a href="http://www.cis.jhu.edu/~afshar/" target="_blank">Afshar</a></li>
+          <li><a href="http://www.cis.jhu.edu/~goutsias/" target="_blank">Goutsias</a></li>
+          <li><a href="http://cis.jhu.edu/~garrett/" target="_blank">Jenkinson</a></li>
+          <li><a href="#">Zhang</a></li>
+        </ul>
+      </li>
+      <li><a href="research.html">Research</a></li>
+      <li><a href="publications.html">Publications</a></li>
+      <li><a href="software.html">Software</a></li>
+      <li><a href="courses.html">Courses</a></li>
+      <li><a href="outreach.html">Outreach</a></li>
+<li><a href="links.html">Links</a></li>
+<li><a href="contact.html">Contact us</a></li>
+    </ul>
+  <!-- end .sidebar1 --></div>
+  <div class="content"><!-- TemplateBeginEditable name="content" -->
+    <table width="782" border="0" align="center">
+      <tr>
+        <td width="774" align="left" bgcolor="#99FF99"><h5><br />
+        The Complex Systems Science (CSS) Laboratory is an interdisciplinary lab in the Whitaker Biomedical Engineering Institute at the Johns Hopkins University. The main objective of the work performed in this lab is to facilitate research in the general areas of modeling, identification, and analysis of complex networked systems. Key research activities are focused on developing state-of-the-art methodologies for model-based identification and analysis of complex nonlinear interaction networks from incomplete and noisy observations. Researchers in the lab employ rigorous theoretical and computational techniques for estimating the structural and dynamic properties of complex interaction networks by state-of-the-art identification and model selection methodologies, and for studying network robustness via probabilistic sensitivity analysis techniques. Although the main applications of interest are in problems of computational systems biology, applications in other areas (such as epidemiology) are also considered. </h5></td>
+      </tr>
+    </table>
+    <h2><br />
+      What are complex networked systems?</h2>
+<h4>Complex networks, consisting of interacting elements linked together with processing units, are ubiquitous across many disciplines in modern science and engineering. Examples are listed in the following table:</h4>
+    <table width="659" border="1" align="center">
+      <tr align="center">
+        <th width="123" valign="middle" bgcolor="#FFCC33"><h5><strong><br />
+        Network</strong></h5></th>
+        <th width="233" valign="middle" bgcolor="#FFCC33"><h5><strong><br />
+        Components ( Interacting Elements)</strong></h5></th>
+        <th width="281" valign="middle" bgcolor="#FFCC33"><h5><strong><br />
+        Interactions (Processing Units)</strong></h5></th>
+      </tr>
+      <tr align="center">
+        <td valign="middle" bgcolor="#99FF99"><h5><br />
+        biochemical</h5></td>
+        <td valign="middle" bgcolor="#99FF99"><h5><br />
+        molecules</h5></td>
+        <td valign="middle" bgcolor="#99FF99"><h5><br />
+        chemical reactions</h5></td>
+      </tr>
+      <tr align="center">
+        <td valign="middle" bgcolor="#99FF99"><h5><br />
+        biological neural</h5></td>
+        <td valign="middle" bgcolor="#99FF99"><h5><br />
+        neurons</h5></td>
+        <td valign="middle" bgcolor="#99FF99"><h5><br />
+        synapses</h5></td>
+      </tr>
+      <tr align="center">
+        <td valign="middle" bgcolor="#99FF99"><h5><br />
+        epidemiological</h5></td>
+        <td valign="middle" bgcolor="#99FF99"><h5><br />
+        healthy, infected individuals</h5></td>
+        <td valign="middle" bgcolor="#99FF99"><h5><br />
+        infectious contacts</h5></td>
+      </tr>
+      <tr align="center">
+        <td valign="middle" bgcolor="#99FF99"><h5><br />
+        world wide web</h5></td>
+        <td valign="middle" bgcolor="#99FF99"><h5><br />
+        web pages</h5></td>
+        <td valign="middle" bgcolor="#99FF99"><h5><br />
+        hyper links</h5></td>
+      </tr>
+      <tr align="center">
+        <td valign="middle" bgcolor="#99FF99"><h5><br />
+        trophic</h5></td>
+        <td valign="middle" bgcolor="#99FF99"><h5><br />
+        predators, prey</h5></td>
+        <td valign="middle" bgcolor="#99FF99"><h5><br />
+        consumption</h5></td>
+      </tr>
+      <tr align="center">
+        <td valign="middle" bgcolor="#99FF99"><h5><br />
+        power grid</h5></td>
+        <td valign="middle" bgcolor="#99FF99"><h5><br />
+        electrical generators</h5></td>
+        <td valign="middle" bgcolor="#99FF99"><h5><br />
+        power lines, substation transformers</h5></td>
+      </tr>
+      <tr align="center">
+        <td valign="middle" bgcolor="#99FF99"><h5><br />
+        collaborative</h5></td>
+        <td valign="middle" bgcolor="#99FF99"><h5><br />
+        people</h5></td>
+        <td valign="middle" bgcolor="#99FF99"><h5><br />
+        collaborations</h5></td>
+      </tr>
+      <tr align="center">
+        <td valign="middle" bgcolor="#99FF99"><h5><br />
+        social</h5></td>
+        <td valign="middle" bgcolor="#99FF99"><h5><br />
+        people</h5></td>
+        <td valign="middle" bgcolor="#99FF99"><h5><br />
+        contacts</h5></td>
+      </tr>
+      <tr align="center">
+        <td valign="middle" bgcolor="#99FF99"><h5><br />
+        internet</h5></td>
+        <td valign="middle" bgcolor="#99FF99"><h5><br />
+        computers</h5></td>
+        <td valign="middle" bgcolor="#99FF99"><h5><br />
+        routers, ethernet cables</h5></td>
+      </tr>
+    </table>
+    <h4><br />
+      Complex network science involves the study of such networks using advanced mathematical and statistical techniques as well as sophisticated computational approaches. The components and interactions in these networks need not be complex individually, 
+    but the large size and complicated structure, or <em>topology</em>, of such networks is what makes these systems to be &quot;complex.&quot;</h4>
+    <h2>
+      </p>
+    Why study complex networked systems?</h2>
+<h4> Despite the enormous diversity of complex networked systems, researchers
+      have been amazed by the striking commonalities between them.
+      For decades, specific examples of complex networks have been 
+      studied intensely within their unique disciplines.
+      Recently, however, there has been a surge of interest in studying 
+      complex networked systems in their own right by bridging the gap 
+      between diverse disciplines and by developing unifying mathematical, statistical, and computational approaches for their description and analysis. <br />
+      <br />
+      Many interesting and challenging questions of modern
+      science relate to complex networked systems: <img src="Images/egf.jpg" width="420" height="350" align="right" /></h4>
+    <ul>
+      <li>
+      <h4>How does human cognition arise from the firing of interconnected neurons in the brain?</h4></li>
+      <li>
+        <h4> How can we prevent a disease outbreak from spreading to a pandemic, or minimize the damage of a biological attack? </h4>
+      </li>
+      <li>
+        <h4>How do the genome and proteome interact to create homeostatic and epigenetic behavior in cells? How can we repair or prevent diseased states
+          at the molecular level?</h4>
+      </li>
+      <li>
+        <h4>What is the best search algorithm for the WWW? Can we design a better physical internet or protocol than IPv6?</h4>
+      </li>
+      <li>
+        <h4>What can be done to maximize the robustness of our public infrastructure to random or targeted failures and attacks?</h4>
+      </li>
+    </ul>
+    <h2>What is our approach?</h2>
+    <h4>We are developing a general methodology for model-based identification and analysis of complex nonlinear interaction networks from incomplete and noisy observations. We are employing rigorous theoretical and computational techniques for estimating the structural and dynamic properties of complex interaction networks by state-of-the-art identification and model selection methodologies, and for studying network robustness via probabilistic sensitivity analysis. We use fundamental laws of physics (such as thermodynamics) to appropriately constrain the systems under consideration and focus our identification and analysis methodologies only on physically realizable networks. Sensitivity analysis
+      is used from start to finish: in model reduction to ease inference, in
+      experimental design to enhance scientific discovery, and in
+      final system analysis for controlled intervention. </h4>
+  <!-- TemplateEndEditable --><!-- end .content --></div>
+  <div class="footer"><!-- end .footer --></div>
+  <!-- end .container --></div>
+<script type="text/javascript">
+var MenuBar1 = new Spry.Widget.MenuBar("MenuBar1", {imgRight:"SpryAssets/SpryMenuBarRightHover.gif"});
+</script>
+</body>
+</html>

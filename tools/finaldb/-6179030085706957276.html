@@ -1,0 +1,2326 @@
+%!PS
+%%Version: 3.3
+%%DocumentFonts: (atend)
+%%Pages: (atend)
+%%EndComments
+%
+% Version 3.3 prologue for troff files.
+%
+
+/#copies 1 store
+/aspectratio 1 def
+/formsperpage 1 def
+/landscape false def
+/linewidth .3 def
+/magnification 1 def
+/margin 0 def
+/orientation 0 def
+/resolution 720 def
+/rotation 1 def
+/xoffset 0 def
+/yoffset 0 def
+
+/roundpage true def
+/useclippath true def
+/pagebbox [0 0 612 792] def
+
+/R  /Times-Roman def
+/I  /Times-Italic def
+/B  /Times-Bold def
+/BI /Times-BoldItalic def
+/H  /Helvetica def
+/HI /Helvetica-Oblique def
+/HB /Helvetica-Bold def
+/HX /Helvetica-BoldOblique def
+/CW /Courier def
+/CO /Courier def
+/CI /Courier-Oblique def
+/CB /Courier-Bold def
+/CX /Courier-BoldOblique def
+/PA /Palatino-Roman def
+/PI /Palatino-Italic def
+/PB /Palatino-Bold def
+/PX /Palatino-BoldItalic def
+/Hr /Helvetica-Narrow def
+/Hi /Helvetica-Narrow-Oblique def
+/Hb /Helvetica-Narrow-Bold def
+/Hx /Helvetica-Narrow-BoldOblique def
+/KR /Bookman-Light def
+/KI /Bookman-LightItalic def
+/KB /Bookman-Demi def
+/KX /Bookman-DemiItalic def
+/AR /AvantGarde-Book def
+/AI /AvantGarde-BookOblique def
+/AB /AvantGarde-Demi def
+/AX /AvantGarde-DemiOblique def
+/NR /NewCenturySchlbk-Roman def
+/NI /NewCenturySchlbk-Italic def
+/NB /NewCenturySchlbk-Bold def
+/NX /NewCenturySchlbk-BoldItalic def
+/ZD /ZapfDingbats def
+/ZI /ZapfChancery-MediumItalic def
+/S  /S def
+/S1 /S1 def
+/GR /Symbol def
+
+/inch {72 mul} bind def
+/min {2 copy gt {exch} if pop} bind def
+
+/setup {
+	counttomark 2 idiv {def} repeat pop
+
+	landscape {/orientation 90 orientation add def} if
+	/scaling 72 resolution div def
+	linewidth setlinewidth
+	1 setlinecap
+
+	pagedimensions
+	xcenter ycenter translate
+	orientation rotation mul rotate
+	width 2 div neg height 2 div translate
+	xoffset inch yoffset inch neg translate
+	margin 2 div dup neg translate
+	magnification dup aspectratio mul scale
+	scaling scaling scale
+
+	/Symbol /S Sdefs cf
+	/Times-Roman /S1 S1defs cf
+	0 0 moveto
+} def
+
+/pagedimensions {
+	useclippath userdict /gotpagebbox known not and {
+		/pagebbox [clippath pathbbox newpath] def
+		roundpage currentdict /roundpagebbox known and {roundpagebbox} if
+	} if
+	pagebbox aload pop
+	4 -1 roll exch 4 1 roll 4 copy
+	landscape {4 2 roll} if
+	sub /width exch def
+	sub /height exch def
+	add 2 div /xcenter exch def
+	add 2 div /ycenter exch def
+	userdict /gotpagebbox true put
+} def
+
+/pagesetup {
+	/page exch def
+	currentdict /pagedict known currentdict page known and {
+		page load pagedict exch get cvx exec
+	} if
+} def
+
+/decodingdefs [
+	{counttomark 2 idiv {y moveto show} repeat}
+	{neg /y exch def counttomark 2 idiv {y moveto show} repeat}
+	{neg moveto {2 index stringwidth pop sub exch div 0 32 4 -1 roll widthshow} repeat}
+	{neg moveto {spacewidth sub 0.0 32 4 -1 roll widthshow} repeat}
+	{counttomark 2 idiv {y moveto show} repeat}
+	{neg setfunnytext}
+] def
+
+/setdecoding {/t decodingdefs 3 -1 roll get bind def} bind def
+
+/w {neg moveto show} bind def
+/m {neg dup /y exch def moveto} bind def
+/done {/lastpage where {pop lastpage} if} def
+
+/f {
+	dup /font exch def findfont exch
+	dup /ptsize exch def scaling div dup /size exch def scalefont setfont
+	linewidth ptsize mul scaling 10 mul div setlinewidth
+	/spacewidth ( ) stringwidth pop def
+} bind def
+
+/changefont {
+	/fontheight exch def
+	/fontslant exch def
+	currentfont [
+		1 0
+		fontheight ptsize div fontslant sin mul fontslant cos div
+		fontheight ptsize div
+		0 0
+	] makefont setfont
+} bind def
+
+/sf {f} bind def
+
+/cf {
+	dup length 2 idiv
+	/entries exch def
+	/chtab exch def
+	/newfont exch def
+
+	findfont dup length 1 add dict
+	/newdict exch def
+	{1 index /FID ne {newdict 3 1 roll put} {pop pop} ifelse} forall
+
+	newdict /Metrics entries dict put
+	newdict /Metrics get
+	begin
+		chtab aload pop
+		1 1 entries {pop def} for
+		newfont newdict definefont pop
+	end
+} bind def
+
+%
+% A few arrays used to adjust reference points and character widths in some
+% of the printer resident fonts. If square roots are too high try changing
+% the lines describing /radical and /radicalex to,
+%
+%	/radical	[0 -75 550 0]
+%	/radicalex	[-50 -75 500 0]
+%
+% Move braceleftbt a bit - default PostScript character is off a bit.
+%
+
+/Sdefs [
+	/bracketlefttp		[201 500]
+	/bracketleftbt		[201 500]
+	/bracketrighttp		[-81 380]
+	/bracketrightbt		[-83 380]
+	/braceleftbt		[203 490]
+	/bracketrightex		[220 -125 500 0]
+	/radical		[0 0 550 0]
+	/radicalex		[-50 0 500 0]
+	/parenleftex		[-20 -170 0 0]
+	/integral		[100 -50 500 0]
+	/infinity		[10 -75 730 0]
+] def
+
+/S1defs [
+	/underscore		[0 80 500 0]
+	/endash			[7 90 650 0]
+] def
+%
+% Tries to round clipping path dimensions, as stored in array pagebbox, so they
+% match one of the known sizes in the papersizes array. Lower left coordinates
+% are always set to 0.
+%
+
+/roundpagebbox {
+    7 dict begin
+	/papersizes [8.5 inch 11 inch 14 inch 17 inch] def
+
+	/mappapersize {
+		/val exch def
+		/slop .5 inch def
+		/diff slop def
+		/j 0 def
+		0 1 papersizes length 1 sub {
+			/i exch def
+			papersizes i get val sub abs
+			dup diff le {/diff exch def /j i def} {pop} ifelse
+		} for
+		diff slop lt {papersizes j get} {val} ifelse
+	} def
+
+	pagebbox 0 0 put
+	pagebbox 1 0 put
+	pagebbox dup 2 get mappapersize 2 exch put
+	pagebbox dup 3 get mappapersize 3 exch put
+    end
+} bind def
+
+%%EndProlog
+%%BeginSetup
+mark
+/resolution 720 def
+setup
+2 setdecoding
+%%EndSetup
+%%Page: 1 1
+/saveobj save def
+mark
+1 pagesetup
+10 R f
+(- 1 -)2 166 1 2797 480 t
+12 B f
+(Current Practice in)2 999 1 2380 1020 t
+(Part of Speech Tagging)3 1197 1 2281 1200 t
+(and)2768 1380 w
+(Suggestions for the Future)3 1358 1 2201 1560 t
+10 R f
+(Kenneth Ward Church)2 903 1 2428 1800 t
+(Bell Laboratories)1 696 1 2532 1920 t
+(600 Mountain Ave.)2 780 1 2490 2040 t
+(Murray Hill, N.J., USA)3 941 1 2409 2160 t
+(908-582-5325)2597 2280 w
+(kwc@research.att.com)2424 2400 w
+9 B f
+(Abstract)720 2760 w
+10 R f
+( Treebank and similar)3 897(As a result of corpus collection efforts such as the Tagged Brown Corpus, the Penn)14 3423 2 720 3060 t
+( are now quite a number of extremely successful part of speech)11 2540(efforts within the ICAME community, there)5 1780 2 720 3180 t
+( programs work on)3 805( These)1 304( make use of probabilities derived from corpus data.)8 2210(tagging programs which)2 1001 4 720 3300 t
+( researchers report performance in the)5 1593( Most)1 272( ef\256ciency.)1 459(unrestricted texts, with reasonable accuracy and)5 1996 4 720 3420 t
+( ``correct'' by word, which is generally regarded by the computational linguistic)11 3584(range of 95-99%)2 736 2 720 3540 t
+( advance over the level of performance offered by previously accepted technologies)11 3408(community as a major)3 912 2 720 3660 t
+(such as augmented transition networks \(ATNs\).)5 1908 1 720 3780 t
+( of speech given)3 660(Much of this progress has been achieved because lexical probabilities \(probability of a part)13 3660 2 720 4020 t
+( are now being estimated directly from corpus data, and can therefore be estimated much more)15 3924(the word\))1 396 2 720 4140 t
+( in computational)2 712( recently, it had been common practice for most researchers)9 2427( Until)1 261(accurately than before.)2 920 4 720 4260 t
+( concentrate their energies on modeling contextual constraints \(e.g., grammar\), which appears)11 3799(linguistics to)1 521 2 720 4380 t
+( important than lexical probabilities \(e.g., the dictionary\), at least for the part of speech)14 3662(to be much less)3 658 2 720 4500 t
+(tagging application.)1 794 1 720 4620 t
+( are actually much)3 740(In my opinion, future work should continue to concentrate on lexical probabilities, which)12 3580 2 720 4860 t
+( lexical probabilities tend to have more parameters)7 2105( The)1 217( have thought.)2 593(harder to estimate than one might)5 1405 4 720 4980 t
+( be extremely)2 551( the relationships among lexical items turn out to)8 1979( Moreover,)1 471(than the contextual probabilities.)3 1319 4 720 5100 t
+( it would be possible to predict the lexical probabilities by making use of what)14 3159( would hope that)3 678(subtle. One)1 483 3 720 5220 t
+( apparently benign step is fraught with peril,)7 1819( even this)2 395( But)1 201(we know about morphologically related forms.)5 1905 4 720 5340 t
+(we as will see.)3 582 1 720 5460 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 1 1
+%%Page: 2 2
+/saveobj save def
+mark
+2 pagesetup
+10 R f
+(- 2 -)2 166 1 2797 480 t
+9 B f
+(1. Introduction)1 604 1 720 960 t
+( Statement)1 413(1.1 Problem)1 489 2 720 1140 t
+10 R f
+( word ``table,'' for example, can be a verb in)9 1836( The)1 210( depends on context.)3 836(It is well-known that part of speech)6 1438 4 720 1440 t
+( a)1 70( Quite)1 273( ``The table is ready''\).)4 931(some contexts \(e.g., ``He will table the motion''\) and a noun in others \(e.g.,)13 3046 4 720 1560 t
+( input text with the)4 796(number of programs have recently been written which attempt to tag each word in an)14 3524 2 720 1680 t
+( example, the following output is produced by the program described in)11 3006( For)1 202( speech.)1 334(most likely part of)3 778 4 720 1800 t
+(\(Church, 1988\) for the two ``table'' sentences just mentioned:)8 2476 1 720 1920 t
+8 S f
+(\267)783 2220 w
+10 R f
+(He/PPS will/MD table/VB the/AT motion/NN ./.)5 1960 1 870 2220 t
+8 S f
+(\267)783 2400 w
+10 R f
+(The/AT table/NN is/BEZ ready/JJ ./.)4 1471 1 870 2400 t
+( = subject pronoun; MD = modal;)6 1375( PPS)1 223( from Francis and Kucera \(1982\), pp. 6-8.)7 1703(The notation is borrowed)3 1019 4 720 2640 t
+( = article; NN = noun; BEZ = present 3rd sg form of ``to be''; JJ = adjective.)17 3103(VB = verb \(no in\257ection\); AT)5 1217 2 720 2760 t
+(A more realistic example is presented in the appendix.)8 2171 1 720 2880 t
+9 B f
+(1.2 Motivation)1 584 1 720 3180 t
+10 R f
+( an important practical problem with potential applications in many areas including)11 3338(Part of speech tagging is)4 982 2 720 3480 t
+( recognition, spelling correction, proof-reading, query answering, machine)7 3254(speech synthesis, speech)2 1066 2 720 3600 t
+( particularly interested in speech synthesis)5 1819( author has been)3 726( The)1 230(translation and information retrieval.)3 1545 4 720 3720 t
+( the)1 168( Consider)1 432( depends on part of speech.)5 1191(applications, where it is clear that pronunciation sometimes)7 2529 4 720 3840 t
+( there are words like)4 902( First,)1 280(following three examples where pronunciation depends on part of speech.)9 3138 3 720 3960 t
+( is, the noun ``wind'' has a short vowel as)9 1675( That)1 233( different vowel than the verb.)5 1208(``wind'' where the noun has a)5 1204 4 720 4080 t
+( long vowel as in ``Don't forget to wind your)9 1932(in ``the wind is strong,'' whereas the verb ``wind'' has a)10 2388 2 720 4200 t
+( complementizer)1 669( the pronoun ``that'' is stressed as in ``Did you see THAT?'' unlike the)13 2873(watch.'' Secondly,)1 778 3 720 4320 t
+( note the difference between ``oily)5 1486( Thirdly,)1 397(``that,'' as in ``It is a shame that [schwa] he's leaving.'')10 2437 3 720 4440 t
+( adjective-noun sequence such as ``oily)5 1671(FLUID'' and ``TRANSMISSION \257uid''; as a general rule, an)8 2649 2 720 4560 t
+( noun-noun sequence such as ``TRANSMISSION)5 2094(FLUID'' is typically stressed on the right whereas a)8 2226 2 720 4680 t
+( three of the many constructions which would sound)8 2148( are but)2 315( These)1 296(\257uid'' is typically stressed on the left.)6 1561 4 720 4800 t
+(more natural if the synthesizer had access to accurate part of speech information.)12 3227 1 720 4920 t
+( number of)2 454( A)1 130( future research.)2 660(Perhaps the most important application of tagging programs is as a tool for)12 3076 4 720 5160 t
+(large projects such as the Cobuild Dictionary \(Sinclair)7 2291 1 720 5280 t
+10 I f
+(et al)1 192 1 3053 5280 t
+10 R f
+( have recently been collecting large)5 1495(, 1987\))1 300 2 3245 5280 t
+(corpora \(10-1000 million words\) in order to better describe how language is actually used in practice:)15 4056 1 720 5400 t
+(``For the \256rst time, a dictionary has been compiled by the thorough examination of representative group)15 4170 1 870 5700 t
+( means that in addition to)5 1019( This)1 229( to many millions of words.)5 1111(of English texts, spoken and written, running)6 1811 4 870 5820 t
+( measurable)1 504(all the tools of the conventional dictionary makers... the dictionary is based on hard,)13 3666 2 870 5940 t
+(evidence.'' \(Sinclair)1 839 1 870 6060 t
+10 I f
+(et al)1 175 1 1734 6060 t
+10 R f
+(, 1987, p. xv\))3 533 1 1909 6060 t
+( A)1 141( larger and larger corpora.)4 1113(It is likely that there will be more and more research projects collecting)12 3066 3 720 6360 t
+(reliable parts program might greatly enhance the value of these corpora to many of these researchers.)15 4033 1 720 6480 t
+9 B f
+( Statistical Approach)2 811(1.3 The)1 309 2 720 6780 t
+10 R f
+(These days, most part of speech programs \(e.g., Leech)8 2180 1 720 7080 t
+10 I f
+(et al.)1 202 1 2927 7080 t
+10 R f
+(\(1983\), Jelinek \(1985\), Deroualt and Merialdo)5 1859 1 3181 7080 t
+( Ayuso)1 286(\(1986\), Church \(1988\), DeRose \(1988\), Kupiec \(1989\),)6 2218 2 720 7200 t
+10 I f
+(et al.)1 200 1 3249 7200 t
+10 R f
+(\(1990\), de Marcken \(1990\), Boggess)4 1469 1 3474 7200 t
+10 I f
+(et)4968 7200 w
+(al.)720 7320 w
+10 R f
+(\(1991\), Merialdo \(1991\)\) make use of the n-gram approximation, although there are a few recent)14 4170 1 870 7320 t
+(exceptions \(e.g., Heidorn)2 1050 1 720 7440 t
+10 I f
+(et al.)1 222 1 1817 7440 t
+10 R f
+(\(1982\), Martin)1 610 1 2086 7440 t
+10 I f
+(et al.)1 222 1 2743 7440 t
+10 R f
+( These)1 309( Karlsson \(1990\)\).)2 771(\(1987\), Hindle \(1989\),)2 948 3 3012 7440 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 2 2
+%%Page: 3 3
+/saveobj save def
+mark
+3 pagesetup
+10 R f
+(- 3 -)2 166 1 2797 480 t
+( corpus data, are extremely successful; they work)7 2016(programs, which are based on probabilities derived from)7 2304 2 720 960 t
+(on unrestricted texts, with reasonable accuracy and ef\256ciency.)7 2479 1 720 1080 t
+( these statistical programs use a linear time dynamic programming algorithm to \256nd an assignment)14 4003(Most of)1 317 2 720 1320 t
+(of parts of speech to words that optimizes the product of)10 2252 1 720 1440 t
+( probabilities \(probability of observing part of speech i given word j\), and)12 2943(1. lexical)1 441 2 795 1740 t
+( probabilities \(probability of observing part of speech)7 2133(2. contextual)1 591 2 795 1920 t
+10 I f
+(i)3544 1920 w
+10 R f
+(given)3597 1920 w
+10 I f
+(k)3844 1920 w
+10 R f
+(previous parts of speech\).)3 1025 1 3913 1920 t
+( corpus such as the Tagged)5 1148(I have always preferred to estimate the probabilities by training on a tagged)12 3172 2 720 2160 t
+( and Santorini)2 595(Brown Corpus \(Francis and Kucera, 1982\), the Penn Treebank \(Santorini, 1990; Marcus)11 3725 2 720 2280 t
+(\(1991\)\), and similar efforts within the ICAME community)7 2358 1 720 2400 t
+7 R f
+(1)3078 2360 w
+10 R f
+( advocated the use of)4 858(, though many others have)4 1069 2 3113 2400 t
+( relative)1 326( The)1 207(self-organizing re-estimation techniques that do not require access to tagged training material.)11 3787 3 720 2520 t
+( appears that tagged text is preferable to)7 1649(merits of the two approaches are discussed in Merialdo \(1991\); it)10 2671 2 720 2640 t
+(re-estimation when a suf\256cient quantity of tagged text is available.)9 2663 1 720 2760 t
+7 R f
+(2)3383 2720 w
+9 B f
+( State of the Art)4 617(2. The)1 264 2 720 3120 t
+(2.1 Evaluation)1 579 1 720 3300 t
+10 R f
+(Most researchers report performance in the range of 95-99% ``correct'' by word, which is generally)14 4320 1 720 3600 t
+(regarded by the computational linguistic community as a major advance over previous results,)12 3800 1 720 3720 t
+7 R f
+(3)4520 3680 w
+10 R f
+(though it is)2 457 1 4583 3720 t
+(generally accepted that performance is still well below that of people.)10 2780 1 720 3840 t
+( and 99% probably depends less on differences in systems and more on)12 3109(The difference between 95%)3 1211 2 720 4080 t
+( problem for evaluation is that we know that the computer)10 2549( The)1 228( evaluation procedures.)2 974(differences in)1 569 4 720 4200 t
+( people are, but if we simply measure disagreements in a double-blind)11 2955(programs aren't doing as well as)5 1365 2 720 4320 t
+( judges score about 95% correct.)5 1392(experiment, we \256nd that both the computer programs and the human)10 2928 2 720 4440 t
+( an easy matter to decide what is right and what is wrong, it turns)14 2633(Although it might seem that it ought to be)8 1687 2 720 4560 t
+( might think that a word has one and only one)10 1922( One)1 225( considerable room for disagreement.)4 1524(out that there is)3 649 4 720 4680 t
+( tag, but in fact, it turns out that there are quite a number of cases where two judges)18 3399(possible part of speech)3 921 2 720 4800 t
+( word, and even after considerable discussion, neither judge will be)10 2789(will assign different tags to the same)6 1531 2 720 4920 t
+( may be useful to distinguish)5 1283( It)1 137( a mistake.)2 482(prepared to give in and admit that he or she had made)11 2418 4 720 5040 t
+( a general)2 391( As)1 163( and \(b\) outright mistakes.)4 1060(disagreements into two types: \(a\) legitimate differences of opinion,)8 2706 4 720 5160 t
+( the differences between judges tend to be differences of opinion, whereas when a computer)14 3796(rule, most of)2 524 2 720 5280 t
+(disagrees with a judge, there is a much larger chance that the computer is simply wrong.)15 3524 1 720 5400 t
+( distinguish legitimate)2 948(The problem for evaluation, then, is to \256nd an evaluation paradigm that will)12 3372 2 720 5640 t
+( commonly used method, but a biased one, is to ask a)11 2272( A)1 136(differences of opinion from outright mistakes.)5 1912 3 720 5760 t
+( course, this)2 488( Of)1 159(human judge to look over the output from the computer and identify the outright mistakes.)14 3673 3 720 5880 t
+8 S1 f
+(__________________)720 6060 w
+8 R f
+( ICAME Journal, edited by)4 902( on the London-Lund Corpus and other corpora available though ICAME is given in the)14 2919(1. Information)1 499 3 720 6180 t
+(Stig Johansson, Department of English, University of Oslo.)7 1895 1 840 6270 t
+( many practical situations,)3 849( In)1 111( is how to combine tagged and untagged text.)8 1485( interesting question, which deserves further study,)6 1657(2. An)1 218 5 720 6390 t
+( million words of the Brown Corpus\), but one can almost always obtain a)13 2402(one can obtain a ``small'' sample of tagged text \(e.g., 1)10 1798 2 840 6480 t
+( know from studies like Merialdo's that the)7 1425( We)1 157( \(e.g., 100 million words of AP newswire\).)7 1415(much larger sample of untagged text)5 1203 4 840 6570 t
+( However,)1 360( from the Brown Corpus are more useful than re-estimated versions of the same statistics.)14 2957(statistics computed directly)2 883 3 840 6660 t
+( to make use of in the much)7 896(intuitively, it would seem that there ought to be some independent information that one should be able)16 3304 2 840 6750 t
+( question is whether there is a practical procedure for combining estimates obtained from each)14 3037( The)1 167( untagged text.)2 477(larger sample of)2 519 4 840 6840 t
+(sample to produce a combined set of estimates which are more useful than either in isolation.)15 2962 1 840 6930 t
+( Salton)1 224(3. See)1 235 2 720 7050 t
+8 I f
+(et al.)1 159 1 1199 7050 t
+8 R f
+(\(1990\) for a comparison between a statistical part of speech tagger and a more traditional part of speech tagger.)18 3534 1 1378 7050 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 3 3
+%%Page: 4 4
+/saveobj save def
+mark
+4 pagesetup
+10 R f
+(- 4 -)2 166 1 2797 480 t
+( because differences of opinion)4 1278(method tends to produce higher scores than with the double-blind method,)10 3042 2 720 960 t
+( admittedly, this method does introduce a bias because the human)10 2682( And)1 228(are no longer counted as mistakes.)5 1410 3 720 1080 t
+( unlike the double-blind method, this)5 1568( Nevertheless,)1 608( some of the outright mistakes.)5 1323(judge tends to miss)3 821 4 720 1200 t
+( is)1 96( This)1 232( distinguish human-level performance from that of the computer.)8 2625(evaluation procedure does tend to)4 1367 4 720 1320 t
+( though it is biased and somewhat over-)7 1653(the reason that I have tended to use this evaluation method, even)11 2667 2 720 1440 t
+(optimistic.)720 1560 w
+( success is that people are now using these statistical tagging)10 2605(Perhaps the most important indication of)5 1715 2 720 1800 t
+( a number of different application areas including speech synthesis \(Sproat, personal)11 3800(programs in)1 520 2 720 1920 t
+(communication\), \(Liberman and Church, 1991\), speech recognition \(Jelinek, 1985\), \(Jelinek)9 3760 1 720 2040 t
+10 I f
+(et al.)1 209 1 4514 2040 t
+10 R f
+(, 1991\),)1 317 1 4723 2040 t
+(information retrieval \(Salton)2 1167 1 720 2160 t
+10 I f
+(et al.)1 212 1 1924 2160 t
+10 R f
+(, 1990\), \(Croft)2 601 1 2136 2160 t
+10 I f
+(et al.)1 212 1 2774 2160 t
+10 R f
+( disambiguation \(Hearst, 1991\), and)4 1481(, 1991\), sense)2 573 2 2986 2160 t
+(computational lexicography \(Klavans and Tzoukermann, 1990\), \(Church)6 2977 1 720 2280 t
+10 I f
+(et al.)1 211 1 3733 2280 t
+10 R f
+( these)1 242( Apparently,)1 535(, 1991\).)1 319 3 3944 2280 t
+( they wouldn't be as)4 822(programs must be addressing some important needs of the research community or else)12 3498 2 720 2400 t
+(widely cited as they are.)4 967 1 720 2520 t
+9 B f
+( Hard is the Problem?)4 852(2.2 How)1 339 2 720 2820 t
+10 R f
+( is a lot better than we have)7 1123( the one hand, 95-99%)4 913( On)1 175(Should we be happy with this level of performance?)8 2109 4 720 3120 t
+(been doing before n-gram part of speech taggers came into fashion, but on the other hand, it still means that)19 4320 1 720 3240 t
+( subsequent processing \(e.g., parsing,)4 1536( If)1 127( fraction of sentences will contain at least one fatal error.)10 2379(a large)1 278 4 720 3360 t
+( part of speech analysis, then 95% performance is clearly not nearly good)12 2965(semantic analysis\) require perfect)3 1355 2 720 3480 t
+( subsequent steps so they can)5 1243( we need to modify these)5 1071( Perhaps)1 380(enough, and probably 99% isn't either.)5 1626 4 720 3600 t
+( aim for somewhat higher levels of tagging)7 1780( we may need to)4 694( Alternatively,)1 612(tolerate an error rate of 1-5%.)5 1234 4 720 3720 t
+(performance than we can currently achieve.)5 1743 1 720 3840 t
+( not seem like so much when we realize that)9 1811(95% might seem like it is really very good, but in fact, it may)13 2509 2 720 4080 t
+( example, if we simply ignore)5 1228( For)1 196( achieve remarkably good performance.)4 1614(some very simple methods will)4 1282 4 720 4200 t
+( the word, we will achieve nearly 90%)7 1647(the context, and just select the most likely part of speech given)11 2673 2 720 4320 t
+( perform so well, one might ask how it is possible to report)12 2441( that such a simple system will)6 1276(correct. Given)1 603 3 720 4440 t
+( \(A)1 159(performance below 90%, although a number of systems have managed to fall well below this baseline.)15 4161 2 720 4560 t
+( on contextual constraints and to ignore the lexical probabilities \(or to quantize)12 3182(common mistake is to focus)4 1138 2 720 4680 t
+( that lexical)2 500( any case, 95% may not seem so great when we realize that it means)14 2948( In)1 149(them too much.\)\))2 723 4 720 4800 t
+(constraints get the \256rst 90%, and that context contributes only about half of the remaining 10%.)15 3821 1 720 4920 t
+( have a strong intuition that lexical)6 1556(Many people who have not worked in computational linguistics)8 2764 2 720 5160 t
+( is commonly believed that most words have just one part of)11 2423( It)1 112( problem.)1 384(ambiguity is usually not much of a)6 1401 4 720 5280 t
+( ``table'' are easily disambiguated by context in most cases.)9 2507(speech, and that the few exceptions such as)7 1813 2 720 5400 t
+( is, most cases can be resolved without)7 1597( That)1 240(This intuition is largely supported by the numbers just cited.)9 2483 3 720 5520 t
+( are suf\256cient for more than half of the)8 1690(context \(e.g., 90%\), and that simple n-gram models of context)9 2630 2 720 5640 t
+(remainder.)720 5760 w
+( is a)2 181(Nevertheless, among experts in computational linguistics, it has long been felt that lexical ambiguity)13 4139 2 720 6000 t
+( is said that practically any content word can be used as a noun, verb or adjective, and that)18 3616(major problem; it)2 704 2 720 6120 t
+( texts are full of contrived example)6 1505( Introductory)1 567( always adequate to disambiguate.)4 1439(local context is not)3 809 4 720 6240 t
+(sentences such as:)2 726 1 720 6360 t
+8 S f
+(\267)783 6660 w
+10 R f
+(Time \257ies like an arrow.)4 979 1 870 6660 t
+8 S f
+(\267)783 6840 w
+10 R f
+(Flying planes can be dangerous.)4 1284 1 870 6840 t
+( example sentences are generally taken to indicate)7 2060( These)1 297( syntactic parsing will help.)4 1138(where no amount of)3 825 4 720 7080 t
+( subsequent levels of processing \(e.g.,)5 1654(that the parser must allow for multiple possibilities, and that)9 2666 2 720 7200 t
+( this strategy has)3 690( Unfortunately,)1 641(semantics, pragmatics\) will be required in order to resolve the ambiguity.)10 2989 3 720 7320 t
+( are, in fact, the)4 652(not worked out well in practice because it tends to ignore the lexical probabilities, which)14 3668 2 720 7440 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 4 4
+%%Page: 5 5
+/saveobj save def
+mark
+5 pagesetup
+10 R f
+(- 5 -)2 166 1 2797 480 t
+(single most important set of constraints.)5 1600 1 720 960 t
+9 B f
+(3. N-grams)1 449 1 720 1320 t
+( the Inadequacy of N-gram Models)5 1340(3.1 On)1 279 2 720 1500 t
+10 R f
+( on ``\257ying planes can be dangerous,'' it may be surprising that n-gram approaches)13 3516(Given the literature)2 804 2 720 1800 t
+( the received wisdom in computational linguistics has held that n-)10 2716( Moreover,)1 477( well as they do.)4 688(perform as)1 439 4 720 1920 t
+( dates back to Chomsky's early)5 1281( attitude probably)2 715( This)1 233(gram models are necessarily inadequate for the job.)7 2091 4 720 2040 t
+( height in the 1950s, dominating a broad)7 1672( that empiricism was at its)5 1092( Recall)1 314(arguments against empiricism.)2 1242 4 720 2160 t
+( from psychology \(behaviorism\) to electrical engineering \(information theory\).)8 3427(set of \256elds ranging)3 893 2 720 2280 t
+( successfully)1 517(However, interest in statistical approaches faded rather suddenly when Chomsky argued quite)11 3803 2 720 2400 t
+(that statistics should not play a role in his competence model.)10 2457 1 720 2520 t
+( not helpful, but we tend to forget)7 1357(These days, we tend to remember Chomsky's conclusion that n-grams are)10 2963 2 720 2760 t
+( suspect that Chomsky's arguments do not apply as well)9 2291( I)1 88( the arguments themselves.)3 1097(the reasoning behind)2 844 4 720 2880 t
+( applications, and consequently, it may be worthwhile)7 2198(to our tagging application as they do for Chomsky's)8 2122 2 720 3000 t
+(to review Chomsky's argument and see why the conclusion might depend on the application.)13 3718 1 720 3120 t
+( `grammatical in English' cannot be identi\256ed in any way with the notion `higher order of)15 3602(``[T]he notion)1 568 2 870 3420 t
+( to assume that neither sentence \(1\) [Colorless green ideas)9 2320( is fair)2 257( It)1 112(statistical approximation to English.')3 1481 4 870 3540 t
+( these sentences\))2 682(sleep furiously] nor \(2\) [Furiously sleep ideas green colorless] \(nor indeed any part of)13 3488 2 870 3660 t
+( in any statistical model for grammaticalness, these)7 2098( Hence,)1 337( discourse.)1 435(has ever occurred in an English)5 1300 4 870 3780 t
+( \(1\), though)2 501( Yet)1 210( `remote' from English.)3 991(sentences will be ruled out on identical grounds as equally)9 2468 4 870 3900 t
+( will)1 184( with these sentences, a speaker of English)7 1730( Presented)1 442(nonsensical, is grammatical, while \(2\) is not.)6 1814 4 870 4020 t
+( intonation pattern given)3 989( just the)2 321( with)1 230(read \(1\) with a normal sentence intonation, but he will read \(2\) ...)12 2630 4 870 4140 t
+( to recall \(1\) much more easily than \(2\),)8 1612(to any sequence of unrelated words... Similarly, he will be able)10 2558 2 870 4260 t
+( one's ability to produce and recognize grammatical)7 2181( Evidently,)1 479(to learn it much more quickly, etc...)6 1510 3 870 4380 t
+( custom of calling)3 764( The)1 220( not based on notions of statistical approximations and the like.)10 2674(utterances is)1 512 4 870 4500 t
+( some)1 238(grammatical sentences those that `can occur,' or those that are `possible,' has been responsible for)14 3932 2 870 4620 t
+( undeniable interest and importance of semantic and statistical studies of)10 2976( the)1 156( Despite)1 364(confusion here...)1 674 4 870 4740 t
+( no direct relevance to the problem of determining or characterizing the)11 2950(language, they appear to have)4 1220 2 870 4860 t
+( and)1 174( think that we are forced to conclude that grammar is autonomous)11 2692( I)1 89(set of grammatical utterances.)3 1215 4 870 4980 t
+( no particular insight into some of the basic)8 1772(independent of meaning, and that probabilistic models give)7 2398 2 870 5100 t
+(problems of syntactic structure.'' \(Chomsky 1957, pp. 15-17\))7 2458 1 870 5220 t
+( ``competence approximation,'' an)3 1523(Chomsky basically argues in favor of what I might call the)10 2797 2 720 5520 t
+( from preference judgments and other aspects of language that detract)10 2911(approximation that idealizes away)3 1409 2 720 5640 t
+( the basic problems of syntactic structure such as)8 1992(from the problems that he was most interested in, namely)9 2328 2 720 5760 t
+( this approximation simpli\256es matters)4 1596( Obviously,)1 513( other long-distance dependencies.)3 1443(wh-movement and)1 768 4 720 5880 t
+(greatly for the kinds of applications that he had in mind.)10 2245 1 720 6000 t
+( approximations)1 657(An interesting question, then, is to compare the ``competence approximation'' with other)11 3663 2 720 6240 t
+( also just an)3 541( n-grams are)2 544( Obviously,)1 515(that have been suggested such as the ``n-gram approximation''.)8 2720 4 720 6360 t
+( in)1 123(approximation; they are clearly inadequate for capturing many of the \256ne details that one observes)14 4197 2 720 6480 t
+( Chomsky)1 436( of long-distance dependencies that Chomsky was most interested in.)9 2776(syntax, especially the kinds)3 1108 3 720 6600 t
+( limitations of)2 576(\(1956\) used the following example in order to make this point and demonstrate some of the)15 3744 2 720 6720 t
+(n-grams:)720 6840 w
+8 S f
+(\267)783 7140 w
+10 R f
+(The man who said that)4 910 1 870 7140 t
+10 I f
+(S)1805 7140 w
+7 R f
+(5)1866 7160 w
+10 R f
+(, is arriving today.)3 730 1 1909 7140 t
+(Note the words)2 618 1 720 7380 t
+10 I f
+(man)1367 7380 w
+10 R f
+(and)1568 7380 w
+10 I f
+(is)1742 7380 w
+10 R f
+(have to agree in number, and that this agreement dependency can span over an)13 3201 1 1839 7380 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 5 5
+%%Page: 6 6
+/saveobj save def
+mark
+6 pagesetup
+10 R f
+(- 6 -)2 166 1 2797 480 t
+(arbitrary number of words since)4 1292 1 720 960 t
+10 I f
+(S)2040 960 w
+7 R f
+(5)2101 980 w
+10 R f
+( three examples of this form,)5 1158( discussing)1 445( After)1 263(could be arbitrarily long.)3 1002 4 2172 960 t
+( interested)1 416(Chomsky concluded that no n-gram model can adequately model the agreement facts that he was)14 3904 2 720 1080 t
+(in:)720 1200 w
+( transition from state to state)5 1181(``We \256nd that no \256nite-state Markov process that produces symbols with)10 2989 2 870 1500 t
+( the particular subclass of such processes that produce)8 2212( Furthermore,)1 581( as an English grammar.)4 996(can serve)1 381 4 870 1620 t
+( increasing)1 450(n-order statistical approximations to English do not come closer, with)9 2913 2 870 1740 t
+10 I f
+(n)4273 1740 w
+10 R f
+(, to matching the)3 717 1 4323 1740 t
+( 1956, p. 113\))3 558( \(Chomsky,)1 492(output of an English grammar.'')4 1290 3 870 1860 t
+( not whether the n-gram approximation is)6 1683(Neverless, from an engineering point of view, the key question is)10 2637 2 720 2160 t
+( approximations that)2 834(imperfect, but rather, the key question is whether it is more or less helpful than other)15 3486 2 720 2280 t
+( an alternative to the n-gram approximation, one)7 1937( As)1 162( in order to get the job done.)7 1139(one might need to consider)4 1082 4 720 2400 t
+( the competence approximation, and note that it too is imperfect, since it ignores some other)15 3781(might turn to)2 539 2 720 2520 t
+( preferences, memory limitations and)4 1501(\256ne details of language that we know are important, namely statistical)10 2819 2 720 2640 t
+( the comparison between the various approximations)6 2258( Clearly,)1 394(other aspects of language performance.)4 1668 3 720 2760 t
+( of long-distance)2 675( one is interested in studying the effects)7 1591( If)1 117(depends on the application that one has in mind.)8 1937 4 720 2880 t
+( was, then it should be)5 944(dependencies in syntax \(e.g., subject-verb agreement, wh-movement\) as Chomsky)8 3376 2 720 3000 t
+( helpful than the n-gram approximation.)5 1613(fairly obvious that the competence approximation is probably more)8 2707 2 720 3120 t
+( we are here, then it should be equally)8 1580(On the other hand, if one is interested in part of speech tagging as)13 2740 2 720 3240 t
+( lexical)1 310(obvious that the ``competence approximation'' is of little use, since it abstracts away from the)14 4010 2 720 3360 t
+( has shown)2 458( experience)1 464( Indeed,)1 354(probabilities, which happen to be the single most useful set of constraints.)11 3044 4 720 3480 t
+( and that the n-)4 627(that the competence approximation has greatly facilitated much work in theoretical syntax,)11 3693 2 720 3600 t
+(gram approximation has led to great advances in the performance of part of speech taggers.)14 3643 1 720 3720 t
+( the wrong approximation for the wrong application,)7 2111(Moreover, there have been a number of attempts to use)9 2209 2 720 3960 t
+( wrong)1 300( such attempt to use the)5 1046( One)1 237(which generally turn out rather disappointingly, not surprisingly.)7 2737 4 720 4080 t
+( the wrong application is what I might refer to, ungraciously, as the non-deterministic)13 3584(approximation for)1 736 2 720 4200 t
+(non-solution.)720 4320 w
+9 B f
+( Non-Deterministic Non-Solution)2 1266(3.2 The)1 309 2 720 4620 t
+10 R f
+( up each word)3 574(The received wisdom in computational linguistics has held that one ought to start by looking)14 3746 2 720 4920 t
+(in the input text in a dictionary, and then one ought to turn to a non-deterministic parser such as an)19 4320 1 720 5040 t
+( network \(ATN\) \(Woods, 1970\) to \256lter out those parts of speech that do not \256t into)16 3472(augmented transition)1 848 2 720 5160 t
+( is assumed that the remaining part of speech tags should all be)12 2639( It)1 121(one of the many resulting parse trees.)6 1560 3 720 5280 t
+(considered legitimate possibilities.)2 1386 1 720 5400 t
+( of extremely)2 562(Unfortunately, experience has shown that this procedure tends to generate a very long list)13 3758 2 720 5640 t
+( really isn't very useful to \257ood the user)8 1678( most applications, it)3 867( In)1 144(unlikely \(and unhelpful\) interpretations.)3 1631 4 720 5760 t
+( measures)1 400( we had been evaluating our parsers with)7 1653( If)1 119(with a long set of extremely implausible suggestions.)7 2148 4 720 5880 t
+( 248-249\),)1 422(such as precision and recall \(Salton, 1989, pp.)7 1871 2 720 6000 t
+7 R f
+(4)3013 5960 w
+10 R f
+(as they do in the information retrieval literature,)7 1961 1 3079 6000 t
+( is)1 104( It)1 123(then we would have found that such systems produce very high recall by compromising precision.)14 4093 3 720 6120 t
+( one can fairly easily trade-off precision for recall, but that doing so is generally of little or)17 3666(well-known that)1 654 2 720 6240 t
+( real solution requires both high recall as well as high precision.)11 2552( A)1 122(no value.)1 366 3 720 6360 t
+( because it has been)4 868(The standard non-deterministic approach has been unable to obtain high precision)10 3452 2 720 6600 t
+( In)1 143( of constraint.)2 572(ignoring the lexical probabilities which turn out to be the single most important source)13 3605 3 720 6720 t
+8 S1 f
+(__________________)720 6900 w
+8 R f
+(4.)720 7020 w
+8 I f
+(Precision)840 7020 w
+8 R f
+(and)1177 7020 w
+8 I f
+(recall)1324 7020 w
+8 R f
+( is the fraction of the retrieved documents that are)9 1688( Precision)1 348(are commonly used in information retrieval.)5 1463 3 1541 7020 t
+(relevant; recall is the fraction of the relevant documents that are retrieved.)11 2347 1 840 7110 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 6 6
+%%Page: 7 7
+/saveobj save def
+mark
+7 pagesetup
+10 R f
+(- 7 -)2 166 1 2797 480 t
+( lexical probabilities in a way that)6 1378(contrast, statistical part of speech taggers can naturally take advantage of)10 2942 2 720 960 t
+( for example,)2 539( Consider,)1 441( frequency information.)2 955(is not easy to capture with parsers that do not make use of)12 2385 4 720 1080 t
+( is almost always a verb, but does have an archaic nominal usage as in ``the Holy)16 3369(the word ``see,'' which)3 951 2 720 1200 t
+( in the same sense as a)6 904( practical purposes, ``see'' should not be considered noun/verb ambiguous)9 2990(See.'' For)1 426 3 720 1320 t
+( of ``saw'' is)3 539( the nominal usage of ``see,'' the nominal usage)8 1985( Unlike)1 330(truly polysemous word like ``saw''.)4 1466 4 720 1440 t
+(reasonably salient, and actually appears four times in the Tagged Brown Corpus:)11 3228 1 720 1560 t
+(and rough out with either a hack)6 1292 1 1394 1860 t
+10 I f
+(saw)2711 1860 w
+10 R f
+(or a cutting disk in a hand power tool)8 1493 1 2892 1860 t
+(to size for battens , etc. , on a table)9 1386 1 1300 1980 t
+10 I f
+(saw)2711 1980 w
+10 R f
+(. Besides \257athead bronze screws)4 1294 1 2892 1980 t
+(and does not chatter the plywood like a saber)8 1802 1 884 2100 t
+10 I f
+(saw)2711 2100 w
+10 R f
+(. .PP When cut , the planking is clamped in place)10 1962 1 2892 2100 t
+(carpenter's tools , including a rotary power)6 1721 1 965 2220 t
+10 I f
+(saw)2711 2220 w
+10 R f
+(and several other pieces of power machinery that)7 1958 1 2892 2220 t
+(Admittedly, the nominal usage of ``saw'' is still the minority usage; the past tense verbal usage \(VBD\) is)17 4320 1 720 2520 t
+(found 337 times \(almost 100 times more often\).)7 1910 1 720 2640 t
+( to distinctions in saliency such as the one between)9 2061(It is important that the part of speech tagger have access)10 2259 2 720 2880 t
+( so unlikely in)3 594( the former case, the nominal usage of ``see'' is extremely unlikely,)11 2801( In)1 142(``see'' and ``saw''.)2 783 4 720 3000 t
+( particular instance of)3 888( odds that a)3 476( The)1 211(fact, that not a single case has been observed in the Brown Corpus.)12 2745 4 720 3120 t
+( are probably much less than 1 in 1000, given that there are almost a)14 2838(``see'' will refer to the ``Holy See'')6 1482 2 720 3240 t
+( the other)2 391( On)1 179( the Brown Corpus, and not a one refers to the ``Holy See''.)12 2479(thousand instances of ``see'' in)4 1271 4 720 3360 t
+( usage of ``saw'' is simply a long-shot; the odds that a particular instance of ``saw'' will)16 3591(hand, the nominal)2 729 2 720 3480 t
+( the difference between the nominal)5 1467( is fairly easy to model)5 943( It)1 117(refer to a hand-saw are better than 1 in 100.)9 1793 4 720 3600 t
+( ``saw'' within the framework of a statistical part of speech tagger,)11 2665(usage of ``see'' and the nominal usage of)7 1655 2 720 3720 t
+( contrast,)1 377( In)1 144( of these kinds of distinctions in saliency.)7 1732(which was speci\256cally designed to take advantage)6 2067 4 720 3840 t
+( these important distinctions, and consequently,)5 1942(non-deterministic parsers generally have no way to model)7 2378 2 720 3960 t
+(they have not worked out very well in practice.)8 1882 1 720 4080 t
+( in the dictionary must be given equal weight \(as is usually the case in most non-)16 3529(If every possibility)2 791 2 720 4320 t
+( to focus on what is possible,)6 1158( tend)1 198( Dictionaries)1 539(deterministic parsing systems\), then parsing is very dif\256cult.)7 2425 4 720 4440 t
+( all practical purposes, every word)5 1399( For)1 194( the trivial sentence, ``I see a bird.'')7 1454( Consider)1 415(not on what is likely.)4 858 5 720 4560 t
+( to \(Francis and Kucera, 1982\), the word ``I'' appears as a)11 2493( According)1 487( is unambiguous.)2 713(in the sentence)2 627 4 720 4680 t
+( 772)1 189(pronoun \(PPLS\) in 5837 out of 5838 observations \(\304100%\), ``see'' appears as a verb in 771 out of)17 4131 2 720 4800 t
+( of 23019 observations \(\304100%\) and ``bird'')6 1799(observations \(\304100%\), ``a'' appears as an article in 23013 out)9 2521 2 720 4920 t
+( according to Webster's Ninth New)5 1491( However,)1 455( observations \(\304100%\).)2 942(appears as a noun in 26 out of 26)8 1432 4 720 5040 t
+(Collegiate Dictionary \(Mish)2 1147 1 720 5160 t
+10 I f
+(et al.)1 210 1 1902 5160 t
+10 R f
+( addition to the)3 630( In)1 142( every word is at least two-ways ambiguous.)7 1838(, 1983\),)1 318 4 2112 5160 t
+( are listed as nouns and the last as an intransitive verb \(this)12 2371(desired assignments of tags, the \256rst three words)7 1949 2 720 5280 t
+( problem, for the part of speech tagger, is to)9 1758( The)1 206( is generally not listed in other dictionaries\).)7 1772(last possibility)1 584 4 720 5400 t
+(distinguish the more likely part of speech assignments from the less likely ones.)12 3195 1 720 5520 t
+(Table 1)1 302 1 1882 5820 t
+( of Speech)2 421(Word Parts)1 1076 2 1882 5940 t
+( Likely)1 286( Less)1 333(More Likely)1 502 3 2259 6060 t
+10 S f
+(_ _______________________________________)1 1996 1 1882 6080 t
+10 R f
+( \(letter of alphabet\))3 767( noun)1 519(I pronoun)1 710 3 1882 6200 t
+( \()1 58( noun)1 675(see verb)1 554 3 1882 6320 t
+10 I f
+(the Holy See)2 504 1 3169 6320 t
+10 R f
+(\))3673 6320 w
+( \(letter of alphabet\))3 767( noun)1 603(a article)1 626 3 1882 6440 t
+( verb)1 629(bird noun)1 577 2 1882 6560 t
+( assignments could be ruled out by the parser as syntactically ill-formed.)11 2907(One might hope that these spurious)5 1413 2 720 6860 t
+( our trivial example, for instance, one might hope)8 1975( In)1 133( out well in practice.)4 818(Unfortunately, this has not worked)4 1394 4 720 6980 t
+(that the assignment:)2 800 1 720 7100 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 7 7
+%%Page: 8 8
+/saveobj save def
+mark
+8 pagesetup
+10 R f
+(- 8 -)2 166 1 2797 480 t
+8 S f
+(\267)783 960 w
+10 R f
+(I/noun see/noun a/noun bird/noun)3 1352 1 870 960 t
+( however, there is no syntactic prohibition)6 1756( Unfortunately,)1 647( ruled out as syntactically impossible.)5 1565(could be)1 352 4 720 1200 t
+(against a sequence of nouns such as)6 1430 1 720 1320 t
+8 S f
+(\267)783 1620 w
+10 R f
+([NP [N city] [N school] [N committee] [N meeting]])8 2101 1 870 1620 t
+( a principled reason)3 787(Thus, if the parser is going to accept the previous analysis, then there doesn't seem to be)16 3533 2 720 1860 t
+(why it shouldn't also accept the following as equally grammatical:)9 2661 1 720 1980 t
+8 S f
+(\267)783 2280 w
+10 R f
+([NP [N I] [N see] [N a] [N bird]])8 1311 1 870 2280 t
+( verb, since there is nothing)5 1194(Similarly, the parser probably also has to accept ``bird'' as an intransitive)11 3126 2 720 2520 t
+(syntactically wrong with:)2 1016 1 720 2640 t
+8 S f
+(\267)783 2940 w
+10 R f
+([S [NP [N I] [N see] [N a]] [VP [V bird]]])10 1677 1 870 2940 t
+( constraints, and hope that they might)6 1544(One might now turn to semantics, pragmatics and other higher level)10 2776 2 720 3180 t
+( well)1 209( far as I know, no such approach has ever worked very)11 2319( As)1 174(exclude some of the spurious analyses.)5 1618 4 720 3300 t
+( any better)2 433(\(outside of a ``toy'' domain\), and I do not hold out much hope that such an approach will work)18 3887 2 720 3420 t
+( some point, I think we have to accept the fact that the lexical constraints are very)16 3593( At)1 171( future.)1 309(in the)1 247 4 720 3540 t
+( modeled very effectively under the competence approximation, since the)9 2950(important, and that they cannot be)5 1370 2 720 3660 t
+( The)1 213( abstracts away from just the kinds of preferences that we need to model.)13 3014(competence approximation)1 1093 3 720 3780 t
+( assignments aren't wrong; they are just extremely)7 2170(important point is that the spurious part of speech)8 2150 2 720 3900 t
+(improbable.)720 4020 w
+( it is not)3 332( First,)1 261( example illustrates three problems with the non-deterministic non-solution.)8 3050(In summary, this)2 677 4 720 4260 t
+(helpful to return a long list of low precision suggestions including such gems as:)13 3218 1 720 4380 t
+8 S f
+(\267)783 4680 w
+10 R f
+(I/noun see/noun a/noun bird/noun)3 1352 1 870 4680 t
+8 S f
+(\267)783 4860 w
+10 R f
+(I/noun see/noun a/noun bird/verb)3 1329 1 870 4860 t
+( is especially)2 562( It)1 134( available.)1 433(Secondly, it is important to make use of lexical constraints when they are)12 3191 4 720 5100 t
+( word ``see'')2 520( The)1 208(important to make use of them when they are overwhelming, as they are in this example.)15 3592 3 720 5220 t
+( ``saw,'' where both the noun \(a hand-saw\) and the verb \(past)11 2569(is almost unambiguous, unlike a word like)6 1751 2 720 5340 t
+(tense of ``see''\) are reasonably salient.)5 1544 1 720 5460 t
+( has been my experience)4 1008( It)1 118( to contribute very much.)4 1035(Thirdly, one should not expect contextual constraints)6 2159 4 720 5700 t
+( is a very dif\256cult business \(as)6 1222( Parsing)1 352( than lexical constraints.)3 977(that contextual constraints are much weaker)5 1769 4 720 5820 t
+( learned the hard way\), and most parsers with reasonable coverage will accept the good with the)16 3864(we have all)2 456 2 720 5940 t
+( expected to recover from inadequacies in a)7 1785( is unlikely that such a broad-coverage parser could be)9 2247(bad. It)1 288 3 720 6060 t
+( difference between almost unambiguous words like ``see'' and truly)9 3022(lexical model that ignores the)4 1298 2 720 6180 t
+(polysemous words like ``saw.'')3 1259 1 720 6300 t
+( algorithm, I would like to say a few words about how I came to)14 2588(Before discussing the details of the tagging)6 1732 2 720 6540 t
+( ago, I needed a few slides for a)8 1265( few years)2 411( A)1 123(be convinced that it was time to question the received wisdom.)10 2521 4 720 6660 t
+( chart parsing and so I quickly wrote a chart parser with a ``toy'' grammar and a ``toy'' lexicon,)18 3903(tutorial on)1 417 2 720 6780 t
+( like what can be found on pp. 269-270 of \(Martin)10 2015(very much)1 426 2 720 6900 t
+10 I f
+(et al.)1 201 1 3187 6900 t
+10 R f
+( before I \256nalized the slides,)5 1136( Just)1 207(, 1987\).)1 309 3 3388 6900 t
+(though, I decided to replace the ``toy'' lexicon with Webster's Seventh New Collegiate Dictionary, which)14 4320 1 720 7020 t
+( \256rst sentence I tried was, ``I saw a bird,'')9 1688( The)1 207( form.)1 246(happened to be readily available in computer readable)7 2179 4 720 7140 t
+( example was)2 569( this simple)2 486( Apparently,)1 536(and to my surprise it came out with more than one interpretation.)11 2729 4 720 7260 t
+( realizing that ``saw'' was a poor choice because of the)10 2408( After)1 281(much too complicated for my tutorial.)5 1631 3 720 7380 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 8 8
+%%Page: 9 9
+/saveobj save def
+mark
+9 pagesetup
+10 R f
+(- 9 -)2 166 1 2797 480 t
+( unfortunately, I quickly)3 989( But)1 201(polysemy, I then decided to pick a simple ``unambiguous'' word like ``see''.)11 3130 3 720 960 t
+( this point, I became convinced that \(1\) I)8 1622( At)1 150( that ``I see a bird'' is no simpler than ``I saw a bird''.)13 2161(found out)1 387 4 720 1080 t
+( like ``see'' from a truly)5 976(needed a model of the lexicon that would distinguish an almost unambiguous word)12 3344 2 720 1200 t
+( to magically extract the)4 1013(polysemous word like ``saw,'' and that \(2\) it was hopeless to expect the parser)13 3307 2 720 1320 t
+( from context, when the key distinction is a lexical matter, and has very little to do with)17 3511(missing information)1 809 2 720 1440 t
+(context.)720 1560 w
+9 B f
+( Currently Accepted Practice)3 1124(4. The)1 264 2 720 1920 t
+( Example)1 363(4.1 An)1 274 2 720 2100 t
+10 R f
+( will not discuss the front end prepass)7 1570( \(We)1 230(Consider once again the trivial sentence, ``. . I see a bird . .'')13 2520 3 720 2400 t
+( words and pads sentences with two special tokens at each end.\))11 2682(which tokenizes the input sentence into)5 1638 2 720 2520 t
+( to words that optimizes both lexical probabilities)7 2036(The problem is to \256nd an assignment of parts of speech)10 2284 2 720 2640 t
+10 I f
+(Prob)720 2760 w
+10 R f
+(\()928 2760 w
+10 I f
+(p)969 2760 w
+7 I f
+(i)1030 2780 w
+10 S f
+(\357)1058 2760 w
+10 I f
+(w)1106 2760 w
+7 I f
+(i)1184 2780 w
+10 R f
+( contextual probabilities)2 1018(\) and)1 229 2 1220 2760 t
+10 I f
+(Prob)2518 2760 w
+10 R f
+(\()2726 2760 w
+10 I f
+(p)2767 2760 w
+7 I f
+(i)2828 2780 w
+10 S f
+(\357)2856 2760 w
+10 I f
+(p)2904 2760 w
+7 I f
+(i)2965 2780 w
+7 S f
+(+)3001 2780 w
+7 R f
+(1)3051 2780 w
+10 I f
+(p)3102 2760 w
+7 I f
+(i)3163 2780 w
+7 S f
+(+)3199 2780 w
+7 R f
+(2)3249 2780 w
+10 R f
+(\), both of which are estimated from the)7 1740 1 3300 2760 t
+( enumerate all sequences of parts of speech {)8 2046( Conceptually,)1 639(Tagged Brown Corpus.)2 997 3 720 2880 t
+10 I f
+(p)4410 2880 w
+7 I f
+(i)4471 2900 w
+10 R f
+( could)1 279(} that)1 254 2 4507 2880 t
+(correspond to the input sentence of)5 1400 1 720 3000 t
+10 I f
+(N)2145 3000 w
+10 R f
+(words {)1 317 1 2237 3000 t
+10 I f
+(w)2562 3000 w
+7 I f
+(i)2640 3020 w
+10 R f
+( score each sequence by:)4 985(}. Then)1 328 2 2676 3000 t
+7 R f
+({)905 3430 w
+7 I f
+(p)944 3430 w
+4 I f
+(i)985 3444 w
+7 R f
+(})1006 3430 w
+10 I f
+(MAX)870 3360 w
+7 I f
+(i)1096 3460 w
+7 S f
+(=)1132 3460 w
+7 R f
+(1)1182 3460 w
+15 S f
+(P)1099 3390 w
+7 I f
+(N)1134 3260 w
+10 I f
+(Prob)1756 3430 w
+10 R f
+(\()1964 3430 w
+10 I f
+(p)2005 3430 w
+7 I f
+(i)2066 3450 w
+10 R f
+(\))2102 3430 w
+10 I f
+(Prob)1264 3280 w
+10 R f
+(\()1472 3280 w
+10 I f
+(p)1513 3280 w
+7 I f
+(i)1574 3300 w
+10 S f
+(\357)1602 3280 w
+10 I f
+(w)1650 3280 w
+7 I f
+(i)1728 3300 w
+10 R f
+(\))1764 3280 w
+10 I f
+(Prob)1813 3280 w
+10 R f
+(\()2021 3280 w
+10 I f
+(p)2062 3280 w
+7 I f
+(i)2123 3300 w
+10 S f
+(\357)2151 3280 w
+10 I f
+(p)2199 3280 w
+7 I f
+(i)2260 3300 w
+7 S f
+(+)2296 3300 w
+7 R f
+(1)2346 3300 w
+10 I f
+(p)2397 3280 w
+7 I f
+(i)2458 3300 w
+7 S f
+(+)2494 3300 w
+7 R f
+(2)2544 3300 w
+10 R f
+(\))2595 3280 w
+10 S1 f
+(_ ___________________________)1 1394 1 1249 3330 t
+10 R f
+( will not discuss the normalization factor,)6 1723( \(We)1 232( the highest scoring sequence.)4 1239(and select)1 406 4 720 3740 t
+10 I f
+(Prob)4356 3740 w
+10 R f
+(\()4564 3740 w
+10 I f
+(p)4605 3740 w
+7 I f
+(i)4666 3760 w
+10 R f
+(\), which)1 338 1 4702 3740 t
+(compensates for the fact that)4 1175 1 720 3860 t
+10 I f
+(Prob)1927 3860 w
+10 R f
+(\()2135 3860 w
+10 I f
+(p)2176 3860 w
+7 I f
+(i)2237 3880 w
+10 R f
+( numerator, once in the lexical probabilities)6 1775(\) is counted twice in the)5 992 2 2273 3860 t
+(and once in the contextual probabilities.\))5 1631 1 720 3980 t
+(The ``I see a bird'' example is illustrated in Table 2.)10 2087 1 720 4160 t
+(====== INSERT Table 2 ABOUT HERE ======)6 2054 1 870 4460 t
+( A1 through A8, duplicated just below for)7 1907(There are 8 possible part of speech sequences, labeled)8 2413 2 720 4760 t
+(convenience.)720 4880 w
+(Table 3)1 302 1 1843 5180 t
+( . .)2 350( bird)1 356( a)1 247( see)1 381( I)1 278(. .)1 200 6 2104 5300 t
+10 S f
+(_ _________________________________________)1 2073 1 1843 5320 t
+10 I f
+(A1)1843 5440 w
+10 R f
+( .)1 175( .)1 184( NN)1 302( AT)1 286( VB)1 291(. . PPSS)2 574 6 2104 5440 t
+10 I f
+(A2)1843 5560 w
+10 R f
+( .)1 175( .)1 184( NN)1 316( IN)1 272( VB)1 291(. . PPSS)2 574 6 2104 5560 t
+10 I f
+(A3)1843 5680 w
+10 R f
+( .)1 175( .)1 184( NN)1 302(. . PPSS UH AT)4 1151 4 2104 5680 t
+10 I f
+(A4)1843 5800 w
+10 R f
+( .)1 175( .)1 184( NN)1 316( IN)1 269(. . PPSS UH)3 868 5 2104 5800 t
+10 I f
+(A5)1843 5920 w
+10 R f
+( .)1 175( .)1 184( NN)1 302( AT)1 286( VB)1 339( NP)1 326(. .)1 200 7 2104 5920 t
+10 I f
+(A6)1843 6040 w
+10 R f
+( .)1 175( .)1 184( NN)1 316( IN)1 272( VB)1 339( NP)1 326(. .)1 200 7 2104 6040 t
+10 I f
+(A7)1843 6160 w
+10 R f
+( .)1 175( .)1 184( NN)1 302( AT)1 283( NP UH)2 668(. .)1 200 6 2104 6160 t
+10 I f
+(A8)1843 6280 w
+10 R f
+( .)1 175( .)1 184( NN)1 316( IN)1 269( NP UH)2 668(. .)1 200 6 2104 6280 t
+10 S f
+(\347)2029 6280 w
+(\347)2029 6200 w
+(\347)2029 6100 w
+(\347)2029 6000 w
+(\347)2029 5900 w
+(\347)2029 5800 w
+(\347)2029 5700 w
+(\347)2029 5600 w
+(\347)2029 5500 w
+(\347)2029 5400 w
+(\347)2029 5300 w
+10 R f
+( or a)2 179(That is, the pad token ``.'' has just one part of speech: ``.''; the word ``I'' can be either a pronoun PPSS)21 4141 2 720 6580 t
+( either an unin\257ected verb)4 1078(proper noun NP \(according to \(Francis and Kucera, 1982\)\); the word ``see'' is)12 3242 2 720 6700 t
+( is always a)3 466(VB or an interjection UH; ``a'' is either an article AT or a preposition IN \(from French\); ``bird'')17 3854 2 720 6820 t
+( given in \(Francis and Kucera, 1982\) are somewhat different)9 2428( that the part of speech choices)6 1248( Note)1 247(noun NN.)1 397 4 720 6940 t
+(from the ones discussed previously, which were given in Mish)9 2533 1 720 7060 t
+10 I f
+(et al.)1 204 1 3282 7060 t
+10 R f
+( of the remainder of this)5 982( Most)1 260(, 1983\).)1 312 3 3486 7060 t
+(discussion will work with the choices in \(Francis and Kucera, 1982\).)10 2746 1 720 7180 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 9 9
+%%Page: 10 10
+/saveobj save def
+mark
+10 pagesetup
+10 R f
+(- 10 -)2 216 1 2772 480 t
+( 2, each part of speech sequence is followed by two two rows of numbers corresponding to the)17 3974(In Table)1 346 2 720 960 t
+( probabilities for A1 are repeated here:)6 1545( The)1 205(lexical and contextual probabilities.)3 1426 3 720 1080 t
+(Table 4)1 302 1 1483 1380 t
+10 I f
+(A1)1483 1500 w
+10 R f
+( .)1 325( .)1 266( NN)1 330( AT)1 322( VB)1 307( PPSS)1 449(. .)1 350 7 1852 1500 t
+10 I f
+(lex)1483 1620 w
+10 R f
+( 1.00 1.00 1.00 1.00)4 1300( 1.00)1 350( 1.00)1 349(1.00 1.00)1 500 4 1777 1620 t
+10 I f
+(con)1483 1740 w
+10 R f
+( 0.23 0.25 1.00 1.00)4 1300( 0.07)1 350( 0.07)1 349(0.99 0.20)1 500 4 1777 1740 t
+10 S f
+(\347)1702 1740 w
+(\347)1702 1700 w
+(\347)1702 1600 w
+(\347)1702 1500 w
+10 R f
+( is a)2 169( other words, it is very likely that ``I'' is a pronoun, ``see'')12 2381( In)1 136(The lexical probabilities are all nearly 1.)6 1634 4 720 2040 t
+( third)1 221( The)1 212( are also quite large.)4 834( contextual probabilities)2 982( The)1 213(verb, ``a'' is an article and ``bird'' is a noun.)9 1858 6 720 2160 t
+( It)1 120(number, 0.07, for example, denotes the probability of \256nding a pronoun before a verb and and article.)16 4200 2 720 2280 t
+( the number of PPSS, VB, AT trigrams in the training corpus by the number of)15 3241(was computed by dividing)3 1079 2 720 2400 t
+(VB, AT bigrams.)2 694 1 720 2520 t
+(The bottom line score for A1 is 10)7 1428 1 720 2700 t
+7 S f
+(-)2159 2660 w
+7 R f
+(4)2209 2660 w
+10 R f
+( multiplying all of the lexical and contextual)7 1830(, which is computed by)4 958 2 2252 2700 t
+( column in Table 2, A1 has a much higher score than any)12 2318( one can see from the right most)7 1312(probabilities. As)1 690 3 720 2820 t
+( verb, article, noun\) scores 10,000 times better than A2)9 2412(other part of speech sequence; A1 \(pronoun,)6 1908 2 720 2940 t
+(\(pronoun, verb, preposition, noun\), the next best sequence.)7 2346 1 720 3060 t
+9 B f
+( Dynamic Programming Solution)3 1274(4.2 The)1 309 2 720 3360 t
+10 R f
+( three 2-ways ambiguous tokens \(``I'',)5 1570(In this example, there are eight possible sequences since there were)10 2750 2 720 3660 t
+(``see,'' and ``a''\), and 2)4 1056 1 720 3780 t
+7 R f
+(3)1781 3740 w
+10 S f
+(=)1840 3780 w
+10 R f
+( words are no more than)5 1087( general, let us assume that)5 1201( In)1 158(8 paths.)1 336 4 1911 3780 t
+10 I f
+(k)4742 3780 w
+10 R f
+(ways)4835 3780 w
+(ambiguous, where)1 735 1 720 3900 t
+10 I f
+(k)1483 3900 w
+10 R f
+(is about 10, and that input sentences are no more than)10 2174 1 1555 3900 t
+10 I f
+(N)3757 3900 w
+10 R f
+(words long, where)2 746 1 3852 3900 t
+10 I f
+(N)4626 3900 w
+10 R f
+(is about)1 318 1 4722 3900 t
+( were to literally enumerate all part of speech sequences, it might need to look at)15 3321( if the search)3 536(100. Then,)1 463 3 720 4020 t
+10 I f
+(k)720 4140 w
+7 I f
+(N)775 4100 w
+10 R f
+(\()838 4140 w
+10 S f
+(~)879 4120 w
+(~)879 4145 w
+10 R f
+(10)942 4140 w
+7 R f
+(100)1047 4100 w
+10 R f
+( there is a dynamic programming solution to the search)9 2245( Fortunately,)1 540(\) part of speech sequences.)4 1087 3 1168 4140 t
+(since the scoring function can see only 2 words away.)9 2151 1 720 4260 t
+( we consider the)3 687( First)1 246(Suppose \(for convenience only\), we start the search from the end of the sentence.)13 3387 3 720 4500 t
+(possible part of speech sequences for ``bird'':)6 1828 1 720 4620 t
+( ./.)1 360( ./.)1 105(0.25 bird/NN)1 693 3 1080 4860 t
+( probability for NN given ``bird'' \(1.00\) and the)8 1977(The score, 0.25, was computed by multiplying the lexical)8 2343 2 720 5100 t
+( now consider the possible)4 1064( We)1 189( NN given the following two parts of speech \(0.25\).)9 2075(contextual probability of)2 992 4 720 5220 t
+(part of speech sequences for ``a'':)5 1358 1 720 5340 t
+( 3)1 460( ./.)1 360( ./.)1 105( bird/NN)1 488(0.06 a/AT)1 565 5 1080 5580 t
+10 S f
+(\264)3066 5580 w
+10 R f
+(10)3129 5580 w
+7 S f
+(-)3240 5540 w
+7 R f
+(6)3290 5540 w
+10 R f
+( ./.)1 360( ./.)1 105(a/IN bird/NN)1 693 3 3368 5580 t
+( the lexical probabilities for)4 1144(The score, 0.06, was computed by multiplying the previous score \(0.25\) with)11 3176 2 720 5820 t
+( We)1 192( parts of speech \(0.23\).)4 930(AT given ``a'' \(1.00\) and the contextual probability for AT given the next two)13 3198 3 720 5940 t
+( paths is actually)3 684(now consider the possible part of speech sequences for ``see'': \(The score for the last two)15 3636 2 720 6060 t
+(slightly more than 0, but we won't deal with that here.\))10 2203 1 720 6180 t
+(4)1080 6420 w
+10 S f
+(\264)1138 6420 w
+10 R f
+(10)1201 6420 w
+7 S f
+(-)1312 6380 w
+7 R f
+(3)1362 6380 w
+10 R f
+( ./.)1 360( ./.)1 105( bird/NN)1 488(see/VB a/AT)1 565 4 1440 6420 t
+(1)1080 6540 w
+10 S f
+(\264)1138 6540 w
+10 R f
+(10)1201 6540 w
+7 S f
+(-)1312 6500 w
+7 R f
+(7)1362 6500 w
+10 R f
+( ./.)1 360( ./.)1 105( bird/NN)1 516(see/VB a/IN)1 537 4 1440 6540 t
+( ./.)1 360( ./.)1 105( bird/NN)1 488( a/AT)1 266(0 see/UH)1 1019 5 1080 6660 t
+( ./.)1 360( ./.)1 105( bird/NN)1 516( a/IN)1 238(0 see/UH)1 1019 5 1080 6780 t
+( necessary to hypothesize that)4 1212( however, that it is no longer)6 1170( Note,)1 273(Now, \256nd assignments of ``I'' and score.)6 1665 4 720 7020 t
+( all four paths, ``I/PPSS see/VB a/IN bird/NN,'' ``I/NP)8 2331(``a'' might be a French preposition IN because)7 1989 2 720 7140 t
+( a/IN bird/NN'' and ``I/NP see/UH a/AT bird/NN'' score no better)10 2675(see/VB a/IN bird/NN,'' ``I/PPSS see/UH)4 1645 2 720 7260 t
+( particular,)1 432( In)1 133( any additional input could make any difference.)7 1935(than some other path and there is no way that)9 1820 4 720 7380 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 10 10
+%%Page: 11 11
+/saveobj save def
+mark
+11 pagesetup
+10 R f
+(- 11 -)2 216 1 2772 480 t
+( ``I/PPSS see/VB a/IN bird/NN'' scores no better than the path ``I/PPSS see/VB a/AT bird/NN,'')14 3971(the path,)1 349 2 720 960 t
+( a/IN bird/NN'' because the contextual scoring function)7 2259(and additional input will not help ``I/PPSS see/VB)7 2061 2 720 1080 t
+( of speech, which is not enough to see past the existing ``I/PPSS'' and)13 2881(has a limited window of three parts)6 1439 2 720 1200 t
+(``see/VB.'')720 1320 w
+(10)1080 1560 w
+7 S f
+(-)1191 1520 w
+7 R f
+(4)1241 1520 w
+10 R f
+( ./.)1 360( ./.)1 105( bird/NN)1 488( a/AT)1 271(I/PPSS see/VB)1 654 5 1440 1560 t
+(10)1080 1680 w
+7 S f
+(-)1191 1640 w
+7 R f
+(9)1241 1640 w
+10 R f
+( ./.)1 360( ./.)1 105( bird/NN)1 488( a/AT)1 271(I/NP see/VB)1 654 5 1440 1680 t
+( ./.)1 360( ./.)1 105( bird/NN)1 488( a/AT)1 266( see/UH)1 374(0 I/PPSS)1 645 6 1080 1800 t
+( ./.)1 360( ./.)1 105( bird/NN)1 488( a/AT)1 266( see/UH)1 470(0 I/NP)1 549 6 1080 1920 t
+( of)1 117(The search continues two more iterations for the two pad characters and ultimately concludes that part)15 4203 2 720 2160 t
+( of the dynamic programming optimization, only)6 1982( Because)1 387(speech sequence A1 is the best.)5 1283 3 720 2280 t
+10 I f
+(k)4401 2280 w
+7 R f
+(2)4456 2240 w
+10 R f
+(\()4507 2280 w
+10 S f
+(~)4548 2260 w
+(~)4548 2285 w
+10 R f
+(10)4611 2280 w
+7 R f
+(2)4716 2240 w
+10 R f
+(\) paths)1 273 1 4767 2280 t
+( of the)2 291(need to be kept around as each)6 1326 2 720 2400 t
+10 I f
+(N)2380 2400 w
+10 R f
+( the dynamic programming)3 1139( Thus,)1 293(input words are processed.)3 1118 3 2490 2400 t
+(optimization reduces the search space from)5 1726 1 720 2520 t
+10 I f
+(k)2471 2520 w
+7 I f
+(N)2526 2480 w
+10 R f
+(down to only)2 528 1 2606 2520 t
+10 I f
+(Nk)3159 2520 w
+7 R f
+(2)3281 2480 w
+10 R f
+(.)3324 2520 w
+7 R f
+(5)3349 2480 w
+9 B f
+( Issues)1 253(5. Smoothing)1 529 2 720 2880 t
+( Lexical Probabilities)2 816(5.1 Smoothing)1 574 2 720 3060 t
+10 R f
+( are very hard to estimate by direct counting because of Zipf's Law \(frequency is)14 3300(Some of the probabilities)3 1020 2 720 3360 t
+( need to)2 370( We)1 215( example, the lexical probabilities.)4 1484( for)1 169( Consider,)1 464(roughly proportional to inverse rank\).)4 1618 6 720 3480 t
+( because of Zipf's Law, no)5 1094( Unfortunately,)1 640( speech.)1 326(estimate how often each word appears with each part of)9 2260 4 720 3600 t
+( In)1 133( times.)1 267(matter how much text we look at, there will always be a large tail of words that appear only a few)20 3920 3 720 3720 t
+( a word such as ``yawn'' appears)6 1323( If)1 117( for example, 40,000 words appear \256ve times or less.)9 2122(the Brown Corpus,)2 758 4 720 3840 t
+( is impossible to say)4 812( It)1 111( it can be an adjective?)5 911(once as a noun and once as a verb, what is the probability that)13 2486 4 720 3960 t
+(without more information.)2 1058 1 720 4080 t
+( there are 40 different parts of speech, then we)9 1939( If)1 126( very serious sparse data problem.)5 1408(In general, there is a)4 847 4 720 4320 t
+( each)1 211( best, we will have 5 instances for)7 1388( At)1 155(need to estimate 40 parameters for each of these 40,000 words.)10 2566 4 720 4440 t
+( situation is actually worse)4 1110( true)1 190( The)1 215(word, so will have 5 data points in order to estimate 40 parameters.)12 2805 4 720 4560 t
+( less than 5 data)4 658(than this because many of the 40,000 words appear less than 5 times, so we actually have)16 3662 2 720 4680 t
+( more)1 232( might think that we could \256x the sparse data problem by merely collecting)13 3013( One)1 217(points in many cases.)3 858 4 720 4800 t
+( problem is)2 458( The)1 209( we do that we \256nd that the sparse data problem actually gets worse.)13 2775(data, but ironically, if)3 878 4 720 4920 t
+( we)1 146( As)1 166( more and more data.)4 865(that the number of words that appear only a few times increases as we collect)14 3143 4 720 5040 t
+(collect more and more data, we begin to learn more and more just how little we actually know.)17 3785 1 720 5160 t
+7 R f
+(6)4505 5120 w
+10 R f
+( For)1 214( dictionaries can be used to help alleviate the sparse data problem.)11 2914(In some cases, conventional)3 1192 3 720 5400 t
+(example, the fact that none of our dictionaries indicate that)9 2396 1 720 5520 t
+10 I f
+(yawn)3146 5520 w
+10 R f
+( make us feel more)4 775(is an adjective should)3 878 2 3387 5520 t
+( \(1988\) describes an)3 821( Church)1 349( it a small probability, perhaps even zero probability.)8 2154(comfortable in assigning)2 996 4 720 5640 t
+8 S1 f
+(__________________)720 5820 w
+8 R f
+( course, it is)3 399( Of)1 129( lattice subject to the optimization criterion.)6 1417( dynamic programming algorithm \256nds the best path through the)9 2113(5. This)1 262 5 720 5940 t
+( best N)2 232(possible to use an N-best search algorithm \(e.g., Soong and Huang \(1990\), Schwartz and Austin \(1990\)\) in order to \256nd the)20 3968 2 840 6030 t
+( problem with)2 463( My)1 159( certain conditions.)2 623( Marcken \(1990\) took a similar approach and reported several choices under)11 2523(solutions. de)1 432 5 840 6120 t
+( are superior)2 406(these non-deterministic approaches to part of speech tagging is that I believe very strongly that the lexical constraints)17 3794 2 840 6210 t
+( thus, I believe it doesn't do any good to postpone the)11 1708(to whatever constraints one is likely to \256nd at higher levels of processing, and)13 2492 2 840 6300 t
+( is some advantage in doing so.)6 1028( seems to me that those who advocate postponing the decision need to show that there)15 2795(decision. It)1 377 3 840 6390 t
+( tended to rest mainly on showing improved recall, but the argument tends to omit the fact that the)18 3306(Thus far, the argument has)4 894 2 840 6480 t
+(improvement is achieved by merely trading off precision for recall, which is of little or no value for reasons discussed previously.)20 4122 1 840 6570 t
+( English \(or any other natural language\) is relatively small and \256xed \(e.g., 50,000)13 2665( is commonly believed that the vocabulary of)7 1487(6. It)1 168 3 720 6690 t
+( into the hundreds of millions of)6 1086( fact, over all samples of text that I have been able to look at \(currently numbering)16 2758(words\). In)1 356 3 840 6780 t
+( linear, but it appears to)5 760( growth rate is not quite)5 773( The)1 167(words\), it appears that the vocabulary continues to grow at a very steady rate.)13 2500 4 840 6870 t
+(be more than)2 423 1 840 6965 t
+8 S f
+(\326` `)1 111 1 1288 6965 t
+8 I f
+(N)1338 6965 w
+8 R f
+( basic)1 188( The)1 169( constants depend on what you count as a word and the source of the text, among other things.)18 3089(. The)1 189 4 1405 6965 t
+(shape of the growth rate curve, though, seems to be fairly clear, and does not depend too much on these details.)20 3543 1 840 7055 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 11 11
+%%Page: 12 12
+/saveobj save def
+mark
+12 pagesetup
+10 R f
+(- 12 -)2 216 1 2772 480 t
+10 I f
+(ad hoc)1 272 1 720 960 t
+10 R f
+( I)1 87( obtained from tagged corpora.)4 1249(procedure for combining evidence from dictionaries with evidence)7 2684 3 1020 960 t
+( to report that I have replaced this)7 1344(would like)1 426 2 720 1080 t
+10 I f
+(ad hoc)1 269 1 2515 1080 t
+10 R f
+(method \(add one to the relevant counts\) with something)8 2231 1 2809 1080 t
+( deleted interpolation \(Jelinek and Mercer, 1985\) or the Good-Turing method)10 3306(more principled such as)3 1014 2 720 1200 t
+( I have to report that I still use the same)10 1641( Unfortunately,)1 641(\(Good, 1953\).)1 569 3 720 1320 t
+10 I f
+(ad hoc)1 275 1 3602 1320 t
+10 R f
+(methods reported in Church)3 1133 1 3907 1320 t
+(\(1988\), even though I have learned that those)7 1849 1 720 1440 t
+10 I f
+(ad hoc)1 275 1 2600 1440 t
+10 R f
+( I had thought)3 579(methods are, in fact, much worse than)6 1555 2 2906 1440 t
+( possible that my feeble attempt to grapple with the sparse data problem)12 2886( is very)2 298( It)1 113(\(Church and Gale, 1990\).)3 1023 4 720 1560 t
+(may have actually made matters worse rather than better.)8 2280 1 720 1680 t
+( combine evidence collected from different sources \(such as)8 2577(It turns out that it is often non-trivial to)8 1743 2 720 1920 t
+( One)1 223( because almost every source uses their own unique tagging system.)10 2785(dictionaries and tagged corpora\))3 1312 3 720 2040 t
+( one)1 195(can always hand-tune a set of mapping rules that convert one tagging system into another, but)15 4125 2 720 2160 t
+( the)1 154( At)1 157( introducing more trouble than they are worth.)7 1896(invariably suspects that the mapping rules might be)7 2113 4 720 2280 t
+( regularities since most)3 1029(very least, the mapping rules require that one make use of morphological)11 3291 2 720 2400 t
+(dictionaries do not list morphological variants.)5 1866 1 720 2520 t
+9 B f
+( Across Morphological Variants)3 1229(5.2 Smoothing)1 574 2 720 2820 t
+10 R f
+( it would be possible to predict the lexical probabilities by making use of what we)15 3452(One would hope that)3 868 2 720 3120 t
+( One)1 228( benign step is fraught with peril.)6 1396( this apparently)2 642( Even)1 268(know about morphologically related forms.)4 1786 5 720 3240 t
+( to the end of a word would not change)9 1597(might think that it would be fairly safe to assume that adding an 's')13 2723 2 720 3360 t
+( even this seemingly innocuous move can lead to serious)9 2285( Unfortunately,)1 638(its lexical probabilities very much.)4 1397 3 720 3480 t
+( forms: \(1\) the base form, and \(2\) the base form with an)12 2256( 5 lists a number of words in two)8 1332(dif\256culties. Table)1 732 3 720 3600 t
+( form was found in the)5 967( each case, I counted the number of times that the)10 2106( In)1 146(extra 's' added to the end.)5 1101 4 720 3720 t
+( number of times that it was found with some other)10 2073(Tagged Brown Corpus as a noun \(e.g., nn, nns\), and the)10 2247 2 720 3840 t
+( might)1 261( One)1 218( am particularly interested in the fourth and seventh columns.)9 2470( I)1 85( jj\).)1 141(part of speech \(e.g., vb, vbz,)5 1145 6 720 3960 t
+( is, one)2 308( That)1 244( of being a noun.)4 718(hope that morphologically related forms would share the same probability)9 3050 4 720 4080 t
+( there is a)3 460( Apparently,)1 549( columns would be highly correlated.)5 1612(might hope that the fourth and seventh)6 1699 4 720 4200 t
+( scatter plot of the fourth and seventh columns)8 1861( A)1 123(correlation, but it is much weaker than I had hoped \(0.42\).)10 2336 3 720 4320 t
+(are presented in Figure 1.)4 1025 1 720 4440 t
+7 R f
+(7)1745 4400 w
+10 R f
+( all share more or less the)6 1038(Note that there is a trend for morphological variants to)9 2195 2 1807 4440 t
+(same probability of being a noun, but there are plenty of very striking exceptions.)13 3259 1 720 4560 t
+(====== INSERT Table 5 ABOUT HERE ======)6 2054 1 870 4860 t
+(====== INSERT Figure 1 ABOUT HERE ======)6 2088 1 870 5100 t
+( may need to be)4 700( It)1 128( just too simple-minded.)3 1024(Perhaps the approach outlined in the previous paragraph is)8 2468 4 720 5400 t
+( worst outliers in)3 699( particular, some of the)4 959( In)1 142(enhanced in a number of ways, both linguistic and statistical.)9 2520 4 720 5520 t
+(Figure 1 are adjective forms \(e.g.,)5 1457 1 720 5640 t
+10 I f
+(moderate, parallel, close)2 1041 1 2223 5640 t
+10 R f
+( to treat adjectives)3 795( may be necessary)3 791(\). It)1 190 3 3264 5640 t
+( addition, the argument)3 945( In)1 139( morphology is different from noun-verb morphology.)6 2203(separately since adjective)2 1033 4 720 5760 t
+( are extremely)2 618( is well-known that ratios of small counts)7 1813( It)1 134(is also taking ratios of frequency counts.)6 1755 4 720 5880 t
+( despite these problems,)3 963( Nevertheless,)1 591( it may be necessary to take some more precautions.)9 2088(unstable. Again,)1 678 4 720 6000 t
+( does a fairly good job in illustrating just how hard it can be to predict lexical)16 3374(I believe the argument)3 946 2 720 6120 t
+(probabilities on the basis of morphological variants.)6 2079 1 720 6240 t
+8 S1 f
+(__________________)720 6839 w
+8 R f
+( 1 because there are so many words in that)9 1358( are used to indicate the location of words in the upper right hand corner of Figure)16 2642(7. Points)1 320 3 720 6959 t
+(corner.)840 7049 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 12 12
+%%Page: 13 13
+/saveobj save def
+mark
+13 pagesetup
+10 R f
+(- 13 -)2 216 1 2772 480 t
+9 B f
+( Contextual Probabilities)2 961(5.3 Smoothing)1 574 2 720 960 t
+10 R f
+( contextual probabilities)2 974( The)1 209( not the only probabilities that require smoothing.)7 2011(The lexical probabilities are)3 1126 4 720 1260 t
+( too tend to have a very skewed distribution, and)9 2059( They)1 268( some interesting estimation questions.)4 1605(also raise)1 388 4 720 1380 t
+( have)1 219(consequently, even after looking at a very large training corpus, there will still be many n-grams that)16 4101 2 720 1500 t
+( should be avoided.)3 777( Zeros)1 277( is clear that the contextual frequencies require smoothing.)8 2337( It)1 111(not been observed.)2 751 5 720 1620 t
+( the contextual probabilities for three reasons:)6 1884(Nevertheless, I have relatively little to say about estimating)8 2436 2 720 1860 t
+(\(1\) it relatively well-studied,)3 1155 1 720 1980 t
+7 R f
+(8)1875 1940 w
+10 R f
+( estimate,)1 388(\(2\) it is relatively easy since there are relatively few parameters to)11 2678 2 1939 1980 t
+7 R f
+(9)5005 1940 w
+10 R f
+( is relatively unimportant since the contextual probabilities don't matter very much compared with)13 3950(and \(3\) it)2 370 2 720 2100 t
+(the lexical probabilities.)2 963 1 720 2220 t
+( of the gains that we are likely to see)9 1470( suspect that most)3 714( I)1 83(The third point, of course, dominates the argument.)7 2053 4 720 2460 t
+( tend to focus our)4 755( We)1 202( near future will be in \256nding better ways to estimate lexical probabilities.)12 3123(in the)1 240 4 720 2580 t
+( have all been trained to think about grammatical questions,)9 2440(attention on contextual constraints because we)5 1880 2 720 2700 t
+( fact, I am fairly convinced that lexical constraints are much more important, and much more dif\256cult)16 4086(but in)1 234 2 720 2820 t
+( the previous subsection.)3 1057(to model for a number of reasons including some of the ones mentioned in)13 3263 2 720 2940 t
+(However, I am con\256dent that we will be able to make progress in this area, given the massive amount of)19 4320 1 720 3060 t
+(recent interest in both part of speech tagging in speci\256c, and data collection in general.)14 3460 1 720 3180 t
+9 B f
+(6. Conclusion)1 544 1 720 3540 t
+10 R f
+( Kucera, 1982\) and related data-collection)5 1773(As a result of corpus collection efforts such as \(Francis and)10 2547 2 720 3840 t
+(efforts around the world, quite a number of part of speech taggers have been developed including \(e.g.,)16 4320 1 720 3960 t
+(Leech)720 4080 w
+10 I f
+(et al.)1 204 1 992 4080 t
+10 R f
+( Kupiec)1 318(\(1983\), Jelinek \(1985\), Deroualt and Merialdo \(1986\), Church \(1988\), DeRose \(1988\),)10 3497 2 1225 4080 t
+(\(1989\), Ayuso)1 579 1 720 4200 t
+10 I f
+(et al.)1 202 1 1326 4200 t
+10 R f
+(\(1990\), de Marcken \(1990\), Boggess)4 1477 1 1555 4200 t
+10 I f
+(et al.)1 202 1 3059 4200 t
+10 R f
+( programs,)1 428( These)1 289(\(1991\), Merialdo \(1991\)\).)2 1035 3 3288 4200 t
+( on)1 154(which are based on probabilities derived from corpus data, are extremely successful; they work)13 4166 2 720 4320 t
+( is very encouraging as can be seen)7 1404( Performance)1 559( accuracy and ef\256ciency.)3 990(unrestricted texts, with reasonable)3 1367 4 720 4440 t
+( number of)2 450( importantly, these programs are now beginning to be used in quite a)12 2804( More)1 271(from the Appendix.)2 795 4 720 4560 t
+( communication\), \(Liberman and Church,)4 1720(applications areas including speech synthesis \(Sproat, personal)6 2600 2 720 4680 t
+(1991\), speech recognition \(Jelinek, 1985\), \(Jelinek)5 2044 1 720 4800 t
+10 I f
+(et al.)1 204 1 2793 4800 t
+10 R f
+( information retrieval \(Salton)3 1183(, 1991\),)1 312 2 2997 4800 t
+10 I f
+(et al.)1 205 1 4522 4800 t
+10 R f
+(, 1990\),)1 313 1 4727 4800 t
+(\(Croft)720 4920 w
+10 I f
+(et al.)1 214 1 1003 4920 t
+10 R f
+(, 1991\), sense disambiguation \(Hearst, 1991\), and computational lexicography \(Klavans and)10 3823 1 1217 4920 t
+(Tzoukermann, 1990\), \(Church)2 1214 1 720 5040 t
+10 I f
+(et al.)1 200 1 1959 5040 t
+10 R f
+(, 1991\).)1 308 1 2159 5040 t
+( has been possible because lexical probabilities \(probability of a part of speech given)13 3437(Much of this progress)3 883 2 720 5280 t
+( are now being estimated directly from corpus data, and can therefore be estimated much more)15 3924(the word\))1 396 2 720 5400 t
+( in computational)2 712( recently, it had been common practice for most researchers)9 2427( Until)1 261(accurately than before.)2 920 4 720 5520 t
+( less important)2 599(linguistics to concentrate their energies on contextual constraints, which are probably much)11 3721 2 720 5640 t
+(than lexical constraints.)2 946 1 720 5760 t
+( lexical probabilities will continue to)5 1489( suspect models of)3 750( I)1 86(There is, of course, much room for improvement.)7 1995 4 720 6000 t
+8 S1 f
+(__________________)720 6180 w
+8 R f
+( from trigram estimates to bigram and unigram estimates, when appropriate.)10 2428( Katz \(1987\) for a discussion of how to ``back-off'')9 1657(8. See)1 235 3 720 6300 t
+(See Ayuso)1 359 1 840 6390 t
+8 I f
+(et al.)1 174 1 1234 6390 t
+8 R f
+( discussion on how much training text is required in order to obtain)12 2332(\(1990\) and Merialdo \(1991\) for some)5 1265 2 1443 6390 t
+(acceptable results.)1 581 1 840 6480 t
+( 40)1 101( there are 40 parts of speech, then there are)9 1361(9. If)1 172 3 720 6600 t
+5 R f
+(3)2358 6568 w
+8 R f
+( there are a million words of training material,)8 1474( If)1 93(or 64,000 parameters to estimate.)4 1063 3 2410 6600 t
+( the data points are generally not uniformly)7 1424( Obviously,)1 400( than 15 data points for each parameter \(on average\).)9 1738(then there are more)3 638 4 840 6690 t
+( probabilities is considerably better than with the lexical probabilities.)9 2238(distributed, but nevertheless, the situation with the contextual)7 1962 2 840 6780 t
+( of speech each, so there are 2.5 million parameters to)10 1721(In that case, there are about 50,000 words in the Brown Corpus with 40 parts)14 2479 2 840 6870 t
+( to)1 90( And)1 186( we already have more parameters than data points.)8 1694( that we have only 1 million words of training data,)10 1704(estimate. Given)1 526 5 840 6960 t
+(make matters worse, the data are not well-distributed.)7 1705 1 840 7050 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 13 13
+%%Page: 14 14
+/saveobj save def
+mark
+14 pagesetup
+10 R f
+(- 14 -)2 216 1 2772 480 t
+( more corpus evidence and we \256nd ways to make)9 2055(improve, especially as we continue to collect more and)8 2265 2 720 960 t
+( is particularly important that we \256nd ways to combine)9 2199( It)1 112( that we have.)3 557(better and better use of the evidence)6 1452 4 720 1080 t
+( major problem, here, is to)5 1097( A)1 130( systems.)1 375(evidence obtained from different sources using different notational)7 2718 4 720 1200 t
+( would hope that it would be)6 1180( One)1 222(\256nd a reliable way of making inferences across morphological variants.)9 2918 3 720 1320 t
+( lexical probabilities by making use of what we know about morphologically related)12 3428(possible to predict the)3 892 2 720 1440 t
+(forms, but as we have seen, even this apparently innocuous move can lead to serious dif\256culties.)15 4320 1 720 1560 t
+( on these questions given the level of)7 1556(Nevertheless, I am convinced that we will continue to see progress)10 2764 2 720 1680 t
+(effort that the research community is currently devoting to these problems.)10 2987 1 720 1800 t
+7 R f
+(10)3707 1760 w
+8 S1 f
+(__________________)720 6659 w
+8 R f
+( will also been improvements in the modeling of contextual constraints, given the current level of effort that is being directed)20 4015(10. There)1 305 2 720 6779 t
+( less con\256dent, however, that this work will produce signi\256cant improvements in performance, since I)14 3442( am)1 130( I)1 79(in that direction.)2 549 4 840 6869 t
+( by lexical issues \(as opposed to contextual ones\), and that this situation is unlikely to)15 2768(believe that performance is currently limited)5 1432 2 840 6959 t
+(change for some time to come.)5 980 1 840 7049 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 14 14
+%%Page: 15 15
+/saveobj save def
+mark
+15 pagesetup
+10 R f
+(- 15 -)2 216 1 2772 480 t
+9 B f
+(References)720 960 w
+10 R f
+( Weischedel, R.)2 644( D., Bobrow, R., MacLaughlin, D., Meteer, M., Ramshaw, L., Schwartz, R.,)11 3090([1] Ayuso,)1 502 3 804 1320 t
+( a Very Large Vocabulary,'' DARPA Speech and Natural)8 2317(\(1990\) ``Toward Understanding Text with)4 1703 2 1020 1440 t
+(Language Workshop, Morgan Kaufmann Publishers, San Mateo, California, pp. 354-358.)9 3581 1 1020 1560 t
+( ``Disambiguation of Prepositional Phrases in)5 2029( L., Agarwal, R., Davis, R. \(1991\),)6 1627([2] Boggess,)1 580 3 804 1740 t
+(Automatically Labelled Technical Text,'' AAAI, pp. 155-159.)6 2495 1 1020 1860 t
+( N., ``Three Models for the Description of Language,'' IRE Transactions on Information)12 3611([3] Chomsky,)1 625 2 804 2040 t
+(Theory, vol. IT-2, Proceedings of the Symposium on Information Theory, 1956.)10 3205 1 1020 2160 t
+( N. \(1957\))2 413([4] Chomsky,)1 625 2 804 2340 t
+10 I f
+(Syntactic Structures)1 802 1 1867 2340 t
+10 R f
+(, The Hague: Mouton & Co.)5 1130 1 2669 2340 t
+( K. \(1988\) ``A Stochastic Parts Program and Noun Phrase Parser for Unrestricted Text,'')13 3701([5] Church,)1 535 2 804 2520 t
+(Second Conference on Applied Natural Language Processing, Austin, Texas.)8 3080 1 1020 2640 t
+( Context are Worse than None,'' DARPA)6 1774( K., and Gale, W. \(1990\) ``Poor Estimates of)8 1927([6] Church,)1 535 3 804 2820 t
+( Kaufmann Publishers, San Mateo, California, pp.)6 2004(Speech and Natural Language Workshop, Morgan)5 2016 2 1020 2940 t
+(283-287.)1020 3060 w
+( Hanks, P., Hindle, D. \(1991\) ``Using Statistics in Lexical Analysis,'' in)11 3093( K., Gale, W.,)3 608([7] Church,)1 535 3 804 3240 t
+( Exploiting On-Line Resources to Build a Lexicon,'')7 2347(Zernik, U. \(ed.\) ``Lexical Acquisition:)4 1673 2 1020 3360 t
+(Lawrence Erlbaum Associates, Hillsdale, New Jersey.)5 2161 1 1020 3480 t
+( Use of Phrases and Structured Queries in Information)8 2200( W., Turtle, H., Lewis, D. \(1991\) ``The)7 1584([8] Croft,)1 452 3 804 3660 t
+(Retrieval,'' in Bookstein, A., Chiaramella, Y., Salton, G., Raghavan, V. \(eds.\), SIRIR Forum.)12 3744 1 1020 3780 t
+( LOB Corpus,'' Association for Computational Linguistics, pp.)7 2561( Marcken, C. \(1990\) ``Parsing the)5 1365([9] de)1 310 3 804 3960 t
+(243-251.)1020 4080 w
+( S., ``Grammatical Category Disambiguation by Statistical Optimization,'' Computational)8 3679([10] DeRose,)1 607 2 754 4260 t
+(Linguistics, Vol. 14, No. 1, 1988.)5 1342 1 1020 4380 t
+( B. \(1986\) ``Natural Language Modeling for Phoneme-to-text)7 2798( A. and Merialdo,)3 848([11] Deroualt,)1 640 3 754 4560 t
+(Transcription,'')1020 4680 w
+10 I f
+(IEEE Transations on Pattern Analysis and Machine Intelligence)7 2677 1 1688 4680 t
+10 R f
+(PAMI-8\(6\), pp.)1 637 1 4403 4680 t
+(742-749.)1020 4800 w
+( Houghton Mif\257in Company,)3 1179( W., and Kucera, H., ``Frequency Analysis of English Usage,'')9 2522([12] Francis,)1 585 3 754 4980 t
+(Boston, 1982.)1 559 1 1020 5100 t
+( \(1953\) ``The Population Frequencies of Species and the Estimation of Population)11 3657( I.)1 116([13] Good,)1 513 3 754 5280 t
+(Parameters,'')1020 5400 w
+10 I f
+(Biometrika)1579 5400 w
+10 R f
+( 237-264.)1 408(, vol. 40, pp.)3 503 2 2023 5400 t
+( Using Local Context in Large Text)6 1486( M. \(1991\) ``Toward Noun Homonym Disambiguation)6 2249([14] Hearst,)1 551 3 754 5580 t
+(Corpora,'' in)1 531 1 1020 5700 t
+10 I f
+( of the UW Centre for the New OED)8 1521(Proceedings of the Seventh Annual Conference)5 1933 2 1586 5700 t
+(and Text Research)2 749 1 1020 5820 t
+10 R f
+( and Text Research, University)4 1255(, available from the UW Centre for the New OED)9 2016 2 1769 5820 t
+(of Waterloo, Waterloo, Ontario, Canada.)4 1629 1 1020 5940 t
+( M. \(1982\) ``The EPISTLE Text)5 1418( G., Jensen, K., Miller, L., Byrd, F. and Chodorow,)9 2250([15] Heidorn,)1 618 3 754 6120 t
+(Critiquing System,'')1 823 1 1020 6240 t
+10 I f
+(IBM Systems Journal)2 854 1 1868 6240 t
+10 R f
+(, 21:3, pp. 305-326.)3 786 1 2722 6240 t
+( D. \(1989\) ``Acquiring Disambiguation Rules from Text,'' ACL, pp. 118-125.)10 3127([16] Hindle,)1 563 2 754 6420 t
+( Report, also)2 514( F. \(1985\) ``Self-organized Language Modeling for Speech Recognition,'' IBM)9 3198([17] Jelinek,)1 574 3 754 6600 t
+( \(1990\))1 309( \(eds.\))1 292( Kai-Fu, L.)2 480(available in Waibel, A. and)4 1168 4 1020 6720 t
+10 I f
+(Readings in Speech Recognition)3 1344 1 3312 6720 t
+10 R f
+(, Morgan)1 384 1 4656 6720 t
+(Kaufmann Publishers, San Mateo, California, pp. 450-506.)6 2356 1 1020 6840 t
+( Estimation From Sparse Data,'')4 1348( F. and Mercer, R. \(1985\) ``Probability Distribution)7 2149([18] Jelinek,)1 574 3 754 7020 t
+10 I f
+(IBM)4863 7020 w
+(Technical Disclosure Bulletin)2 1194 1 1020 7140 t
+10 R f
+(, Vol. 28, pp. 2591-2594.)4 1008 1 2214 7140 t
+( and Roukos, S. \(1991\) ``Principles of Lexical Language Modeling for)10 3058( F., Mercer, R.)3 654([19] Jelinek,)1 574 3 754 7320 t
+( ``Advances in Speech Signal)4 1357( \(eds.\),)1 343( Furui, S. and Mohan, M.)5 1234(Speech Recognition,'' in)2 1086 4 1020 7440 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 15 15
+%%Page: 16 16
+/saveobj save def
+mark
+16 pagesetup
+10 R f
+(- 16 -)2 216 1 2772 480 t
+(Processing,'' Marcel Dekker, New York.)4 1642 1 1020 960 t
+( as a Framework for Parsing Running Text,'' COLING,)8 2296( F. \(1990\) ``Constraint Grammar)4 1344([20] Karlsson,)1 646 3 754 1140 t
+(pp. 168-173.)1 508 1 1020 1260 t
+( language model)2 728( S. M., \(1987\), ``Estimation of probabilities from sparse data for the)11 3079([21] Katz,)1 479 3 754 1440 t
+( recognizer,'')1 575(component of a speech)3 1037 2 1020 1560 t
+10 I f
+(IEEE Transactions on Acoustics, Speech, and Signal)6 2344 1 2696 1560 t
+(Processing,)1020 1680 w
+10 R f
+(v. ASSP-35, pp. 400-401.)3 1031 1 1514 1680 t
+( and Tzoukermann, E. \(1990\) ``Linking Bilingual Corpora and Machine Readable)10 3552( J.)1 116([22] Klavans,)1 618 3 754 1860 t
+(Dicitonaries with the BICORD System,'' in)5 1770 1 1020 1980 t
+10 I f
+( Annual Conference of the UW)5 1239(Proceedings of the Sixth)3 983 2 2818 1980 t
+( New OED and Text Research)5 1231(Centre for the)2 571 2 1020 2100 t
+10 R f
+(, available from the UW Centre for the New OED and)10 2218 1 2822 2100 t
+(Text Research, University of Waterloo, Waterloo, Ontario, Canada.)7 2699 1 1020 2220 t
+( Word Tagging,'')2 725( J. \(1989\) ``Augmenting a Hidden Markov Model for Phrase-Dependent)9 2982([23] Kupiec,)1 579 3 754 2400 t
+( Publishers, San Mateo,)3 1022(DARPA Speech and Natural Language Workshop, Morgan Kaufmann)7 2998 2 1020 2520 t
+( 92-98.)1 308(California, pp.)1 580 2 1020 2640 t
+( Automatic Grammatical Tagging of the LOB Corpus,'')7 2327( G., Garside, R., Atwell, E., ``The)6 1425([24] Leech,)1 534 3 754 2820 t
+(ICAME News 7, 13-33, 1983.)4 1207 1 1020 2940 t
+( Church, K. \(1991\) ``Text Analysis and Word Pronunciation in Text-to-Speech)10 3256( M., and)2 351([25] Liberman,)1 679 3 754 3120 t
+(Synthesis,'' in Furui, S. and Mohan, M. \(eds.\), ``Advances in Speech Signal Processing,'' Marcel)13 4020 1 1020 3240 t
+(Dekker, New York.)2 786 1 1020 3360 t
+( Corpora: the Penn)3 788( M. and Santorini, B. \(1991\) ``Building Very Large Natural Language)10 2908([26] Marcus,)1 590 3 754 3540 t
+(Treebank,'' unpublished ms., University of Pennsylvania.)5 2311 1 1020 3660 t
+( \(1987\) ``Preliminary Analysis of a Breadth-First Parsing)7 2429( W., Church, K., and Patil, R.)6 1294([27] Martin,)1 563 3 754 3840 t
+( L. \(ed.\), ``Natural Language Parsing)5 1594(Algorithm: Theoretical and Experimental Results,'' Bolc,)5 2426 2 1020 3960 t
+(Systems,'' Springer-Verlag.)1 1123 1 1020 4080 t
+( B. \(1991\) ``Tagging Text with a Probabilistic Model,'' IEEE International Conference on)12 3629([28] Merialdo,)1 657 2 754 4260 t
+(Acoustics, Speech and Signal Processing \(ICASSP\).)5 2096 1 1020 4380 t
+( DARPA)1 371( M., Schwartz, R., Weischedel, R. \(1991\), ``Studies in Part of Speech Labelling,'')12 3342([29] Meteer,)1 573 3 754 4560 t
+( Kaufmann Publishers, San Mateo, California, pp.)6 2004(Speech and Natural Language Workshop, Morgan)5 2016 2 1020 4680 t
+(331-336.)1020 4800 w
+([30] Mish)1 472 1 754 4980 t
+10 I f
+(et al.)1 204 1 1255 4980 t
+10 R f
+( New Collegiate Dictionary,'' Merriam Company, Spring\256eld,)6 2530(\(1983\) ``Webster's Ninth)2 1022 2 1488 4980 t
+(Massachusetts.)1020 5100 w
+( G. \(1989\))2 413([31] Salton,)1 547 2 754 5280 t
+10 I f
+(Automatic Text Processing)2 1077 1 1739 5280 t
+10 R f
+(, Addison-Wesley Publishing Co.)3 1342 1 2816 5280 t
+( for the Generation of)4 944( G., Zhao, Z., Buckley, C. \(1990\) ``A Simple Systactic Approach)10 2795([32] Salton,)1 547 3 754 5460 t
+(Indexing Phrases,'' TR90-1137, Department of Computer Science, Cornell University.)8 3473 1 1020 5580 t
+( Technical)1 424( B. \(1990\) ``Part-of-speech tagging guidelines for the Penn Treebank Project,'')10 3204([33] Santorini,)1 658 3 754 5760 t
+( and Information Science, University of)5 1871(report MS-CIS-90-47, Department of Computer)4 2149 2 1020 5880 t
+(Pennsylvania.)1020 6000 w
+( for N-Best Search,'')3 860( R. and Austin, S. \(1990\) ``Ef\256cient, High-Performance Algorithms)8 2764([34] Schwartz,)1 662 3 754 6180 t
+( Publishers, San Mateo,)3 1022(DARPA Speech and Natural Language Workshop, Morgan Kaufmann)7 2998 2 1020 6300 t
+(California, pp. 6-11.)2 813 1 1020 6420 t
+( \(eds.\) \(1987\))2 568( J., Hanks, P., Fox, G., Moon, R., Stock, P. et al.)11 2080([35] Sinclair,)1 602 3 754 6600 t
+10 I f
+(Collins Cobuild English)2 997 1 4043 6600 t
+(Language Dictionary,)1 883 1 1020 6720 t
+10 R f
+(Collins, London and Glasgow.)3 1225 1 1928 6720 t
+( and Huang, E. \(1990\) ``A Tree-Trellis Based Fast Search for Finding the N Best Sentence)15 3633( F.)1 106([36] Soong,)1 547 3 754 6900 t
+( Language)1 468(Hypotheses in Continuous Speech Recognition,'' DARPA Speech and Natural)8 3552 2 1020 7020 t
+(Workshop, Morgan Kaufmann Publishers, San Mateo, California, pp. 12-19.)8 3063 1 1020 7140 t
+( CACM)1 347( W. \(1970\), ``Transition Network Grammars for Natural Language Analysis,'')9 3365([37] Woods,)1 574 3 754 7320 t
+(13:10.)1020 7440 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 16 16
+%%Page: 17 17
+/saveobj save def
+mark
+17 pagesetup
+10 R f
+(- 17 -)2 216 1 2772 480 t
+9 B f
+(Appendix: Sample Results)2 1016 1 720 960 t
+10 R f
+( The)1 216( October 24, 1991.)3 779(The following news item was distributed over the Associated Press newswire on)11 3325 3 720 1260 t
+( the program described in \(Church, 1988\).)6 1686(part of speech tags and the noun phrase brackets were inserted by)11 2634 2 720 1380 t
+( do not seem to cause the part of speech)9 1732(Note that the news item contains several typos, although they)9 2588 2 720 1500 t
+( The)1 206( introduces at least four part of speech errors.)8 1811( tagging program)2 692( The)1 207(tagging program too much trouble.)4 1404 5 720 1620 t
+( discussed here because it is somewhat peripheral to the main topic of)12 2808(algorithm for inserting brackets is not)5 1512 2 720 1740 t
+(this paper, and also because it does not work as well as the tagging algorithm.)14 3107 1 720 1860 t
+( Business/NP/NP)1 923([ International/NP/NP)1 1109 2 720 2220 t
+( [)1 109(Machines/NP/NP Corp/NP./NP ] sued/VBD)3 1923 2 720 2340 t
+( [)1 131(a/AT leading/VBG marketer/NN ] of/IN)4 1901 2 720 2460 t
+( claiming/VBG)1 627(computers/NNS Thursday/NP ] ,/,)3 1405 2 720 2580 t
+( cannibalize/VB [ IBM/NP/NP)3 1482([ it/PPO ])2 550 2 720 2700 t
+( [ counterfeits/NN)2 948(mainframes/NNS ] ,/,)2 1084 2 720 2820 t
+( and/CC sells/VBZ or/CC leases/VBZ)4 1547(parts/NNS ])1 485 2 720 2940 t
+( unsuspecting/JJ)1 758([ them/PPO ] to/TO [)4 1274 2 720 3060 t
+(customers/NNS ])1 691 1 720 3180 t
+([ The/AT lawsuit/NN ] against/IN [)5 2032 1 720 3420 t
+( marked/VBD [)2 693(Comdisco/NP/NP Inc/NP./NP ])2 1339 2 720 3540 t
+( major/JJ legal/JJ)2 789(IBM/NP/NP 's/$ second/CD)2 1243 2 720 3660 t
+(action/NN ] against/IN [ another/DT computer/NN)5 2032 1 720 3780 t
+( few/JJ)1 307(company/NN ] in/ININ [ the/AT past/JJ)5 1725 2 720 3900 t
+( It/PPS ] also/RB stood/VBD)4 1249( [)1 103(weeks/NNS ] ./.)2 680 3 720 4020 t
+( stark/JJ contrast/NN ] to/TOIN [ the/AT)6 1655(in/ININ [)1 377 2 720 4140 t
+( alliances/NNS IBM/NP/NP)2 1136(friendly/JJ strategic/JJ)1 896 2 720 4260 t
+( recently/RB with/IN [)3 1022(] has/HVZ struck/VBN)2 1010 2 720 4380 t
+( as/CS [)2 401(some/DTI competitors/NNS ] such/JJ)3 1631 2 720 4500 t
+(Apple/NP/NP Computer/NP/NP Inc/NP./NP ])3 2032 1 720 4620 t
+(and/CC [ Wang/NP/NP Laboratories/NP/NP)3 2032 1 720 4740 t
+(Inc/NP/NP ] ./.)2 600 1 720 4860 t
+( ,/,)1 126(``/`` [ The/AT gloves/NNS ] are/BER off/IN)6 1906 2 720 5100 t
+( [ Sam/NP/NP Albert/NP/NP)3 1201(''/'' said/SAIDVBD)1 831 2 720 5220 t
+(] ,/, [ an/AT independent/JJ computer/NN)5 2032 1 720 5340 t
+( IBM/NP/NP)1 540(consultant/NN ] and/CC [ former/JJ)4 1492 2 720 5460 t
+( ])1 79( [ I/PPSS)2 408( ``/``)1 230(software/NN executive/NN ] ./.)3 1315 4 720 5580 t
+( the/AT IBM/NP/NP company/NN ] ,/,)5 1593(think/VB [)1 439 2 720 5700 t
+( decades/NNS ])2 760(unlike/IN in/ININ [ past/JJ)3 1272 2 720 5820 t
+( it/PPS ] was/BEDZ viewed/VBN)4 1472(when/WRB [)1 560 2 720 5940 t
+( monopolist/NN ] ,/, is/BEZ now/RB)5 1502(as/CS [ a/AT)2 530 2 720 6060 t
+( [)1 95(viewed/VBN as/CS [ an/AT underdog/NN ] ./.)6 1937 2 720 6180 t
+( losing/VBG [ market/NN)3 1113(They/PPSS ] 're/BER)2 919 2 720 6300 t
+( ] 're/BER)2 584( They/PPSS)1 567( [)1 168(share/NN ] ./.)2 713 4 720 6420 t
+( right/NN ] ./.)3 595(\256ghting/VBG for/FORIN [ their/JJ)3 1437 2 720 6540 t
+(''/'')720 6660 w
+( biggest/JJ)1 579([ The/AT world/NN 's/$)3 1453 2 720 6900 t
+( been/BEN)1 555(computermaker/NN ] has/HVZ)2 1477 2 720 7020 t
+( [ an/AT earnings/NNS)3 956(suffering/VBG through/IN)1 1076 2 720 7140 t
+( while/CS trying/VBG to/TO)3 1462(] slump/VB)1 570 2 720 7260 t
+(protect/VB [ the/AT trade/NN secrets/NNS ] [)6 2032 1 720 7380 t
+( [)1 62(that/WPS ] historically/RB have/HV given/VBN)4 1970 2 3007 2220 t
+(it/PPO ] [ a/AT dominant/JJ edge/NN ] ./.)7 1669 1 3007 2340 t
+( IBM/NP/NP suit/NN ] against/IN [)5 1620([ The/AT)1 412 2 3007 2580 t
+( \256led/VBN in/ININ [)3 1027(Comdisco/NP/NP ] ,/,)2 1005 2 3007 2700 t
+( [ Chicago/NP ] ,/,)4 801(federal/JJ court/NN ] in/ININ)3 1231 2 3007 2820 t
+( [)1 82(claimed/VBD [ the/AT Rosemont/NP/NP ] ,/,)5 1950 2 3007 2940 t
+( ,/, based/VBN [ company/NN ])5 1503(Ill/NP./NP ])1 529 2 3007 3060 t
+( disassembling/VBG [)2 1023(was/BEDZ secretly/RB)1 1009 2 3007 3180 t
+( ,/,)1 319(IBM/NP/NP mainframes/NNS ])2 1713 2 3007 3300 t
+(counterfeiting/VBG [ memory/NN cards/NNS ])4 2032 1 3007 3420 t
+( or/CC leasing/VBG [)3 1058(and/CC reselling/VBG)1 974 2 3007 3540 t
+( [)1 63( The/AT suit/NN ] alleges/VBZ)4 1295( [)1 89(them/PPO ] ./.)2 585 4 3007 3660 t
+( don't/DO comply/VB with/IN)3 1242(the/AT parts/NNS ])2 790 2 3007 3780 t
+([ IBM/NP/NP standards/NNS ] and/CC are/BER)5 2032 1 3007 3900 t
+(likely/JJ to/TO fail/VB ./.)3 1026 1 3007 4020 t
+( This/DT ] is/BEZ [ an/AT outrage/NN ])7 1791(``/`` [)1 241 2 3007 4260 t
+( be/BE stopped/VBN ,/, ''/'' [)5 1296(and/CC must/MD)1 736 2 3007 4380 t
+( Grabe/NP/NP ] ,/, [)4 927(William/NP/NP O/NP./NP)1 1105 2 3007 4500 t
+( and/CC [)2 451(IBM/NP/NP vice/NN president/NN ])3 1581 2 3007 4620 t
+( of/IN [ the/AT)3 865(general/JJ manager/NN ])2 1167 2 3007 4740 t
+( ])1 99(company/NN 's/$ domestic/JJ marketing/NN)3 1933 2 3007 4860 t
+( division/NN ] ,/,)3 930(and/CC [ services/NNS)2 1102 2 3007 4980 t
+(said/SAIDVBD in/ININ [ a/AT press/NN)4 2032 1 3007 5100 t
+(statement/NN ] on/ONIN [ the/AT suit/NN ] ./.)7 1884 1 3007 5220 t
+( ] ,/, [ a/AT)4 745([ John/NP/NP Reilly/NP/NP)2 1287 2 3007 5460 t
+(spokesman/NN ] for/FORIN [ IBM/NP/NP ] ,/,)6 2032 1 3007 5580 t
+(said/SAIDVBD [ the/AT company/NN ])4 2032 1 3007 5700 t
+(was/BEDZ seeking/VBG [ unspeci\256ed/JJ)3 2032 1 3007 5820 t
+(monetary/JJ damages/NNS ] and/CC [ a/AT)5 2032 1 3007 5940 t
+( to/TO halt/VB [ the/AT)4 1116(court/NN order/NN ])2 916 2 3007 6060 t
+(alleged/VBN actions/NNS ])2 1121 1 3007 6180 t
+( [)1 102([ Telephone/NN requests/NNS ] for/FORIN)4 1930 2 3007 6420 t
+( [)1 114(Comdisco/NP/NP comment/NN ] on/ONIN)3 1918 2 3007 6540 t
+( referred/VBN)1 660(the/AT suit/NN ] were/BED)3 1372 2 3007 6660 t
+( ,/, [)2 235(to/TOIN [ Philip/NP/NP Hewes/NP/NP ])4 1797 2 3007 6780 t
+( counsel/NN ])2 572(the/AT company/NN 's/$ general/JJ)3 1460 2 3007 6900 t
+( not/RB [ return/NN)3 895(,/, [ who/WPS ] did/VBD)4 1137 2 3007 7020 t
+(two/CD calls/NNS ] by/IN [ late/JJ Thursday/NP)6 2032 1 3007 7140 t
+( ] was/BEDZ)2 649( He/PPS)1 399( [)1 145(afternoon/NN ] ./.)2 839 4 3007 7260 t
+( [ a/AT secretary/NN ])4 1094(said/SAIDVBD by/IN)1 938 2 3007 7380 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 17 17
+%%Page: 18 18
+/saveobj save def
+mark
+18 pagesetup
+10 R f
+(- 18 -)2 216 1 2772 480 t
+(to/TO be/BE in/ININ [ a/AT meeting/NN ] ./.)7 1823 1 720 960 t
+( suit/NN ] claims/VBZ [)4 1080([ The/AT IBM/NP/NP)2 952 2 720 1200 t
+( ] ``/`` has/HVZ lost/VBN [)5 1171(the/AT company/NN)1 861 2 720 1320 t
+( the/AT)1 331(the/AT ability/NN ] to/TO control/VB [)5 1701 2 720 1440 t
+( [ the/AT memory/NN)3 1127(quality/NN ] of/IN)2 905 2 720 1560 t
+( under/IN [ its/JJ)3 729(products/NNS ] marketed/VBN)2 1303 2 720 1680 t
+( ])1 67(trademark/NN ] ,/, and/CC [ its/JJ goodwill/NN)6 1965 2 720 1800 t
+( have/HV been/BEN)2 900(and/CC [ reputation/NN ])3 1132 2 720 1920 t
+( ''/'')1 210(imperiled/VBN ./.)1 725 2 720 2040 t
+( said/SAIDVBD)1 665([ The/AT company/NN ] also/RB)4 1367 2 720 2280 t
+([ it/PPS ] was/BEDZ ``/`` continuing/VBG to/TO)6 2032 1 720 2400 t
+(investigate/VB [ facts/NNS ] surrounding/VBG [)5 2032 1 720 2520 t
+(other/JJ third/CD parties/NNS ] [ who/WPS ])6 2032 1 720 2640 t
+(may/MD be/BE passing/VBG off/IN [)4 2032 1 720 2760 t
+( cards/NNS ] as/CS [)4 938(counterfeit/JJ memory/NN)1 1094 2 720 2880 t
+(genuine/JJ IBM/NP/NP parts/NNS ] ''/'')4 1638 1 720 3000 t
+( [)1 73([ IBM/NP/NP ] ,/, headquartered/VBN in/ININ)5 1959 2 720 3240 t
+( ,/, is/BEZ [)3 509(Armonk/NP/NP ] ,/, [ N.Y/NP./NP ])5 1523 2 720 3360 t
+( [)1 143(the/AT biggest/JJ producer/NN ] of/IN)4 1889 2 720 3480 t
+( ,/, [ the/AT)3 607(mainframe/NN computers/NNS ])2 1425 2 720 3600 t
+( [)1 135(roomsized/VBN machines/NNS ] that/CS)3 1897 2 720 3720 t
+( store/VB)1 389(large/JJ businesses/NNS ] use/VB to/TO)4 1643 2 720 3840 t
+( vast/JJ quantites/NNS ])3 1093(and/CC process/VB [)2 939 2 720 3960 t
+(of/IN [ information/NN ] ./.)4 1104 1 720 4080 t
+( recently/RB rolled/VBD)2 1019([ The/AT company/NN ])3 1013 2 720 4320 t
+( a/AT new/JJ generation/NN ] of/IN [)6 1682(out/IN [)1 350 2 720 4440 t
+(mainframes/NNS ] ,/, [ which/WDT ] account/VB)6 2032 1 720 4560 t
+( [ half/ABN its/JJ)3 1081(for/FORIN about/IN)1 951 2 720 4680 t
+( when/WRB associated/VBN [)3 1364(earnings/NNS ])1 668 2 720 4800 t
+(software/NN ] and/CC [ equipment/NN ] is/BEZ)6 2032 1 720 4920 t
+( it/PPS)1 285( Last/JJ week/NN ] ,/, [)5 964( [)1 90(included/VBN ./.)1 693 4 720 5040 t
+( 85/CD percent/NN)2 894(] reported/VBD [ an/AT)3 1138 2 720 5160 t
+( third-quarter/JJ)1 782(drop/NN ] in/ININ [)3 1250 2 720 5280 t
+( ,/, largely/RB due/JJ to/TOIN [)5 1384(earnings/NNS ])1 648 2 720 5400 t
+( the/AT)1 422(the/AT effects/NNS ] of/IN [)4 1610 2 720 5520 t
+(recession/NN ] ./.)2 704 1 720 5640 t
+( ] ,/, [ IBM/NP/NP)4 765(On/ONIN [ Oct/NP./NP 11/CD)3 1267 2 720 5880 t
+( [ Seagate/NP/NP Technology/NP/NP)3 1543(] sued/VBD)1 489 2 720 6000 t
+( ])1 67(Inc/NP./NP ] ,/, [ a/AT leading/VBG maker/NN)6 1965 2 720 6120 t
+( disk/NN ] drives/VBZ)3 1123(of/IN [ magnetic/JJ)2 909 2 720 6240 t
+( ] ,/, claiming/VBG [)4 853(for/FORIN [ computers/NNS)2 1179 2 720 6360 t
+( former/JJ)1 419(the/AT company/NN ] and/CC [ a/AT)5 1613 2 720 6480 t
+(IBM/NP/NP product/NN development/NN)2 2032 1 720 6600 t
+( trade/NN)1 413(manager/NN ] had/HVD stolen/VBN [)4 1619 2 720 6720 t
+( ] ,/, \256led/VBN)3 606( The/AT suit/NN)2 683( [)1 83(secrets/NNS ] ./.)2 660 4 720 6840 t
+( court/NN ] in/ININ [)4 1119(in/ININ [ federal/JJ)2 913 2 720 6960 t
+( also/RB accused/VBN [)3 1081(Minneapolis/NNS ] ,/,)2 951 2 720 7080 t
+(Seagate/NP/NP ] of/IN trying/VBG to/TO)4 2032 1 720 7200 t
+( employees/NNS)1 682(recruit/VB [ other/JJ IBM/NP/NP)3 1350 2 720 7320 t
+(] to/TO acquire/VB [ trade/NN secrets/NNS ] ./.)7 1921 1 720 7440 t
+( Seagate/NP/NP ] ,/,)3 916([ Of\256cials/NNS ] at/IN [)4 1116 2 3007 960 t
+( Scotts/NP/NP)1 664(headquartered/VBN in/ININ [)2 1368 2 3007 1080 t
+( have/HV)1 404(Valley/NP/NP ] ,/, [ Calif/NP./NP ] ,/,)6 1628 2 3007 1200 t
+(not/RB responded/VBN to/TOIN [ telephone/NN)4 2032 1 3007 1320 t
+(requests/NNS ] for/FORIN [ comment/NN ])5 2032 1 3007 1440 t
+(on/ONIN [ the/AT suit/NN ] ./.)5 1246 1 3007 1560 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 18 18
+%%Page: 19 19
+/saveobj save def
+mark
+19 pagesetup
+10 R f
+(- 19 -)2 216 1 2772 480 t
+10 B f
+(Table 2)1 320 1 2720 960 t
+10 R f
+( .)1 325( .)1 257( bird)1 398( a)1 313( see)1 411( I)1 353(. .)1 350 7 1629 1080 t
+10 S f
+(_ ________________________________________________________________)1 3240 1 1260 1090 t
+(_ ________________________________________________________________)1 3240 1 1260 1110 t
+10 I f
+(A1)1260 1220 w
+10 R f
+( .)1 325( .)1 266( NN)1 345( AT)1 351( VB)1 321( PPSS)1 449(. .)1 350 7 1629 1220 t
+10 I f
+(lex)1260 1340 w
+10 R f
+( 1.00 1.00)2 650( 1.00)1 340( 1.00)1 354( 1.00)1 364( 1.00)1 349(1.00 1.00)1 500 6 1554 1340 t
+10 I f
+(con)1260 1460 w
+10 R f
+( 10)1 267( 1.00 1.00)2 650( 0.25)1 340( 0.23)1 354( 0.07)1 364( 0.07)1 349(0.99 0.20)1 500 7 1554 1460 t
+7 S f
+(-)4389 1420 w
+7 R f
+(4)4439 1420 w
+10 S f
+(_ ________________________________________________________________)1 3240 1 1260 1480 t
+10 I f
+(A2)1260 1600 w
+10 R f
+( .)1 325( .)1 266( NN)1 359( IN)1 337( VB)1 321( PPSS)1 449(. .)1 350 7 1629 1600 t
+10 I f
+(lex)1260 1720 w
+10 R f
+( 10)1 265( 1.00)1 364( 1.00)1 349(1.00 1.00)1 500 4 1554 1720 t
+7 S f
+(-)3043 1680 w
+7 R f
+(4)3093 1680 w
+10 R f
+(1.00 1.00 1.00)2 825 1 3286 1720 t
+10 I f
+(con)1260 1840 w
+10 R f
+( 10)1 267( 1.00 1.00)2 650( 0.25)1 340( 0.13)1 354( 0.03)1 364( 0.08)1 349(0.99 0.20)1 500 7 1554 1840 t
+7 S f
+(-)4389 1800 w
+7 R f
+(9)4439 1800 w
+10 S f
+(_ ________________________________________________________________)1 3240 1 1260 1860 t
+10 I f
+(A3)1260 1980 w
+10 R f
+( .)1 325( .)1 266( NN)1 345( AT)1 348( UH)1 324( PPSS)1 449(. .)1 350 7 1629 1980 t
+10 I f
+(lex)1260 2100 w
+10 R f
+( 10)1 275( 1.00)1 349(1.00 1.00)1 500 3 1554 2100 t
+7 S f
+(-)2689 2060 w
+7 R f
+(3)2739 2060 w
+10 R f
+( 1.00 1.00)2 650(1.00 1.00)1 515 2 2946 2100 t
+10 I f
+(con)1260 2220 w
+10 R f
+( 0)1 294( 1.00 1.00)2 650( 0.25)1 340( 0.23)1 354( 0.00)1 364( 0.00)1 349(0.99 1.00)1 500 7 1554 2220 t
+10 S f
+(_ ________________________________________________________________)1 3240 1 1260 2240 t
+10 I f
+(A4)1260 2360 w
+10 R f
+( .)1 325( .)1 266( NN)1 359( IN)1 334( UH)1 324( PPSS)1 449(. .)1 350 7 1629 2360 t
+10 I f
+(lex)1260 2480 w
+10 R f
+( 10)1 275( 1.00)1 349(1.00 1.00)1 500 3 1554 2480 t
+7 S f
+(-)2689 2440 w
+7 R f
+(3)2739 2440 w
+10 R f
+(10)2932 2480 w
+7 S f
+(-)3043 2440 w
+7 R f
+(4)3093 2440 w
+10 R f
+(1.00 1.00 1.00)2 825 1 3286 2480 t
+10 I f
+(con)1260 2600 w
+10 R f
+( 0)1 294( 1.00 1.00)2 650( 0.25)1 340( 0.13)1 354( 0.00)1 364( 0.00)1 349(0.99 1.00)1 500 7 1554 2600 t
+10 S f
+(_ ________________________________________________________________)1 3240 1 1260 2620 t
+10 I f
+(A5)1260 2740 w
+10 R f
+( .)1 325( .)1 266( NN)1 345( AT)1 351( VB)1 369( NP)1 401(. .)1 350 7 1629 2740 t
+10 I f
+(lex)1260 2860 w
+10 R f
+( 10)1 260(1.00 1.00)1 500 2 1554 2860 t
+7 S f
+(-)2325 2820 w
+7 R f
+(4)2375 2820 w
+10 R f
+( 1.00 1.00)2 650( 1.00)1 340(1.00 1.00)1 529 3 2592 2860 t
+10 I f
+(con)1260 2980 w
+10 R f
+( 1.00 1.00 10)3 900( 0.25)1 340( 0.23)1 354( 0.07)1 364( 0.01)1 349(0.97 0.03)1 500 6 1554 2980 t
+7 S f
+(-)4372 2940 w
+7 R f
+(10)4422 2940 w
+10 S f
+(_ ________________________________________________________________)1 3240 1 1260 3000 t
+10 I f
+(A6)1260 3120 w
+10 R f
+( .)1 325( .)1 266( NN)1 359( IN)1 337( VB)1 369( NP)1 401(. .)1 350 7 1629 3120 t
+10 I f
+(lex)1260 3240 w
+10 R f
+( 10)1 260(1.00 1.00)1 500 2 1554 3240 t
+7 S f
+(-)2325 3200 w
+7 R f
+(4)2375 3200 w
+10 R f
+(1.00 10)1 440 1 2592 3240 t
+7 S f
+(-)3043 3200 w
+7 R f
+(4)3093 3200 w
+10 R f
+(1.00 1.00 1.00)2 825 1 3286 3240 t
+10 I f
+(con)1260 3360 w
+10 R f
+( 1.00 1.00 10)3 900( 0.25)1 340( 0.13)1 354( 0.03)1 364( 0.01)1 349(0.97 0.03)1 500 6 1554 3360 t
+7 S f
+(-)4372 3320 w
+7 R f
+(15)4422 3320 w
+10 S f
+(_ ________________________________________________________________)1 3240 1 1260 3380 t
+10 I f
+(A7)1260 3500 w
+10 R f
+( .)1 325( .)1 266( NN)1 345( AT)1 348( UH)1 372( NP)1 401(. .)1 350 7 1629 3500 t
+10 I f
+(lex)1260 3620 w
+10 R f
+( 10)1 260(1.00 1.00)1 500 2 1554 3620 t
+7 S f
+(-)2325 3580 w
+7 R f
+(4)2375 3580 w
+10 R f
+(10)2578 3620 w
+7 S f
+(-)2689 3580 w
+7 R f
+(3)2739 3580 w
+10 R f
+( 1.00 1.00)2 650(1.00 1.00)1 515 2 2946 3620 t
+10 I f
+(con)1260 3740 w
+10 R f
+( 0)1 294( 1.00 1.00)2 650( 0.25)1 340( 0.23)1 354( 0.00)1 364( 0.00)1 349(0.97 0.00)1 500 7 1554 3740 t
+10 S f
+(_ ________________________________________________________________)1 3240 1 1260 3760 t
+10 I f
+(A8)1260 3880 w
+10 R f
+( .)1 325( .)1 266( NN)1 359( IN)1 334( UH)1 372( NP)1 401(. .)1 350 7 1629 3880 t
+10 I f
+(lex)1260 4000 w
+10 R f
+( 10)1 260(1.00 1.00)1 500 2 1554 4000 t
+7 S f
+(-)2325 3960 w
+7 R f
+(4)2375 3960 w
+10 R f
+(10)2578 4000 w
+7 S f
+(-)2689 3960 w
+7 R f
+(3)2739 3960 w
+10 R f
+(10)2932 4000 w
+7 S f
+(-)3043 3960 w
+7 R f
+(4)3093 3960 w
+10 R f
+(1.00 1.00 1.00)2 825 1 3286 4000 t
+10 I f
+(con)1260 4120 w
+10 R f
+( 0)1 294( 1.00 1.00)2 650( 0.25)1 340( 0.13)1 354( 0.00)1 364( 0.00)1 349(0.97 0.00)1 500 7 1554 4120 t
+10 S f
+(\347)1479 4120 w
+(\347)1479 4080 w
+(\347)1479 3980 w
+(\347)1479 3880 w
+(\347)1479 3780 w
+(\347)1479 3680 w
+(\347)1479 3580 w
+(\347)1479 3480 w
+(\347)1479 3380 w
+(\347)1479 3280 w
+(\347)1479 3180 w
+(\347)1479 3080 w
+(\347)1479 2980 w
+(\347)1479 2880 w
+(\347)1479 2780 w
+(\347)1479 2680 w
+(\347)1479 2580 w
+(\347)1479 2480 w
+(\347)1479 2380 w
+(\347)1479 2280 w
+(\347)1479 2180 w
+(\347)1479 2080 w
+(\347)1479 1980 w
+(\347)1479 1880 w
+(\347)1479 1780 w
+(\347)1479 1680 w
+(\347)1479 1580 w
+(\347)1479 1480 w
+(\347)1479 1380 w
+(\347)1479 1280 w
+(\347)1479 1180 w
+(\347)1479 1080 w
+(\347)4186 4120 w
+(\347)4186 4080 w
+(\347)4186 3980 w
+(\347)4186 3880 w
+(\347)4186 3780 w
+(\347)4186 3680 w
+(\347)4186 3580 w
+(\347)4186 3480 w
+(\347)4186 3380 w
+(\347)4186 3280 w
+(\347)4186 3180 w
+(\347)4186 3080 w
+(\347)4186 2980 w
+(\347)4186 2880 w
+(\347)4186 2780 w
+(\347)4186 2680 w
+(\347)4186 2580 w
+(\347)4186 2480 w
+(\347)4186 2380 w
+(\347)4186 2280 w
+(\347)4186 2180 w
+(\347)4186 2080 w
+(\347)4186 1980 w
+(\347)4186 1880 w
+(\347)4186 1780 w
+(\347)4186 1680 w
+(\347)4186 1580 w
+(\347)4186 1480 w
+(\347)4186 1380 w
+(\347)4186 1280 w
+(\347)4186 1180 w
+(\347)4186 1080 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 19 19
+%%Page: 20 20
+/saveobj save def
+mark
+20 pagesetup
+10 R f
+(- 20 -)2 216 1 2772 480 t
+(Table 5)1 302 1 1481 960 t
+10 B f
+( Form + s)3 409( Base)1 864( Form)1 263(Word Base)1 1041 4 1481 1080 t
+10 R f
+( %)1 266( non\261noun)1 550( noun)1 384( %)1 266(noun non\261noun)1 750 5 2029 1200 t
+10 S f
+(________________________________________________________)1481 1220 w
+10 R f
+( 100)1 450( 0)1 425( 7)1 325( 81)1 425( 3)1 450(abuse 13)1 723 6 1481 1340 t
+( 75)1 450( 9)1 425( 27)1 325( 77)1 425( 27)1 450(account 90)1 723 6 1481 1460 t
+( 0)1 450( 1)1 425( 0)1 325( 86)1 425( 1)1 450(ban 6)1 723 6 1481 1580 t
+( 92)1 450( 3)1 425( 36)1 325( 96)1 425( 3)1 450(bar 68)1 723 6 1481 1700 t
+( 100)1 450( 0)1 425( 1)1 325( 13)1 425( 61)1 450(brief 9)1 723 6 1481 1820 t
+( 12)1 450( 7)1 425( 1)1 325( 53)1 425( 75)1 450(care 85)1 723 6 1481 1940 t
+( 87)1 450( 7)1 425( 45)1 325( 94)1 425( 12)1 450(center 175)1 723 6 1481 2060 t
+( 0)1 450( 6)1 425( 0)1 325( 7)1 425( 215)1 450(close 15)1 723 6 1481 2180 t
+( 93)1 450( 12)1 425( 160)1 325( 80)1 425( 44)1 450(cost 179)1 723 6 1481 2300 t
+( 100)1 450( 0)1 425( 14)1 325( 98)1 425( 1)1 450(cup 43)1 723 6 1481 2420 t
+( 71)1 450( 6)1 425( 15)1 325( 70)1 425( 12)1 450(display 28)1 723 6 1481 2540 t
+( 80)1 450( 1)1 425( 4)1 325( 73)1 425( 4)1 450(drain 11)1 723 6 1481 2660 t
+( 100)1 450( 0)1 425( 1)1 325( 25)1 425( 3)1 450(dump 1)1 723 6 1481 2780 t
+( 81)1 450( 13)1 425( 54)1 325( 90)1 425( 40)1 450(end 360)1 723 6 1481 2900 t
+( 100)1 450( 0)1 425( 1)1 325( 92)1 425( 1)1 450(\257eet 11)1 723 6 1481 3020 t
+( 96)1 450( 6)1 425( 142)1 325( 88)1 425( 24)1 450(force 176)1 723 6 1481 3140 t
+( 100)1 450( 0)1 425( 7)1 325( 65)1 425( 75)1 450(front 142)1 723 6 1481 3260 t
+( 100)1 450( 0)1 425( 100 5)2 750( 0)1 450(host 36)1 723 5 1481 3380 t
+( 100)1 450( 0)1 425( 17)1 325( 97)1 425( 1)1 450(interview 31)1 723 6 1481 3500 t
+( 95)1 450( 3)1 425( 63)1 325( 90)1 425( 14)1 450(issue 130)1 723 6 1481 3620 t
+( 97)1 450( 1)1 425( 38)1 325( 99)1 425( 1)1 450(lot 123)1 723 6 1481 3740 t
+( 75)1 450( 1)1 425( 3)1 325( 0)1 425( 21)1 450(moderate 0)1 723 6 1481 3860 t
+( 100)1 450( 0)1 425( 7)1 325( 98)1 425( 1)1 450(motor 52)1 723 6 1481 3980 t
+( 93)1 450( 4)1 425( 50)1 325( 69)1 425( 33)1 450(note 73)1 723 6 1481 4100 t
+( 100)1 450( 0)1 425( 14)1 325( 100)1 425( 0)1 450(paragraph 10)1 723 6 1481 4220 t
+( 50)1 450( 1)1 425( 1)1 325( 25)1 425( 30)1 450(parallel 10)1 723 6 1481 4340 t
+( 71)1 450( 2)1 425( 5)1 325( 90)1 425( 5)1 450(phone 47)1 723 6 1481 4460 t
+( 100)1 450( 0)1 425( 100 3)2 750( 0)1 450(pledge 2)1 723 5 1481 4580 t
+( 100)1 450( 0)1 425( 100 8)2 750( 0)1 450(premise 7)1 723 5 1481 4700 t
+( 100)1 450( 0)1 425( 4)1 325( 12)1 425( 15)1 450(quote 2)1 723 6 1481 4820 t
+( 95)1 450( 1)1 425( 19)1 325( 91)1 425( 2)1 450(rank 20)1 723 6 1481 4940 t
+( 83)1 450( 13)1 425( 65)1 325( 75)1 425( 38)1 450(report 115)1 723 6 1481 5060 t
+( 100)1 450( 0)1 425( 1)1 325( 50)1 425( 6)1 450(resort 6)1 723 6 1481 5180 t
+( 100)1 450( 0)1 425( 100 2)2 750( 0)1 450(revolt 8)1 723 5 1481 5300 t
+( 100)1 450( 0)1 425( 21)1 325( 89)1 425( 3)1 450(root 25)1 723 6 1481 5420 t
+( 100)1 450( 0)1 425( 65)1 325( 100)1 425( 0)1 450(section 132)1 723 6 1481 5540 t
+( 91)1 450( 4)1 425( 41)1 325( 59)1 425( 39)1 450(share 56)1 723 6 1481 5660 t
+( 93)1 450( 1)1 425( 13)1 325( 94)1 425( 5)1 450(speed 75)1 723 6 1481 5780 t
+( 10)1 450( 9)1 425( 1)1 325( 22)1 425( 62)1 450(spread 17)1 723 6 1481 5900 t
+( 100)1 450( 0)1 425( 29)1 325( 99)1 425( 1)1 450(trip 80)1 723 6 1481 6020 t
+( 96)1 450( 2)1 425( 49)1 325( 90)1 425( 18)1 450(view 165)1 723 6 1481 6140 t
+( 85)1 450( 3)1 425( 17)1 325( 65)1 425( 26)1 450(vote 49)1 723 6 1481 6260 t
+( 100)1 450( 0)1 425( 5)1 325( 45)1 425( 11)1 450(warrant 9)1 723 6 1481 6380 t
+( 75)1 450( 2)1 425( 6)1 325( 41)1 425( 38)1 450(wonder 26)1 723 6 1481 6500 t
+10 S f
+(\347)1954 6500 w
+(\347)1954 6480 w
+(\347)1954 6380 w
+(\347)1954 6280 w
+(\347)1954 6180 w
+(\347)1954 6080 w
+(\347)1954 5980 w
+(\347)1954 5880 w
+(\347)1954 5780 w
+(\347)1954 5680 w
+(\347)1954 5580 w
+(\347)1954 5480 w
+(\347)1954 5380 w
+(\347)1954 5280 w
+(\347)1954 5180 w
+(\347)1954 5080 w
+(\347)1954 4980 w
+(\347)1954 4880 w
+(\347)1954 4780 w
+(\347)1954 4680 w
+(\347)1954 4580 w
+(\347)1954 4480 w
+(\347)1954 4380 w
+(\347)1954 4280 w
+(\347)1954 4180 w
+(\347)1954 4080 w
+(\347)1954 3980 w
+(\347)1954 3880 w
+(\347)1954 3780 w
+(\347)1954 3680 w
+(\347)1954 3580 w
+(\347)1954 3480 w
+(\347)1954 3380 w
+(\347)1954 3280 w
+(\347)1954 3180 w
+(\347)1954 3080 w
+(\347)1954 2980 w
+(\347)1954 2880 w
+(\347)1954 2780 w
+(\347)1954 2680 w
+(\347)1954 2580 w
+(\347)1954 2480 w
+(\347)1954 2380 w
+(\347)1954 2280 w
+(\347)1954 2180 w
+(\347)1954 2080 w
+(\347)1954 1980 w
+(\347)1954 1880 w
+(\347)1954 1780 w
+(\347)1954 1680 w
+(\347)1954 1580 w
+(\347)1954 1480 w
+(\347)1954 1380 w
+(\347)1954 1280 w
+(\347)1954 1180 w
+(\347)1954 1080 w
+(\347)3154 6500 w
+(\347)3154 6480 w
+(\347)3154 6380 w
+(\347)3154 6280 w
+(\347)3154 6180 w
+(\347)3154 6080 w
+(\347)3154 5980 w
+(\347)3154 5880 w
+(\347)3154 5780 w
+(\347)3154 5680 w
+(\347)3154 5580 w
+(\347)3154 5480 w
+(\347)3154 5380 w
+(\347)3154 5280 w
+(\347)3154 5180 w
+(\347)3154 5080 w
+(\347)3154 4980 w
+(\347)3154 4880 w
+(\347)3154 4780 w
+(\347)3154 4680 w
+(\347)3154 4580 w
+(\347)3154 4480 w
+(\347)3154 4380 w
+(\347)3154 4280 w
+(\347)3154 4180 w
+(\347)3154 4080 w
+(\347)3154 3980 w
+(\347)3154 3880 w
+(\347)3154 3780 w
+(\347)3154 3680 w
+(\347)3154 3580 w
+(\347)3154 3480 w
+(\347)3154 3380 w
+(\347)3154 3280 w
+(\347)3154 3180 w
+(\347)3154 3080 w
+(\347)3154 2980 w
+(\347)3154 2880 w
+(\347)3154 2780 w
+(\347)3154 2680 w
+(\347)3154 2580 w
+(\347)3154 2480 w
+(\347)3154 2380 w
+(\347)3154 2280 w
+(\347)3154 2180 w
+(\347)3154 2080 w
+(\347)3154 1980 w
+(\347)3154 1880 w
+(\347)3154 1780 w
+(\347)3154 1680 w
+(\347)3154 1580 w
+(\347)3154 1480 w
+(\347)3154 1380 w
+(\347)3154 1280 w
+(\347)3154 1180 w
+(\347)3154 1080 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 20 20
+%%Trailer
+done
+%%Pages: 20
+%%DocumentFonts: Times-Bold Times-Italic Times-Roman Symbol Times-Roman

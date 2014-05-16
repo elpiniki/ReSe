@@ -1,0 +1,3283 @@
+%!PS
+%%Version: 3.3.2
+%%DocumentFonts: (atend)
+%%Pages: (atend)
+%%EndComments
+%
+% Version 3.3.2 prologue for troff files.
+%
+
+/#copies 1 store
+/aspectratio 1 def
+/formsperpage 1 def
+/landscape false def
+/linewidth .3 def
+/magnification 1 def
+/margin 0 def
+/orientation 0 def
+/resolution 720 def
+/rotation 1 def
+/xoffset 0 def
+/yoffset 0 def
+
+/roundpage true def
+/useclippath true def
+/pagebbox [0 0 612 792] def
+
+/R  /Times-Roman def
+/I  /Times-Italic def
+/B  /Times-Bold def
+/BI /Times-BoldItalic def
+/H  /Helvetica def
+/HI /Helvetica-Oblique def
+/HB /Helvetica-Bold def
+/HX /Helvetica-BoldOblique def
+/CW /Courier def
+/CO /Courier def
+/CI /Courier-Oblique def
+/CB /Courier-Bold def
+/CX /Courier-BoldOblique def
+/PA /Palatino-Roman def
+/PI /Palatino-Italic def
+/PB /Palatino-Bold def
+/PX /Palatino-BoldItalic def
+/Hr /Helvetica-Narrow def
+/Hi /Helvetica-Narrow-Oblique def
+/Hb /Helvetica-Narrow-Bold def
+/Hx /Helvetica-Narrow-BoldOblique def
+/KR /Bookman-Light def
+/KI /Bookman-LightItalic def
+/KB /Bookman-Demi def
+/KX /Bookman-DemiItalic def
+/AR /AvantGarde-Book def
+/AI /AvantGarde-BookOblique def
+/AB /AvantGarde-Demi def
+/AX /AvantGarde-DemiOblique def
+/NR /NewCenturySchlbk-Roman def
+/NI /NewCenturySchlbk-Italic def
+/NB /NewCenturySchlbk-Bold def
+/NX /NewCenturySchlbk-BoldItalic def
+/ZD /ZapfDingbats def
+/ZI /ZapfChancery-MediumItalic def
+/S  /S def
+/S1 /S1 def
+/GR /Symbol def
+
+/inch {72 mul} bind def
+/min {2 copy gt {exch} if pop} bind def
+
+/setup {
+	counttomark 2 idiv {def} repeat pop
+
+	landscape {/orientation 90 orientation add def} if
+	/scaling 72 resolution div def
+	linewidth setlinewidth
+	1 setlinecap
+
+	pagedimensions
+	xcenter ycenter translate
+	orientation rotation mul rotate
+	width 2 div neg height 2 div translate
+	xoffset inch yoffset inch neg translate
+	margin 2 div dup neg translate
+	magnification dup aspectratio mul scale
+	scaling scaling scale
+
+	addmetrics
+	0 0 moveto
+} def
+
+/pagedimensions {
+	useclippath userdict /gotpagebbox known not and {
+		/pagebbox [clippath pathbbox newpath] def
+		roundpage currentdict /roundpagebbox known and {roundpagebbox} if
+	} if
+	pagebbox aload pop
+	4 -1 roll exch 4 1 roll 4 copy
+	landscape {4 2 roll} if
+	sub /width exch def
+	sub /height exch def
+	add 2 div /xcenter exch def
+	add 2 div /ycenter exch def
+	userdict /gotpagebbox true put
+} def
+
+/addmetrics {
+	/Symbol /S null Sdefs cf
+	/Times-Roman /S1 StandardEncoding dup length array copy S1defs cf
+} def
+
+/pagesetup {
+	/page exch def
+	currentdict /pagedict known currentdict page known and {
+		page load pagedict exch get cvx exec
+	} if
+} def
+
+/decodingdefs [
+	{counttomark 2 idiv {y moveto show} repeat}
+	{neg /y exch def counttomark 2 idiv {y moveto show} repeat}
+	{neg moveto {2 index stringwidth pop sub exch div 0 32 4 -1 roll widthshow} repeat}
+	{neg moveto {spacewidth sub 0.0 32 4 -1 roll widthshow} repeat}
+	{counttomark 2 idiv {y moveto show} repeat}
+	{neg setfunnytext}
+] def
+
+/setdecoding {/t decodingdefs 3 -1 roll get bind def} bind def
+
+/w {neg moveto show} bind def
+/m {neg dup /y exch def moveto} bind def
+/done {/lastpage where {pop lastpage} if} def
+
+/f {
+	dup /font exch def findfont exch
+	dup /ptsize exch def scaling div dup /size exch def scalefont setfont
+	linewidth ptsize mul scaling 10 mul div setlinewidth
+	/spacewidth ( ) stringwidth pop def
+} bind def
+
+/changefont {
+	/fontheight exch def
+	/fontslant exch def
+	currentfont [
+		1 0
+		fontheight ptsize div fontslant sin mul fontslant cos div
+		fontheight ptsize div
+		0 0
+	] makefont setfont
+} bind def
+
+/sf {f} bind def
+
+/cf {
+	dup length 2 idiv
+	/entries exch def
+	/chtab exch def
+	/newencoding exch def
+	/newfont exch def
+
+	findfont dup length 1 add dict
+	/newdict exch def
+	{1 index /FID ne {newdict 3 1 roll put}{pop pop} ifelse} forall
+
+	newencoding type /arraytype eq {newdict /Encoding newencoding put} if
+
+	newdict /Metrics entries dict put
+	newdict /Metrics get
+	begin
+		chtab aload pop
+		1 1 entries {pop def} for
+		newfont newdict definefont pop
+	end
+} bind def
+
+%
+% A few arrays used to adjust reference points and character widths in some
+% of the printer resident fonts. If square roots are too high try changing
+% the lines describing /radical and /radicalex to,
+%
+%	/radical	[0 -75 550 0]
+%	/radicalex	[-50 -75 500 0]
+%
+% Move braceleftbt a bit - default PostScript character is off a bit.
+%
+
+/Sdefs [
+	/bracketlefttp		[201 500]
+	/bracketleftbt		[201 500]
+	/bracketrighttp		[-81 380]
+	/bracketrightbt		[-83 380]
+	/braceleftbt		[203 490]
+	/bracketrightex		[220 -125 500 0]
+	/radical		[0 0 550 0]
+	/radicalex		[-50 0 500 0]
+	/parenleftex		[-20 -170 0 0]
+	/integral		[100 -50 500 0]
+	/infinity		[10 -75 730 0]
+] def
+
+/S1defs [
+	/underscore		[0 80 500 0]
+	/endash			[7 90 650 0]
+] def
+%%EndProlog
+%%BeginSetup
+mark
+/resolution 720 def
+setup
+2 setdecoding
+%%EndSetup
+%%Page: 1 1
+/saveobj save def
+mark
+1 pagesetup
+20 R f
+(- 1 -)2 332 1 2714 960 t
+22 B f
+(Applications of Text Analysis)3 2761 1 1499 1920 t
+20 R f
+(Kenneth Ward Church)2 1806 1 1977 2400 t
+(AT&T Bell Laboratories)2 1986 1 1887 2640 t
+(Murray Hill, NJ. 07974)3 1882 1 1939 2880 t
+(kwc@research.att.com)1969 3120 w
+18 S f
+(\267)837 3840 w
+20 R f
+(Speech Recognition)1 1604 1 1020 3840 t
+18 S f
+(\267)837 4200 w
+20 R f
+(Speech Synthesis)1 1394 1 1020 4200 t
+18 S f
+(\267)837 4560 w
+20 R f
+(OCR)1020 4560 w
+18 S f
+(\267)837 5160 w
+20 R f
+(Machine Translation \(MT\))2 2140 1 1020 5160 t
+18 S f
+(\267)1137 5520 w
+20 R f
+(Interpretation: speech)1 1734 1 1320 5520 t
+20 S f
+(\256)3104 5520 w
+20 R f
+(speech)3352 5520 w
+18 S f
+(\267)1137 5880 w
+20 R f
+(Translation: writing)1 1594 1 1320 5880 t
+20 S f
+(\256)2964 5880 w
+20 R f
+(writing)3212 5880 w
+18 S f
+(\267)837 6480 w
+20 R f
+(Spelling Correction & grammar checking)4 3318 1 1020 6480 t
+18 S f
+(\267)837 6840 w
+20 R f
+(Part-of-Speech Tagging)1 1912 1 1020 6840 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 1 1
+%%Page: 2 2
+/saveobj save def
+mark
+2 pagesetup
+20 R f
+(- 2 -)2 332 1 2714 960 t
+18 S f
+(\267)837 1920 w
+20 R f
+(Word-Sense Disambiguation)1 2314 1 1020 1920 t
+18 S f
+(\267)837 2280 w
+20 R f
+(Information Retrieval)1 1736 1 1020 2280 t
+18 S f
+(\267)837 2640 w
+20 R f
+(Author Identi\256cation)1 1682 1 1020 2640 t
+18 S f
+(\267)837 3240 w
+20 R f
+(Text Compression)1 1472 1 1020 3240 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 2 2
+%%Page: 3 3
+/saveobj save def
+mark
+3 pagesetup
+20 R f
+(- 3 -)2 332 1 2714 960 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Shannon's Noisy Channel Model]
+19 B f
+(Shannon's Noisy Channel Model)3 2659 1 720 1920 t
+18 S f
+(\267)837 2640 w
+20 R f
+(Information Theory)1 1580 1 1020 2640 t
+18 S f
+(\267)837 3240 w
+20 R f
+(Developed at Bell Labs in the 1940s)6 2908 1 1020 3240 t
+18 S f
+(\267)837 3840 w
+20 R f
+(Recognition Applications \(Speech, OCR, Spelling\))4 4088 1 1020 3840 t
+20 I f
+(I)720 4320 w
+20 S f
+(\256)868 4320 w
+20 I f
+(Noisy Channel)1 1216 1 1148 4320 t
+20 S f
+(\256)2446 4320 w
+20 I f
+(O)2726 4320 w
+(I)720 4810 w
+21 R f
+(\303)729 4750 w
+20 S f
+(=)886 4810 w
+17 I f
+(I)1466 4950 w
+20 I f
+(ARGMAX Pr)1 1080 1 1095 4810 t
+20 R f
+(\()2191 4810 w
+20 I f
+(I)2273 4810 w
+20 S f
+(\357)2405 4844 w
+20 I f
+(O)2570 4810 w
+20 R f
+(\))2730 4810 w
+20 S f
+(=)2912 4810 w
+17 I f
+(I)3492 4950 w
+20 I f
+(ARGMAX Pr)1 1080 1 3121 4810 t
+20 R f
+(\()4217 4810 w
+20 I f
+(I)4299 4810 w
+20 R f
+(\))4381 4810 w
+20 I f
+(Pr)4546 4810 w
+20 R f
+(\()4762 4810 w
+20 I f
+(O)4844 4810 w
+20 S f
+(\357)5054 4844 w
+20 I f
+(I)5219 4810 w
+20 R f
+(\))5301 4810 w
+18 S f
+(\267)837 5510 w
+20 R f
+(Language Model:)1 1414 1 1020 5510 t
+20 I f
+(Pr)2484 5510 w
+20 R f
+(\()2700 5510 w
+20 I f
+(I)2782 5510 w
+20 R f
+(\))2864 5510 w
+18 S f
+(\267)837 5870 w
+20 R f
+(Channel Model:)1 1294 1 1020 5870 t
+20 I f
+(Pr)2364 5870 w
+20 R f
+(\()2580 5870 w
+20 I f
+(O)2662 5870 w
+20 S f
+(\357)2806 5904 w
+20 I f
+(I)2905 5870 w
+20 R f
+(\))2987 5870 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 3 3
+%%Page: 4 4
+/saveobj save def
+mark
+4 pagesetup
+20 R f
+(- 4 -)2 332 1 2714 960 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Language Model: Pr ( I ) (Trigram Approximation)]
+19 B f
+(Language Model:)1 1431 1 720 1920 t
+19 I f
+(Pr)2199 1920 w
+19 R f
+(\()2404 1920 w
+19 I f
+(I)2482 1920 w
+19 R f
+(\))2560 1920 w
+19 B f
+(\(Trigram Approximation\))1 2116 1 2671 1920 t
+18 S f
+(\267)837 2280 w
+20 R f
+(Collect a sample of text)4 1898 1 1020 2280 t
+18 S f
+(\267)837 2640 w
+20 R f
+(Count freq of trigrams & bigrams)5 2692 1 1020 2640 t
+18 S f
+(\267)837 3220 w
+20 I f
+(Pr)1020 3220 w
+20 R f
+(\()1236 3220 w
+20 I f
+(I)1318 3220 w
+20 R f
+(\))1400 3220 w
+20 S f
+(~)1499 3180 w
+(~)1499 3230 w
+17 I f
+(i)1625 3420 w
+17 S f
+(=)1715 3420 w
+17 I f
+(i)1837 3420 w
+25 S f
+(P)1658 3280 w
+17 I f
+(N)1697 3020 w
+20 I f
+(Pr)1966 3220 w
+20 R f
+(\()2182 3220 w
+20 I f
+(I)2264 3220 w
+17 I f
+(i)2358 3260 w
+20 S f
+(\357)2422 3254 w
+20 I f
+(I)2521 3220 w
+17 I f
+(i)2615 3260 w
+17 S f
+(-)2705 3260 w
+17 R f
+(2)2827 3260 w
+20 I f
+(I)2944 3220 w
+17 I f
+(i)3104 3260 w
+17 S f
+(-)3194 3260 w
+17 R f
+(1)3316 3260 w
+20 R f
+(\))3433 3220 w
+18 S f
+(\267)837 3980 w
+20 I f
+(Pr)1020 3980 w
+20 R f
+(\()1236 3980 w
+20 I f
+(I)1318 3980 w
+17 I f
+(i)1412 4020 w
+20 S f
+(\357)1476 4014 w
+20 I f
+(I)1575 3980 w
+17 I f
+(i)1669 4020 w
+17 S f
+(-)1759 4020 w
+17 R f
+(2)1881 4020 w
+20 I f
+(I)2064 3980 w
+17 I f
+(i)2158 4020 w
+17 S f
+(-)2248 4020 w
+17 R f
+(1)2370 4020 w
+20 R f
+(\))2487 3980 w
+20 S f
+(~)2652 3940 w
+(~)2652 3990 w
+20 I f
+(freq)3031 4120 w
+20 R f
+(\()3369 4120 w
+20 I f
+(I)3451 4120 w
+17 I f
+(i)3545 4160 w
+17 S f
+(-)3635 4160 w
+17 R f
+(2)3757 4160 w
+20 I f
+(I)3940 4120 w
+17 I f
+(i)4034 4160 w
+17 S f
+(-)4124 4160 w
+17 R f
+(1)4246 4160 w
+20 R f
+(\))4363 4120 w
+20 I f
+(freq)2911 3820 w
+20 R f
+(\()3249 3820 w
+20 I f
+(I)3331 3820 w
+17 I f
+(i)3425 3860 w
+17 S f
+(-)3515 3860 w
+17 R f
+(2)3637 3860 w
+20 I f
+(I)3820 3820 w
+17 I f
+(i)3914 3860 w
+17 S f
+(-)4004 3860 w
+17 R f
+(1)4126 3860 w
+20 I f
+(I)4309 3820 w
+17 I f
+(i)4403 3860 w
+20 R f
+(\))4483 3820 w
+20 S1 f
+(_________________)2881 3920 w
+20 R f
+( likely alternatives)2 1476( More)1 732(Word Rank)1 1420 3 941 4600 t
+20 S f
+(_ ____________________________________________)1 4417 1 941 4640 t
+18 R f
+( This One Two A Three Please In)7 2418( The)1 655(We 9)1 1344 3 941 4880 t
+( will the would also do)5 1643( are)1 593(need 7)1 1344 3 941 5120 t
+(to 1)1 1344 1 941 5360 t
+( know do ...)3 850( have)1 714(resolve 85)1 1344 3 941 5600 t
+( this these problems ...)4 1611( the)1 595(all 9)1 1344 3 941 5840 t
+( the)1 595(of 2)1 1344 2 941 6080 t
+(the 1)1 1344 1 941 6320 t
+( question \256rst ...)3 1159(important 657 document)2 2428 2 941 6560 t
+( point to ...)3 780( thing)1 746(issues 14)1 1344 3 941 6800 t
+20 S f
+(\347)1789 6800 w
+(\347)1789 6760 w
+(\347)1789 6560 w
+(\347)1789 6360 w
+(\347)1789 6160 w
+(\347)1789 5960 w
+(\347)1789 5760 w
+(\347)1789 5560 w
+(\347)1789 5360 w
+(\347)1789 5160 w
+(\347)1789 4960 w
+(\347)1789 4760 w
+(\347)1789 4560 w
+(\347)2511 6800 w
+(\347)2511 6760 w
+(\347)2511 6560 w
+(\347)2511 6360 w
+(\347)2511 6160 w
+(\347)2511 5960 w
+(\347)2511 5760 w
+(\347)2511 5560 w
+(\347)2511 5360 w
+(\347)2511 5160 w
+(\347)2511 4960 w
+(\347)2511 4760 w
+(\347)2511 4560 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 4 4
+%%Page: 5 5
+/saveobj save def
+mark
+5 pagesetup
+20 R f
+(- 5 -)2 332 1 2714 960 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Channel Model: Pr ( O |    I )]
+19 B f
+(Channel Model:)1 1315 1 720 1920 t
+19 I f
+(Pr)2083 1920 w
+19 R f
+(\()2288 1920 w
+19 I f
+(O)2366 1920 w
+19 S f
+(\357)2503 1952 w
+19 I f
+(I)2596 1920 w
+19 R f
+(\))2674 1920 w
+18 S f
+(\267)837 2640 w
+20 I f
+(Pr)1020 2640 w
+20 R f
+(\( 0)1 182 1 1236 2640 t
+20 S f
+(\357)1418 2674 w
+20 I f
+(I)1517 2640 w
+20 R f
+(\) is high if O is ``similar'' to I)8 2398 1 1599 2640 t
+18 S f
+(\267)837 3240 w
+20 R f
+(where def of ``similar'' depends on application.)6 3818 1 1020 3240 t
+(Examples of Channel Confusions)3 2682 1 1809 3960 t
+(in Different Applications)2 2008 1 2146 4200 t
+( Output)1 1388(Application Input)1 1700 2 1344 4440 t
+20 S f
+(_ ____________________________________)1 3612 1 1344 4470 t
+(_ ____________________________________)1 3612 1 1344 4490 t
+20 R f
+( rider)1 1154(Speech writer)1 1754 2 1344 4720 t
+( hear)1 1254(Recognition here)1 1620 2 1344 4960 t
+20 S f
+(_ ____________________________________)1 3612 1 1344 5000 t
+20 R f
+( \()1 116( a1l)1 1298(Optical all)1 1478 3 1344 5240 t
+20 I f
+(A-one-L)4236 5240 w
+20 R f
+(\))4890 5240 w
+( o{)1 1284(Character of)1 1444 2 1344 5480 t
+( farm)1 1242(Recognition form)1 1666 2 1344 5720 t
+20 S f
+(_ ____________________________________)1 3612 1 1344 5760 t
+20 R f
+( goverment)1 1154(Spelling government)1 2232 2 1344 6000 t
+( occured)1 1188(Correction occurred)1 1974 2 1344 6240 t
+(commercial commerical)1 2196 1 2622 6480 t
+20 S f
+(\347)2472 6480 w
+(\347)2472 6440 w
+(\347)2472 6240 w
+(\347)2472 6040 w
+(\347)2472 5840 w
+(\347)2472 5640 w
+(\347)2472 5440 w
+(\347)2472 5240 w
+(\347)2472 5040 w
+(\347)2472 4840 w
+(\347)2472 4640 w
+(\347)2472 4440 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 5 5
+%%Page: 6 6
+/saveobj save def
+mark
+6 pagesetup
+20 R f
+(- 6 -)2 332 1 2714 960 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Spelling Correction]
+19 B f
+(Spelling Correction)1 1589 1 720 1920 t
+18 S f
+(\267)837 2640 w
+20 R f
+(Analogous to speech recognition,)3 2674 1 1020 2640 t
+18 S f
+(\267)837 3000 w
+20 R f
+(but easier to study)3 1460 1 1020 3000 t
+(echo absorbant adusted ambitios afte)4 2950 1 720 3480 t
+20 S f
+(\357)3720 3480 w
+20 R f
+(spell)3868 3480 w
+20 S f
+(\357)4296 3480 w
+20 R f
+(correct)4444 3480 w
+20 S f
+(_ ____________________________)1 2832 1 1734 4000 t
+20 R f
+(absorbant absorbent)1 1852 1 1834 4240 t
+20 S f
+(_ ____________________________)1 2832 1 1734 4280 t
+20 R f
+( 100%)1 890(adusted adjusted)1 1742 2 1834 4520 t
+(dusted 0%)1 1556 1 2910 4760 t
+20 S f
+(_ ____________________________)1 2832 1 1734 4800 t
+20 R f
+( 100%)1 1192(afte after)1 1440 2 1834 5040 t
+(fate 0%)1 1556 1 2910 5280 t
+(aft 0%)1 1556 1 2910 5520 t
+(ate 0%)1 1556 1 2910 5760 t
+(ante 0%)1 1556 1 2910 6000 t
+20 S f
+(_ ____________________________)1 2832 1 1734 6040 t
+20 R f
+( 77%)1 766(ambitios ambitious)1 1866 2 1834 6280 t
+(ambitions 23%)1 1556 1 2910 6520 t
+(ambition 0%)1 1556 1 2910 6760 t
+20 S f
+( \347)1 -2832(_ ____________________________)1 2832 2 1734 6800 t
+(\347)1734 6600 w
+(\347)1734 6400 w
+(\347)1734 6200 w
+(\347)1734 6000 w
+(\347)1734 5800 w
+(\347)1734 5600 w
+(\347)1734 5400 w
+(\347)1734 5200 w
+(\347)1734 5000 w
+(\347)1734 4800 w
+(\347)1734 4600 w
+(\347)1734 4400 w
+(\347)1734 4200 w
+(\347)4566 6800 w
+(\347)4566 6600 w
+(\347)4566 6400 w
+(\347)4566 6200 w
+(\347)4566 6000 w
+(\347)4566 5800 w
+(\347)4566 5600 w
+(\347)4566 5400 w
+(\347)4566 5200 w
+(\347)4566 5000 w
+(\347)4566 4800 w
+(\347)4566 4600 w
+(\347)4566 4400 w
+(\347)4566 4200 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 6 6
+%%Page: 7 7
+/saveobj save def
+mark
+7 pagesetup
+20 R f
+(- 7 -)2 332 1 2714 960 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Some typos are frequent]
+19 B f
+(Some typos are frequent)3 1979 1 720 1920 t
+18 B f
+( Freq)1 414( WSJ)1 853(AP Freq)1 654 3 1051 2640 t
+20 B f
+(Typo Correction)1 2064 1 3231 2640 t
+20 R f
+( Mwords\))1 782( \(per)1 420(\(per Mwords\))1 1102 3 827 2880 t
+20 S f
+(_ ______________________________________________)1 4646 1 827 2920 t
+20 R f
+( government)1 1234( goverment)1 1380(2.4 0.7)1 1402 3 1303 3160 t
+( occurred)1 1200( occured)1 1156(1.6 1.0)1 1402 3 1303 3400 t
+( responsibility)1 1190( responsiblity)1 1560(1.4 0.3)1 1402 3 1303 3640 t
+( negotiations)1 1190( negotations)1 1448(1.1 0.1)1 1402 3 1303 3880 t
+( bene\256ted)1 1078( bene\256tted)1 1314(1.0 0.4)1 1402 3 1303 4120 t
+( commercial)1 1134( commerical)1 1468(1.0 0.6)1 1402 3 1303 4360 t
+( associations)1 1190( assocations)1 1436(0.9 0.0)1 1402 3 1303 4600 t
+( television)1 1190( televison)1 1248(0.9 1.2)1 1402 3 1303 4840 t
+( millennium)1 1234( millenium)1 1350(0.9 0.0)1 1402 3 1303 5080 t
+( possibility)1 1190( possiblity)1 1306(0.9 0.4)1 1402 3 1303 5320 t
+( accommodate)1 1290( accomodate)1 1478(0.8 0.1)1 1402 3 1303 5560 t
+( similar)1 1078( similiar)1 1138(0.7 0.7)1 1402 3 1303 5800 t
+20 S f
+(_ ______________________________________________)1 4646 1 827 5840 t
+20 R f
+(13.6 5.5)1 1502 1 1203 6080 t
+(The typo)1 742 1 720 6560 t
+20 I f
+(goverment)1538 6560 w
+20 R f
+( common than many correctly)4 2504(is more)1 620 2 2456 6560 t
+(spelled words:)1 1218 1 720 6800 t
+20 I f
+( lighted, marital,)2 1460(extinct, pellets, remorse,)2 2074 2 2046 6800 t
+(standby, attends, condors, coaches, averted)4 3484 1 720 7040 t
+20 R f
+(.)4204 7040 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 7 7
+%%Page: 8 8
+/saveobj save def
+mark
+8 pagesetup
+20 R f
+(- 8 -)2 332 1 2714 960 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = The Spelling Correction Model]
+19 B f
+(The Spelling Correction Model)3 2519 1 720 1920 t
+18 S f
+(\267)837 2640 w
+20 I f
+(c)1020 2640 w
+20 R f
+(= correctly spelled word)3 1946 1 1158 2640 t
+20 I f
+(t)1020 2880 w
+20 R f
+(= observed typo)2 1288 1 1126 2880 t
+18 S f
+(\267)837 3480 w
+20 I f
+(c)1020 3480 w
+20 S f
+(\256)1158 3480 w
+20 R f
+(Noisy Channel)1 1194 1 1406 3480 t
+20 S f
+(\256)2650 3480 w
+20 I f
+(t)2898 3480 w
+18 S f
+(\267)837 4090 w
+20 I f
+(c)1020 4090 w
+21 R f
+(\303)1035 4080 w
+20 S f
+(=)1207 4090 w
+17 I f
+(c)1777 4230 w
+20 I f
+(ARGMAX Pr)1 1097 1 1416 4090 t
+20 R f
+(\()2529 4090 w
+20 I f
+(c)2611 4090 w
+20 R f
+(\))2715 4090 w
+20 I f
+(Pr)2880 4090 w
+20 R f
+(\()3096 4090 w
+20 I f
+(t)3178 4090 w
+20 S f
+(\357)3234 4124 w
+20 I f
+(c)3333 4090 w
+20 R f
+(\))3437 4090 w
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = The Language Model for Spelling Correction]
+19 B f
+(The Language Model for Spelling Correction)5 3660 1 720 4790 t
+18 S f
+(\267)837 5510 w
+20 I f
+(Pr)1020 5510 w
+20 R f
+(\()1236 5510 w
+20 I f
+(c)1318 5510 w
+20 R f
+(\) is a unigram model \(no context for now\))8 3350 1 1422 5510 t
+18 S f
+(\267)837 6110 w
+20 R f
+(Collect sample of text \(e.g., a year of AP\))8 3332 1 1020 6110 t
+18 S f
+(\267)837 6790 w
+20 I f
+(Pr)1020 6790 w
+20 R f
+(\()1236 6790 w
+20 I f
+(c)1318 6790 w
+20 R f
+(\))1422 6790 w
+20 S f
+(~)1587 6750 w
+(~)1587 6800 w
+20 I f
+(N)2074 6930 w
+(freq)1846 6670 w
+20 R f
+(\()2184 6670 w
+20 I f
+(c)2266 6670 w
+20 R f
+(\))2370 6670 w
+20 S1 f
+(_ ______)1 650 1 1816 6730 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 8 8
+%%Page: 9 9
+/saveobj save def
+mark
+9 pagesetup
+20 R f
+(- 9 -)2 332 1 2714 960 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = The Channel Model for Spelling Correction]
+19 B f
+(The Channel Model for Spelling Correction)5 3544 1 720 1920 t
+18 S f
+(\267)837 2640 w
+20 R f
+(Identify sources of noise)3 1968 1 1020 2640 t
+( cress)1 448(1. Insertions:)1 1194 2 1170 3000 t
+20 S f
+(\256)2862 3000 w
+20 I f
+(a)3110 3000 w
+20 R f
+(cress)3210 3000 w
+( ac)1 226(2. Deletions:)1 1172 2 1170 3360 t
+20 I f
+(t)2568 3360 w
+20 R f
+(ress)2624 3360 w
+20 S f
+(\256)2984 3360 w
+20 R f
+(acress)3232 3360 w
+( ac)1 226(3. Substitutions:)1 1454 2 1170 3720 t
+20 I f
+(c)2850 3720 w
+20 R f
+(ess)2938 3720 w
+20 S f
+(\256)3232 3720 w
+20 R f
+(ac)3480 3720 w
+20 I f
+(r)3656 3720 w
+20 R f
+(ess)3734 3720 w
+(4. Reversals:)1 1182 1 1170 4080 t
+20 I f
+(ca)2402 4080 w
+20 R f
+(ress)2590 4080 w
+20 S f
+(\256)2950 4080 w
+20 I f
+(ac)3198 4080 w
+20 R f
+(ress)3386 4080 w
+18 S f
+(\267)837 4680 w
+20 R f
+(Collect a large sample of typos)5 2480 1 1020 4680 t
+18 S f
+(\267)837 5280 w
+20 R f
+(2000 typos / month in AP news)6 2524 1 1020 5280 t
+18 S f
+(\267)837 5880 w
+20 R f
+(Estimate confusion matrices)2 2264 1 1020 5880 t
+18 S f
+(\267)837 6480 w
+20 R f
+(Estimate)1020 6480 w
+20 I f
+(Pr)1770 6480 w
+20 R f
+(\()1986 6480 w
+20 I f
+(t)2068 6480 w
+20 S f
+(\357)2124 6514 w
+20 I f
+(c)2223 6480 w
+20 R f
+(\))2327 6480 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 9 9
+%%Page: 10 10
+/saveobj save def
+mark
+10 pagesetup
+20 R f
+(- 10 -)2 432 1 2664 960 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = A Confusion Matrix]
+19 B f
+(A Confusion Matrix)2 1637 1 720 1920 t
+22 B f
+(sub[t, c] = Substitution of t for c)7 3000 1 1650 2760 t
+20 B f
+( \(correct\))1 788(t c)1 1800 2 1200 3000 t
+20 R f
+( i)1 400( g h)2 800( f)1 400( e)1 400( d)1 400( c)1 400(a b)1 488 7 1812 3240 t
+20 S f
+(_______________________________________)1200 3280 w
+20 R f
+( 118)1 400( 0 0 2)3 1200( 342)1 400( 0 7 1)3 1200(a 0)1 694 5 1206 3520 t
+( 0 9 9 2 2 3 1 0)8 3200(b 0)1 700 2 1200 3760 t
+( 0 9 5 0 0)5 2000( 16)1 400( 5 0)2 800(c 6)1 694 4 1206 4000 t
+( 0 5 5 0)4 1600( 12)1 400( 0)1 400( 10 13)2 800(d 1)1 700 5 1200 4240 t
+( 89)1 400( 0 2 2 0)4 1600( 11)1 400( 0 3)2 800(e 388)1 694 5 1206 4480 t
+( 0 3 1 0 5 2 0)7 2800( 15)1 400(f 0)1 683 3 1217 4720 t
+( 9 2 0 0 0)5 2000( 11 11)2 800( 1)1 400(g 4)1 700 4 1200 4960 t
+( 8 0 3 0 0 0 0 0)8 3200(h 1)1 700 2 1200 5200 t
+( 0 1 0 0)4 1600( 146)1 400( 0 0 0)3 1200(i 103)1 678 4 1222 5440 t
+20 S f
+(\347)1450 5440 w
+(\347)1450 5400 w
+(\347)1450 5200 w
+(\347)1450 5000 w
+(\347)1450 4800 w
+(\347)1450 4600 w
+(\347)1450 4400 w
+(\347)1450 4200 w
+(\347)1450 4000 w
+(\347)1450 3800 w
+(\347)1450 3600 w
+(\347)1450 3400 w
+(\347)1450 3200 w
+(\347)1450 3000 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 10 10
+%%Page: 11 11
+/saveobj save def
+mark
+11 pagesetup
+20 R f
+(- 11 -)2 432 1 2664 960 t
+20 I f
+(Pr)720 3090 w
+20 R f
+(\()936 3090 w
+20 I f
+(t)1018 3090 w
+20 S f
+(\357)1074 3124 w
+20 I f
+(c)1173 3090 w
+20 R f
+(\))1277 3090 w
+20 S f
+(~)1442 3050 w
+(~)1442 3100 w
+(\354)1650 1916 w
+(\357)1650 2116 w
+(\357)1650 2316 w
+(\357)1650 2516 w
+(\357)1650 2716 w
+(\357)1650 2916 w
+(\355)1650 3116 w
+(\357)1650 3316 w
+(\357)1650 3516 w
+(\357)1650 3716 w
+(\357)1650 3916 w
+(\357)1650 4116 w
+(\356)1650 4316 w
+20 I f
+(chars)1798 4140 w
+20 R f
+([)2258 4140 w
+20 I f
+(c)2340 4140 w
+17 I f
+(p)2456 4180 w
+20 R f
+(,)2573 4140 w
+20 I f
+(c)2705 4140 w
+17 I f
+(p)2821 4180 w
+17 S f
+(+)2948 4180 w
+17 R f
+(1)3070 4180 w
+20 R f
+(])3187 4140 w
+20 I f
+(rev)1893 3840 w
+20 R f
+([)2163 3840 w
+20 I f
+(c)2245 3840 w
+17 I f
+(p)2361 3880 w
+20 R f
+(,)2478 3840 w
+20 I f
+(c)2610 3840 w
+17 I f
+(p)2726 3880 w
+17 S f
+(+)2853 3880 w
+17 R f
+(1)2975 3880 w
+20 R f
+(])3092 3840 w
+20 S1 f
+(_ _______________)1 1515 1 1768 3940 t
+20 I f
+(chars)1881 3520 w
+20 R f
+([)2341 3520 w
+20 I f
+(c)2423 3520 w
+17 I f
+(p)2539 3560 w
+20 R f
+(])2656 3520 w
+20 I f
+(sub)1798 3220 w
+20 R f
+([)2092 3220 w
+20 I f
+(t)2174 3220 w
+17 I f
+(p)2258 3260 w
+20 R f
+(,)2375 3220 w
+20 I f
+(c)2507 3220 w
+17 I f
+(p)2623 3260 w
+20 R f
+(])2740 3220 w
+20 S1 f
+(_ __________)1 1068 1 1768 3320 t
+20 I f
+(chars)1892 2900 w
+20 R f
+([)2352 2900 w
+20 I f
+(c)2434 2900 w
+17 I f
+(p)2550 2940 w
+17 S f
+(-)2677 2940 w
+17 R f
+(1)2799 2940 w
+20 R f
+(])2916 2900 w
+20 I f
+(add)1798 2600 w
+20 R f
+([)2114 2600 w
+20 I f
+(c)2196 2600 w
+17 I f
+(p)2312 2640 w
+17 S f
+(-)2439 2640 w
+17 R f
+(1)2561 2640 w
+20 R f
+(,)2678 2600 w
+20 I f
+(t)2810 2600 w
+17 I f
+(p)2894 2640 w
+20 R f
+(])3011 2600 w
+20 S1 f
+(_ _____________)1 1339 1 1768 2700 t
+20 I f
+(chars)1798 2280 w
+20 R f
+([)2258 2280 w
+20 I f
+(c)2340 2280 w
+17 I f
+(p)2456 2320 w
+17 S f
+(-)2583 2320 w
+17 R f
+(1)2705 2320 w
+20 R f
+(,)2822 2280 w
+20 I f
+(c)2954 2280 w
+17 I f
+(p)3070 2320 w
+20 R f
+(])3187 2280 w
+20 I f
+(del)1898 1980 w
+20 R f
+([)2158 1980 w
+20 I f
+(c)2240 1980 w
+17 I f
+(p)2356 2020 w
+17 S f
+(-)2483 2020 w
+17 R f
+(1)2605 2020 w
+20 R f
+(,)2722 1980 w
+20 I f
+(c)2854 1980 w
+17 I f
+(p)2970 2020 w
+20 R f
+(])3087 1980 w
+20 S1 f
+(_ _______________)1 1515 1 1768 2080 t
+20 R f
+(if reversal)1 834 1 3600 3960 t
+(if substitution)1 1140 1 3600 3400 t
+(if insertion)1 904 1 3600 2840 t
+(if deletion)1 848 1 3600 2280 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 11 11
+%%Page: 12 12
+/saveobj save def
+mark
+12 pagesetup
+20 R f
+(- 12 -)2 432 1 2664 960 t
+20 B f
+( Transformation)1 1666(Typo Correction)1 1716 2 1198 1920 t
+20 S f
+(_ _______________________________________)1 3904 1 1198 1960 t
+20 R f
+( deletion)1 944( 2)1 320( t)1 232( \261)1 788(acress actress)1 1328 5 1198 2200 t
+( insertion)1 1000( 0)1 276( \261)1 288( a)1 920(acress cress)1 1184 5 1198 2440 t
+( reversal)1 930( ca 0)2 476( ac)1 920(acress caress)1 1272 4 1198 2680 t
+( substitution)1 1236( 2)1 288( c)1 298( r)1 788(acress access)1 1294 5 1198 2920 t
+( substitution)1 1236( 3)1 276( o)1 288( e)1 820(acress across)1 1284 5 1198 3160 t
+( insertion)1 1000( 4)1 276( \261)1 298( s)1 900(acress acres)1 1194 5 1198 3400 t
+( insertion)1 1000( 5)1 276( \261)1 298( s)1 900(acress acres)1 1194 5 1198 3640 t
+20 B f
+( Pr\(t)1 908( Pr\(c\))1 696( Raw)1 652(c %)1 925 4 1243 4600 t
+20 S f
+(\357)4424 4600 w
+20 B f
+(c\))4522 4600 w
+20 S f
+(_ ______________________________________)1 3814 1 1243 4640 t
+20 R f
+( 470,000)1 900( /)1 156( 1343/N 55)2 1200(actress 37% .16/N)2 1558 4 1243 4880 t
+( /32,000,000)1 1056( 46)1 400( 0/N)1 800( .00/N)1 550(cress 0%)1 1008 5 1243 5120 t
+( 580,000)1 900( /)1 156( 1)1 400( 4/N)1 800( .00/N)1 550(caress 0%)1 1008 6 1243 5360 t
+( / 4,700,000)2 1056( 1)1 400( 2280/N)1 800( .00/N)1 550(access 0%)1 1008 5 1243 5600 t
+( /10,000,000)1 1056( 93)1 400( .077/N 8436/N)2 1350(across 18%)1 1008 4 1243 5840 t
+( .092/N 2879/N 417 /13,000,000)4 2806(acres 21%)1 1008 2 1243 6080 t
+( .098/N 2879/N 205 / 6,000,000)5 2806(acres 23%)1 1008 2 1243 6320 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 12 12
+%%Page: 13 13
+/saveobj save def
+mark
+13 pagesetup
+20 R f
+(- 13 -)2 432 1 2664 960 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Evaluation]
+19 B f
+(Evaluation)720 1920 w
+20 R f
+(absurb, absorb, absurd)2 1796 1 720 2520 t
+( is)1 247( ``It)1 417(... \256nancial community.)2 2026 3 950 2760 t
+20 B f
+(absurb)3753 2760 w
+20 R f
+(and probably)1 1112 1 4468 2760 t
+(obscene for any person so engaged to ...)7 3192 1 900 3000 t
+20 B f
+( 3)1 150( Judge)1 812( 2)1 150( Judge)1 812(Judge 1)1 662 5 2885 3720 t
+20 S f
+(_ ______________________________________________)1 4642 1 829 3760 t
+20 B f
+(choice 0 \(spell error\))3 1756 1 829 4000 t
+20 R f
+( 93)1 962(99 124)1 1162 2 3166 4000 t
+20 B f
+(choice 1)1 682 1 829 4240 t
+20 R f
+(188 176 167)2 2224 1 3066 4240 t
+20 B f
+(choice 2)1 682 1 829 4480 t
+20 R f
+(175 159 151)2 2224 1 3066 4480 t
+20 B f
+(other)829 4720 w
+20 R f
+(28 26 30)2 2124 1 3166 4720 t
+20 B f
+(?)829 4960 w
+20 R f
+( 123)1 962(74 79)1 1162 2 3166 4960 t
+20 S f
+(_ ______________________________________________)1 4642 1 829 5000 t
+20 B f
+(total)829 5240 w
+20 R f
+(564 564 564)2 2224 1 3066 5240 t
+20 S f
+(\347)2735 5240 w
+(\347)2735 5160 w
+(\347)2735 4960 w
+(\347)2735 4760 w
+(\347)2735 4560 w
+(\347)2735 4360 w
+(\347)2735 4160 w
+(\347)2735 3960 w
+20 R f
+(The Judges found the task harder than anticipated.)7 4014 1 720 5960 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 13 13
+%%Page: 14 14
+/saveobj save def
+mark
+14 pagesetup
+20 R f
+(- 14 -)2 432 1 2664 960 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Performance]
+19 B f
+(Performance)720 1920 w
+20 B f
+( %)1 730(Method Discrimination)1 2620 2 1360 2760 t
+20 S f
+(_ ___________________________________)1 3580 1 1360 2800 t
+20 I f
+(correct)1360 3040 w
+20 R f
+(286/329 87)1 1467 1 3013 3040 t
+20 S f
+(\261)4530 3040 w
+20 R f
+(1.9)4690 3040 w
+20 S f
+(_ ___________________________________)1 3580 1 1360 3080 t
+20 R f
+( 99)1 811( 271/273)1 1693(Judge 1)1 616 3 1360 3320 t
+20 S f
+(\261)4530 3320 w
+20 R f
+(0.5)4690 3320 w
+( 99)1 811( 271/275)1 1693(Judge 2)1 616 3 1360 3560 t
+20 S f
+(\261)4530 3560 w
+20 R f
+(0.7)4690 3560 w
+( 96)1 811( 271/281)1 1693(Judge 3)1 616 3 1360 3800 t
+20 S f
+(\261)4530 3800 w
+20 R f
+(1.1)4690 3800 w
+20 S f
+(_ ___________________________________)1 3580 1 1360 3840 t
+20 R f
+(channel-only 263/329 80)2 3120 1 1360 4080 t
+20 S f
+(\261)4530 4080 w
+20 R f
+(2.2)4690 4080 w
+( 75)1 811(prior-only 247/329)1 2309 2 1360 4320 t
+20 S f
+(\261)4530 4320 w
+20 R f
+(2.4)4690 4320 w
+( 52)1 811(chance 172/329)1 2309 2 1360 4560 t
+20 S f
+(\261)4530 4560 w
+20 R f
+(2.8)4690 4560 w
+20 S f
+(\347)2552 4560 w
+(\347)2552 4520 w
+(\347)2552 4320 w
+(\347)2552 4120 w
+(\347)2552 3920 w
+(\347)2552 3720 w
+(\347)2552 3520 w
+(\347)2552 3320 w
+(\347)2552 3120 w
+(\347)2552 2920 w
+(\347)2552 2720 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 14 14
+%%Page: 15 15
+/saveobj save def
+mark
+15 pagesetup
+20 R f
+(- 15 -)2 432 1 2664 960 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = The Task is Hard without Context]
+19 B f
+(The Task is Hard without Context)5 2785 1 720 1920 t
+20 B f
+( 2)1 150( Choice)1 1028( 1)1 150(Typo Choice)1 1822 4 1527 2760 t
+20 S f
+(_ ________________________________)1 3246 1 1527 2800 t
+20 R f
+(actuall actual actually)2 3044 1 1527 3040 t
+(constuming consuming costuming)2 3246 1 1527 3280 t
+( convinced)1 1222(conviced convicted)1 2010 2 1527 3520 t
+( confusion)1 1178(confusin confusing)1 2022 2 1527 3760 t
+( workers)1 1256(workern worker)1 1798 2 1527 4000 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 15 15
+%%Page: 16 16
+/saveobj save def
+mark
+16 pagesetup
+20 R f
+(- 16 -)2 432 1 2664 960 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Easier With Context]
+19 B f
+(Easier With Context)2 1668 1 720 1920 t
+20 R f
+(actuall, actual, actually)2 1840 1 720 2520 t
+( whether the defendant)3 1861(... in determining)2 1396 2 950 2760 t
+20 B f
+(actuall)4270 2760 w
+20 R f
+(will die.)1 669 1 4911 2760 t
+(In the 1985 decision, the ...)5 2170 1 900 3000 t
+(constuming, consuming, costuming)2 2846 1 720 3480 t
+( night, a show as lavish in)6 2198(... on Friday)2 1012 2 950 3720 t
+20 B f
+(constuming)4231 3720 w
+20 R f
+(and)5292 3720 w
+(lighting as those the late Liberace used to ...)8 3512 1 900 3960 t
+(conviced, convicted, convinced)2 2516 1 720 4440 t
+( we're)1 509( ``When)1 715(... of the area.)3 1111 3 950 4680 t
+20 B f
+(conviced)3342 4680 w
+20 R f
+(and the Peruvians)2 1436 1 4144 4680 t
+(are convinced \(the base camp\) ...)5 2624 1 900 4920 t
+(confusin, confusing, confusion)2 2464 1 720 5400 t
+(... The political situation grew more)5 2889 1 950 5640 t
+20 B f
+(confusin)3894 5640 w
+20 R f
+(today, with)1 906 1 4674 5640 t
+(an of\256cial media report indicating ...)5 2918 1 900 5880 t
+(workern, worker, workers)2 2070 1 720 6360 t
+( The)1 439(... for the attacks.)3 1467 2 950 6600 t
+20 B f
+(workern)2936 6600 w
+20 R f
+(, who was unloading a)4 1912 1 3668 6600 t
+(car at a job site in a ...)7 1752 1 900 6840 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 16 16
+%%Page: 17 17
+/saveobj save def
+mark
+17 pagesetup
+20 R f
+(- 17 -)2 432 1 2664 960 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Context Model]
+19 B f
+(Context Model)1 1208 1 720 1920 t
+18 S f
+(\267)837 2640 w
+20 R f
+(Bigram model of context)3 2004 1 1020 2640 t
+20 I f
+(Pr)720 3120 w
+20 R f
+(\()936 3120 w
+20 I f
+(l)1018 3120 w
+20 R f
+(,)1090 3120 w
+20 I f
+(r)1156 3120 w
+20 R f
+(,)1250 3120 w
+20 I f
+(t)1316 3120 w
+20 S f
+(\357)1372 3154 w
+20 I f
+(c)1471 3120 w
+20 R f
+(\))1575 3120 w
+20 I f
+(Pr)1740 3120 w
+20 R f
+(\()1956 3120 w
+20 I f
+(c)2038 3120 w
+20 R f
+(\))2142 3120 w
+20 S f
+(~)2307 3080 w
+(~)2307 3130 w
+20 I f
+(Pr)2499 3120 w
+20 R f
+(\()2715 3120 w
+20 I f
+(l)2797 3120 w
+20 S f
+(\357)2853 3154 w
+20 I f
+(c)2952 3120 w
+20 R f
+(\))3056 3120 w
+20 I f
+(Pr)3221 3120 w
+20 R f
+(\()3437 3120 w
+20 I f
+(r)3519 3120 w
+20 S f
+(\357)3597 3154 w
+20 I f
+(c)3696 3120 w
+20 R f
+(\))3800 3120 w
+20 I f
+(Pr)3965 3120 w
+20 R f
+(\()4181 3120 w
+20 I f
+(t)4263 3120 w
+20 S f
+(\357)4319 3154 w
+20 I f
+(c)4418 3120 w
+20 R f
+(\))4522 3120 w
+20 I f
+(Pr)4687 3120 w
+20 R f
+(\()4903 3120 w
+20 I f
+(c)4985 3120 w
+20 R f
+(\))5089 3120 w
+18 S f
+(\267)837 3720 w
+20 R f
+(All four factors should be independent)5 3078 1 1020 3720 t
+(\(if properly estimated\))2 1796 1 1020 3960 t
+18 S f
+(\267)837 4560 w
+20 R f
+(Poor estimates of context)3 2026 1 1020 4560 t
+(are worse than none.)3 1650 1 1020 4800 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 17 17
+%%Page: 18 18
+/saveobj save def
+mark
+18 pagesetup
+20 R f
+(- 18 -)2 432 1 2664 960 t
+(Model %)1 2771 1 1956 1920 t
+20 S f
+(_ _______________________________)1 3188 1 1556 1960 t
+20 R f
+( 80)1 2168(1 channel)1 1020 2 1556 2200 t
+( 76)1 2400(1 prior)1 788 2 1556 2440 t
+( 78)1 2522(1 left)1 666 2 1556 2680 t
+( 77)1 2410(1 right)1 778 2 1556 2920 t
+20 S f
+(_ _______________________________)1 3188 1 1556 2960 t
+20 R f
+( 87)1 1568( + prior)2 600(2 channel)1 1020 3 1556 3200 t
+( 87)1 1690( + left)2 478(2 channel)1 1020 3 1556 3440 t
+( 88)1 1578( + right)2 590(2 channel)1 1020 3 1556 3680 t
+( 83)1 1922( + left)2 478(2 prior)1 788 3 1556 3920 t
+( 80)1 1810( + right)2 590(2 prior)1 788 3 1556 4160 t
+( 86)1 1932( + right)2 590(2 left)1 666 3 1556 4400 t
+20 S f
+(_ _______________________________)1 3188 1 1556 4440 t
+20 R f
+( 90)1 1090( + prior + left)4 1078(3 channel)1 1020 3 1556 4680 t
+( 88)1 978( + prior + right)4 1190(3 channel)1 1020 3 1556 4920 t
+( 90)1 1100( + left + right)4 1068(3 channel)1 1020 3 1556 5160 t
+( 86)1 1332( + left + right)4 1068(3 prior)1 788 3 1556 5400 t
+20 S f
+(_ _______________________________)1 3188 1 1556 5440 t
+20 R f
+( 90)1 500( + prior + left + right)6 1668(4 channel)1 1020 3 1556 5680 t
+20 S f
+(_ _______________________________)1 3188 1 1556 5720 t
+20 R f
+( 99)1 2172(Judge 1)1 616 2 1956 5960 t
+( 99)1 2172(Judge 2)1 616 2 1956 6200 t
+( 96)1 2172(Judge 3)1 616 2 1956 6440 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 18 18
+%%Page: 19 19
+/saveobj save def
+mark
+19 pagesetup
+20 R f
+(- 19 -)2 432 1 2664 960 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Other Noisy Channel Model Applications]
+19 B f
+(Other Noisy Channel Model Applications)4 3360 1 720 1920 t
+18 S f
+(\267)837 2640 w
+20 R f
+(Speech Recognition)1 1604 1 1020 2640 t
+18 S f
+(\267)837 3240 w
+20 R f
+(Optical Character Recognition \(OCR\))3 3034 1 1020 3240 t
+18 S f
+(\267)837 3840 w
+20 R f
+(Part-of-Speech Tagging)1 1912 1 1020 3840 t
+18 S f
+(\267)837 4440 w
+20 R f
+(Machine Translation)1 1658 1 1020 4440 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 19 19
+%%Page: 20 20
+/saveobj save def
+mark
+20 pagesetup
+20 R f
+(- 20 -)2 432 1 2664 960 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Part-of-Speech Tagging]
+19 B f
+(Part-of-Speech Tagging)1 1926 1 720 1920 t
+20 I f
+(pro)720 2680 w
+20 R f
+(I)826 2480 w
+20 I f
+(verb)1080 2680 w
+20 R f
+(see)1130 2480 w
+20 I f
+(art)1516 2680 w
+20 R f
+(a)1589 2480 w
+20 I f
+(noun)1832 2680 w
+20 R f
+(bird)1871 2480 w
+(pos)720 3120 w
+20 S f
+(\256)1048 3120 w
+20 R f
+(Noisy Channel)1 1194 1 1296 3120 t
+20 S f
+(\256)2540 3120 w
+20 R f
+(words)2788 3120 w
+20 I f
+(pos)720 3850 w
+21 R f
+(\303)830 3840 w
+20 S f
+(~)1080 3810 w
+(~)1080 3860 w
+17 I f
+(pos)1553 3990 w
+20 I f
+(ARGMAX Pr)1 1080 1 1272 3850 t
+20 R f
+(\()2368 3850 w
+20 I f
+(pos)2450 3850 w
+20 R f
+(\))2744 3850 w
+20 I f
+(Pr)2909 3850 w
+20 R f
+(\()3125 3850 w
+20 I f
+(words)3207 3850 w
+20 S f
+(\357)3697 3884 w
+20 I f
+(pos)3796 3850 w
+20 R f
+(\))4090 3850 w
+(Under certain independence assumptions,)3 3326 1 720 4440 t
+20 I f
+(pos)4096 4440 w
+21 R f
+(\303)4206 4430 w
+20 S f
+(~)4456 4400 w
+(~)4456 4450 w
+17 I f
+(pos)1001 5060 w
+20 I f
+(ARGMAX)720 4920 w
+17 I f
+(i)1705 5120 w
+25 S f
+(P)1633 4980 w
+20 I f
+(Pr)1941 4920 w
+20 R f
+(\()2157 4920 w
+20 I f
+(pos)2239 4920 w
+17 I f
+(i)2545 4960 w
+20 S f
+(\357)2675 4954 w
+20 I f
+(pos)2840 4920 w
+17 I f
+(i)3146 4960 w
+17 S f
+(-)3236 4960 w
+17 R f
+(1)3358 4960 w
+20 I f
+(pos)3541 4920 w
+17 I f
+(i)3847 4960 w
+17 S f
+(-)3937 4960 w
+17 R f
+(2)4059 4960 w
+20 R f
+(\))4176 4920 w
+20 I f
+(Pr)4341 4920 w
+20 R f
+(\()4557 4920 w
+20 I f
+(words)4639 4920 w
+17 I f
+(i)5157 4960 w
+20 S f
+(\357)5287 4954 w
+20 I f
+(pos)5452 4920 w
+17 I f
+(i)5758 4960 w
+20 R f
+(\))5838 4920 w
+(where)720 5800 w
+20 I f
+(Pr)1256 5800 w
+20 R f
+(\()1472 5800 w
+20 I f
+(pos)1554 5800 w
+17 I f
+(i)1860 5840 w
+20 S f
+(\357)1924 5834 w
+20 I f
+(word)2023 5800 w
+17 I f
+(i)2463 5840 w
+20 R f
+(\) is a dictionary,)3 1298 1 2543 5800 t
+(and)720 6280 w
+20 I f
+(Pr)1058 6280 w
+20 R f
+(\()1274 6280 w
+20 I f
+(pos)1356 6280 w
+17 I f
+(i)1662 6320 w
+20 S f
+(\357)1726 6314 w
+20 I f
+(pos)1825 6280 w
+17 I f
+(i)2131 6320 w
+17 S f
+(-)2221 6320 w
+17 R f
+(1)2343 6320 w
+20 I f
+(pos)2526 6280 w
+17 I f
+(i)2832 6320 w
+17 S f
+(-)2922 6320 w
+17 R f
+(2)3044 6320 w
+20 R f
+(\) is a grammar)3 1158 1 3161 6280 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 20 20
+%%Page: 21 21
+/saveobj save def
+mark
+21 pagesetup
+20 R f
+(- 21 -)2 432 1 2664 960 t
+20 B f
+(Lexical Probabilities of Some Common Words)5 3960 1 1380 1920 t
+( P\(Pos)1 910(Word Pos)1 1354 2 720 2160 t
+20 S f
+(\357)3034 2160 w
+20 B f
+( P\(Pos)1 888(Word\) Pos)1 1166 2 3182 2160 t
+20 S f
+(\357)5286 2160 w
+20 B f
+(Word\))5434 2160 w
+20 S f
+(_ ____________________________________________________)1 5280 1 720 2200 t
+20 R f
+( NNS 0.92)2 2252( 0.08)1 1123(costs VBZ)1 1454 3 720 2440 t
+( 0.88)1 1345( JJ)1 907( 0.12)1 1235(human NN)1 1342 4 720 2680 t
+( 1.00)1 1123(humans NNS)1 1454 2 720 2920 t
+( 0.82)1 1213( NN)1 1039( 0.18)1 1245(amount VB)1 1332 4 720 3160 t
+( NNS 0.54)2 2252( 0.46)1 1123(amounts VBZ)1 1454 3 720 3400 t
+( 0.80)1 1213( 0.20 NN)2 2140(meeting VBG)1 1476 3 720 3640 t
+( 0.75)1 1213( NN)1 1039( 0.25)1 1245(attack VB)1 1332 4 720 3880 t
+( 0.70)1 1213( NN)1 1039( 0.30)1 1245(mark VB)1 1332 4 720 4120 t
+( 0.69)1 1213( NN)1 1039( 0.31)1 1245(support VB)1 1332 4 720 4360 t
+( 0.68)1 1213( NN)1 1039( 0.32)1 1245(change VB)1 1332 4 720 4600 t
+( 0.63)1 1213( NN)1 1039( 0.37)1 1245(sacri\256ce VB)1 1332 4 720 4840 t
+( 0.62)1 1213( NN)1 1039( 0.38)1 1245(use VB)1 1332 4 720 5080 t
+( 0.55)1 1213( 0.45 NN)2 2140(gathering VBG)1 1476 3 720 5320 t
+( 0.54)1 1213( NN)1 1039( 0.46)1 1245(strike VB)1 1332 4 720 5560 t
+( 0.52)1 1213( NN)1 1039( 0.48)1 1245(sink VB)1 1332 4 720 5800 t
+( 0.51)1 1213( NN)1 1039( 0.49)1 1245(travel VB)1 1332 4 720 6040 t
+( 0.48)1 1213( 0.52 NN)2 2140(landing VBG)1 1476 3 720 6280 t
+( 0.42)1 1213( NN)1 1039( 0.58)1 1245(count VB)1 1332 4 720 6520 t
+( 0.42)1 1213( NN)1 1039( 0.58)1 1245(\256nish VB)1 1332 4 720 6760 t
+20 S f
+(\347)1624 6760 w
+(\347)1624 6560 w
+(\347)1624 6360 w
+(\347)1624 6160 w
+(\347)1624 5960 w
+(\347)1624 5760 w
+(\347)1624 5560 w
+(\347)1624 5360 w
+(\347)1624 5160 w
+(\347)1624 4960 w
+(\347)1624 4760 w
+(\347)1624 4560 w
+(\347)1624 4360 w
+(\347)1624 4160 w
+(\347)1624 3960 w
+(\347)1624 3760 w
+(\347)1624 3560 w
+(\347)1624 3360 w
+(\347)1624 3160 w
+(\347)1624 2960 w
+(\347)1624 2760 w
+(\347)1624 2560 w
+(\347)1624 2360 w
+(\347)1624 2160 w
+(\347)3898 6760 w
+(\347)3898 6560 w
+(\347)3898 6360 w
+(\347)3898 6160 w
+(\347)3898 5960 w
+(\347)3898 5760 w
+(\347)3898 5560 w
+(\347)3898 5360 w
+(\347)3898 5160 w
+(\347)3898 4960 w
+(\347)3898 4760 w
+(\347)3898 4560 w
+(\347)3898 4360 w
+(\347)3898 4160 w
+(\347)3898 3960 w
+(\347)3898 3760 w
+(\347)3898 3560 w
+(\347)3898 3360 w
+(\347)3898 3160 w
+(\347)3898 2960 w
+(\347)3898 2760 w
+(\347)3898 2560 w
+(\347)3898 2360 w
+(\347)3898 2160 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 21 21
+%%Page: 22 22
+/saveobj save def
+mark
+22 pagesetup
+20 R f
+(- 22 -)2 432 1 2664 960 t
+20 B f
+(Typical Contextual Probabilities)2 2780 1 1931 1920 t
+( \(Pos)1 731(log P)1 428 2 731 2160 t
+20 S f
+(\357 __)1 348 1 1940 2160 t
+20 B f
+( \(Pos)1 744( P)1 172( log)1 621(Pos, Pos\))1 766 4 2338 2160 t
+20 S f
+(\357 __)1 348 1 4691 2160 t
+20 B f
+(Pos, Pos\))1 766 1 5089 2160 t
+20 S f
+(_ ____________________________________________________)1 5202 1 720 2200 t
+20 R f
+( NN)1 588( AT)1 592( NNS \2614.31 VBN)3 2172( AT)1 778(\2610.81 IN)1 960 5 720 2440 t
+( NNS)1 700( AT)1 592( VBN)1 722( \2614.47)1 862( NN)1 588( AT)1 778(\2610.83 IN)1 960 7 720 2680 t
+( NN)1 588( AT)1 726( NNS \2614.49 NN)3 2038( AT)1 938(\2612.28 .)1 800 5 720 2920 t
+( NNS)1 700( AT)1 726( NN)1 588( \2614.67)1 862( NN)1 588( AT)1 938(\2612.51 .)1 800 7 720 3160 t
+( NN)1 588( AT)1 614( NNS \2615.27 NNS)3 2150( AT)1 710(\2612.54 VB)1 1028 5 720 3400 t
+( NN)1 588( AT)1 858( JJ)1 456( \2615.60)1 862( NN)1 588( AT)1 710(\2612.72 VB)1 1028 7 720 3640 t
+( NNS)1 700( AT)1 614( NNS \2615.64 NNS)3 2150( AT)1 938(\2612.97 ,)1 800 5 720 3880 t
+( NN)1 588( AT)1 758( NP)1 556( \2615.95)1 862( NN)1 588( AT)1 938(\2612.98 ,)1 800 7 720 4120 t
+( NNS)1 700( AT)1 758( NP)1 556( \2615.96)1 862(\2613.12 VBD AT NN)3 2326 5 720 4360 t
+( NNS)1 700( AT)1 858(\2613.28 VBD AT NNS \2616.26 JJ)5 3644 3 720 4600 t
+(\2613.41 VBG AT NNS \2618.21 PPSS AT NNS)7 5202 1 720 4840 t
+( NNS)1 700( AT)1 748( AT)1 566( \2618.90)1 862(\2613.62 VBG AT NN)3 2326 5 720 5080 t
+( PPSS AT NN)3 1902( \2619.42)1 862( NN)1 588( AT)1 720(\2613.88 RB)1 1018 5 720 5320 t
+( NNS)1 700( AT)1 720(\2614.17 RB)1 1018 3 720 5560 t
+20 S f
+(\347)3308 5560 w
+(\347)3308 5360 w
+(\347)3308 5160 w
+(\347)3308 4960 w
+(\347)3308 4760 w
+(\347)3308 4560 w
+(\347)3308 4360 w
+(\347)3308 4160 w
+(\347)3308 3960 w
+(\347)3308 3760 w
+(\347)3308 3560 w
+(\347)3308 3360 w
+(\347)3308 3160 w
+(\347)3308 2960 w
+(\347)3308 2760 w
+(\347)3308 2560 w
+(\347)3308 2360 w
+(\347)3308 2160 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 22 22
+%%Page: 23 23
+/saveobj save def
+mark
+23 pagesetup
+20 R f
+(- 23 -)2 432 1 2664 960 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = The Proposed Method]
+19 B f
+(The Proposed Method)2 1806 1 720 1920 t
+18 S f
+(\267)837 2640 w
+20 R f
+(Conceptually, enumerate all assignments)3 3274 1 1020 2640 t
+18 S f
+(\267)837 3000 w
+20 R f
+(Score each path \(prod of lexical and contextual probs\))8 4322 1 1020 3000 t
+18 S f
+(\267)837 3360 w
+20 R f
+(Select best)1 860 1 1020 3360 t
+( bird)1 800( a)1 422(I see)1 1002 3 2038 3840 t
+20 S f
+(_ ______________________)1 2224 1 2038 3880 t
+20 R f
+( NN)1 588( AT)1 576(PPSS VB)1 1026 3 2038 4120 t
+( NN)1 644( IN)1 520(PPSS VB)1 1026 3 2038 4360 t
+(PPSS UH AT NN)3 2190 1 2038 4600 t
+( NN)1 644(PPSS UH IN)2 1546 2 2038 4840 t
+( NN)1 588( AT)1 576(NP VB)1 1026 3 2038 5080 t
+( NN)1 644( IN)1 520(NP VB)1 1026 3 2038 5320 t
+( AT NN)2 1154(NP UH)1 1036 2 2038 5560 t
+( NN)1 644( IN)1 510(NP UH)1 1036 3 2038 5800 t
+18 S f
+(\267)837 6280 w
+20 R f
+( takes exponential time because there may be)7 3636(This alg)1 653 2 1020 6280 t
+20 I f
+(k)5363 6280 w
+17 I f
+(n)5479 6200 w
+20 R f
+(paths for an input of)4 1628 1 1020 6520 t
+20 I f
+(n)2700 6520 w
+20 R f
+( word has up to)4 1236(words, where each)2 1492 2 2852 6520 t
+20 I f
+(k)1020 6760 w
+20 R f
+(parts-of-speech.)1158 6760 w
+18 S f
+(\267)837 7120 w
+20 R f
+( time)1 406( linear)1 554(Fortunately, there is a)3 1742 3 1020 7120 t
+(dynamic programming solution.)2 2572 1 1020 7360 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 23 23
+%%Page: 24 24
+/saveobj save def
+mark
+24 pagesetup
+20 R f
+(- 24 -)2 432 1 2664 960 t
+16 R f
+( .)1 380( .)1 271( bird)1 474( a)1 314( see)1 495( I)1 426(. .)1 420 7 1913 1880 t
+20 S f
+(_ __________________________________________)1 4234 1 1033 1871 t
+(_ __________________________________________)1 4234 1 1033 1891 t
+16 I f
+(A1)1033 2081 w
+16 R f
+( .)1 380( .)1 285( NN)1 389( AT)1 375( VB)1 351( PPSS)1 580(. .)1 420 7 1913 2081 t
+16 I f
+(context)1033 2281 w
+16 R f
+( 0.23 0.25 1.00 1.00)4 1520( 0.07 0.07)2 840(0.99 0.20)1 660 3 1793 2281 t
+20 R f
+(e-4)4963 2281 w
+16 I f
+(lex)1033 2481 w
+16 R f
+( 1.00 1.00 1.00 1.00)4 1520( 1.00 1.00)2 840(1.00 1.00)1 660 3 1793 2481 t
+20 S f
+(_ __________________________________________)1 4234 1 1033 2482 t
+16 I f
+(A2)1033 2682 w
+16 R f
+( .)1 380( .)1 285( NN)1 411( IN)1 353( VB)1 351( PPSS)1 580(. .)1 420 7 1913 2682 t
+16 I f
+(context)1033 2882 w
+16 R f
+( 0.13 0.25 1.00 1.00)4 1520( 0.08 0.03)2 840(0.99 0.20)1 660 3 1793 2882 t
+20 R f
+(e-9)4963 2882 w
+16 I f
+(lex)1033 3082 w
+16 R f
+( 1.00 1.00)2 760( 1.00)1 419( e-4)1 341( 1.00 1.00)2 840(1.00 1.00)1 660 5 1793 3082 t
+20 S f
+(_ __________________________________________)1 4234 1 1033 3083 t
+16 I f
+(A3)1033 3283 w
+16 R f
+( .)1 380( .)1 285( NN)1 389( AT)1 371( UH)1 355( PPSS)1 580(. .)1 420 7 1913 3283 t
+16 I f
+(context)1033 3483 w
+16 R f
+( 0.23 0.25 1.00 1.00)4 1520( 0.00 0.00)2 840(0.99 1.00)1 660 3 1793 3483 t
+20 R f
+(0)5040 3483 w
+16 I f
+(lex)1033 3683 w
+16 R f
+( 1.00 1.00 1.00)3 1140( 1.00)1 419( e-3)1 381( 1.00)1 420(1.00 1.00)1 660 5 1793 3683 t
+20 S f
+(_ __________________________________________)1 4234 1 1033 3684 t
+16 I f
+(A4)1033 3884 w
+16 R f
+( .)1 380( .)1 285( IN NN)2 760( UH)1 355( PPSS)1 580(. .)1 420 6 1913 3884 t
+16 I f
+(context)1033 4084 w
+16 R f
+( 0.13 0.25 1.00 1.00)4 1520( 0.00 0.00)2 840(0.99 1.00)1 660 3 1793 4084 t
+20 R f
+(0)5040 4084 w
+16 I f
+(lex)1033 4284 w
+16 R f
+( 1.00 1.00)2 760( 1.00)1 419( e-4)1 380( e-3)1 381( 1.00)1 420(1.00 1.00)1 660 6 1793 4284 t
+20 S f
+(_ __________________________________________)1 4234 1 1033 4285 t
+16 I f
+(A5)1033 4485 w
+16 R f
+( .)1 380( .)1 285( NN)1 389( AT)1 375( VB)1 429( NP)1 502(. .)1 420 7 1913 4485 t
+16 I f
+(context)1033 4685 w
+16 R f
+( 0.23 0.25 1.00 1.00)4 1520( 0.01 0.07)2 840(0.97 0.03)1 660 3 1793 4685 t
+20 R f
+(e-10)4913 4685 w
+16 I f
+(lex)1033 4885 w
+16 R f
+( 1.00 1.00 1.00 1.00)4 1520( 1.00)1 459( e-4)1 381(1.00 1.00)1 660 4 1793 4885 t
+20 S f
+(_ __________________________________________)1 4234 1 1033 4886 t
+16 I f
+(A6)1033 5086 w
+16 R f
+( .)1 380( .)1 285( NN)1 411( IN)1 353( VB)1 429( NP)1 502(. .)1 420 7 1913 5086 t
+16 I f
+(context)1033 5286 w
+16 R f
+( 0.13 0.25 1.00 1.00)4 1520( 0.01 0.03)2 840(0.97 0.03)1 660 3 1793 5286 t
+20 R f
+(e-15)4913 5286 w
+16 I f
+(lex)1033 5486 w
+16 R f
+( 1.00 1.00)2 760( 1.00)1 419( e-4)1 341( 1.00)1 459( e-4)1 381(1.00 1.00)1 660 6 1793 5486 t
+20 S f
+(_ __________________________________________)1 4234 1 1033 5487 t
+16 I f
+(A7)1033 5687 w
+16 R f
+( .)1 380( .)1 285( NN)1 389( AT)1 371( UH)1 433( NP)1 502(. .)1 420 7 1913 5687 t
+16 I f
+(context)1033 5887 w
+16 R f
+( 0.23 0.25 1.00 1.00)4 1520( 0.00 0.00)2 840(0.97 0.00)1 660 3 1793 5887 t
+20 R f
+(0)5040 5887 w
+16 I f
+(lex)1033 6087 w
+16 R f
+( 1.00 1.00 1.00)3 1140( 1.00)1 419( e-3)1 420( e-4)1 381(1.00 1.00)1 660 5 1793 6087 t
+20 S f
+(_ __________________________________________)1 4234 1 1033 6088 t
+16 I f
+(A8)1033 6288 w
+16 R f
+( .)1 380( .)1 285( IN NN)2 760( UH)1 433( NP)1 502(. .)1 420 6 1913 6288 t
+16 I f
+(context)1033 6488 w
+16 R f
+( 0.13 0.25 1.00 1.00)4 1520( 0.00 0.00)2 840(0.97 0.00)1 660 3 1793 6488 t
+20 R f
+(0)5040 6488 w
+16 I f
+(lex)1033 6688 w
+16 R f
+( 1.00 1.00)2 760( 1.00)1 419( e-4)1 380( e-3)1 420( e-4)1 381(1.00 1.00)1 660 6 1793 6688 t
+20 S f
+(\347)1643 6688 w
+(\347)1643 6680 w
+(\347)1643 6480 w
+(\347)1643 6280 w
+(\347)1643 6080 w
+(\347)1643 5880 w
+(\347)1643 5680 w
+(\347)1643 5480 w
+(\347)1643 5280 w
+(\347)1643 5080 w
+(\347)1643 4880 w
+(\347)1643 4680 w
+(\347)1643 4480 w
+(\347)1643 4280 w
+(\347)1643 4080 w
+(\347)1643 3880 w
+(\347)1643 3680 w
+(\347)1643 3480 w
+(\347)1643 3280 w
+(\347)1643 3080 w
+(\347)1643 2880 w
+(\347)1643 2680 w
+(\347)1643 2480 w
+(\347)1643 2280 w
+(\347)1643 2080 w
+(\347)1643 1880 w
+(\347)4863 6688 w
+(\347)4863 6680 w
+(\347)4863 6480 w
+(\347)4863 6280 w
+(\347)4863 6080 w
+(\347)4863 5880 w
+(\347)4863 5680 w
+(\347)4863 5480 w
+(\347)4863 5280 w
+(\347)4863 5080 w
+(\347)4863 4880 w
+(\347)4863 4680 w
+(\347)4863 4480 w
+(\347)4863 4280 w
+(\347)4863 4080 w
+(\347)4863 3880 w
+(\347)4863 3680 w
+(\347)4863 3480 w
+(\347)4863 3280 w
+(\347)4863 3080 w
+(\347)4863 2880 w
+(\347)4863 2680 w
+(\347)4863 2480 w
+(\347)4863 2280 w
+(\347)4863 2080 w
+(\347)4863 1880 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 24 24
+%%Page: 25 25
+/saveobj save def
+mark
+25 pagesetup
+20 R f
+(- 25 -)2 432 1 2664 960 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Traditional Part-of-Speech Methods]
+19 B f
+(Traditional Part-of-Speech Methods)2 2945 1 720 1920 t
+18 S f
+(\267)837 2640 w
+20 R f
+(Enumerate each part-of-speech sequence,)3 3308 1 1020 2640 t
+(and rule it out as syntactically ill-formed,)6 3302 1 1020 2880 t
+(if it can't be parsed.)4 1590 1 1020 3120 t
+18 S f
+(\267)837 3720 w
+20 R f
+(*I/noun see/verb a/prep bird/verb)3 2666 1 1020 3720 t
+18 S f
+(\267)837 4320 w
+20 R f
+(Ignore lexical probabilities)2 2152 1 1020 4320 t
+18 S f
+(\267)837 4920 w
+20 R f
+(Pass-the-buck onto semantics and pragmatics,)4 3678 1 1020 4920 t
+(if syntactic constraints aren't adequate.)4 3120 1 1020 5160 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 25 25
+%%Page: 26 26
+/saveobj save def
+mark
+26 pagesetup
+20 R f
+(- 26 -)2 432 1 2664 960 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Motivation for Traditional Methods]
+19 B f
+(Motivation for Traditional Methods)3 2920 1 720 1920 t
+18 S f
+(\267)837 2640 w
+20 R f
+( words are)2 886(Although most naive people think that most)6 3674 2 1020 2640 t
+(unambiguous, so-called ``experts'' know better.)4 3836 1 1020 2880 t
+18 S f
+(\267)837 3480 w
+20 R f
+(Local ngram context is not always suf\256cient.)6 3590 1 1020 3480 t
+18 S f
+(\267)837 4080 w
+20 R f
+(The literature is full of examples)5 2612 1 1020 4080 t
+(where no amount of context will help:)6 3052 1 1020 4320 t
+20 I f
+(verb)1054 5280 w
+(noun)1031 5080 w
+20 R f
+(Time)1020 4880 w
+20 I f
+(noun)1524 5280 w
+(verb)1547 5080 w
+20 R f
+(\257ies)1552 4880 w
+20 I f
+(scon j)1 438 1 1996 5280 t
+(scon j)1 438 1 1996 5080 t
+20 R f
+(like)2065 4880 w
+20 I f
+(art)2516 5280 w
+(art)2516 5080 w
+20 R f
+(an)2539 4880 w
+20 I f
+(noun)2798 5280 w
+(noun)2798 5080 w
+20 R f
+(arrow)2766 4880 w
+(Fruit)1036 5880 w
+(Time)1020 5680 w
+(\257ies)1524 5880 w
+(\257ies)1514 5680 w
+(like)1930 5880 w
+(like)1930 5680 w
+(a)2362 5880 w
+(an)2312 5680 w
+(banana)2516 5880 w
+(arrow)2566 5680 w
+20 I f
+(ad j)1 272 1 1146 6680 t
+(verb)1105 6480 w
+20 R f
+(Flying)1020 6280 w
+20 I f
+(noun)1681 6680 w
+(noun)1681 6480 w
+20 R f
+(planes)1626 6280 w
+20 I f
+(verb)2218 6680 w
+(verb)2218 6480 w
+20 R f
+(can)2257 6280 w
+20 I f
+(verb)2654 6680 w
+(verb)2654 6480 w
+20 R f
+(be)2737 6280 w
+20 I f
+(ad j)1 272 1 3298 6680 t
+(ad j)1 272 1 3298 6480 t
+20 R f
+(dangerous)3024 6280 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 26 26
+%%Page: 27 27
+/saveobj save def
+mark
+27 pagesetup
+20 R f
+(- 27 -)2 432 1 2664 960 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Why Traditional Methods Failed]
+19 B f
+(Why Traditional Methods Failed)3 2679 1 720 1920 t
+20 R f
+(Consider the trivial sentence:)3 2336 1 720 2280 t
+20 I f
+(I see a bird.)3 954 1 3106 2280 t
+20 B f
+(Easy, if we use lexical probs \(Brown Corpus\))7 3822 1 1239 3000 t
+20 S f
+(_ ______________________________________)1 3822 1 1239 3040 t
+20 R f
+(Prob\()1239 3280 w
+20 I f
+(I)1683 3280 w
+20 R f
+( 5131/5132)1 1683(is a pronoun\))2 1054 2 1799 3280 t
+(Prob\()1239 3520 w
+20 I f
+(see)1683 3520 w
+20 R f
+( 771/772)1 1707(is a verb\))2 742 2 1987 3520 t
+(Prob\()1239 3760 w
+20 I f
+(a)1683 3760 w
+20 R f
+( 22938/22944)1 1817(is an article\))2 986 2 1833 3760 t
+(Prob\()1239 4000 w
+20 I f
+(bird)1683 4000 w
+20 R f
+( 25/25)1 1481(is a noun\))2 788 2 2067 4000 t
+20 S f
+(\347)3005 4000 w
+(\347)3005 3840 w
+(\347)3005 3640 w
+(\347)3005 3440 w
+(\347)3005 3240 w
+20 B f
+(Hard, if we ignore lexical probs \(Websters\))6 3668 1 1316 4960 t
+20 S f
+(_ ____________________________________)1 3668 1 1316 5000 t
+20 R f
+( \(letter of alphabet\))3 1534( noun)1 773(I pronoun)1 1288 3 1316 5240 t
+( \()1 116( noun)1 1085(see verb)1 976 3 1316 5480 t
+20 I f
+(the Holy See)2 1008 1 3493 5480 t
+20 R f
+(\))4501 5480 w
+( \(letter of alphabet\))3 1534( noun)1 941(a article)1 1120 3 1316 5720 t
+( verb)1 993(bird noun)1 1022 2 1316 5960 t
+20 S f
+(\347)1788 5960 w
+(\347)1788 5800 w
+(\347)1788 5600 w
+(\347)1788 5400 w
+(\347)1788 5200 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 27 27
+%%Page: 28 28
+/saveobj save def
+mark
+28 pagesetup
+20 R f
+(- 28 -)2 432 1 2664 960 t
+18 S f
+(\267)837 1920 w
+20 R f
+( a parser could eliminate many of)6 2756(It has been hoped that)4 1804 2 1020 1920 t
+(these tags.)1 832 1 1020 2160 t
+18 S f
+(\267)837 2760 w
+20 R f
+(But if the parser is going to accept:)7 2802 1 1020 2760 t
+([NP [N city] [N school] [N committee] [N meeting]])8 4202 1 1320 3240 t
+18 S f
+(\267)837 3840 w
+20 R f
+(then it can't rule out)4 1620 1 1020 3840 t
+([NP [N I] [N see] [N a] [N bird]])8 2622 1 1320 4320 t
+18 S f
+(\267)837 4920 w
+20 R f
+(Attempts to resort to semantics & pragmatics have not)8 4560 1 1020 4920 t
+(worked well \(outside of a ``toy'' domain\).)6 3376 1 1020 5160 t
+18 S f
+(\267)837 5760 w
+20 R f
+( approach works better because lexical)5 3094(The noisy channel)2 1466 2 1020 5760 t
+(probabilities are important,)2 2170 1 1020 6000 t
+18 S f
+(\267)837 6600 w
+20 R f
+(and consequently, it has become the tagging method of)8 4560 1 1020 6600 t
+(choice.)1020 6840 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 28 28
+%%Page: 29 29
+/saveobj save def
+mark
+29 pagesetup
+20 R f
+(- 29 -)2 432 1 2664 960 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Noisy Channel Approach to Machine Translation (MT)]
+19 B f
+(Noisy Channel Approach to Machine Translation \(MT\))6 4490 1 720 1920 t
+18 S f
+(\267)837 2640 w
+20 R f
+( Weaver \(1949\), and recently)4 2582(Originally proposed by)2 1978 2 1020 2640 t
+(revived at IBM, but remains controversial.)5 3400 1 1020 2880 t
+18 S f
+(\267)837 3480 w
+20 R f
+( for)1 306(Possibly too outrageous for MT, but may be useful)8 4254 2 1020 3480 t
+(other purposes.)1 1220 1 1020 3720 t
+18 S f
+(\267)837 4320 w
+20 R f
+( uses the)2 914(The IBM French-to-English MT system)4 3646 2 1020 4320 t
+(following model:)1 1384 1 1020 4560 t
+18 S f
+(\267)837 5160 w
+20 R f
+(E)1020 5160 w
+20 S f
+(\256)1192 5160 w
+20 R f
+(Noisy Channel)1 1194 1 1440 5160 t
+20 S f
+(\256)2684 5160 w
+20 R f
+(F)2932 5160 w
+18 S f
+(\267)837 5770 w
+20 I f
+(E)1020 5770 w
+21 R f
+(\303)1057 5710 w
+20 S f
+(=)1241 5770 w
+17 I f
+(E)1797 5910 w
+20 I f
+(ARGMAX Pr)1 1080 1 1450 5770 t
+20 R f
+(\()2546 5770 w
+20 I f
+(E)2628 5770 w
+20 R f
+(\))2766 5770 w
+20 I f
+(Pr)2931 5770 w
+20 R f
+(\()3147 5770 w
+20 I f
+(F)3229 5770 w
+20 S f
+(\357)3351 5804 w
+20 I f
+(E)3450 5770 w
+20 R f
+(\))3588 5770 w
+18 S f
+(\267)837 6470 w
+20 R f
+(Use a trigram model for)4 2246 1 1020 6470 t
+20 I f
+(Pr)3398 6470 w
+20 R f
+(\()3614 6470 w
+20 I f
+(E)3696 6470 w
+20 R f
+( various stats)2 1210(\), and)1 536 2 3834 6470 t
+(computed over previously translated texts for)5 3622 1 1020 6710 t
+20 I f
+(Pr)4692 6710 w
+20 R f
+(\()4908 6710 w
+20 I f
+(F)4990 6710 w
+20 S f
+(\357)5112 6744 w
+20 I f
+(E)5211 6710 w
+20 R f
+(\).)5349 6710 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 29 29
+%%Page: 30 30
+/saveobj save def
+mark
+30 pagesetup
+20 R f
+(- 30 -)2 432 1 2664 960 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = A Probabilistic Bilingual Dictionary]
+19 B f
+(A Probabilistic Bilingual Dictionary)3 2922 1 720 1920 t
+20 B f
+( Pr\(F)1 798(E F)1 666 2 2269 2760 t
+20 S f
+(\357)3733 2760 w
+20 B f
+(E\))3831 2760 w
+20 S f
+(_ _________________)1 1762 1 2269 2800 t
+20 R f
+( 0.610)1 951(the le)1 688 2 2269 3040 t
+( 0.178)1 951(the la)1 688 2 2269 3280 t
+( 0.083)1 973(the l')1 666 2 2269 3520 t
+( 0.023)1 873(the les)1 766 2 2269 3760 t
+( 0.013)1 919(the ce)1 720 2 2269 4000 t
+( 0.012)1 983(the il)1 656 2 2269 4240 t
+18 S f
+(\267)837 4720 w
+20 R f
+(Self-organizing:)1020 4720 w
+18 S f
+(\267)1137 5080 w
+20 R f
+(Hansards)1320 5080 w
+20 S f
+(\256)2112 5080 w
+20 R f
+(Black Box Stats)2 1290 1 2360 5080 t
+20 S f
+(\256)3700 5080 w
+20 R f
+(MT)3948 5080 w
+18 S f
+(\267)1137 5440 w
+20 R f
+(No linguists and no French speakers)5 2902 1 1320 5440 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 30 30
+%%Page: 31 31
+/saveobj save def
+mark
+31 pagesetup
+20 R f
+(- 31 -)2 432 1 2664 960 t
+20 B f
+(Sentence Alignment)1 1704 1 2298 1920 t
+(English French)1 2890 1 1020 2160 t
+20 S f
+(_ __________________________________________)1 4260 1 1020 2200 t
+15 R f
+( 1988)1 374(According to our survey,)3 1606 2 1020 2440 t
+( mineral water and soft)4 1496(sales of)1 484 2 1020 2610 t
+( higher than in)3 893(drinks were much)2 1087 2 1020 2780 t
+(1987, re\257ecting the growing)3 1980 1 1020 2950 t
+(popularity of these products.)3 1980 1 1020 3120 t
+(Cola drink manufacturers in)3 1980 1 1020 3290 t
+(particular achieved above-)2 1980 1 1020 3460 t
+(average growth rates.)2 1286 1 1020 3630 t
+( et aux)2 408( rales)1 275( \302)1 8( eaux mine)2 666(Quant aux)1 623 5 3300 2440 t
+(limonades, elles rencontrent)2 1980 1 3300 2610 t
+( En)1 345( d'adeptes.)1 752(toujours plus)1 883 3 3300 2780 t
+(effet, notre sondage fait ressortir)4 1980 1 3300 2950 t
+( rieures)1 400( \302)1 8(des ventes nettement supe)3 1572 3 3300 3120 t
+( 1987, pour les)3 1170( de)1 272( celles)1 474(a \301)1 64 4 3300 3290 t
+( de cola)2 760( base)1 453( \301)1 -2(boissons a)1 769 4 3300 3460 t
+(notamment.)3300 3630 w
+20 S f
+(_ __________________________________________)1 4260 1 1020 3670 t
+15 R f
+( turnover was largely)3 1313(The higher)1 667 2 1020 3910 t
+( the sales)2 615(due to an increase in)4 1365 2 1020 4080 t
+(volume.)1020 4250 w
+( chiffres)1 613(La progression des)2 1367 2 3300 3910 t
+( grande)1 559( en)1 294( sulte)1 276( \302)1 8(d'affaires re)1 843 5 3300 4080 t
+( l'accroissement du)2 1363(partie de)1 617 2 3300 4250 t
+(volume des ventes.)2 1147 1 3300 4420 t
+20 S f
+(_ __________________________________________)1 4260 1 1020 4460 t
+15 R f
+( investment)1 824(Employment and)1 1156 2 1020 4700 t
+(levels also climbed.)2 1189 1 1020 4870 t
+( investissements)1 1012(L'emploi et les)2 968 2 3300 4700 t
+( .)1 30( \302)1 8( augmente)1 620( galement)1 541( \302)1 8(ont e)1 296 6 3300 4870 t
+20 S f
+(_ __________________________________________)1 4260 1 1020 4910 t
+15 R f
+(Following a two-year)2 1980 1 1020 5150 t
+( the new)2 732(transitional period,)1 1248 2 1020 5320 t
+(Foodstuffs Ordinance for)2 1980 1 1020 5490 t
+( effect)1 402(Mineral Water came into)3 1578 2 1020 5660 t
+( it)1 123( Speci\256cally,)1 823( 1, 1988.)2 529(on April)1 505 4 1020 5830 t
+(contains more stringent)2 1980 1 1020 6000 t
+(requirements regarding quality)2 1980 1 1020 6170 t
+( purity)1 711(consistency and)1 1269 2 1020 6340 t
+(guarantees.)1020 6510 w
+( rale)1 216( \302)1 8( de)1 133( \302)1 8( fe)1 159(La nouvelle ordonnance)2 1456 6 3300 5150 t
+( alimentaires)1 879( es)1 117( \302)1 8( denre)1 478(sur les)1 498 5 3300 5320 t
+( les eaux)2 559(concernant entre autres)2 1421 2 3300 5490 t
+( le)1 179( en vigueur)2 743( e)1 58( \302)1 8( entre)1 371( rales,)1 313(mine \302)1 308 7 3300 5660 t
+( riode)1 300( \302)1 8( pe)1 188( une)1 265( \301s)1 57( apre)1 304(1er avril 1988)2 858 7 3300 5830 t
+( deux ans, exige)3 1135(transitoire de)1 845 2 3300 6000 t
+( grande)1 637(surtout une plus)2 1343 2 3300 6170 t
+( une)1 271( et)1 155( \302)1 8(constance dans la qualite)3 1546 4 3300 6340 t
+( .)1 30( \302)1 8(garantie de la purete)3 1219 3 3300 6510 t
+20 S f
+(\347)3150 6510 w
+(\347)3150 6360 w
+(\347)3150 6160 w
+(\347)3150 5960 w
+(\347)3150 5760 w
+(\347)3150 5560 w
+(\347)3150 5360 w
+(\347)3150 5160 w
+(\347)3150 4960 w
+(\347)3150 4760 w
+(\347)3150 4560 w
+(\347)3150 4360 w
+(\347)3150 4160 w
+(\347)3150 3960 w
+(\347)3150 3760 w
+(\347)3150 3560 w
+(\347)3150 3360 w
+(\347)3150 3160 w
+(\347)3150 2960 w
+(\347)3150 2760 w
+(\347)3150 2560 w
+(\347)3150 2360 w
+(\347)3150 2160 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 31 31
+%%Page: 32 32
+/saveobj save def
+mark
+32 pagesetup
+20 R f
+(- 32 -)2 432 1 2664 960 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Word Correspondences]
+19 B f
+(Word Correspondences)1 1926 1 720 1920 t
+20 I f
+(English)720 2520 w
+20 R f
+(: we took the initiative in assessing and amending)8 4248 1 1332 2520 t
+( re\257ect a)2 728(current legislation and policies to ensure that they)7 4132 2 720 2760 t
+(broad interpretation of the charter .)5 2792 1 720 3000 t
+20 I f
+(French)720 3480 w
+20 R f
+( et de)2 592( evaluer)1 558( \302)1 158( initiative d')2 1138(: nous avons pris l')4 1838 5 1296 3480 t
+( vigueur a\256n qu' elles)4 1818(modi\256er des lois et des politiques en)6 3042 2 720 3720 t
+( de la charte .)4 1068( \302en \302ereuse)2 696( g)1 150( etation)1 516( \302)1 28( une interpr)2 920( a)1 66(correspondent \301)1 1202 8 720 3960 t
+(We)720 4640 w
+20 I f
+(pris)1117 4840 w
+20 R f
+(took the)1 682 1 1095 4640 t
+20 I f
+(initiative)1859 4840 w
+20 R f
+(initiative in)1 950 1 1859 4640 t
+20 I f
+(evaluer)2964 4840 w
+20 R f
+(assessing and)1 1114 1 2891 4640 t
+20 I f
+(modi\256er)4142 4840 w
+20 R f
+(amending)4075 4640 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 32 32
+%%Page: 33 33
+/saveobj save def
+mark
+33 pagesetup
+20 R f
+(- 33 -)2 432 1 2664 960 t
+20 B f
+(Top 10 Choices)2 1312 1 2494 1920 t
+(drug sentence)1 3514 1 1437 2160 t
+20 S f
+(_ ________________________________________________)1 4826 1 737 2200 t
+20 R f
+( peine)1 732( 217)1 1440(1023 medicaments)1 1754 3 737 2440 t
+( phrase)1 820( 105)1 1142(297 pharmaceutiques)1 1952 3 837 2680 t
+( sentence)1 986( 92)1 1862(285 drogues)1 1232 3 837 2920 t
+( *NULL*)1 1032( 27)1 1518(262 medicament)1 1576 3 837 3160 t
+( condamnation)1 1432( 14)1 1940(145 drogue)1 1154 3 837 3400 t
+( condamne)1 1120( 10)1 1762(118 *NULL*)1 1332 3 837 3640 t
+( peines)1 810( 9)1 1220(96 pharmaceutique)1 1774 3 937 3880 t
+( condamnees)1 1286( 9)1 600(84 assurance-medicaments)1 2394 3 937 4120 t
+( emprisonnement)1 1632( 7)1 1506(61 toxicomanie)1 1488 3 937 4360 t
+( detenu)1 832( 6)1 1638(43 stupe\256ants)1 1356 3 937 4600 t
+20 S f
+(\347)3481 4600 w
+(\347)3481 4560 w
+(\347)3481 4360 w
+(\347)3481 4160 w
+(\347)3481 3960 w
+(\347)3481 3760 w
+(\347)3481 3560 w
+(\347)3481 3360 w
+(\347)3481 3160 w
+(\347)3481 2960 w
+(\347)3481 2760 w
+(\347)3481 2560 w
+(\347)3481 2360 w
+(\347)3481 2160 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 33 33
+%%Page: 34 34
+/saveobj save def
+mark
+34 pagesetup
+20 R f
+(- 34 -)2 432 1 2664 960 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Terminology]
+19 B f
+(Terminology)720 1920 w
+18 S f
+(\267)837 2280 w
+20 R f
+( be too)2 826(Although Noisy Channel approach may)4 3734 2 1020 2280 t
+(outrageous for MT, it may be useful for other purposes.)9 4442 1 1020 2520 t
+18 S f
+(\267)837 2880 w
+20 R f
+(Human translators need help with terminology)5 3724 1 1020 2880 t
+(1.)1170 3240 w
+20 I f
+(magnetic \256elds)1 1204 1 1520 3240 t
+20 S f
+(\256)2774 3240 w
+20 I f
+(magnetic meadows)1 1526 1 3022 3240 t
+20 R f
+(2.)1170 3600 w
+20 I f
+(cascade)1520 3600 w
+20 R f
+(\(of electrical components\))2 2094 1 2212 3600 t
+20 S f
+(\256)4356 3600 w
+20 I f
+(waterfall)4604 3600 w
+20 R f
+(3.)1170 3960 w
+20 I f
+(store)1520 3960 w
+20 R f
+(\(computer sense\))1 1368 1 1970 3960 t
+20 S f
+(\256)3388 3960 w
+20 I f
+(store)3636 3960 w
+20 R f
+(\(Grocery sense\))1 1266 1 4086 3960 t
+18 S f
+(\267)837 4320 w
+20 R f
+( of shared knowledge between)4 2570(Terminology makes use)2 1990 2 1020 4320 t
+(reader and writer)2 1360 1 1020 4560 t
+18 S f
+(\267)837 4920 w
+20 R f
+( familiar with the topic than)5 2366(Translators tend to be less)4 2194 2 1020 4920 t
+(readers and writers.)2 1566 1 1020 5160 t
+18 S f
+(\267)837 5520 w
+20 R f
+(Solution: use stats computed over parallel texts)6 3776 1 1020 5520 t
+20 I f
+( to more)2 794(existing translations contain more solutions)4 3766 2 1020 6000 t
+(translation problems than any other existing resource)6 4310 1 1020 6240 t
+20 R f
+(-- Pierre Isabelle)2 1328 1 1380 6480 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 34 34
+%%Page: 35 35
+/saveobj save def
+mark
+35 pagesetup
+20 R f
+(- 35 -)2 432 1 2664 960 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Discrimination Applications]
+19 B f
+(Discrimination Applications)1 2287 1 720 1920 t
+18 S f
+(\267)837 2640 w
+20 R f
+(Word-Sense Disambiguation: distinguish ``river'' bank)4 4560 1 1020 2640 t
+(from ``money'' bank)2 1684 1 1020 2880 t
+18 S f
+(\267)837 3480 w
+20 R f
+( the Federalist Papers)3 1822(Author Identi\256cation: distinguish)2 2738 2 1020 3480 t
+(written by Madison from those written by Hamilton)7 4148 1 1020 3720 t
+18 S f
+(\267)837 4320 w
+20 R f
+(Information Retrieval \(IR\): distinguish documents that)5 4560 1 1020 4320 t
+(are relevant to a query from those that are not.)9 3690 1 1020 4560 t
+20 I f
+(score)720 5160 w
+20 R f
+(\()1168 5160 w
+20 I f
+(c)1250 5160 w
+20 R f
+(\))1354 5160 w
+20 S f
+(=)1536 5160 w
+17 I f
+(word)1877 5360 w
+17 R f
+(in)2298 5360 w
+17 I f
+(c)2502 5360 w
+25 S f
+(P)2130 5220 w
+20 I f
+(Pr)2774 5300 w
+20 R f
+(\()2990 5300 w
+20 I f
+(word)3072 5300 w
+20 S f
+(\357)3484 5334 w
+20 I f
+(sense)3583 5300 w
+17 R f
+(2)4043 5340 w
+20 R f
+(\))4160 5300 w
+20 I f
+(Pr)2774 5000 w
+20 R f
+(\()2990 5000 w
+20 I f
+(word)3072 5000 w
+20 S f
+(\357)3484 5034 w
+20 I f
+(sense)3583 5000 w
+17 R f
+(1)4043 5040 w
+20 R f
+(\))4160 5000 w
+20 S1 f
+(_ _______________)1 1512 1 2744 5100 t
+20 R f
+(Sense)5114 5160 w
+20 I f
+(score)720 5920 w
+20 R f
+(\()1168 5920 w
+20 I f
+(d)1250 5920 w
+20 R f
+(\))1366 5920 w
+20 S f
+(=)1548 5920 w
+17 I f
+(word)1889 6120 w
+17 R f
+(in)2310 6120 w
+17 I f
+(d)2514 6120 w
+25 S f
+(P)2147 5980 w
+20 I f
+(Pr)2796 6060 w
+20 R f
+(\()3012 6060 w
+20 I f
+(word)3094 6060 w
+20 S f
+(\357)3506 6094 w
+20 I f
+(author)3605 6060 w
+17 R f
+(2)4167 6100 w
+20 R f
+(\))4284 6060 w
+20 I f
+(Pr)2796 5760 w
+20 R f
+(\()3012 5760 w
+20 I f
+(word)3094 5760 w
+20 S f
+(\357)3506 5794 w
+20 I f
+(author)3605 5760 w
+17 R f
+(1)4167 5800 w
+20 R f
+(\))4284 5760 w
+20 S1 f
+(_ ________________)1 1614 1 2766 5860 t
+20 R f
+(Author)5014 5920 w
+20 I f
+(score)720 6640 w
+20 R f
+(\()1168 6640 w
+20 I f
+(d)1250 6640 w
+20 R f
+(\))1366 6640 w
+20 S f
+(=)1548 6640 w
+17 I f
+(word)1889 6840 w
+17 R f
+(in)2310 6840 w
+17 I f
+(d)2514 6840 w
+25 S f
+(P)2147 6700 w
+20 I f
+(Pr)2796 6780 w
+20 R f
+(\()3012 6780 w
+20 I f
+(word)3094 6780 w
+20 S f
+(\357)3506 6814 w
+20 I f
+(irrel)3605 6780 w
+20 R f
+(\))3977 6780 w
+20 I f
+(Pr)2863 6520 w
+20 R f
+(\()3079 6520 w
+20 I f
+(word)3161 6520 w
+20 S f
+(\357)3573 6554 w
+20 I f
+(rel)3672 6520 w
+20 R f
+(\))3910 6520 w
+20 S1 f
+(_ _____________)1 1307 1 2766 6580 t
+20 R f
+(IR)5380 6640 w
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 35 35
+%%Page: 36 36
+/saveobj save def
+mark
+36 pagesetup
+20 R f
+(- 36 -)2 432 1 2664 960 t
+( Clues)1 506( Contextual)1 1566(Word Sense)1 1252 3 830 1920 t
+20 S f
+(_ ______________________________________________)1 4640 1 830 1960 t
+20 R f
+( serving, a,)2 1298( parole,)1 808( inmate,)1 1316(sentence peine)1 1218 4 830 2200 t
+(released, prison, mandatory,)2 2700 1 2770 2420 t
+( who, death,)2 1100(judge, after, years,)2 1600 2 2770 2640 t
+(his, murder)1 910 1 2770 2860 t
+( second, amended, ``, '',)4 2102( read,)1 482( I,)1 750(sentence phrase)1 1306 4 830 3100 t
+( just, letter,)2 1186(protects, version,)1 1514 2 2770 3320 t
+(quote, word, ..., last, amendment,)4 2700 1 2770 3540 t
+(insults, assures, quotation, \256rst)3 2468 1 2770 3760 t
+20 S f
+(_ ______________________________________________)1 4640 1 830 3800 t
+20 R f
+( prescription, patent,)2 2174( prices,)1 626(drug medicaments)1 1840 3 830 4040 t
+(increase, generic, companies,)2 2700 1 2770 4260 t
+( higher, price,)2 1234(upon, consumers,)1 1466 2 2770 4480 t
+(consumer, multinational,)1 2700 1 2770 4700 t
+(pharmaceutical, costs)1 1718 1 2770 4920 t
+( illicit, use,)2 972( paraphernalia,)1 1224( abuse,)1 1026(drug drogues)1 1418 4 830 5160 t
+( sale,)1 468(traf\256cking, problem, food,)2 2232 2 2770 5380 t
+( cocaine,)1 790(alcohol, shops, crime,)2 1910 2 2770 5600 t
+(epidemic, national, narcotic,)2 2700 1 2770 5820 t
+(strategy, head, control,)2 2700 1 2770 6040 t
+(marijuana, welfare, illegal,)2 2700 1 2770 6260 t
+(traf\256ckers, controlled, \256ght, dogs)3 2664 1 2770 6480 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 36 36
+%%Page: 37 37
+/saveobj save def
+mark
+37 pagesetup
+20 R f
+(- 37 -)2 432 1 2664 960 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Word-Sense Disambiguation]
+19 B f
+(Word-Sense Disambiguation)1 2329 1 720 1920 t
+18 S f
+(\267)837 2280 w
+20 R f
+(Required: large amounts of testing and training)6 4560 1 1020 2280 t
+(materials, with labels indicating the correct sense.)6 3982 1 1020 2520 t
+18 S f
+(\267)837 2880 w
+20 R f
+(Solution: use previously translated texts)4 3200 1 1020 2880 t
+18 S f
+(\267)837 3240 w
+20 R f
+( hand-)1 576(The translation can often be used in lieu of)8 3984 2 1020 3240 t
+(labeling:)1020 3480 w
+(1.)1170 3840 w
+20 I f
+(sentence)1520 3840 w
+20 S f
+(\256)2256 3840 w
+20 I f
+(peine)2504 3840 w
+20 R f
+(\(``judicial'' sense\))1 1478 1 2986 3840 t
+(2.)1170 4200 w
+20 I f
+(sentence)1520 4200 w
+20 S f
+(\256)2256 4200 w
+20 I f
+(phrase)2504 4200 w
+20 R f
+(\(``syntactic'' sense\))1 1588 1 3098 4200 t
+18 S f
+(\267)837 4560 w
+20 R f
+(Outline of Algorithm)2 1700 1 1020 4560 t
+( Alignment)1 906(1. Sentence)1 1070 2 1170 4920 t
+( Correspondence)1 1346(2. Word)1 804 2 1170 5280 t
+( Context Models:)2 1390(3. Train)1 782 2 1170 5640 t
+20 I f
+(Pr)3392 5640 w
+20 R f
+(\()3608 5640 w
+20 I f
+(word)3690 5640 w
+20 S f
+(\357)4102 5674 w
+20 I f
+(sense)4201 5640 w
+20 R f
+(\))4649 5640 w
+( on New Data)3 1102(4. Test)1 694 2 1170 6000 t
+20 I f
+(score)720 6600 w
+20 R f
+(\()1168 6600 w
+20 I f
+(c)1250 6600 w
+20 R f
+(\))1354 6600 w
+20 S f
+(=)1536 6600 w
+17 I f
+(token)1877 6800 w
+17 R f
+(in)2316 6800 w
+17 I f
+(c)2520 6800 w
+25 S f
+(P)2139 6660 w
+20 I f
+(Pr)2792 6740 w
+20 R f
+(\()3008 6740 w
+20 I f
+(token)3090 6740 w
+20 S f
+(\357)3522 6774 w
+20 I f
+(sense)3621 6740 w
+17 R f
+(2)4081 6780 w
+20 R f
+(\))4198 6740 w
+20 I f
+(Pr)2792 6440 w
+20 R f
+(\()3008 6440 w
+20 I f
+(token)3090 6440 w
+20 S f
+(\357)3522 6474 w
+20 I f
+(sense)3621 6440 w
+17 R f
+(1)4081 6480 w
+20 R f
+(\))4198 6440 w
+20 S1 f
+(_ _______________)1 1532 1 2762 6540 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 37 37
+%%Page: 38 38
+/saveobj save def
+mark
+38 pagesetup
+20 R f
+(- 38 -)2 432 1 2664 960 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Text Compression]
+19 B f
+(Text Compression)1 1483 1 720 1920 t
+20 R f
+(Entropy:)720 2280 w
+20 I f
+(H)1470 2280 w
+20 S f
+(= -)1 336 1 1713 2280 t
+17 I f
+(p)2212 2480 w
+25 S f
+(S)2181 2340 w
+20 I f
+(p)2444 2280 w
+20 R f
+(log)2626 2280 w
+20 I f
+(p)2898 2280 w
+18 S f
+(\267)837 2800 w
+20 R f
+(size of search space for a recognizer)6 2886 1 1020 2800 t
+18 S f
+(\267)837 3160 w
+20 R f
+(measure of disk space)3 1756 1 1020 3160 t
+18 S f
+(\267)837 3520 w
+20 R f
+(measure of information)2 1874 1 1020 3520 t
+18 S f
+(\267)837 3880 w
+20 R f
+(bandwidth of a channel \(telephone\))4 2826 1 1020 3880 t
+18 S f
+(\267)837 4240 w
+20 R f
+(ef\256ciency of a code)3 1566 1 1020 4240 t
+(Cross Entropy of Various Language Models)5 3534 1 1425 4720 t
+( / Character)2 930(Model Bits)1 3536 2 720 4960 t
+20 S f
+(_ _________________________________________________)1 4944 1 720 5000 t
+20 R f
+(ASCII 8)1 3312 1 720 5240 t
+( 5)1 1360(Huffman code each char)3 1952 2 720 5480 t
+(Lempel-Ziv \(Unix)1 1470 1 720 5720 t
+20 S f
+(\324)2190 5720 w
+20 I f
+(compress)2418 5720 w
+20 R f
+(\) 4.43)1 1110 1 3172 5720 t
+( 2.1)1 550(Unigram \(Huffman code each word\))4 2912 2 720 5960 t
+(Trigram 1.76)1 3562 1 720 6200 t
+( \(Shannon, 1951\))2 1382( 1.25)1 1906(Human Performance)1 1656 3 720 6440 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 38 38
+%%Page: 39 39
+/saveobj save def
+mark
+39 pagesetup
+20 R f
+(- 39 -)2 432 1 2664 960 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Conclusion]
+19 B f
+(Conclusion)720 1920 w
+18 S f
+(\267)837 2280 w
+20 R f
+(Shannon's Noisy Channel Model)3 2660 1 1020 2280 t
+( Model)1 572(1. Language)1 1136 2 1170 2640 t
+( Model)1 572(2. Channel)1 1016 2 1170 3000 t
+18 S f
+(\267)837 3600 w
+20 R f
+(Applications)1020 3600 w
+( Speech, OCR, Spelling)3 1906(1. Recognition:)1 1384 2 1170 3960 t
+( Tagging)1 716(2. Part-of-Speech)1 1546 2 1170 4320 t
+( Terminology and Bilingual Lexicography)4 3386(3. MT,)1 700 2 1170 4680 t
+( Word-sense, Author, IR)3 1968(4. Discrimination:)1 1606 2 1170 5040 t
+( Compression)1 1106(5. Text)1 716 2 1170 5400 t
+18 S f
+(\267)837 6000 w
+20 R f
+( application of well-understood)3 2526(Text Analysis: pragmatic)2 2034 2 1020 6000 t
+( ngrams, Bayesian discrimination)3 2844(weak methods \(e.g.,)2 1716 2 1020 6240 t
+( large data-sets to address problems of)6 3072(methods\) and very)2 1488 2 1020 6480 t
+(practical concern, as well as classic academic puzzles.)7 4324 1 1020 6720 t
+cleartomark
+showpage
+saveobj restore
+%%EndPage: 39 39
+%%Trailer
+done
+%%Pages: 39
+%%DocumentFonts: Times-Bold Times-Italic Times-Roman Symbol Times-Roman

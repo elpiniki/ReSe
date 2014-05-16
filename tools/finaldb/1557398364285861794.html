@@ -1,0 +1,5031 @@
+%!PS-Adobe-2.0
+%%Copyright: Copyright (c) 1993 AT&T, All Rights Reserved
+%%Version: 3.4
+%%DocumentFonts: (atend)
+%%Pages: (atend)
+%%EndComments
+/DpostDict 200 dict def
+DpostDict begin
+%
+% Copyright (c) 1993 AT&T, All Rights Reserved
+%
+% Version 3.4 prologue for troff files.
+%
+
+/#copies 1 store
+/Prologue (dpost.ps) def
+/aspectratio 1 def
+/formsperpage 1 def
+/landscape false def
+/linewidth .3 def
+/magnification 1 def
+/margin 0 def
+/orientation 0 def
+/resolution 720 def
+/rotation 1 def
+/xoffset 0 def
+/yoffset 0 def
+
+/roundpage true def
+/useclippath true def
+/pagebbox [0 0 612 792] def
+
+/R  /Times-Roman def
+/I  /Times-Italic def
+/B  /Times-Bold def
+/BI /Times-BoldItalic def
+/H  /Helvetica def
+/HI /Helvetica-Oblique def
+/HB /Helvetica-Bold def
+/HX /Helvetica-BoldOblique def
+/CW /Courier def
+/CO /Courier def
+/CI /Courier-Oblique def
+/CB /Courier-Bold def
+/CX /Courier-BoldOblique def
+/PA /Palatino-Roman def
+/PI /Palatino-Italic def
+/PB /Palatino-Bold def
+/PX /Palatino-BoldItalic def
+/Hr /Helvetica-Narrow def
+/Hi /Helvetica-Narrow-Oblique def
+/Hb /Helvetica-Narrow-Bold def
+/Hx /Helvetica-Narrow-BoldOblique def
+/KR /Bookman-Light def
+/KI /Bookman-LightItalic def
+/KB /Bookman-Demi def
+/KX /Bookman-DemiItalic def
+/AR /AvantGarde-Book def
+/AI /AvantGarde-BookOblique def
+/AB /AvantGarde-Demi def
+/AX /AvantGarde-DemiOblique def
+/NR /NewCenturySchlbk-Roman def
+/NI /NewCenturySchlbk-Italic def
+/NB /NewCenturySchlbk-Bold def
+/NX /NewCenturySchlbk-BoldItalic def
+/ZD /ZapfDingbats def
+/ZI /ZapfChancery-MediumItalic def
+/S  /S def
+/S1 /S1 def
+/GR /Symbol def
+
+/inch {72 mul} bind def
+/min {2 copy gt {exch} if pop} bind def
+
+/setup {
+	counttomark 2 idiv {def} repeat pop
+
+	landscape {/orientation 90 orientation add def} if
+	/scaling 72 resolution div def
+	linewidth setlinewidth
+	1 setlinecap
+
+	pagedimensions
+	xcenter ycenter translate
+	orientation rotation mul rotate
+	width 2 div neg height 2 div translate
+	xoffset inch yoffset inch neg translate
+	margin 2 div dup neg translate
+	magnification dup aspectratio mul scale
+	scaling scaling scale
+
+	addmetrics
+	0 0 moveto
+} def
+
+/pagedimensions {
+	useclippath userdict /gotpagebbox known not and {
+		/pagebbox [clippath pathbbox newpath] def
+		roundpage currentdict /roundpagebbox known and {roundpagebbox} if
+	} if
+	pagebbox aload pop
+	4 -1 roll exch 4 1 roll 4 copy
+	landscape {4 2 roll} if
+	sub /width exch def
+	sub /height exch def
+	add 2 div /xcenter exch def
+	add 2 div /ycenter exch def
+	userdict /gotpagebbox true put
+} def
+
+/landscapepage {
+	landscape not {
+		0 height scaling div neg translate	% not quite
+		90 rotate
+	} if
+} bind def
+
+/portraitpage {
+	landscape {
+		width scaling div 0 translate	% not quite
+		-90 rotate
+	} if
+} bind def
+
+/addmetrics {
+	/Symbol /S null Sdefs cf
+	/Times-Roman /S1 StandardEncoding dup length array copy S1defs cf
+} def
+
+/pagesetup {
+	/page exch def
+	currentdict /pagedict known currentdict page known and {
+		page load pagedict exch get cvx exec
+	} if
+} def
+
+/decodingdefs [
+	{counttomark 2 idiv {y moveto show} repeat}
+	{neg /y exch def counttomark 2 idiv {y moveto show} repeat}
+	{neg moveto {2 index stringwidth pop sub exch div 0 32 4 -1 roll widthshow} repeat}
+	{neg moveto {spacewidth sub 0.0 32 4 -1 roll widthshow} repeat}
+	{counttomark 2 idiv {y moveto show} repeat}
+	{neg setfunnytext}
+] def
+
+/setdecoding {/t decodingdefs 3 -1 roll get bind def} bind def
+
+/w {neg moveto show} bind def
+/m {neg dup /y exch def moveto} bind def
+/done {/lastpage where {pop lastpage} if} def
+
+/f {
+	dup /font exch def findfont exch
+	dup /ptsize exch def scaling div dup /size exch def scalefont setfont
+	linewidth ptsize mul scaling 10 mul div setlinewidth
+	/spacewidth ( ) stringwidth pop def
+} bind def
+
+/changefont {
+	/fontheight exch def
+	/fontslant exch def
+	currentfont [
+		1 0
+		fontheight ptsize div fontslant sin mul fontslant cos div
+		fontheight ptsize div
+		0 0
+	] makefont setfont
+} bind def
+
+/sf {f} bind def
+
+/cf {
+	dup length 2 idiv
+	/entries exch def
+	/chtab exch def
+	/newencoding exch def
+	/newfont exch def
+
+	findfont dup length 1 add dict
+	/newdict exch def
+	{1 index /FID ne {newdict 3 1 roll put}{pop pop} ifelse} forall
+
+	newencoding type /arraytype eq {newdict /Encoding newencoding put} if
+
+	newdict /Metrics entries dict put
+	newdict /Metrics get
+	begin
+		chtab aload pop
+		1 1 entries {pop def} for
+		newfont newdict definefont pop
+	end
+} bind def
+
+%
+% A few arrays used to adjust reference points and character widths in some
+% of the printer resident fonts. If square roots are too high try changing
+% the lines describing /radical and /radicalex to,
+%
+%	/radical	[0 -75 550 0]
+%	/radicalex	[-50 -75 500 0]
+%
+% Move braceleftbt a bit - default PostScript character is off a bit.
+%
+
+/Sdefs [
+	/bracketlefttp		[201 500]
+	/bracketleftbt		[201 500]
+	/bracketrighttp		[-81 380]
+	/bracketrightbt		[-83 380]
+	/braceleftbt		[203 490]
+	/bracketrightex		[220 -125 500 0]
+	/radical		[0 0 550 0]
+	/radicalex		[-50 0 500 0]
+	/parenleftex		[-20 -170 0 0]
+	/integral		[100 -50 500 0]
+	/infinity		[10 -75 730 0]
+] def
+
+/S1defs [
+	/underscore		[0 80 500 0]
+	/endash			[7 90 650 0]
+] def
+end
+%%EndProlog
+%%BeginSetup
+DpostDict begin
+mark
+/resolution 720 def
+setup
+2 setdecoding
+/build_12 {
+    pop
+    /optsize ptsize def
+    /osize size def
+    /ofont font def
+
+    optsize 2 div dup R exch R f
+    0 size 2 mul 3 div dup neg exch 0 exch rmoveto
+
+    (1) show
+    rmoveto
+    optsize R f
+    (\244) show
+    f
+    (2) show
+
+    optsize ofont f
+} def
+end
+%%EndSetup
+%%Page: 1 1
+DpostDict begin
+/saveobj save def
+mark
+1 pagesetup
+10 R f
+(- 1 -)2 166 1 2797 480 t
+10 B f
+(A Method for Disambiguating Word Senses in a Large Corpus)9 2670 1 1545 960 t
+10 R f
+(William A. Gale)2 663 1 2548 1320 t
+(Kenneth W. Church)2 801 1 2479 1440 t
+(David Yarowsky)1 679 1 2540 1560 t
+10 I f
+(AT&T Bell Laboratories)2 985 1 2387 1920 t
+(600 Mountain Avenue)2 882 1 2439 2040 t
+(P. O. Box 636)3 563 1 2598 2160 t
+(Murray Hill NJ, 07974-0636)3 1155 1 2302 2280 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Abstract]
+(Abstract)720 2580 w
+10 R f
+( in natural language processing)4 1350(Word sense disambiguation has been recognized as a major problem)9 2970 2 720 2880 t
+( quantitive and qualitative methods have been tried, but much of this)11 2863( Both)1 256(research for over forty years.)4 1201 3 720 3000 t
+( acquiring appropriate lexical resources, such as semantic networks)8 2709(work has been stymied by dif\256culties in)6 1611 2 720 3120 t
+( methods has had to focus on ``toy'')7 1480( particular, much of the work on qualitative)7 1778( In)1 139(and annotated corpora.)2 923 4 720 3240 t
+( much of the)3 505( Similarly,)1 449( currently available semantic networks generally lack broad coverage.)8 2797(domains since)1 569 4 720 3360 t
+( depend on small amounts of hand-labeled text for testing and)10 2609(work on quantitative methods has had to)6 1711 2 720 3480 t
+(training.)720 3600 w
+( and)1 190(We have achieved considerable progress recently by taking advantage of a new source of testing)14 4130 2 720 3840 t
+( we have been making use)5 1050( than depending on small amounts of hand-labeled text,)8 2225( Rather)1 317(training materials.)1 728 4 720 3960 t
+( text, text such as the Canadian Hansards, which are available in)11 2740(of relatively large amounts of parallel)5 1580 2 720 4080 t
+( example, consider the)3 916( For)1 195( can often be used in lieu of hand-labeling.)8 1753( translation)1 454( The)1 212(multiple languages.)1 790 6 720 4200 t
+(polysemous word)1 730 1 720 4320 t
+10 I f
+(sentence)1497 4320 w
+10 R f
+( senses: \(1\) a judicial sentence, and \(2\), a syntactic)9 2227(, which has two major)4 973 2 1840 4320 t
+( are translated as)3 709( can collect a number of sense \(1\) examples by extracting instances that)12 3040(sentence. We)1 571 3 720 4440 t
+10 I f
+(peine)720 4560 w
+10 R f
+( that are translated as)4 902(, and we can collect a number of sense \(2\) examples by extracting instances)13 3202 2 936 4560 t
+10 I f
+(phrase)720 4680 w
+10 R f
+( have been able to acquire a considerable amount of testing and training material for)14 3359( this way, we)3 530(. In)1 159 3 992 4680 t
+(developing and testing our disambiguation algorithms.)5 2183 1 720 4800 t
+( develop quantitative disambiguation)3 1498(The availability of this testing and training material has enabled us to)11 2822 2 720 5040 t
+( discriminating between two very distinct senses of a noun such)10 2547(methods that achieve 92 percent accuracy in)6 1773 2 720 5160 t
+(as)720 5280 w
+10 I f
+(sentence)831 5280 w
+10 R f
+( the polysemous noun.)3 912( the training phase, we collect a number of instances of each sense of)13 2793(. In)1 161 3 1174 5280 t
+( are asked to assign the instance to)7 1406(Then in the testing phase, we are given a new instance of the noun, and)14 2914 2 720 5400 t
+( this question by comparing the context of the unknown instance)10 2651( attempt to answer)3 753( We)1 194(one of the senses.)3 722 4 720 5520 t
+( known instances using a Bayesian argument that has been applied successfully in related)13 3660(with contexts of)2 660 2 720 5640 t
+(tasks such as author identi\256cation and information retrieval.)7 2397 1 720 5760 t
+( classi\256er requires an estimate of)5 1381(The Bayesian)1 559 2 720 6000 t
+10 I f
+(Pr)2699 6000 w
+10 R f
+(\()2807 6000 w
+10 I f
+(w)2848 6000 w
+10 S f
+(\357)2915 6017 w
+10 I f
+(sense)2963 6000 w
+10 R f
+(\), the probability of \256nding the word)6 1547 1 3187 6000 t
+10 I f
+(w)4773 6000 w
+10 R f
+(in a)1 161 1 4879 6000 t
+( probabilities since there are so many parameters)7 1969( must be taken in estimating these)6 1379( Care)1 242(particular context.)1 730 4 720 6120 t
+( have)1 224( We)1 199(\(e.g., 100,000 for each sense\) and so little training material \(e.g., 5,000 words for each sense\).)15 3897 3 720 6240 t
+( it helps to smooth the estimates obtained from the training material with estimates obtained from)15 3910(found that)1 410 2 720 6360 t
+( idea is that the training material provides poorly measured estimates, whereas the)12 3395( The)1 215(the entire corpus.)2 710 3 720 6480 t
+( seek a trade-off between measurement errors and)7 2152( We)1 213(entire corpus provides less relevant estimates.)5 1955 3 720 6600 t
+( estimate of how much the)5 1097(relevance using a novel interpolation procedure that has one free parameter, an)11 3223 2 720 6720 t
+(conditional probabilities)1 980 1 720 6840 t
+10 I f
+(Pr)1729 6840 w
+10 R f
+(\()1837 6840 w
+10 I f
+(w)1878 6840 w
+10 S f
+(\357)1945 6857 w
+10 I f
+(sense)1993 6840 w
+10 R f
+(\) will differ from the global probabilities)6 1650 1 2217 6840 t
+10 I f
+(Pr)3896 6840 w
+10 R f
+(\()4004 6840 w
+10 I f
+(w)4045 6840 w
+10 R f
+( the sense tagging)3 725(\). In)1 195 2 4120 6840 t
+( expect quite large differences, more than 20% of the vocabulary behaves very differently in)14 3709(application, we)1 611 2 720 6960 t
+( such as author identi\256cation, we expect much smaller)8 2390(the conditional context; in other applications)5 1930 2 720 7080 t
+(differences and \256nd that less than 2% of the vocabulary depends very much on the author.)15 3598 1 720 7200 t
+( for example, make use of)5 1056( Dictionaries,)1 567( set of issues.)3 545(The ``sense disambiguation'' problem covers a broad)6 2152 4 720 7440 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 1 1
+%%Page: 2 2
+DpostDict begin
+/saveobj save def
+mark
+2 pagesetup
+10 R f
+(- 2 -)2 166 1 2797 480 t
+( as part of speech, etymology, register,)6 1634(quite a number of other factors in addition to ``meaning,'' such)10 2686 2 720 960 t
+( other aspects of)3 657( These)1 290( an entry into multiple ``senses''.)5 1336(dialect and collocations, in deciding when to break)7 2037 4 720 1080 t
+( particular, part of speech disambiguation)5 1673( In)1 136( speci\256c methods.)2 725(sense disambiguation may well each require)5 1786 4 720 1200 t
+( indeed, there has been considerable progress on that)8 2255(is probably best handled as a separate issue, and)8 2065 2 720 1320 t
+( proposed method is probably most appropriate for those aspects of sense disambiguation that)13 3756(problem. The)1 564 2 720 1440 t
+( the proposed method was designed to)6 1742( particular,)1 467( In)1 168(are closest to the information retrieval task.)6 1943 4 720 1560 t
+( topics \(e.g., judicial sentences vs. syntactic)6 1796(disambiguate senses that are usually associated with different)7 2524 2 720 1680 t
+(sentences\).)720 1800 w
+%INFO[SECTION: LEVEL = 1, NUMBER = 1.  , HEADING = Bar-Hillel's Characterization of the Word-Sense Disambiguation Problem]
+9 B f
+( Characterization of the Word-Sense Disambiguation Problem)6 2398(1. Bar-Hillel's)1 564 2 720 2160 t
+10 R f
+( in natural language processing)4 1350(Word sense disambiguation has been recognized as a major problem)9 2970 2 720 2460 t
+( can \256nd a number of early references, e.g., Kaplan \(1950\), Yngve)11 2856( One)1 235(research for over forty years.)4 1229 3 720 2580 t
+( was a clear awareness that word-sense)6 1711( on, there)2 424( Early)1 291(\(1955\), Bar-Hillel \(1960\), Masterson \(1967\).)4 1894 4 720 2700 t
+(disambiguation is an important problem to solve:)6 1967 1 720 2820 t
+(``The basic problem in machine translation is that of multiple meaning,'' \(Masterson, 1967\))12 3673 1 1220 3060 t
+( who had)2 378( Bar-Hillel,)1 486( that the problem is very dif\256cult.)6 1377(But unfortunately, there was also a clear awareness)7 2079 4 720 3300 t
+( translation, abandoned the \256eld when he couldn't see how a)10 2585(been one of the early leaders in machine)7 1735 2 720 3420 t
+(program could disambiguate the word)4 1520 1 720 3540 t
+10 I f
+(pen)2265 3540 w
+10 R f
+(in the very simple English discourse:)5 1480 1 2434 3540 t
+(Little John was looking for his toy box.)7 1578 1 1220 3780 t
+(Finally he found it.)3 767 1 1220 3900 t
+10 I f
+(The box was in the pen)5 919 1 1220 4020 t
+10 R f
+(.)2139 4020 w
+(John was very happy.)3 865 1 1220 4140 t
+(Bar-Hillel \(1960, p. 159\) argued that:)5 1495 1 720 4380 t
+(``Assume, for simplicity's sake, that)4 1458 1 1220 4620 t
+10 I f
+(pen)2704 4620 w
+10 R f
+( following two meanings: \(1\) a)5 1245(in English has only the)4 921 2 2874 4620 t
+( claim that no)3 580( now)1 209( I)1 95(certain writing utensil, \(2\) an enclosure where small children can play.)10 2936 4 1220 4740 t
+( word)1 237(existing or imaginable program will enable an electronic computer to determine that the)12 3583 2 1220 4860 t
+10 I f
+(pen)1220 4980 w
+10 R f
+( within the given context has the second of the above meanings,)11 2739(in the given sentence)3 894 2 1407 4980 t
+(whereas every reader with a suf\256cient knowledge of English will do this `automatically.' '')13 3643 1 1220 5100 t
+( his numbers,)2 540( Using)1 291(Bar-Hillel's real objection was an empirical one.)6 1955 3 720 5340 t
+7 R f
+(1)3506 5300 w
+10 R f
+( time,)1 231(it appears that programs, at the)5 1241 2 3568 5340 t
+( considering)1 494( Moreover,)1 471( out of 20\).)3 453(could disambiguate only about 75% of the words in a sentence \(e.g., 15)12 2902 4 720 5460 t
+( are unambiguous, the system is really only getting slightly more than half of the)14 3391(that 8 of the 15 words)5 929 2 720 5580 t
+( many of the polysemous cases involve relatively easy issues such as part of speech.)14 3358( And)1 223(polysemous cases.)1 739 3 720 5700 t
+( possible that back in the 1960s, most systems were not much better than chance at disambiguating the)17 4164(It is)1 156 2 720 5820 t
+(kinds of cases that we are concerned with here.)8 1880 1 720 5940 t
+8 S1 f
+(__________________)720 6209 w
+8 R f
+( moment no method of reducing the polysemy of the, say, twenty words of)13 2391( me state rather dogmatically that there exists at this)9 1651(1. ``Let)1 278 3 720 6329 t
+( at least \256ve or six words with multiple)8 1275(an average Russian sentence in a scienti\256c article below a remainder of, I would estimate,)14 2925 2 840 6419 t
+( believe that by reducing)4 802( tend to)2 245( Many)1 229(English renderings, which would not seriously endanger the quality of the machine output.)12 2924 4 840 6509 t
+( from a few tens of thousands \(which is the)9 1525(the number of initially possible renderings of a twenty word Russian sentence)11 2675 2 840 6599 t
+( assumption that each of the twenty Russian words has two renderings on the average, while)15 2951(approximate number resulting from the)4 1249 2 840 6689 t
+( eight of them have only one rendering\) to some eighty \(which would be the number of renderings on the assumption that)21 3929(seven or)1 271 2 840 6779 t
+(sixteen words are uniquely rendered and four have three renderings apiece, forgetting now about all the other aspects such as)19 4200 1 840 6869 t
+( word order, etc.\) the main bulk of this kind of work has been achieved, the remainder requiring only some slight)20 3874(change of)1 326 2 840 6959 t
+( 1960, p. 163\))3 446( \(Bar-Hillel,)1 408(additional effort.'')1 585 3 840 7049 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 2 2
+%%Page: 3 3
+DpostDict begin
+/saveobj save def
+mark
+3 pagesetup
+10 R f
+(- 3 -)2 166 1 2797 480 t
+( for most)2 367(Nevertheless, it should be fairly clear that 75% is really not very good, and is probably inadequate)16 3953 2 720 960 t
+( it seems to be possible to achieve)7 1490( Fortunately,)1 555(applications that one would probably be interested in.)7 2275 3 720 1080 t
+( afford to be)3 517(considerably higher performance these days, and consequently, with 20-20 hindsight, we can)11 3803 2 720 1200 t
+(somewhat more optimistic about the prospects of automatic sense disambiguation.)9 3292 1 720 1320 t
+%INFO[SECTION: LEVEL = 1, NUMBER = 2.  , HEADING = Knowledge Acquisition Bottleneck]
+9 B f
+( Acquisition Bottleneck)2 896(2. Knowledge)1 544 2 720 1680 t
+10 R f
+( that it did not have a good way of)9 1404(One of the big problems with the early work on sense-disambiguation is)11 2916 2 720 1980 t
+( of facts)2 329( Bar-Hillel realized, people have a large set)7 1763( As)1 166(dealing with the knowledge acquisition bottleneck.)5 2062 4 720 2100 t
+( to this wealth of)4 724(at their disposal, and it is not obvious how a computer could ever hope to gain access)16 3596 2 720 2220 t
+(knowledge.)720 2340 w
+( working on MT, their \256rst reaction)6 1424(``Whenever I offered this argument to one of my colleagues)9 2396 2 1220 2580 t
+( knowledge at the disposal of the)6 1405(was: `But why not envisage a system which will put this)10 2415 2 1220 2700 t
+( as this reaction is, it is very easy to show its futility.)12 2256( Understandable)1 689(translation machine?')1 875 3 1220 2820 t
+( that a translation)3 733(What such a suggestion amounts to, if taken seriously, is the requirement)11 3087 2 1220 2940 t
+( encyclopedia.)1 582(machine should not only be supplied with a dictionary but also with a universal)13 3238 2 1220 3060 t
+( however,)1 402( Since,)1 306( utterly chimerical and hardly deserves any further discussion.)8 2553(This is surely)2 559 4 1220 3180 t
+( of a machine with encyclopedic knowledge has popped up also on other occasions, let)14 3505(the idea)1 315 2 1220 3300 t
+( number of facts we human beings know is, in a certain)11 2240( The)1 208( words on this topic.)4 826(me add a few)3 546 4 1220 3420 t
+(very pregnant sense, in\256nite.'')3 1217 1 1220 3540 t
+( the crux of the problem is to \256nd a strategy for acquiring this knowledge with a reasonable)17 3817(In our view,)2 503 2 720 3780 t
+( turning to parallel text as a source of)8 1542( think that we have found such a strategy by)9 1833( We)1 196(chance of success.)2 749 4 720 3900 t
+( is likely that parallel texts will become available in ever increasing)11 2935( It)1 133( materials.)1 438(testing and training)2 814 4 720 4020 t
+(quantities as more and more translators start to use electronic workstations, and as more and more nations)16 4320 1 720 4140 t
+( adopt policies like the Canadians have, that require vast numbers of documents to be)14 3437(\(especially in Europe\))2 883 2 720 4260 t
+(translated into two or more languages.)5 1531 1 720 4380 t
+( word-sense disambiguation has been stymied)5 1849(In fact, just as Bar-Hillel has suggested, much of the work on)11 2471 2 720 4620 t
+( lexical resources \(e.g., semantic networks, annotated corpora,)7 2671(by dif\256culties in acquiring appropriate)4 1649 2 720 4740 t
+( of the previous work falls into one of three camps:)10 2041( Most)1 256(dictionaries, thesauruses, etc.\).)2 1225 3 720 4860 t
+( Methods, e.g., Hirst \(???\))4 1042(1. Qualitative)1 619 2 795 5160 t
+( Methods, e.g., Lesk \(1986\))4 1104(2. Dictionary-based)1 862 2 795 5340 t
+( Methods, e.g., Kelly and Stone \(1975\))6 1554(3. Corpus-based)1 724 2 795 5520 t
+( example, there has been)4 999( For)1 193( the work has been limited by knowledge acquisition bottleneck.)9 2611(In each case,)2 517 4 720 5760 t
+( hand, e.g., Granger \(1977\), Rieger)5 1451(a tradition in parts of the AI community of building large experts by)12 2869 2 720 5880 t
+( up, as)2 268( this approach is not very easy to scale)8 1568( Unfortunately,)1 639(\(1977\), Small and Rieger \(198X\), Hirst \(???\).)6 1845 4 720 6000 t
+(many researchers have observed:)3 1320 1 720 6120 t
+( it should be 10 times that size.'')7 1354( but)1 185( ...)1 107(``The expert for THROW is currently six pages long,)8 2174 4 1220 6360 t
+(\(Small and Reiger, 198X\))3 1032 1 1220 6480 t
+( work has had to focus on ``toy'' domains \(e.g.,)9 1956(Since this approach is so dif\256cult to scale up, much of the)11 2364 2 720 6720 t
+( it is not)3 344( Currently,)1 465(Winograd's Blocks World\) or sublanguages \(e.g., Isabelle \(1984\), Hirschman \(1986\)\).)9 3511 3 720 6840 t
+( network with the kind of broad coverage that would be required for unrestricted)13 3251(possible to \256nd a semantic)4 1069 2 720 6960 t
+( is unlikely that such a broad-coverage semantic)7 1963( Bar-Hillel were here today, he might argue that it)9 2059(text. If)1 298 3 720 7080 t
+(network will ever become available, and he might have a point.)10 2534 1 720 7200 t
+( that the word-sense disambiguation problem is ``AI-Complete,'')7 2735(From an AI point of view, it appears)7 1585 2 720 7440 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 3 3
+%%Page: 4 4
+DpostDict begin
+/saveobj save def
+mark
+4 pagesetup
+10 R f
+(- 4 -)2 166 1 2797 480 t
+( Since)1 277( other hard problems in AI.)5 1112(meaning that you can't solve this problem until you've solved all of the)12 2931 3 720 960 t
+( disambiguation)1 644(this is unlikely to happen any time soon \(if at all\), it would seem to suggest that word-sense)17 3676 2 720 1080 t
+( our time working on a simpler problem where we have a)11 2353(is just too hard a problem, and we should spend)9 1967 2 720 1200 t
+( than accept this rather pessimistic conclusion, we prefer to reject)10 2658( Rather)1 321( of making progress.)3 836(good chance)1 505 4 720 1320 t
+(the premise and search for an alternative point of view.)9 2200 1 720 1440 t
+%INFO[SECTION: LEVEL = 2, NUMBER = 2.1  , HEADING = Machine-Readable Dictionaries (MRDs)]
+10 I f
+( Dictionaries \(MRDs\))2 871(2.1 Machine-Readable)1 934 2 720 1740 t
+10 R f
+( have turned to machine-readable)4 1337(Others such as Lesk \(1986\), Walker \(1987\), Ide \(1990, Waterloo Meeting\))10 2983 2 720 1920 t
+( as Oxford's Advanced Learner's Dictionary of Current English \(OALDCE\) in the)11 3339(dictionarys \(MRD\) such)2 981 2 720 2040 t
+( researchers seek)2 682( These)1 291(hope that MRDs might provide a way out of the knowledge acquisition bottleneck.)12 3347 3 720 2160 t
+( arbitrary text and tag each word in the text with a pointer to a)14 2641(to develop a program that could read an)7 1679 2 720 2280 t
+( Lesk's program was given the)5 1303( for example, if)3 657( Thus,)1 289(particular sense number in a particular dictionary.)6 2071 4 720 2400 t
+(phrase)720 2520 w
+10 I f
+(pine cone)1 395 1 1015 2520 t
+10 R f
+(, it ought to tag)4 649 1 1410 2520 t
+10 I f
+(pine)2094 2520 w
+10 R f
+(with a pointer to the \256rst sense under)7 1542 1 2301 2520 t
+10 I f
+(pine)3877 2520 w
+10 R f
+(in OALDCE \(a kind of)4 957 1 4083 2520 t
+(evergreen tree\), and it ought to tag)6 1407 1 720 2640 t
+10 I f
+(cone)2157 2640 w
+10 R f
+( the third sense under)4 878(with a pointer to)3 673 2 2375 2640 t
+10 I f
+(cone)3957 2640 w
+10 R f
+(in OALDCE \(fruit of)3 864 1 4176 2640 t
+( program accomplishes this task by looking for overlaps between the words)11 3037( Lesk's)1 318(certain evergreen trees\).)2 965 3 720 2760 t
+(in the de\256nition and words in the text ``near'' the ambiguous word.)11 2691 1 720 2880 t
+( \(1986\) reports)2 641( Lesk)1 268( might hope.)2 551(Unfornatuately, the approach doesn't seem to work as well as one)10 2860 4 720 3060 t
+(accuracies of 50-70% on short samples of)6 1686 1 720 3180 t
+10 I f
+(Pride and Prejudice)2 816 1 2434 3180 t
+10 R f
+( may be that dictionary)4 929( of the problem)3 622(. Part)1 239 3 3250 3180 t
+( a)1 79(de\256nitions are too short to mention all of the collocations \(words that are often found in the context of)18 4241 2 720 3300 t
+( have much less coverage than one might)7 1679( addition, dictionaries)2 881( In)1 139(particular sense of a polysemous word\).)5 1621 4 720 3420 t
+( cannot be)2 438( \(1987\) reports that perhaps half of the words occurring in a new text)13 2921( Walker)1 356(have expected.)1 605 4 720 3540 t
+(related to a dictionary entry.)4 1128 1 720 3660 t
+( limited by the knowledge acquisition)5 1588(Thus, like the AI approach, the dictionary-based approach is also)9 2732 2 720 3840 t
+( enough of the relevant information, and much of the)9 2428(bottleneck; dictionaries simply don't record)4 1892 2 720 3960 t
+( can easily digest, at least at)6 1178(information that is stored in the dictionary is not in a format that computers)13 3142 2 720 4080 t
+(present.)720 4200 w
+%INFO[SECTION: LEVEL = 2, NUMBER = 2.2  , HEADING = Approaches Based on Hand-Annotated Corpora]
+10 I f
+( Based on Hand-Annotated Corpora)4 1455(2.2 Approaches)1 652 2 720 4500 t
+10 R f
+( of these studies are limited by the)7 1466( Most)1 270( hand-annotated corpora.)2 1022(A third line of research makes use of)7 1562 4 720 4680 t
+( available in large quantities)4 1158( it is unlikely that such text will be)8 1456( Since)1 281(availability of hand-annotated text.)3 1425 4 720 4800 t
+( the vocabulary, there are serious questions about how such an)10 2722(for most of the polysemous words in)6 1598 2 720 4920 t
+( we are extremely sympathetic with)5 1452( Nevertheless,)1 596( to handle unrestricted text.)4 1114(approach could be scaled up)4 1158 4 720 5040 t
+( we will introduce one)4 969( However,)1 459( adopt a very similar strategy ourselves.)6 1703(the basic approach, and will)4 1189 4 720 5160 t
+(important difference, the use of parallel text in lieu of hand-annotated text.)11 2980 1 720 5280 t
+( built 1815 disambiguation models by hand, selecting words with a frequency of at)13 3373(Kelly and Stone \(1975\))3 947 2 720 5460 t
+( in context \(KWIC\) concordances for)5 1527( started from key word)4 945( They)1 264(least 20 in a half million word corpus.)7 1584 4 720 5580 t
+( models)1 316( The)1 207(each word, and used these to establish the senses they perceived as useful for content analysis.)15 3797 3 720 5700 t
+( deciding on one classi\256cation, or)5 1358(consisted of an ordered set of rules, each giving a suf\256cient condition for)12 2962 2 720 5820 t
+( The)1 208( the model for another word.)5 1157(for jumping to another rule in the same model, or for jumping to a rule in)15 2955 3 720 5940 t
+( could test)2 421( They)1 260( the context within four words of the target word.)9 2014(conditions of a given rule could refer to)7 1625 4 720 6060 t
+( of any of)3 397(the morphology of the target word, an exact context word, or the part of speech or semantic class)17 3923 2 720 6180 t
+( sixteen semantic classes were assigned by hand.)7 1946( The)1 205(the context words.)2 735 3 720 6300 t
+( work has sought automatic methods because it is quite labor intensive to construct these)14 3639(Most subsequent)1 681 2 720 6480 t
+( rule sets by hand for \256ve words, then developed automatic)10 2620( \(1973\) \256rst built)3 762( Weiss)1 321(rules by hand.)2 617 4 720 6600 t
+( the)1 159( Unfortunately,)1 647( rule sets, which he applied to additional three words.)9 2241(procedures for building similar)3 1273 4 720 6720 t
+(system was tested on the training set, so it is dif\256cult to know how well it actually worked.)17 3629 1 720 6840 t
+( tagged concordance lines)3 1045(Black \(1987, 1988\) studied \256ve 4-way polysemous words using about 2000 hand)11 3275 2 720 7020 t
+( based)1 256( 1500 training examples for each word, his program constructed decision trees)11 3182( Using)1 294(for each word.)2 588 4 720 7140 t
+( presence or absence of 81 ``contextual categories'' within the context)10 2863(on the)1 252 2 720 7260 t
+7 R f
+(2)3835 7220 w
+10 R f
+( He)1 172(of the ambiguous word.)3 967 2 3901 7260 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 4 4
+%%Page: 5 5
+DpostDict begin
+/saveobj save def
+mark
+5 pagesetup
+10 R f
+(- 5 -)2 166 1 2797 480 t
+( categories: \(1\) subject categories from LDOCE, the Longman)8 2660(used three different types of contextual)5 1660 2 720 960 t
+( \(2\) the 41 vocabulary items occurring most)7 1953(Dictionary of Contemporary English \(Longman, 1978\),)5 2367 2 720 1080 t
+( \(3\) the 40 vocabulary items excluding function)7 1970(frequently within two words of the ambiguous word, and)8 2350 2 720 1200 t
+( found that the dictionary categories)5 1559( Black)1 307( frequently in the concordance line.)5 1533(words occurring most)2 921 4 720 1320 t
+( 72 and 75)3 440(produced the weakest performance \(47 percent correct\), while the other two were quite close at)14 3880 2 720 1440 t
+(percent correct, respectively.)2 1151 1 720 1560 t
+7 R f
+(3)1871 1520 w
+10 R f
+( \(1991\))1 297( Hearst)1 316( on hand-annotated corpora.)3 1137(There has recently been a \257urry of interest in approaches based)10 2570 4 720 1740 t
+( somewhat like Black \(1987, 1988\), Weiss \(1973\) and Kelly and)10 2664(is a very recent example of an approach)7 1656 2 720 1860 t
+( this respect, though she makes use of considerably more syntactic information than the)13 3651(Stone \(1975\), in)2 669 2 720 1980 t
+( to)1 115( performance also seems to be somewhat better than the others', though it is dif\256cult)14 3558( Her)1 212(others did.)1 435 4 720 2100 t
+(compare performance across systems.)3 1512 1 720 2220 t
+%INFO[SECTION: LEVEL = 2, NUMBER = 2.3  , HEADING = Two Languages are Better than One]
+10 I f
+( Languages are Better than One)5 1285(2.3 Two)1 348 2 720 2520 t
+10 R f
+( argued that ``two languages are better than one'' and showed that it was possible to use the)17 3764(Dagan \(1991\))1 556 2 720 2820 t
+( order to obtain certain leverage)5 1281(differences between certain languages \(Hebrew and German, in his case\) in)10 3039 2 720 2940 t
+( up on this strategy.)4 850( have achieved considerable progress recently by following)7 2474( We)1 203(on word meanings.)2 793 4 720 3060 t
+( of hand-labeled text, we have been making use of relatively large)11 2665(Rather than depending on small amounts)5 1655 2 720 3180 t
+( text such as the Canadian Hansards, which are available in multiple languages.)12 3316(amounts of parallel text,)3 1004 2 720 3300 t
+( polysemous word)2 757( example, consider the)3 937( For)1 202(The translation can often be used in lieu of hand-labeling.)9 2424 4 720 3420 t
+10 I f
+(sentence)720 3540 w
+10 R f
+( can collect)2 460( We)1 191(, which has two major senses: \(1\) a judicial sentence, and \(2\), a syntactic sentence.)14 3326 3 1063 3540 t
+( as)1 117(a number of sense \(1\) examples by extracting instances that are translated)11 3050 2 720 3660 t
+10 I f
+(peine)3921 3660 w
+10 R f
+(, and we can collect a)5 903 1 4137 3660 t
+( that are translated as)4 878(number of sense \(2\) examples by extracting instances)7 2193 2 720 3780 t
+10 I f
+(phrase)3825 3780 w
+10 R f
+( this way, we have)4 776(. In)1 167 2 4097 3780 t
+( our)1 164(been able to acquire a considerable amount of testing and training material for developing and testing)15 4156 2 720 3900 t
+(disambiguation algorithms.)1 1095 1 720 4020 t
+( important to distinguish the monolingual word-sense disambiguation problem from the translation)11 4150(It is)1 170 2 720 4260 t
+( is not always necessary to resolve the word-sense ambiguity in order to translate a polysemous)15 3973(issue. It)1 347 2 720 4380 t
+( it is common for word-sense ambiguity to)7 1751( in related languages like English and French,)7 1867(word. Especially)1 702 3 720 4500 t
+( example, both the English noun)5 1359( For)1 202(be preserved in both languages.)4 1313 3 720 4620 t
+10 I f
+(interest)3632 4620 w
+10 R f
+(and the French equivalent)3 1070 1 3970 4620 t
+10 I f
+( t)1 22(intere \303)1 239 2 720 4740 t
+10 R f
+( one cannot turn to)4 769( Thus,)1 280( or less the same ways.)5 940(are multiply ambiguous in both languages in more)7 2041 4 1010 4740 t
+(the French to resolve the ambiguity in the English, since the word is equally ambiguous in both languages.)17 4261 1 720 4860 t
+(Moreover, when one word does translate to two \(e.g.,)8 2198 1 720 5100 t
+10 I f
+(sentence)2951 5100 w
+10 S f
+(\256)3327 5100 w
+10 I f
+(peine)3459 5100 w
+10 R f
+(and)3708 5100 w
+10 I f
+(phrase)3885 5100 w
+10 R f
+( target)1 261(\), the choice of)3 622 2 4157 5100 t
+( famous example of this is the group of Japanese)9 1971( A)1 125(translation need not indicate a sense split in the source.)9 2224 3 720 5220 t
+( the Japanese have \256ve different words for)7 1846( While)1 316( by ``wearing clothes'' in English.)5 1480(words translated)1 678 4 720 5340 t
+( involved, we doubt that English speakers would ever sort)9 2386(``wear'' depending on what part of the body is)8 1934 2 720 5460 t
+(``wearing shoes'' and ``wearing shirt'' into separate categories.)7 2536 1 720 5580 t
+( and translation are somewhat different problems.)6 2018(These examples indicate that word-sense disambiguation)5 2302 2 720 5820 t
+( be used in lieu of hand-tagging to resolve the word-)10 2111(It would have been nice if the translation could always)9 2209 2 720 5940 t
+( the translation is often helpful for)6 1443( Nevertheless,)1 603( but unfortunately, this is not the case.)7 1615(sense ambiguity)1 659 4 720 6060 t
+( us to make sense to use the translation when it works, and to resort to)15 2842( seems to)2 380( It)1 115(resolving the ambiguity.)2 983 4 720 6180 t
+(some alternative such as hand-annotation for the remainder.)7 2389 1 720 6300 t
+8 S1 f
+(__________________)720 6629 w
+8 R f
+( context was de\256ned to be the concordance line, which we estimate to be about)14 2527(2. The)1 244 2 720 6749 t
+8 S f
+(\261)3512 6749 w
+8 R f
+(6 words from the ambiguous word, given that)7 1463 1 3577 6749 t
+(his 2000 concordance lines contained about 26,000 words.)7 1865 1 840 6839 t
+( some performance \256gures cited earlier, it is possible that Black's \256gures represent a considerable)14 3159( 75% may be less than)5 739(3. Although)1 422 3 720 6959 t
+(improvement because a four-way decision is much harder than a two-way decision.)11 2654 1 840 7049 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 5 5
+%%Page: 6 6
+DpostDict begin
+/saveobj save def
+mark
+6 pagesetup
+10 R f
+(- 6 -)2 166 1 2797 480 t
+%INFO[SECTION: LEVEL = 1, NUMBER = 3.  , HEADING = An Information Retrieval (IR) Approach to Sense Disambiguation]
+9 B f
+( Information Retrieval \(IR\) Approach to Sense Disambiguation)7 2431(3. An)1 229 2 720 960 t
+10 R f
+( the)1 170( In)1 156( experimenting with an information retrieval approach to sense disambiguation.)9 3386(We have been)2 608 4 720 1260 t
+(training phase, we collect a number of instances of)8 2090 1 720 1380 t
+10 I f
+(sentence)2843 1380 w
+10 R f
+(that are translated as)3 841 1 3219 1380 t
+10 I f
+(peine)4093 1380 w
+10 R f
+( number of)2 452(, and a)2 279 2 4309 1380 t
+(instances of)1 487 1 720 1500 t
+10 I f
+(sentence)1245 1500 w
+10 R f
+(uses that are translated as)4 1070 1 1626 1500 t
+10 I f
+(phrase)2735 1500 w
+10 R f
+( in the testing phase, we are given a new)9 1739(. Then)1 294 2 3007 1500 t
+(instance of)1 442 1 720 1620 t
+10 I f
+(sentence)1194 1620 w
+10 R f
+( attempt to answer)3 753( We)1 194( asked to assign the instance to one of the two senses.)11 2202(, and are)2 354 4 1537 1620 t
+(this question by comparing the context of the unknown instance with contexts of known instances.)14 3938 1 720 1740 t
+( as the)2 259( Just)1 208( setting.)1 319(Basically we are treating contexts as analogous to documents in an information retrieval)12 3534 4 720 2040 t
+(probabilistic retrieval model \(Salton, 1989, section 10.3\) sorts documents)8 2934 1 720 2160 t
+10 I f
+(d)3679 2160 w
+10 R f
+(by)3754 2160 w
+10 I f
+(score)870 2500 w
+10 R f
+(\()1094 2500 w
+10 I f
+(d)1135 2500 w
+10 R f
+(\))1193 2500 w
+10 S f
+(=)1283 2500 w
+7 I f
+(token)1453 2600 w
+7 R f
+(in)1633 2600 w
+7 I f
+(d)1716 2600 w
+15 S f
+(P)1544 2530 w
+10 I f
+(Pr)1850 2570 w
+10 R f
+(\()1958 2570 w
+10 I f
+(token)1999 2570 w
+10 S f
+(\357)2215 2587 w
+10 I f
+(irrel)2263 2570 w
+10 R f
+(\))2449 2570 w
+10 I f
+(Pr)1884 2440 w
+10 R f
+(\()1992 2440 w
+10 I f
+(token)2033 2440 w
+10 S f
+(\357)2249 2457 w
+10 I f
+(rel)2297 2440 w
+10 R f
+(\))2416 2440 w
+10 S1 f
+(_ _____________)1 662 1 1836 2470 t
+10 R f
+(we will sort contexts)3 830 1 720 2880 t
+10 I f
+(c)1575 2880 w
+10 R f
+(by)1644 2880 w
+10 I f
+(score)870 3240 w
+10 R f
+(\()1094 3240 w
+10 I f
+(c)1135 3240 w
+10 R f
+(\))1187 3240 w
+10 S f
+(=)1277 3240 w
+7 I f
+(token)1447 3340 w
+7 R f
+(in)1627 3340 w
+7 I f
+(c)1710 3340 w
+15 S f
+(P)1536 3270 w
+10 I f
+(Pr)1840 3310 w
+10 R f
+(\()1948 3310 w
+10 I f
+(token)1989 3310 w
+10 S f
+(\357)2205 3327 w
+10 I f
+(sense)2253 3310 w
+7 R f
+(2)2480 3330 w
+10 R f
+(\))2531 3310 w
+10 I f
+(Pr)1840 3160 w
+10 R f
+(\()1948 3160 w
+10 I f
+(token)1989 3160 w
+10 S f
+(\357)2205 3177 w
+10 I f
+(sense)2253 3160 w
+7 R f
+(1)2480 3180 w
+10 R f
+(\))2531 3160 w
+10 S1 f
+(_ _______________)1 754 1 1825 3210 t
+10 R f
+(where)720 3620 w
+10 I f
+(Pr)1004 3620 w
+10 R f
+(\()1112 3620 w
+10 I f
+(token)1153 3620 w
+10 S f
+(\357)1369 3637 w
+10 I f
+(sense)1417 3620 w
+10 R f
+( estimate of the probability that)5 1337(\) is an)2 276 2 1641 3620 t
+10 I f
+(token)3296 3620 w
+10 R f
+(appears in the context of)4 1049 1 3554 3620 t
+10 I f
+(sense)4645 3620 w
+7 R f
+(1)4872 3640 w
+10 R f
+(or)4957 3620 w
+10 I f
+(sense)720 3740 w
+7 R f
+(2)947 3760 w
+10 R f
+(.)990 3740 w
+( of the ambiguous)3 722(Contexts are de\256ned arbitrarily as a window 50 words to the left and 50 words to the right)17 3598 2 720 3980 t
+( previous studies have employed a much narrower notion of context, perhaps only 5 words to)15 3827(word. Most)1 493 2 720 4100 t
+(the left and 5 words to the right of the ambiguous word, based on the observation that people do not seem)20 4320 1 720 4220 t
+( it is fairly clear that extra context does provide a lot of useful)13 2582( Nevertheless,)1 599( context.)1 353(to require the extra)3 786 4 720 4340 t
+( is not performing as well as people do, it can use all of the help it can)17 2915(information and since the program)4 1405 2 720 4460 t
+( context than what can be found in)7 1392( this reason, we have decided to adopt a much broader notion of)12 2589(get. For)1 339 3 720 4580 t
+(most previous studies.)2 892 1 720 4700 t
+(The performance on)2 844 1 720 4940 t
+10 I f
+(sentence)1607 4940 w
+10 R f
+(and)1993 4940 w
+10 I f
+(drug)2180 4940 w
+10 R f
+( should)1 311( We)1 207(is very encouraging \(95% and 94%, respectively\).)6 2109 3 2413 4940 t
+( and that other)3 664(mention, however, that performance depends very strongly on the choice of words,)11 3656 2 720 5060 t
+(polysemous words may be more dif\256cult to disambiguate.)7 2321 1 720 5180 t
+(These words may be particularly well-suited for this sense-disambiguation procedure because their contexts)12 4320 1 720 5420 t
+(often contain some very strong clues such as)7 1797 1 720 5540 t
+10 I f
+(prices)2544 5540 w
+10 R f
+(and)2815 5540 w
+10 I f
+(abuse)2985 5540 w
+10 R f
+( 1 below shows some words that have)7 1519(. Table)1 303 2 3218 5540 t
+(a large value for)3 650 1 720 5660 t
+10 I f
+(freq)870 6020 w
+10 R f
+(\()1039 6020 w
+10 I f
+(token)1080 6020 w
+10 R f
+(,)1304 6020 w
+10 I f
+(sense)1370 6020 w
+7 R f
+(1)1597 6040 w
+10 R f
+(\) log)1 210 1 1648 6020 t
+10 I f
+(Pr)1924 6090 w
+10 R f
+(\()2032 6090 w
+10 I f
+(token)2073 6090 w
+10 S f
+(\357)2289 6107 w
+10 I f
+(sense)2337 6090 w
+7 R f
+(2)2564 6110 w
+10 R f
+(\))2615 6090 w
+10 I f
+(Pr)1924 5940 w
+10 R f
+(\()2032 5940 w
+10 I f
+(token)2073 5940 w
+10 S f
+(\357)2289 5957 w
+10 I f
+(sense)2337 5940 w
+7 R f
+(1)2564 5960 w
+10 R f
+(\))2615 5940 w
+10 S1 f
+(_ _______________)1 754 1 1909 5990 t
+10 R f
+( the words in)3 561( that many of)3 569( Note)1 257(These words tend to play an important role in the scoring of contexts.)12 2933 4 720 6390 t
+( the)1 162( suggests that)2 571( This)1 244(Table 1 are, in fact, highly associated with the sense that they are listed under.)14 3343 4 720 6510 t
+(statistics are doing something fairly reasonable.)5 1903 1 720 6630 t
+7 R f
+(4)2623 6590 w
+8 S1 f
+(__________________)720 6929 w
+8 R f
+( have been removed from the words in this table.)9 1555(4. Accents)1 376 2 720 7049 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 6 6
+%%Page: 7 7
+DpostDict begin
+/saveobj save def
+mark
+7 pagesetup
+10 R f
+(- 7 -)2 166 1 2797 480 t
+10 S f
+(_ _____________________________________________________________)1 3070 1 1345 860 t
+10 R f
+(Table 1: Contextual Clues for Sense Disambiguation)6 2110 1 1395 980 t
+( Clues)1 253( Contextual)1 883(Word Sense)1 726 3 1395 1100 t
+10 S f
+(_ _____________________________________________________________)1 3070 1 1345 1120 t
+10 R f
+( increase,)1 490( prescription, patent,)2 1047( prices,)1 413(drug medicaments)1 1020 4 1395 1240 t
+( consumers,)1 569(generic, companies, upon,)2 1231 2 2565 1360 t
+(higher, price, consumer, multinational,)3 1800 1 2565 1480 t
+(pharmaceutical, costs)1 859 1 2565 1600 t
+( traf\256cking,)1 478( paraphernalia, illicit, use,)3 1070( abuse,)1 613(drug drogues)1 809 4 1395 1840 t
+(problem, food, sale, alcohol, shops, crime,)5 1800 1 2565 1960 t
+(cocaine, epidemic, national, narcotic,)3 1800 1 2565 2080 t
+( welfare,)1 370(strategy, head, control, marijuana,)3 1430 2 2565 2200 t
+(illegal, traf\256ckers, controlled, \256ght, dogs)4 1632 1 2565 2320 t
+10 S f
+(_ _____________________________________________________________)1 3070 1 1345 2460 t
+10 R f
+( parole, serving, a, released, prison,)5 1503( inmate,)1 758(sentence peine)1 709 3 1395 2700 t
+( after, years, who, death,)4 1056(mandatory, judge,)1 744 2 2565 2820 t
+(his, murder)1 455 1 2565 2940 t
+( read, second, amended, ``, '', protects,)6 1742( I,)1 475(sentence phrase)1 753 3 1395 3180 t
+( ..., last,)2 376(version, just, letter, quote, word,)4 1424 2 2565 3300 t
+(amendment, insults, assures, quotation, \256rst)4 1750 1 2565 3420 t
+10 S f
+( \347)1 -3070(_ _____________________________________________________________)1 3070 2 1345 3440 t
+(\347)1345 3360 w
+(\347)1345 3260 w
+(\347)1345 3160 w
+(\347)1345 3060 w
+(\347)1345 2960 w
+(\347)1345 2860 w
+(\347)1345 2760 w
+(\347)1345 2660 w
+(\347)1345 2560 w
+(\347)1345 2460 w
+(\347)1345 2360 w
+(\347)1345 2260 w
+(\347)1345 2160 w
+(\347)1345 2060 w
+(\347)1345 1960 w
+(\347)1345 1860 w
+(\347)1345 1760 w
+(\347)1345 1660 w
+(\347)1345 1560 w
+(\347)1345 1460 w
+(\347)1345 1360 w
+(\347)1345 1260 w
+(\347)1345 1160 w
+(\347)1345 1060 w
+(\347)1345 960 w
+(\347)4415 3440 w
+(\347)4415 3360 w
+(\347)4415 3260 w
+(\347)4415 3160 w
+(\347)4415 3060 w
+(\347)4415 2960 w
+(\347)4415 2860 w
+(\347)4415 2760 w
+(\347)4415 2660 w
+(\347)4415 2560 w
+(\347)4415 2460 w
+(\347)4415 2360 w
+(\347)4415 2260 w
+(\347)4415 2160 w
+(\347)4415 2060 w
+(\347)4415 1960 w
+(\347)4415 1860 w
+(\347)4415 1760 w
+(\347)4415 1660 w
+(\347)4415 1560 w
+(\347)4415 1460 w
+(\347)4415 1360 w
+(\347)4415 1260 w
+(\347)4415 1160 w
+(\347)4415 1060 w
+(\347)4415 960 w
+%INFO[SECTION: LEVEL = 1, NUMBER = 4.  , HEADING = Six Polysemous Words]
+9 B f
+( Polysemous Words)2 756(4. Six)1 234 2 720 3680 t
+10 R f
+( six polysemous words:)3 951(We will focus on)3 691 2 720 3980 t
+10 I f
+(duty, drug, land, language, position)4 1446 1 2390 3980 t
+10 R f
+(and)3864 3980 w
+10 I f
+(sentence)4036 3980 w
+10 R f
+( 2 shows)2 356(. Table)1 305 2 4379 3980 t
+( \256nal column shows the)4 1010( The)1 220( nouns, and two French translations for each of the nouns.)10 2463(the six English)2 627 4 720 4100 t
+(number of times that each English noun was found with the particular French translation in the corpus.)16 4103 1 720 4220 t
+10 S f
+(_ _________________________________________)1 2097 1 1831 4420 t
+10 R f
+(Table 2: Six Polysemous Words)4 1289 1 1881 4540 t
+( N)1 633( sense)1 577(English French)1 787 3 1881 4660 t
+10 S f
+(_ _________________________________________)1 2097 1 1831 4670 t
+(_ _________________________________________)1 2097 1 1831 4690 t
+10 R f
+( 1114)1 727( tax)1 571(duty droit)1 699 3 1881 4800 t
+( 691)1 443(devoir obligation)1 1044 2 2391 4920 t
+10 S f
+(_ _________________________________________)1 2097 1 1831 4940 t
+10 R f
+( 2992)1 533( medical)1 466( dicament)1 361( \302)1 5(drug me)1 632 5 1881 5060 t
+( 855)1 637(drogue illicit)1 850 2 2391 5180 t
+10 S f
+(_ _________________________________________)1 2097 1 1831 5200 t
+10 R f
+( 1022)1 511( property)1 794(land terre)1 692 3 1881 5320 t
+( 386)1 544(pays country)1 943 2 2391 5440 t
+10 S f
+(_ _________________________________________)1 2097 1 1831 5460 t
+10 R f
+( 3710)1 521( medium)1 700(language langue)1 776 3 1881 5580 t
+( 170)1 660(langage style)1 827 2 2391 5700 t
+10 S f
+(_ _________________________________________)1 2097 1 1831 5720 t
+10 R f
+( 5177)1 639( place)1 525(position position)1 833 3 1881 5840 t
+( 577)1 721(poste job)1 766 2 2391 5960 t
+10 S f
+(_ _________________________________________)1 2097 1 1831 5980 t
+10 R f
+( 296)1 549( judicial)1 722(sentence peine)1 726 3 1881 6100 t
+( 148)1 350(phrase grammatical)1 1137 2 2391 6220 t
+10 S f
+( \347)1 -2097(_ _________________________________________)1 2097 2 1831 6240 t
+(\347)1831 6220 w
+(\347)1831 6120 w
+(\347)1831 6020 w
+(\347)1831 5920 w
+(\347)1831 5820 w
+(\347)1831 5720 w
+(\347)1831 5620 w
+(\347)1831 5520 w
+(\347)1831 5420 w
+(\347)1831 5320 w
+(\347)1831 5220 w
+(\347)1831 5120 w
+(\347)1831 5020 w
+(\347)1831 4920 w
+(\347)1831 4820 w
+(\347)1831 4720 w
+(\347)1831 4620 w
+(\347)1831 4520 w
+(\347)3928 6240 w
+(\347)3928 6220 w
+(\347)3928 6120 w
+(\347)3928 6020 w
+(\347)3928 5920 w
+(\347)3928 5820 w
+(\347)3928 5720 w
+(\347)3928 5620 w
+(\347)3928 5520 w
+(\347)3928 5420 w
+(\347)3928 5320 w
+(\347)3928 5220 w
+(\347)3928 5120 w
+(\347)3928 5020 w
+(\347)3928 4920 w
+(\347)3928 4820 w
+(\347)3928 4720 w
+(\347)3928 4620 w
+(\347)3928 4520 w
+10 R f
+( looking at their French translation in the)7 1670(We selected these nouns because they could be disambiguated by)9 2650 2 720 6540 t
+( mentioned above, the polysemous noun)5 1630( As)1 165(Canadian Hansards.)1 802 3 720 6660 t
+10 I f
+(interest)3346 6660 w
+10 R f
+( this)1 173(, for example, would not meet)5 1221 2 3646 6660 t
+( French target)2 576(constraint because the)2 901 2 720 6780 t
+10 I f
+( t)1 22(intere \303)1 239 2 2233 6780 t
+10 R f
+( addition, it is)3 584( In)1 144(is just as ambiguous as the English source.)7 1782 3 2530 6780 t
+( turns out that it is)5 731( It)1 113(important that there be an adequate number of instances of both translations in corpus.)13 3476 3 720 6900 t
+( instance, the word)3 763( For)1 192(dif\256cult to \256nd words that frequently appear in two or more senses in the Hansards.)14 3365 3 720 7020 t
+10 I f
+(bank)720 7140 w
+10 R f
+( polysemous in this)3 803(, perhaps the canonical example of a polysemous word, turns out not be be very)14 3323 2 914 7140 t
+(corpus;)720 7260 w
+10 I f
+(bank)1039 7260 w
+10 R f
+(is overwhelmingly translated as)3 1268 1 1258 7260 t
+10 I f
+(banque)2551 7260 w
+10 R f
+( is)1 93(\(a place for depositing money\), and consequently, it)7 2077 2 2870 7260 t
+(hard to \256nd an adequate number of instances of any of the other senses of)14 3022 1 720 7380 t
+10 I f
+(bank)3773 7380 w
+10 R f
+( the problem may)3 717( of)1 114(. Part)1 242 3 3967 7380 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 7 7
+%%Page: 8 8
+DpostDict begin
+/saveobj save def
+mark
+8 pagesetup
+10 R f
+(- 8 -)2 166 1 2797 480 t
+( of the Hansard corpus, which is hardly a balanced sample of general)12 2991(be due to the unusual language)5 1329 2 720 960 t
+(language.)720 1080 w
+7 R f
+(5)1105 1040 w
+10 R f
+( acquire more diverse sources of parallel text as more and more)11 2650(Hopefully, we will be able to)5 1215 2 1175 1080 t
+(translations become available in computer-readable form.)5 2300 1 720 1200 t
+%INFO[SECTION: LEVEL = 1, NUMBER = 5.  , HEADING = What Is a Sense?]
+9 B f
+( Is a Sense?)3 444(5. What)1 329 2 720 1560 t
+10 R f
+( can be dif\256cult to make this)6 1234(Although we all share the intuition that words have multiple meanings, it)11 3086 2 720 1860 t
+(intuition precise.)1 678 1 720 1980 t
+7 R f
+(6)1398 1940 w
+10 R f
+( task as Lesk did, and ask the program)8 1584(One might de\256ne the word-sense disambiguation)5 1992 2 1464 1980 t
+( Rosamund)1 486(to tag each word in a novel text with a pointer to a particular sense in a particular dictionary.)18 3834 2 720 2100 t
+( has recently coined the)4 1002(Moon \(personal communication\), a lexicographer with Oxford University Press,)8 3318 2 720 2220 t
+(term)720 2340 w
+10 I f
+(\257ogging)928 2340 w
+10 R f
+(to describe this task, especially when performed by a human rather than by a machine.)14 3448 1 1281 2340 t
+7 R f
+(7)4729 2300 w
+10 R f
+( Fillmore)1 400( on how to split a dictionary entry into senses.)9 1883(Unfortunately, lexicographers do not always agree)5 2037 3 720 2580 t
+(and Atkins \(1991\), for example, found three senses for the noun)10 2636 1 720 2700 t
+10 I f
+(risk)3389 2700 w
+10 R f
+( observed that most dictionaries)4 1299(, and)1 202 2 3539 2700 t
+( efforts to make the notion of sense more rigorous by a)11 2210( Despite)1 357( list at least one of the three senses.)8 1422(failed to)1 331 4 720 2820 t
+( it is fairly clear that dictionaries)6 1322(number of linguists \(e.g., Quine \(1960\), Weinreich \(1980\), Cruse \(1986\)\),)9 2998 2 720 2940 t
+(often disagree with one another, as can be seen by comparing a randomly selected pair of dictionaries.)16 4079 1 720 3060 t
+( lump two)2 424( is not very easy to decide when to)8 1445( It)1 119(Moreover, some sense distinctions are larger than others.)7 2332 4 720 3300 t
+( some cases, meaning is probably best thought of as)9 2070( In)1 133(senses into one and when to split one sense into two.)10 2117 3 720 3420 t
+( trade-off between)2 732( The)1 206( in\256nite number of ``shades'' between any two points.)8 2174(a continuous quantity, with an)4 1208 4 720 3540 t
+(lumping and splitting is often fairly arbitrary.)6 1813 1 720 3660 t
+( that there are numerous reasons)5 1333(From our perspective, the most serious problem with the \257ogging task is)11 2987 2 720 3900 t
+( which have to do with ``meaning''.)6 1439(why a dictionary might split an entry into multiple senses, only some of)12 2881 2 720 4020 t
+(Dictionaries may split an entry when there are differences in:)9 2441 1 720 4140 t
+( of speech \(common\),)3 870(1. part)1 330 2 795 4440 t
+( such as count/uncount nouns, attributive vs. predicative adjectives, person, number,)10 3375( features)1 340(2. syntactic)1 530 3 795 4620 t
+(gender, etc.,)1 487 1 970 4740 t
+( structures \(e.g., transitive vs. intransitive verbs\),)6 1950(3. valency)1 485 2 795 4920 t
+( \(rare and usually not the only reason for splitting senses\),)10 2316(4. pronunciation)1 730 2 795 5100 t
+8 S1 f
+(__________________)720 5429 w
+8 R f
+( fact, the secondary sense of)5 955(5. In)1 186 2 720 5549 t
+8 I f
+(bank)1893 5549 w
+8 R f
+( the Birmingham Corpus, a carefully)5 1222(\(e.g., the edge of a river\) is much more common in)10 1738 2 2080 5549 t
+( \256nd)1 148( We)1 153(balanced corpus of general English which was instrumental in the construction of the Cobuild dictionary \(Sinclair, 1987\).)16 3899 3 840 5639 t
+( instances of)2 405(that 30% of the)3 503 2 840 5729 t
+8 I f
+(bank)1772 5729 w
+8 R f
+(in the Birmingham Corpus refer to the edge of a river, in contrast to our collection of Canadian)17 3089 1 1951 5729 t
+(Hansards, where less than 1% of the instances of)8 1648 1 840 5819 t
+8 I f
+(bank)2520 5819 w
+8 R f
+( language of the Hansards should be)6 1232( The)1 177( the edge of a river.)5 682(refer to)1 242 4 2707 5819 t
+( \256nd a smaller vocabulary and less polysemy than one would \256nd in a)13 2302( such, one would expect to)5 885( As)1 136(regarded as a sublanguage.)3 877 4 840 5909 t
+(more balanced sample of general language.)5 1376 1 840 5999 t
+( \(1990\), for)2 394( Jorgensen)1 373( psycholinguistic validity.)2 855( is possible to demonstrate that the intuition behind word-senses has some)11 2530(6. It)1 168 5 720 6119 t
+( contexts \(drawn from the Brown Corpus \(Kucera and Francis,)9 2003(example, was able to show that subjects could sort words in sentence)11 2197 2 840 6209 t
+( \256nd in a dictionary, she was able to establish that her)11 1728( her subjects used fewer senses than one would)8 1522( Although)1 345(1967\)\) into senses.)2 605 4 840 6299 t
+(subjects all share the notion that many words have more than one sense.)12 2291 1 840 6389 t
+( Moon coined the term)4 729(7. Rosamund)1 462 2 720 6509 t
+8 I f
+(\257ogging)1932 6509 w
+8 R f
+(in order to spoof the suggestion that she ought to tag a large corpus in this way by-hand.)17 2825 1 2215 6509 t
+( ought to)2 290(She had been arguing that one)5 972 2 840 6599 t
+8 I f
+(\257ag)2125 6599 w
+8 R f
+( only)1 165( Not)1 163(the words in the context of the ambiguous word with various semantic tags.)12 2444 3 2268 6599 t
+( when performed by-hand\), but it quickly points out a number)10 1990(is the \257ogging task extremely labor-intensive and tedious \(especially)8 2210 2 840 6689 t
+( know about many of the problems, but it is understandable that they)12 2307( tend to)2 257( Lexicographers)1 543(of inadequacies in the dictionary.)4 1093 4 840 6779 t
+( to be somewhat more comfortable with the)7 1413( tend)1 162( Lexicographers)1 539(might not want to have them highlighted in such a graphic way.)11 2086 4 840 6869 t
+( Nevertheless,)1 472( to suggest ways to improve the dictionary, without making the \257aws quite so obvious.)14 2791(\257agging task because it tends)4 937 3 840 6959 t
+(it appears that Oxford University Press is going ahead with a fairly major)12 2332 1 840 7049 t
+8 I f
+(\257ogging)3192 7049 w
+8 R f
+(effort in conjunction with DEC.)4 1016 1 3474 7049 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 8 8
+%%Page: 9 9
+DpostDict begin
+/saveobj save def
+mark
+9 pagesetup
+10 R f
+(- 9 -)2 166 1 2797 480 t
+( historical)1 399( \(rare, especially in learners' dictionaries; more common in dictionaries based on)11 3243(5. etymology)1 603 3 795 960 t
+(principles\),)970 1080 w
+( \(e.g.,)1 227(6. capitalization)1 713 2 795 1260 t
+10 I f
+(He)1760 1260 w
+10 R f
+(= ``god'';)1 391 1 1901 1260 t
+10 I f
+(East)2317 1260 w
+10 R f
+(= ``\(formerly\) Communist Countries'';)3 1563 1 2520 1260 t
+10 I f
+(East)4108 1260 w
+10 R f
+(= ``Orient''\),)1 526 1 4311 1260 t
+( \(e.g., rude, slang, substandard language\),)5 1660(7. register)1 474 2 795 1440 t
+( \(e.g., US, British, Canadian\),)4 1188(8. dialect)1 441 2 795 1620 t
+( phrases: \(e.g.,)2 579(9. collocations,)1 683 2 795 1800 t
+10 I f
+(eat away at)2 461 1 2082 1800 t
+10 R f
+(,)2543 1800 w
+10 I f
+(eat in)1 225 1 2593 1800 t
+10 R f
+(,)2818 1800 w
+10 I f
+(eat into)1 303 1 2868 1800 t
+10 R f
+(,)3171 1800 w
+10 I f
+(eat up)1 247 1 3221 1800 t
+10 R f
+(\), and/or)1 338 1 3468 1800 t
+( in the written text but they can be found in the)11 2005( codes \(subject codes are usually not given)7 1782(10. subject)1 508 3 745 1980 t
+(electronic versions of a few dictionaries, especially CED2 and LDOCE\).)9 2902 1 970 2100 t
+( syntax,)1 323(In this paper, we would like to focus more on differences in ``meaning'' and less on differences)16 3997 2 720 2340 t
+( the part)2 329( with Kelly and Stone \(1975\), it has become common practice to unbundle)12 3001( Starting)1 369(etymology, etc.)1 621 4 720 2460 t
+( and Stone reported results separately for the two kinds of)10 2607( Kelly)1 302( the others.)2 501(of speech issue from)3 910 4 720 2580 t
+( It)1 116( accuracy for part of speech and 77% accuracy for meaning.)10 2443(discriminations, which we interpret as 95%)5 1761 3 720 2700 t
+( issue because part of speech is probably best handled with a)11 2530(makes sense to unbundle the part of speech)7 1790 2 720 2820 t
+( In)1 144( Church \(1988\), DeRose \(1988\) and Merialdo \(1990\).)7 2220(special purpose tool such the ones described in)7 1956 3 720 2940 t
+( to unbundle as many aspects of the word-sense discrimination)9 2694(general, it is probably a good strategy)6 1626 2 720 3060 t
+(problem as possible, and develop special purpose tools for each such aspect.)11 3047 1 720 3180 t
+( focus primarily on the aspects that are most likely to be solved with information retrieval-)15 3705(This paper will)2 615 2 720 3420 t
+( methods were originally designed to discriminate documents on the basis of ``subject)12 3483( These)1 293(like methods.)1 544 3 720 3540 t
+( good job in)3 502(area'' and ``topic'', and therefore, we expect that these same methods are likely to do a fairly)16 3818 2 720 3660 t
+( usually associated with)3 973(distinguishing senses such as judicial sentences and syntactic sentences which are)10 3347 2 720 3780 t
+( aspects of polysemy are somewhat less well understood and)9 2430( These)1 288(different ``subject areas'' and ``topics''.)4 1602 3 720 3900 t
+(less studied than other aspects such as part of speech assignment.)10 2604 1 720 4020 t
+%INFO[SECTION: LEVEL = 1, NUMBER = 6.  , HEADING = Materials]
+9 B f
+(6. Materials)1 484 1 720 4380 t
+%INFO[SECTION: LEVEL = 2, NUMBER = 6.1  , HEADING = Sentence Alignment]
+10 I f
+( Alignment)1 436(6.1 Sentence)1 529 2 720 4560 t
+10 R f
+(Following Brown)1 718 1 720 4860 t
+10 I f
+(et al.)1 209 1 1472 4860 t
+10 R f
+( is, we)2 278( That)1 243( the parallel texts at the sentence level.)7 1611(\(1990\), we begin by aligning)4 1193 4 1715 4860 t
+( text used in this)4 656( \(The)1 238( a sequence of aligned regions as illustrated in Table 3.)10 2193(input a pair of texts and output)6 1233 4 720 4980 t
+( the)1 162(example was extracted from the UBS \(Union Bank of Switzerland\) corpus, which is available from)14 4158 2 720 5100 t
+( our)1 161( In)1 136( problem for the alignment program is deciding where to place the horizontal lines.)13 3356(ACL/DCI.\) The)1 667 4 720 5220 t
+( one French sentence, but other possibilities,)6 1920(experience, 90% of the English sentences match exactly)7 2400 2 720 5340 t
+( 3)1 95( Table)1 297(especially two sentences matching one \(2-1\) or one matching two \(1-2\), are not uncommon.)13 3928 3 720 5460 t
+(illustrates a particularly hard paragraph; only two of the sentences line up one for one.)14 3440 1 720 5580 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 9 9
+%%Page: 10 10
+DpostDict begin
+/saveobj save def
+mark
+10 pagesetup
+10 R f
+(- 10 -)2 216 1 2772 480 t
+10 B f
+(Table 3: Output from Alignment Program)5 1807 1 1005 960 t
+(English French)1 2255 1 1005 1080 t
+10 S f
+(___________________________________________________________________________)1005 1100 w
+10 R f
+( survey, 1988 sales of)4 1036(According to our)2 764 2 1005 1220 t
+( drinks were much)3 821(mineral water and soft)3 979 2 1005 1340 t
+( 1987, re\257ecting the growing)4 1217(higher than in)2 583 2 1005 1460 t
+( drink)1 272( Cola)1 275( products.)1 430(popularity of these)2 823 4 1005 1580 t
+( above-)1 308(manufacturers in particular achieved)3 1492 2 1005 1700 t
+(average growth rates.)2 855 1 1005 1820 t
+( et aux limonades,)3 745( \302erales)1 232( min)1 187(Quant aux eaux)2 636 4 2955 1220 t
+(elles rencontrent toujours plus d'adeptes. En)5 1800 1 2955 1340 t
+( ressortir des ventes)3 823(effet, notre sondage fait)3 977 2 2955 1460 t
+( pour)1 212( celles de 1987,)3 636( a)1 41( \302erieures\301)1 348(nettement sup)1 563 5 2955 1580 t
+( de cola notamment.)3 810( base)1 200( \301a)1 71(les boissons)1 481 4 2955 1700 t
+10 S f
+(___________________________________________________________________________)1005 1840 w
+10 R f
+( due to an)3 448(The higher turnover was largely)4 1352 2 1005 1960 t
+(increase in the sales volume.)4 1145 1 1005 2080 t
+( esulte)1 219( \302)1 14(La progression des chiffres d'affaires r)5 1567 3 2955 1960 t
+( l'accroissement du)2 880(en grande partie de)3 920 2 2955 2080 t
+(volume des ventes.)2 763 1 2955 2200 t
+10 S f
+(___________________________________________________________________________)1005 2220 w
+10 R f
+( levels also)2 548(Employment and investment)2 1252 2 1005 2340 t
+(climbed.)1005 2460 w
+( ont)1 251(L'emploi et les investissements)3 1549 2 2955 2340 t
+( e.)1 51( \302)1 18( augment)1 369(\302 egalement)1 425 4 2940 2460 t
+10 S f
+(___________________________________________________________________________)1005 2480 w
+10 R f
+( transitional period, the)3 936(Following a two-year)2 864 2 1005 2600 t
+( Mineral)1 405(new Foodstuffs Ordinance for)3 1395 2 1005 2720 t
+( on April 1, 1988.)4 815(Water came into effect)3 985 2 1005 2840 t
+( stringent)1 439(Speci\256cally, it contains more)3 1361 2 1005 2960 t
+(requirements regarding quality consistency)3 1800 1 1005 3080 t
+(and purity guarantees.)2 884 1 1005 3200 t
+( sur les)2 367( \302erale)1 193( ed)1 80( \302)1 14( f)1 100(La nouvelle ordonnance)2 1046 6 2955 2600 t
+( entre autres)2 503( alimentaires concernant)2 993( ees)1 113(denr \302)1 191 4 2955 2720 t
+( le 1er)2 271( en vigueur)2 469( ee)1 74( \302)1 14( entr)1 190( \302erales,)1 257(les eaux min)2 525 7 2955 2840 t
+( transitoire de)2 587( \302eriode)1 249( une p)2 282( es)1 76( \301)1 7( apr)1 171(avril 1988)1 428 7 2955 2960 t
+(deux ans, exige surtout une plus grande)6 1800 1 2955 3080 t
+( une garantie de)3 664( et)1 108( e)1 26( \302)1 18(constance dans la qualit)3 984 5 2955 3200 t
+( e.)1 51( \302)1 18(la puret)1 302 3 2955 3320 t
+10 S f
+(\347)2880 3320 w
+(\347)2880 3280 w
+(\347)2880 3180 w
+(\347)2880 3080 w
+(\347)2880 2980 w
+(\347)2880 2880 w
+(\347)2880 2780 w
+(\347)2880 2680 w
+(\347)2880 2580 w
+(\347)2880 2480 w
+(\347)2880 2380 w
+(\347)2880 2280 w
+(\347)2880 2180 w
+(\347)2880 2080 w
+(\347)2880 1980 w
+(\347)2880 1880 w
+(\347)2880 1780 w
+(\347)2880 1680 w
+(\347)2880 1580 w
+(\347)2880 1480 w
+(\347)2880 1380 w
+(\347)2880 1280 w
+(\347)2880 1180 w
+(\347)2880 1080 w
+10 R f
+(There has been quite a bit of recent work on sentence alignment, e.g., \(Kay and R)15 3601 1 720 3620 t
+(. .)1 45 1 4260 3560 t
+(oscheisen, 1988\),)1 719 1 4321 3620 t
+(\(Catizone, Russell, and Warwick, to appear\), \(Brown, Lai and Mercer, 1991\) and \(Gale and Church,)14 4320 1 720 3740 t
+( the two texts into sentences and then use dynamic programming to join)12 2978( four methods divide)3 854(1991a\). All)1 488 3 720 3860 t
+( and R)2 279( \(Kay)1 258(sentences into regions as necessary subject to a local distance measure.)10 2925 3 720 3980 t
+(. .)1 45 1 4121 3920 t
+(oscheisen, 1988\) and)2 858 1 4182 3980 t
+( measure based on ``corresponding'' words such)6 1957(\(Catizone, Russell, and Warwick, to appear\) use a distance)8 2363 2 720 4100 t
+(as)720 4220 w
+10 I f
+(house)845 4220 w
+10 R f
+(and)1120 4220 w
+10 I f
+(maison)1306 4220 w
+10 R f
+( correspondences is computationally)3 1504( the task of determining word)5 1264(. Unfortunately,)1 677 3 1595 4220 t
+( few)1 176(expensive and consequently, this approach has not yet been scaled up to deal with a large text such as a)19 4144 2 720 4340 t
+(years of the Canadian Hansards.)4 1288 1 720 4460 t
+( 1991\) and \(Gale and Church, 1991a\) use a weaker method that is easier to scale)15 3308(\(Brown, Lai and Mercer,)3 1012 2 720 4700 t
+( turns out that)3 571( It)1 117( measure ignores the words and just counts the length of the two regions.)13 2991(up; the distance)2 641 4 720 4820 t
+( sentence will be)3 683( is, a longer)3 478( That)1 237(the length of a text is highly correlated with the length of its translation.)13 2922 4 720 4940 t
+( sentence \(or perhaps two sentences whose total length is not very different from the)14 3393(translated into a longer)3 927 2 720 5060 t
+( two)1 208( The)1 238( translated into a shorter sentence.)5 1523(original sentence\), whereas a shorter sentence will be)7 2351 4 720 5180 t
+( Lai and Mercer, 1991\) count words)6 1492( \(Brown,)1 389( of a region.)3 509(approaches differ in how they count the length)7 1930 4 720 5300 t
+( seem to work slightly)4 933( our experience, characters)3 1097( In)1 143(whereas \(Gale and Church, 1991a\) count characters.)6 2147 4 720 5420 t
+( to be translated into longer words \(or several shorter words\), whereas)11 2947(better because longer words tend)4 1373 2 720 5540 t
+(shorter words tend to be translated into shorter words.)8 2155 1 720 5660 t
+( but)1 157( method correctly aligned all)4 1160( The)1 208(It is remarkable that such a simple approach works as well as it does.)13 2795 4 720 5900 t
+( of the corpus, the error rate dropped to)8 1645( by selecting the best scoring 80%)6 1431( Moreover,)1 479(4% of the regions.)3 765 4 720 6020 t
+( \(Gale and Church, 1991a\) for more details on the method and its evaluation.)13 3070(0.7%. See)1 427 2 720 6140 t
+%INFO[SECTION: LEVEL = 2, NUMBER = 6.2  , HEADING = Word Correspondences]
+10 I f
+( Correspondences)1 724(6.2 Word)1 397 2 720 6440 t
+10 R f
+( second step in the preparation of)6 1379( The)1 214(The previous section described the \256rst step of aligning sentences.)9 2727 3 720 6740 t
+( and Church \(1991b\) describe a)5 1320( Gale)1 251( training materials is to \256nd word correspondences.)7 2138(the testing and)2 611 4 720 6860 t
+( is intended to identify which words in the English text correspond to which words in the)16 3793(program that)1 527 2 720 6980 t
+( example, given the input sentences:)5 1448( For)1 189(French text.)1 477 3 720 7100 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 10 10
+%%Page: 11 11
+DpostDict begin
+/saveobj save def
+mark
+11 pagesetup
+10 R f
+(- 11 -)2 216 1 2772 480 t
+10 I f
+(English)870 960 w
+10 R f
+( current legislation and policies to ensure that)7 1838(: We took the initiative in assessing and amending)8 2026 2 1176 960 t
+(they re\257ect a broad interpretation of the charter.)7 1911 1 870 1080 t
+10 I f
+(French)870 1320 w
+10 R f
+( lois et des politiques en vigueur a\256n)7 1532( et de modi\256er des)4 770( valuer)1 244( \302)1 5(: Nous avons pris l'initiative d'e)5 1331 5 1158 1320 t
+( de la charte.)3 509( reuse)1 205( \302)1 5( ne)1 89( \302)1 5( ge)1 119( tation)1 223( \302)1 5( interpre)1 335( une)1 171( \301)1 -2(qu'elles correspondent a)2 975 12 870 1440 t
+(The program, described in \(Gale and Church, 1991b\), would produce the following alignment:)12 3780 1 720 1740 t
+(We)870 2020 w
+8 I f
+(pris)1070 2100 w
+10 R f
+(took the)1 333 1 1041 2020 t
+8 I f
+(initiative)1446 2100 w
+10 R f
+(initiative in)1 467 1 1407 2020 t
+8 I f
+(evaluer)1976 2100 w
+10 R f
+(assessing and)1 549 1 1907 2020 t
+8 I f
+(modi\256er)2553 2100 w
+10 R f
+(amending current)1 709 1 2485 2020 t
+8 I f
+(lois)1023 2380 w
+10 R f
+(legislation and)1 594 1 870 2300 t
+8 I f
+(politiques)1498 2380 w
+10 R f
+(policies to)1 422 1 1497 2300 t
+8 I f
+(a\256n)2022 2380 w
+10 R f
+(ensure that they)2 648 1 1948 2300 t
+8 I f
+(correspondent)2629 2380 w
+10 R f
+(re\257ect)2729 2300 w
+(a)870 2580 w
+8 I f
+(genereuse)947 2660 w
+10 R f
+(broad)992 2580 w
+8 I f
+(interpretation)1347 2660 w
+10 R f
+(interpretation of the)2 809 1 1297 2580 t
+8 I f
+(charte)2178 2660 w
+10 R f
+(charter)2139 2580 w
+( with a French word, and 12 of the)8 1458(In this example, 11 out of the 23 \(48%\) English words were matched)12 2862 2 720 2940 t
+( program has been run on the 18 million word sample of Canadian)12 2652( This)1 228( were left unmatched.)3 864(English words)1 576 4 720 3060 t
+(Hansards mentioned above.)2 1106 1 720 3180 t
+( distinguish the terms)3 892(We wish to)2 475 2 720 3420 t
+10 I f
+(alignment)2123 3420 w
+10 R f
+(and)2559 3420 w
+10 I f
+(correspondence)2739 3420 w
+10 R f
+(. The term)2 435 1 3376 3420 t
+10 I f
+(alignment)3847 3420 w
+10 R f
+(will be used when)3 757 1 4283 3420 t
+(order constraints must be preserved and the term)7 1971 1 720 3540 t
+10 I f
+(correspondence)2720 3540 w
+10 R f
+(will be used when order constraints need)6 1654 1 3386 3540 t
+( the word)2 393( refer to the matching problem at)6 1356( We)1 195(not be preserved and crossing dependencies are permitted.)7 2376 4 720 3660 t
+( \(e.g.,)1 245(level as a correspondence problem because it is important to model crossing dependencies)12 3832 2 720 3780 t
+10 I f
+(sales)4840 3780 w
+(volume)720 3900 w
+10 R f
+(and)1041 3900 w
+10 I f
+(volume des ventes)2 736 1 1218 3900 t
+10 R f
+( an)1 128( contrast, we refer to the matching problem at the sentence level as)12 2759(\). In)1 199 3 1954 3900 t
+( at the)2 284(alignment problem because we believe that it is not necessary to model crossing dependencies)13 4036 2 720 4020 t
+(sentence level as they are quite rare and can be ignored \(at least for now\).)14 2932 1 720 4140 t
+%INFO[SECTION: LEVEL = 3, NUMBER = 6.2.1  , HEADING = Contingency Tables]
+( that we suspected that)4 952( Suppose)1 438( Tables)1 303(6.2.1 Contingency)1 761 4 720 4440 t
+10 I f
+(house)3211 4440 w
+10 R f
+(and)3481 4440 w
+10 I f
+(chambre)3662 4440 w
+10 R f
+(were translations of one)3 992 1 4048 4440 t
+( turns out that)3 565( It)1 115(another, and we wanted to con\256rm this hypothesis.)7 2062 3 720 4560 t
+10 I f
+(house)3491 4560 w
+10 R f
+(and)3753 4560 w
+10 I f
+(chambre)3925 4560 w
+10 R f
+(are, in fact, highly)3 738 1 4302 4560 t
+( most other genres,)3 826( \(In)1 188( genre.)1 293(associated in this rather unusual)4 1360 4 720 4680 t
+10 I f
+(maison)3434 4680 w
+10 R f
+(would almost certainly be the)4 1270 1 3770 4680 t
+(preferred translation.\))1 869 1 720 4800 t
+( contingency table for the two words,)6 1525(Table 4 shows a two-by-two)4 1157 2 720 5040 t
+10 I f
+(house)3433 5040 w
+10 R f
+(and)3697 5040 w
+10 I f
+(chambre)3872 5040 w
+10 R f
+(. Cell)1 248 1 4221 5040 t
+10 I f
+(a)4500 5040 w
+10 R f
+(\(upper-left\))4581 5040 w
+( both)1 203(counts the number of sentences \(aligned regions\) that contain)8 2459 2 720 5160 t
+10 I f
+(house)3407 5160 w
+10 R f
+(and)3665 5160 w
+10 I f
+(chambre)3834 5160 w
+10 R f
+(. Cell)1 242 1 4183 5160 t
+10 I f
+(b)4450 5160 w
+10 R f
+(\(upper-right\))4525 5160 w
+(counts the number of regions that contain)6 1701 1 720 5280 t
+10 I f
+(house)2453 5280 w
+10 R f
+(but not)1 288 1 2718 5280 t
+10 I f
+(chambre)3038 5280 w
+10 R f
+(. Cells)1 288 1 3387 5280 t
+10 I f
+(c)3707 5280 w
+10 R f
+(and)3783 5280 w
+10 I f
+(d)3959 5280 w
+10 R f
+(\256ll out the pattern in the)5 999 1 4041 5280 t
+(obvious way.)1 533 1 720 5400 t
+10 B f
+(Table 4: A Contingency Table)4 1284 1 2225 5760 t
+10 I f
+(chambre)2633 5880 w
+10 S f
+(_ __________________________)1 1309 1 2225 5900 t
+10 I f
+(house)2225 6020 w
+10 R f
+(31,950 12,004)1 838 1 2670 6020 t
+(4,793 848,330)1 788 1 2720 6140 t
+10 S f
+(\347)2533 6140 w
+(\347)2533 6080 w
+(\347)2533 5980 w
+(\347)2533 5880 w
+10 R f
+(We can now measure the association between)6 1834 1 720 6500 t
+10 I f
+(house)2580 6500 w
+10 R f
+(and)2839 6500 w
+10 I f
+(chambre)3009 6500 w
+10 R f
+( a number of)3 513(by making use of any one of)6 1143 2 3384 6500 t
+( introducing a number of re\256nements, we were able)8 2067( After)1 262(association measures such as mutual information.)5 1991 3 720 6620 t
+( program found correspondences for)4 1467( The)1 209(to scale the process up to handle a large fraction of the Hansards.)12 2644 3 720 6740 t
+(about 85% of the content words.)5 1298 1 720 6860 t
+7 R f
+(8)2018 6820 w
+10 R f
+( error on the safe side; 96% of the correspondences)9 2050(The program tended to)3 912 2 2078 6860 t
+8 S1 f
+(__________________)720 7040 w
+8 R f
+( counter-)1 292( remaining 10% are)3 651( The)1 173( fact, only about 90% of the content words do have correspondences in the other language.)15 3018(8. In)1 186 5 720 7160 t
+(examples to the word-for-word approximation.)4 1495 1 840 7250 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 11 11
+%%Page: 12 12
+DpostDict begin
+/saveobj save def
+mark
+12 pagesetup
+10 R f
+(- 12 -)2 216 1 2772 480 t
+(produced by the program were correct.)5 1550 1 720 960 t
+( of \256nding word)3 788(In fact, many of the results reported here used a somewhat simpler method)12 3532 2 720 1200 t
+( the English noun and a set of possible French)9 1885( sets were selected by specifying)5 1335(correspondences. Example)1 1100 3 720 1320 t
+( the cases in which the given noun and a translation occurred in)12 2630( program picked out all of)5 1075(translations. A)1 615 3 720 1440 t
+(about the same relative positions within one aligned region.)8 2384 1 720 1560 t
+%INFO[SECTION: LEVEL = 1, NUMBER = 7.  , HEADING = Word-Sense Disambiguation Problems]
+9 B f
+( Disambiguation Problems)2 1021(7. Word-Sense)1 584 2 720 1920 t
+10 R f
+(Consider, for example, the word)4 1352 1 720 2220 t
+10 I f
+(duty)2112 2220 w
+10 R f
+(which has at least two quite distinct senses: \(1\) a tax and \(2\) an)13 2716 1 2324 2220 t
+( examples of each sense are given below in Table 5.)10 2075(obligation. Three)1 713 2 720 2340 t
+(Table 5: Sample Concordances of)4 1353 1 720 2640 t
+10 I f
+(duty)2098 2640 w
+10 R f
+(\(split into two senses\))3 875 1 2295 2640 t
+( \(from Canadian Hansards\))3 1083(Sense Examples)1 1653 2 893 2760 t
+10 S f
+(_ ___________________________________________________________________________)1 3785 1 720 2780 t
+10 R f
+( cases of companies paying)4 1092(tax fewer)1 498 2 1004 2900 t
+10 S f
+(>)2619 2900 w
+10 R f
+(duty)2674 2900 w
+10 S f
+(<)2852 2900 w
+10 R f
+(and then claiming a refund)4 1070 1 2932 2900 t
+(and impose a countervailing)3 1129 1 1465 3020 t
+10 S f
+(>)2619 3020 w
+10 R f
+(duty)2674 3020 w
+10 S f
+(<)2852 3020 w
+10 R f
+(of 29,1 per cent on candian exports of)7 1513 1 2932 3020 t
+(the united states imposed a)4 1077 1 1517 3140 t
+10 S f
+(>)2619 3140 w
+10 R f
+(duty)2674 3140 w
+10 S f
+(<)2852 3140 w
+10 R f
+(on canadian salt\256sh last year)4 1148 1 2932 3140 t
+10 S f
+(_ ___________________________________________________________________________)1 3785 1 720 3160 t
+10 R f
+( is my honour and)4 722(obligation it)1 1152 2 720 3280 t
+10 S f
+(>)2619 3280 w
+10 R f
+(duty)2674 3280 w
+10 S f
+(<)2852 3280 w
+10 R f
+(to present a petition duly approved)5 1390 1 2932 3280 t
+(working well beyond the call of)5 1273 1 1321 3400 t
+10 S f
+(>)2619 3400 w
+10 R f
+(duty)2674 3400 w
+10 S f
+(<)2852 3400 w
+10 R f
+(? SENT i know what time they start)7 1435 1 2932 3400 t
+(in addition , it is my)5 807 1 1787 3520 t
+10 S f
+(>)2619 3520 w
+10 R f
+(duty)2674 3520 w
+10 S f
+(<)2852 3520 w
+10 R f
+(to present the government 's comments)5 1573 1 2932 3520 t
+10 S f
+(\347)1201 3520 w
+(\347)1201 3460 w
+(\347)1201 3360 w
+(\347)1201 3260 w
+(\347)1201 3160 w
+(\347)1201 3060 w
+(\347)1201 2960 w
+(\347)1201 2860 w
+(\347)1201 2760 w
+10 R f
+( means for discriminating between two or)6 1700(The classic word-sense disambiguation problem is to construct a)8 2620 2 720 3820 t
+(more sets of examples such as those shown in Table 5.)10 2183 1 720 3940 t
+( be useful)2 396( would)1 278( It)1 114(After we have discussed this problem, we will turn to a number of additional problems.)14 3532 4 720 4180 t
+( of recognizing additional examples of one sense given one set of examples)12 3059(to be able to construct a means)6 1261 2 720 4300 t
+( would be useful when one had a few examples of one sense and desired more to achieve)17 3566( This)1 229( sense.)1 267(of that)1 258 4 720 4420 t
+( examples of a particular sense by hand is slow, so we are interested in \256nding)15 3158( Locating)1 408(a greater accuracy.)2 754 3 720 4540 t
+(methods that might reduce the effort required to tag a large corpus with senses.)13 3155 1 720 4660 t
+( be lumped together into a)5 1066(It would also be useful to be able to decide whether two sets of examples should)15 3254 2 720 4900 t
+( a single)2 339( slightly harder task is to start with)7 1414( A)1 126(single sense or whether they should be split into two senses.)10 2441 4 720 5020 t
+( ultimate task is: given a single set)7 1382( The)1 206( and decide wether it should be split into two senses.)10 2111(set of examples)2 621 4 720 5140 t
+(of examples, partition the set into subsets, where each subset corresponds to a distinct sense.)14 3692 1 720 5260 t
+%INFO[SECTION: LEVEL = 1, NUMBER = 8.  , HEADING = Discrimination Problems]
+9 B f
+( Problems)1 388(8. Discrimination)1 689 2 720 5620 t
+10 R f
+( very different from)3 831(We regard the word-sense disambiguation problem as a discrimination problem, not)10 3489 2 720 5920 t
+( information)1 506( author identi\256cation and)3 1032( In)1 143(problems such as author identi\256cation and information retrieval.)7 2639 4 720 6040 t
+( the)1 166( During)1 352( phase.)1 296(retrieval, it is customary to split the process up into a testing phase and a training)15 3506 4 720 6160 t
+( given two \(or more\) sets of documents and are asked to construct a discriminator)14 3409(training phase, we are)3 911 2 720 6280 t
+( discriminators are then)3 994( These)1 306( of documents.)2 627(which can distinguish between the two \(or more\) classes)8 2393 4 720 6400 t
+( the author identi\256cation task, for example, the)7 1993( In)1 151( documents during the testing phase.)5 1550(applied to new)2 626 4 720 6520 t
+( resulting)1 392( The)1 222( more\) authors.)2 641(training set consists of several documents written by each of the two \(or)12 3065 4 720 6640 t
+( the information retrieval)3 1073( In)1 157( on documents whose authorship is disputed.)6 1935(discriminator is then tested)3 1155 4 720 6760 t
+( or more)2 354(application, the training set consists of a set of one or more relevant documents and a set of zero)18 3966 2 720 6880 t
+( documents in the library in order to)7 1454( resulting discriminator is then applied to all)7 1790( The)1 208(irrelevant documents.)1 868 4 720 7000 t
+( the sense disambiguation case, the 100-)6 1684( In)1 146( from the less relevant ones.)5 1185(separate the more relevant ones)4 1305 4 720 7120 t
+( polysemous word \(e.g.,)3 1038(word context surrounding instances of a)5 1735 2 720 7240 t
+10 I f
+(duty)3544 7240 w
+10 R f
+(\) are treated very much like a)6 1324 1 3716 7240 t
+(document.)720 7360 w
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 12 12
+%%Page: 13 13
+DpostDict begin
+/saveobj save def
+mark
+13 pagesetup
+10 R f
+(- 13 -)2 216 1 2772 480 t
+( embarrassing wealth of information in the collection of documents that could be used as the)15 3857(There is an)2 463 2 720 960 t
+( of)1 115( date, most researchers have tended to treat documents as ``merely'' a bag)12 3051( To)1 169(basis for discrimination.)2 985 4 720 1080 t
+( of the linguistic structure, especially dependencies on)7 2261(words, and have generally tended to ignore much)7 2059 2 720 1200 t
+( of documents can then be represented)6 1559( collection)1 425( The)1 211(word order and correlations between pairs of words.)7 2125 4 720 1320 t
+(as a term by document matrix, where each cell counts the number of times that a particular term appears in)19 4320 1 720 1440 t
+( there are)2 386( Since)1 280(a particular document.)2 911 3 720 1560 t
+10 I f
+(V)2330 1560 w
+10 S f
+(~)2432 1540 w
+(~)2432 1565 w
+10 R f
+( matrix contains a huge)4 960( terms, the term by document)5 1211(100 , 000)2 341 3 2528 1560 t
+( cells are)2 368(amount of information, even allowing for the fact that the matrix is quite sparse and many of the)17 3952 2 720 1680 t
+(empty.)720 1800 w
+( and Wallace \(1964,)3 830( Mosteller)1 442( these discrimination problems.)3 1282(It is natural to take a Bayesian approach to)8 1766 4 720 1980 t
+( combine new evidence \(e.g., the term by document matrix\) with)10 2617(section 3.1\) used the following formula to)6 1703 2 720 2100 t
+(prior evidence \(e.g., the historical record\) in their classic authorship study of the Federalist Papers.)14 3937 1 720 2220 t
+10 I f
+(\256nal odds)1 408 1 870 2520 t
+10 S f
+(=)1302 2520 w
+10 R f
+(\()1373 2520 w
+10 I f
+(initial odds)1 470 1 1414 2520 t
+10 R f
+(\))1892 2520 w
+10 S f
+(\264)1941 2520 w
+10 R f
+(\()2004 2520 w
+10 I f
+(likelihood ratio)1 636 1 2045 2520 t
+10 R f
+(\))2689 2520 w
+(For two groups of documents, the equation becomes)7 2092 1 720 2700 t
+10 I f
+(P)895 3130 w
+10 R f
+(\()964 3130 w
+10 I f
+(class)1005 3130 w
+7 R f
+(2)1216 3150 w
+10 R f
+(\))1267 3130 w
+10 I f
+(P)895 2980 w
+10 R f
+(\()964 2980 w
+10 I f
+(class)1005 2980 w
+7 R f
+(1)1216 3000 w
+10 R f
+(\))1267 2980 w
+10 S1 f
+(_ ________)1 435 1 880 3030 t
+10 S f
+(=)1382 3060 w
+10 I f
+(p)1511 3130 w
+10 R f
+(\()1569 3130 w
+10 I f
+(class)1610 3130 w
+7 R f
+(2)1821 3150 w
+10 R f
+(\))1872 3130 w
+10 I f
+(p)1511 2980 w
+10 R f
+(\()1569 2980 w
+10 I f
+(class)1610 2980 w
+7 R f
+(1)1821 3000 w
+10 R f
+(\))1872 2980 w
+10 S1 f
+(_ ________)1 424 1 1496 3030 t
+10 S f
+(\264)1946 3060 w
+10 I f
+(L)2034 3130 w
+10 R f
+(\()2098 3130 w
+10 I f
+(class)2139 3130 w
+7 R f
+(2)2350 3150 w
+10 R f
+(\))2401 3130 w
+10 I f
+(L)2034 2980 w
+10 R f
+(\()2098 2980 w
+10 I f
+(class)2139 2980 w
+7 R f
+(1)2350 3000 w
+10 R f
+(\))2401 2980 w
+10 S1 f
+(_ ________)1 430 1 2019 3030 t
+10 R f
+(where)720 3430 w
+10 I f
+(P)1003 3430 w
+10 R f
+(represents a \256nal probability,)3 1210 1 1104 3430 t
+10 I f
+(p)2354 3430 w
+10 R f
+(represents an initial probability, and)4 1500 1 2444 3430 t
+10 I f
+(L)3984 3430 w
+10 R f
+( likelihood.)1 472(represents a)1 488 2 4080 3430 t
+(Similar equations can be found in textbooks on information retrieval \(e.g., Salton \(1989\), equation 10.17\).)14 4240 1 720 3550 t
+( the author identi\256cation problem, for example, the initial odds)9 2557( In)1 138( odds depend on the problem.)5 1207(The initial)1 418 4 720 3730 t
+( In)1 141(are used to model what we know about the documents from the various con\257icting historical records.)15 4179 2 720 3850 t
+( or)1 115(the information retrieval application, the user may have a guess about the fraction of the library that he)17 4205 2 720 3970 t
+( is often the case that the prior)7 1241( It)1 116( guess could be used as the prior.)7 1355(she would expect to be relevant; such a)7 1608 4 720 4090 t
+( on the outcome, which is fortunate, since the prior can)10 2386(probability will not have very much in\257uence)6 1934 2 720 4210 t
+(sometimes be dif\256cult to estimate.)4 1375 1 720 4330 t
+( likelihoods into a product of likelihoods over tokens in the)10 2596(It is common practice to decompose the)6 1724 2 720 4510 t
+(document \(under appropriate independence assumptions\):)4 2312 1 720 4630 t
+10 I f
+(L)895 5060 w
+10 R f
+(\()959 5060 w
+10 I f
+(class)1000 5060 w
+7 R f
+(2)1211 5080 w
+10 R f
+(\))1262 5060 w
+10 I f
+(L)895 4910 w
+10 R f
+(\()959 4910 w
+10 I f
+(class)1000 4910 w
+7 R f
+(1)1211 4930 w
+10 R f
+(\))1262 4910 w
+10 S1 f
+(_ ________)1 430 1 880 4960 t
+10 S f
+(~)1369 4970 w
+(~)1369 4995 w
+7 I f
+(tok in doc)2 298 1 1465 5090 t
+15 S f
+(P)1556 5020 w
+10 I f
+(Pr)1788 5060 w
+10 R f
+(\()1896 5060 w
+10 I f
+(tok)1937 5060 w
+10 S f
+(\357)2059 5077 w
+10 I f
+(class)2107 5060 w
+7 R f
+(2)2318 5080 w
+10 R f
+(\))2369 5060 w
+10 I f
+(Pr)1788 4910 w
+10 R f
+(\()1896 4910 w
+10 I f
+(tok)1937 4910 w
+10 S f
+(\357)2059 4927 w
+10 I f
+(class)2107 4910 w
+7 R f
+(1)2318 4930 w
+10 R f
+(\))2369 4910 w
+10 S1 f
+(_ ____________)1 644 1 1773 4960 t
+10 R f
+( calculation are the probabilities of each term in the vocabulary)10 2582(The crucial ingredients for this)4 1251 2 720 5370 t
+10 I f
+(conditional)4584 5370 w
+10 R f
+( conditional probabilities have been computed in a)7 2164( These)1 310(on the document being from a given class.)7 1846 3 720 5490 t
+(number of different ways depending on the application and the study.)10 2776 1 720 5610 t
+(For two senses, the Bayesian equation mentioned above becomes:)8 2638 1 720 5850 t
+10 I f
+(P)895 6280 w
+10 R f
+(\()964 6280 w
+10 I f
+(sense)1005 6280 w
+7 R f
+(2)1232 6300 w
+10 R f
+(\))1283 6280 w
+10 I f
+(P)895 6130 w
+10 R f
+(\()964 6130 w
+10 I f
+(sense)1005 6130 w
+7 R f
+(1)1232 6150 w
+10 R f
+(\))1283 6130 w
+10 S1 f
+(_ _________)1 451 1 880 6180 t
+10 S f
+(=)1398 6210 w
+10 I f
+(p)1527 6280 w
+10 R f
+(\()1585 6280 w
+10 I f
+(sense)1626 6280 w
+7 R f
+(2)1853 6300 w
+10 R f
+(\))1904 6280 w
+10 I f
+(p)1527 6130 w
+10 R f
+(\()1585 6130 w
+10 I f
+(sense)1626 6130 w
+7 R f
+(1)1853 6150 w
+10 R f
+(\))1904 6130 w
+10 S1 f
+(_ ________)1 440 1 1512 6180 t
+10 S f
+(\264)1978 6210 w
+10 I f
+(L)2066 6280 w
+10 R f
+(\()2130 6280 w
+10 I f
+(sense)2171 6280 w
+7 R f
+(2)2398 6300 w
+10 R f
+(\))2449 6280 w
+10 I f
+(L)2066 6130 w
+10 R f
+(\()2130 6130 w
+10 I f
+(sense)2171 6130 w
+7 R f
+(1)2398 6150 w
+10 R f
+(\))2449 6130 w
+10 S1 f
+(_ ________)1 446 1 2051 6180 t
+10 R f
+(where)720 6580 w
+10 I f
+(p)1004 6580 w
+10 R f
+(,)1054 6580 w
+10 I f
+(P)1120 6580 w
+10 R f
+(and)1222 6580 w
+10 I f
+(L)1407 6580 w
+10 R f
+( initial)1 276( The)1 222(are the initial probability, the \256nal probability and likelihood, as before.)10 3037 3 1505 6580 t
+( other large)2 468( As)1 168( overall probabilities of the two senses in the corpus.)9 2166(probabilities are determined from the)4 1518 4 720 6700 t
+(dimension discrimination problems, the likelihoods are decomposed into a product over tokens:)11 3825 1 720 6820 t
+10 I f
+(L)895 7250 w
+10 R f
+(\()959 7250 w
+10 I f
+(sense)1000 7250 w
+7 R f
+(2)1227 7270 w
+10 R f
+(\))1278 7250 w
+10 I f
+(L)895 7100 w
+10 R f
+(\()959 7100 w
+10 I f
+(sense)1000 7100 w
+7 R f
+(1)1227 7120 w
+10 R f
+(\))1278 7100 w
+10 S1 f
+(_ ________)1 446 1 880 7150 t
+10 S f
+(~)1385 7160 w
+(~)1385 7185 w
+7 I f
+(tok in context)2 400 1 1481 7280 t
+15 S f
+(P)1623 7210 w
+10 I f
+(Pr)1906 7250 w
+10 R f
+(\()2014 7250 w
+10 I f
+(tok)2055 7250 w
+10 S f
+(\357)2177 7267 w
+10 I f
+(sense)2225 7250 w
+7 R f
+(2)2452 7270 w
+10 R f
+(\))2503 7250 w
+10 I f
+(Pr)1906 7100 w
+10 R f
+(\()2014 7100 w
+10 I f
+(tok)2055 7100 w
+10 S f
+(\357)2177 7117 w
+10 I f
+(sense)2225 7100 w
+7 R f
+(1)2452 7120 w
+10 R f
+(\))2503 7100 w
+10 S1 f
+(_ _____________)1 660 1 1891 7150 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 13 13
+%%Page: 14 14
+DpostDict begin
+/saveobj save def
+mark
+14 pagesetup
+10 R f
+(- 14 -)2 216 1 2772 480 t
+( and)1 179(As mentioned above, this model ignores a number of important linguistic factors such as word order)15 4141 2 720 960 t
+( there are 2)3 463( Nevertheless,)1 596( context\).)1 383(collocations \(correlations among words in the)5 1863 4 720 1080 t
+10 I f
+(V)4033 1080 w
+10 S f
+(~)4135 1060 w
+(~)4135 1085 w
+10 R f
+( parameters)1 468(200 , 000)2 341 2 4231 1080 t
+( of parameters, especially given the)5 1468( is a non-trivial task to estimate such a large number)10 2186( It)1 121(in the model.)2 545 4 720 1200 t
+( 12,000 words of)3 695( training material typically consists of approximately)6 2157( The)1 212(sparseness of the training data.)4 1256 4 720 1320 t
+( there are more than 15)5 977( Thus,)1 286( words of context for 60 instances of each of two senses\).)11 2410(text \(100 words)2 647 4 720 1440 t
+( we need to be fairly careful given that we)9 1771( Clearly,)1 380(parameters to be estimated from for each data point.)8 2169 3 720 1560 t
+(have so many parameters and so little evidence.)7 1907 1 720 1680 t
+(The conditional probabilities,)2 1198 1 720 1860 t
+10 I f
+(Pr)1952 1860 w
+10 R f
+(\()2060 1860 w
+10 I f
+(tok)2101 1860 w
+10 S f
+(\357)2223 1877 w
+10 I f
+(sense)2271 1860 w
+10 R f
+(\), can be estimated in principle by selecting those parts of the)11 2545 1 2495 1860 t
+( instances of one)3 695(entire corpus which satisfy the required conditions \(e.g., 100-word contexts surrounding)10 3625 2 720 1980 t
+(sense of)1 328 1 720 2100 t
+10 I f
+(duty)1077 2100 w
+10 R f
+( word, and dividing the counts by the total number of words)11 2453(\), counting the frequency of each)5 1338 2 1249 2100 t
+( the maximum likelihood estimate)4 1423( this estimate, which is known as)6 1409( However,)1 455(satisfying the conditions.)2 1033 4 720 2220 t
+( it will assign zero probability to words that)8 1808( particular,)1 439( In)1 140(\(MLE\), has a number of well-known problems.)6 1933 4 720 2340 t
+( a biased estimate of their true probability, but it is)10 2048( is not only)3 460( Zero)1 242(do not happen to appear in the sample.)7 1570 4 720 2460 t
+( addition,)1 381( In)1 136( quite a number of other applications\).)6 1546(also unusable for the sense disambiguation task \(and for)8 2257 4 720 2580 t
+( another)1 338( In)1 147(MLE also produces poor estimates for words that appear only once or twice in the sample.)15 3835 3 720 2700 t
+( that is,)2 300(application \(spelling correction\), we have found that poor estimates of context are worse than none;)14 4020 2 720 2820 t
+( model it badly with)4 806(at least in this application, we found that it would be better to ignore the context than to)17 3514 2 720 2940 t
+(something like MLE \(Gale and Church, 1990\).)6 1870 1 720 3060 t
+( corpus in addition to information from the)7 1846(The proposed method uses the information from the entire)8 2474 2 720 3240 t
+( will estimate)2 575( We)1 206(conditional sample in order to avoid these problems.)7 2224 3 720 3360 t
+10 I f
+(Pr)3768 3360 w
+10 R f
+(\()3876 3360 w
+10 I f
+(tok)3917 3360 w
+10 S f
+(\357)4039 3377 w
+10 I f
+(sense)4087 3360 w
+10 R f
+( interpolating)1 553(\) by)1 176 2 4311 3360 t
+( over)1 212(between word probabilities computed within the 100-word context and word probabilities computed)11 4108 2 720 3480 t
+( 100-word context, we will tend to believe)7 1706( a word that appears fairly often within the)8 1726( For)1 192(the entire corpus.)2 696 4 720 3600 t
+( for a)2 220( Conversely,)1 535( weight the global context very much in the interpolation.)9 2343(the local estimate and will not)5 1222 4 720 3720 t
+( will be much less con\256dent in the local)8 1716(word that does not appear very often in the local context, we)11 2604 2 720 3840 t
+( key observation behind)3 978( The)1 212(estimate and will tend to weight the global estimate somewhat more heavily.)11 3130 3 720 3960 t
+( of well measured probabilities which are of unknown)8 2229(the method is this: the entire corpus provides a set)9 2091 2 720 4080 t
+( provides poor estimates of)4 1166(relevance to the desired conditional probabilities, while the conditional set)9 3154 2 720 4200 t
+( probabilities from the entire corpus thus introduces bias,)8 2390( Using)1 304(probabilities that are certainly relevant.)4 1626 3 720 4320 t
+( the relevance of)3 673( seek to determine)3 738( We)1 191(while using those from the conditional set introduce random errors.)9 2718 4 720 4440 t
+(the larger corpus to the conditional sample in order to make this trade off between bias and random error.)18 4205 1 720 4560 t
+( local probabilities)2 748(The interpolation procedure makes use of a prior expectation of how much we expect the)14 3572 2 720 4740 t
+( and Wallace ``expect[ed] both authors to have nearly)8 2271( Mosteller)1 449(to differ from the global probabilities.)5 1600 3 720 4860 t
+( fact, just as they had anticipated, we have found that only)11 2376( In)1 138(identical rates for almost any word'' \(p. 61\).)7 1806 3 720 4980 t
+( probabilities depending on the)4 1298(2% of the vocabulary in the Federalist corpus has signi\256cantly different)10 3022 2 720 5100 t
+( to be high)3 467( the most important words for the purposes of author identi\256cation appear)11 3092(author. Moreover,)1 761 3 720 5220 t
+( calculations show that)3 943( Our)1 215(frequency function words.)2 1070 3 720 5340 t
+10 I f
+(upon, of)1 338 1 2983 5340 t
+10 R f
+(and)3355 5340 w
+10 I f
+(to)3533 5340 w
+10 R f
+(are strong indicators for Hamilton)4 1395 1 3645 5340 t
+(and that)1 336 1 720 5460 t
+10 I f
+(the, and, government)2 877 1 1098 5460 t
+10 R f
+(and)2017 5460 w
+10 I f
+(on)2203 5460 w
+10 R f
+( frequency)1 441( are all high)3 525( These)1 305(are strong indicators for Madison.)4 1424 4 2345 5460 t
+(function words \(at least in these texts\), with the exception of)10 2486 1 720 5580 t
+10 I f
+(government)3238 5580 w
+10 R f
+(, which is, nontheless, extremely)4 1331 1 3709 5580 t
+(common and nearly devoid of content.)5 1542 1 720 5700 t
+( example, we)2 553( For)1 201(In contrast, we expect fairly large differences in the sense disambiguation application.)11 3566 3 720 5880 t
+(\256nd that the tax sense of)5 979 1 720 6000 t
+10 I f
+(duty)1725 6000 w
+10 R f
+(tends to appear near one set of content words \(e.g.,)9 2028 1 1922 6000 t
+10 I f
+(trade)3975 6000 w
+10 R f
+(and)4211 6000 w
+10 I f
+(lumber)4380 6000 w
+10 R f
+(\) and that)2 377 1 4663 6000 t
+(the obligation sense of)3 932 1 720 6120 t
+10 I f
+(duty)1687 6120 w
+10 R f
+( appear near quite a different set of content words \(e.g.,)10 2317(tends to)1 324 2 1894 6120 t
+10 I f
+(honour)4571 6120 w
+10 R f
+(and)4896 6120 w
+10 I f
+(order)720 6240 w
+10 R f
+( 20% of the vocabulary in the Hansards has)8 1959( Approximately)1 683( in the Hansard corpus.)4 1035(\), at least)2 421 4 942 6240 t
+( probabilities near)2 739(signi\256cantly different)1 871 2 720 6360 t
+10 I f
+(duty)2364 6360 w
+10 R f
+( short, the prior expectation depends very)6 1709( In)1 142(than otherwise.)1 619 3 2570 6360 t
+( estimating the fraction of the)5 1229( any particular application, we set the prior by)8 1926( In)1 144(much on the application.)3 1021 4 720 6480 t
+(vocabulary whose conditioned probabilities differ signi\256cantly from the global probabilities.)9 3702 1 720 6600 t
+%INFO[SECTION: LEVEL = 1, NUMBER = 9.  , HEADING = The Interpolation Procedure]
+9 B f
+( Interpolation Procedure)2 956(9. The)1 264 2 720 6840 t
+10 R f
+(Let the entire corpus be divided into a conditional sample of size)11 2753 1 720 7020 t
+10 I f
+(n)3514 7020 w
+10 R f
+(and the residual corpus \(the entire)5 1435 1 3605 7020 t
+(corpus less the conditional sample\) of size)6 1848 1 720 7140 t
+10 I f
+(N)2619 7140 w
+10 S f
+(>>)2710 7140 w
+10 I f
+(n)2836 7140 w
+10 R f
+(. Let)1 234 1 2886 7140 t
+10 I f
+(a)3171 7140 w
+10 R f
+(be the frequency of a given word in the)8 1768 1 3272 7140 t
+(conditional sample, and)2 954 1 720 7260 t
+10 I f
+(A)1700 7260 w
+10 R f
+( of these frequencies may be zero, but)7 1526( Either)1 296( corpus.)1 318(its frequency in the residual)4 1113 4 1787 7260 t
+( Let)1 196(not both.)1 369 2 720 7380 t
+10 S f
+(p)1322 7380 w
+10 R f
+( knowing the frequency of the)5 1260( Before)1 333(represent the conditional probability of the word.)6 2033 3 1414 7380 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 14 14
+%%Page: 15 15
+DpostDict begin
+/saveobj save def
+mark
+15 pagesetup
+10 R f
+(- 15 -)2 216 1 2772 480 t
+(word in either sample, we could express our ignorance of the value of)12 2785 1 720 960 t
+10 S f
+(p)3530 960 w
+10 R f
+(by the)1 247 1 3610 960 t
+10 I f
+(uninformative distribution)1 1054 1 3882 960 t
+10 R f
+(:)4936 960 w
+10 I f
+(B)870 1260 w
+7 S f
+(-)942 1220 w
+7 R f
+(1)992 1220 w
+10 R f
+(\()1043 1260 w
+10 S1 f
+()1084 1260 w
+10 S1 f
+1084 1260 m
+75 build_12
+1159 1260 m
+10 R f
+(,)1167 1260 w
+10 S1 f
+()1200 1260 w
+1200 1260 m
+75 build_12
+1275 1260 m
+10 R f
+(\))1283 1260 w
+10 S f
+(p)1332 1260 w
+7 S f
+(-)1398 1220 w
+7 S1 f
+()1448 1220 w
+1448 1220 m
+53 build_12
+1501 1220 m
+10 R f
+(\( 1)1 91 1 1517 1260 t
+10 S f
+(- p)1 126 1 1624 1260 t
+10 R f
+(\))1758 1260 w
+7 S f
+(-)1802 1220 w
+7 S1 f
+()1852 1220 w
+1852 1220 m
+53 build_12
+1905 1220 m
+10 R f
+(where)720 1560 w
+10 I f
+(B)1003 1560 w
+10 R f
+(\()1072 1560 w
+10 I f
+(x)1113 1560 w
+10 R f
+(,)1165 1560 w
+10 I f
+(y)1198 1560 w
+10 R f
+( variations of the method can be based on variations in the)11 2503( Several)1 364(\) is the Beta function.)4 923 3 1250 1560 t
+( If)1 123(uninformative distribution.)1 1085 2 720 1680 t
+10 I f
+(A)1960 1680 w
+10 R f
+(additional observations out of)3 1212 1 2053 1680 t
+10 I f
+(N)3297 1680 w
+10 R f
+( the determination of)3 853(, relevant to)2 488 2 3364 1680 t
+10 S f
+(p)4736 1680 w
+10 R f
+(, were)1 249 1 4791 1680 t
+(made the distribution expressing our knowledge would become)7 2533 1 720 1800 t
+10 I f
+(B)870 2100 w
+7 S f
+(-)942 2060 w
+7 R f
+(1)992 2060 w
+10 R f
+(\()1043 2100 w
+10 I f
+(A)1084 2100 w
+10 S f
+(+)1169 2100 w
+10 S1 f
+()1240 2100 w
+1240 2100 m
+75 build_12
+1315 2100 m
+10 R f
+(,)1323 2100 w
+10 I f
+(N)1356 2100 w
+10 S f
+(-)1447 2100 w
+10 I f
+(A)1518 2100 w
+10 S f
+(+)1603 2100 w
+10 S1 f
+()1674 2100 w
+1674 2100 m
+75 build_12
+1749 2100 m
+10 R f
+(\))1757 2100 w
+10 S f
+(p)1806 2100 w
+7 I f
+(A)1866 2060 w
+7 S f
+(-)1925 2060 w
+7 S1 f
+()1975 2060 w
+1975 2060 m
+53 build_12
+2028 2060 m
+10 R f
+(\( 1)1 91 1 2044 2100 t
+10 S f
+(- p)1 126 1 2151 2100 t
+10 R f
+(\))2285 2100 w
+7 I f
+(N)2329 2060 w
+7 S f
+(-)2392 2060 w
+7 I f
+(A)2442 2060 w
+7 S f
+(-)2501 2060 w
+7 S1 f
+()2551 2060 w
+2551 2060 m
+53 build_12
+2604 2060 m
+10 R f
+( have)1 214(While we)1 385 2 720 2400 t
+10 I f
+(A)1345 2400 w
+10 R f
+(out of)1 237 1 1432 2400 t
+10 I f
+(N)1695 2400 w
+10 R f
+(observations of the word in question in the residual corpus, we do not know their)14 3252 1 1788 2400 t
+( we set as our knowledge before observing the conditional sample the distribution:)12 3296(relevance. Thus)1 656 2 720 2520 t
+10 I f
+(p)870 2820 w
+10 R f
+(\()928 2820 w
+10 S f
+(p)969 2820 w
+10 R f
+(\))1032 2820 w
+10 S f
+(=)1122 2820 w
+10 I f
+(rB)1226 2820 w
+7 S f
+(-)1337 2780 w
+7 R f
+(1)1387 2780 w
+10 R f
+(\()1438 2820 w
+10 I f
+(A)1479 2820 w
+10 S f
+(+)1564 2820 w
+10 S1 f
+()1635 2820 w
+1635 2820 m
+75 build_12
+1710 2820 m
+10 R f
+(,)1718 2820 w
+10 I f
+(N)1751 2820 w
+10 S f
+(-)1842 2820 w
+10 I f
+(A)1913 2820 w
+10 S f
+(+)1998 2820 w
+10 S1 f
+()2069 2820 w
+2069 2820 m
+75 build_12
+2144 2820 m
+10 R f
+(\))2152 2820 w
+10 S f
+(p)2201 2820 w
+7 I f
+(A)2261 2780 w
+7 S f
+(-)2320 2780 w
+7 S1 f
+()2370 2780 w
+2370 2780 m
+53 build_12
+2423 2780 m
+10 R f
+(\( 1)1 91 1 2439 2820 t
+10 S f
+(- p)1 126 1 2546 2820 t
+10 R f
+(\))2680 2820 w
+7 I f
+(N)2724 2780 w
+7 S f
+(-)2787 2780 w
+7 I f
+(A)2837 2780 w
+7 S f
+(-)2896 2780 w
+7 S1 f
+()2946 2780 w
+2946 2780 m
+53 build_12
+2999 2780 m
+10 S f
+(+)3056 2820 w
+10 R f
+(\( 1)1 91 1 3160 2820 t
+10 S f
+(-)3267 2820 w
+10 I f
+(r)3338 2820 w
+10 R f
+(\))3385 2820 w
+10 I f
+(B)3434 2820 w
+7 S f
+(-)3506 2780 w
+7 R f
+(1)3556 2780 w
+10 R f
+(\()3607 2820 w
+10 S1 f
+()3648 2820 w
+3648 2820 m
+75 build_12
+3723 2820 m
+10 R f
+(,)3731 2820 w
+10 S1 f
+()3764 2820 w
+3764 2820 m
+75 build_12
+3839 2820 m
+10 R f
+(\))3847 2820 w
+10 S f
+(p)3896 2820 w
+7 S f
+(-)3962 2780 w
+7 S1 f
+()4012 2780 w
+4012 2780 m
+53 build_12
+4065 2780 m
+10 R f
+(\( 1)1 91 1 4081 2820 t
+10 S f
+(- p)1 126 1 4188 2820 t
+10 R f
+(\))4322 2820 w
+7 S f
+(-)4366 2780 w
+7 S1 f
+()4416 2780 w
+4416 2780 m
+53 build_12
+4469 2780 m
+10 R f
+(where 0)1 324 1 720 3120 t
+10 S f
+(\243)1052 3120 w
+10 I f
+(r)1115 3120 w
+10 S f
+(\243)1162 3120 w
+10 R f
+( When)1 294(1 is the relevance of the residual corpus to the conditional sample.)11 2706 2 1225 3120 t
+10 I f
+(r)4257 3120 w
+10 S f
+(=)4320 3120 w
+10 R f
+(0, this gives the)3 649 1 4391 3120 t
+(uninformative distribution, while if)3 1480 1 720 3240 t
+10 I f
+(r)2248 3240 w
+10 S f
+(=)2311 3240 w
+10 R f
+( after observing the residual corpus.)5 1540(1, it gives the distribution)4 1118 2 2382 3240 t
+( with probability)2 697(Another way of reading this is that)6 1471 2 720 3360 t
+10 I f
+(r)2928 3360 w
+10 R f
+(we are expecting an observation in line with the)8 2033 1 3007 3360 t
+(residual corpus, but that with probability 1)6 1702 1 720 3480 t
+10 S f
+(-)2438 3480 w
+10 I f
+(r)2509 3480 w
+10 R f
+(we won't be surprised by any value.)6 1444 1 2573 3480 t
+(The joint probability of observing)4 1355 1 720 3660 t
+10 I f
+(a)2100 3660 w
+10 R f
+(out of)1 236 1 2175 3660 t
+10 I f
+(n)2436 3660 w
+10 R f
+( the word in question in the conditional sample and)9 2055(instances of)1 474 2 2511 3660 t
+(that the conditional probability is)4 1328 1 720 3780 t
+10 S f
+(p)2073 3780 w
+10 R f
+(is then)1 264 1 2153 3780 t
+10 I f
+(p)870 4165 w
+10 R f
+(\()928 4165 w
+10 S f
+(p)969 4165 w
+10 R f
+(,)1032 4165 w
+10 I f
+(a)1065 4165 w
+10 R f
+(\))1123 4165 w
+10 S f
+(=)1213 4165 w
+(\354)1325 4128 w
+(\356)1325 4228 w
+10 I f
+(a)1374 4225 w
+(n)1374 4125 w
+10 S f
+(\374)1424 4128 w
+(\376)1424 4228 w
+(\354)1489 4078 w
+(\355)1489 4178 w
+(\356)1489 4278 w
+10 I f
+(rB)1538 4180 w
+7 S f
+(-)1649 4140 w
+7 R f
+(1)1699 4140 w
+10 R f
+(\()1750 4180 w
+10 I f
+(A)1791 4180 w
+10 S f
+(+)1876 4180 w
+10 S1 f
+()1947 4180 w
+1947 4180 m
+75 build_12
+2022 4180 m
+10 R f
+(,)2030 4180 w
+10 I f
+(N)2063 4180 w
+10 S f
+(-)2154 4180 w
+10 I f
+(A)2225 4180 w
+10 S f
+(+)2310 4180 w
+10 S1 f
+()2381 4180 w
+2381 4180 m
+75 build_12
+2456 4180 m
+10 R f
+(\))2464 4180 w
+10 S f
+(p)2513 4180 w
+7 I f
+(A)2573 4140 w
+7 S f
+(+)2632 4140 w
+7 I f
+(a)2682 4140 w
+7 S f
+(-)2733 4140 w
+7 S1 f
+()2783 4140 w
+2783 4140 m
+53 build_12
+2836 4140 m
+10 R f
+(\( 1)1 91 1 2852 4180 t
+10 S f
+(- p)1 126 1 2959 4180 t
+10 R f
+(\))3093 4180 w
+7 I f
+(N)3137 4140 w
+7 S f
+(-)3200 4140 w
+7 I f
+(A)3250 4140 w
+7 S f
+(+)3309 4140 w
+7 I f
+(n)3359 4140 w
+7 S f
+(-)3410 4140 w
+7 I f
+(a)3460 4140 w
+7 S f
+(-)3511 4140 w
+7 S1 f
+()3561 4140 w
+3561 4140 m
+53 build_12
+3614 4140 m
+10 S f
+(+)3671 4180 w
+10 R f
+(\( 1)1 91 1 3775 4180 t
+10 S f
+(-)3882 4180 w
+10 I f
+(r)3953 4180 w
+10 R f
+(\))4000 4180 w
+10 I f
+(B)4049 4180 w
+7 S f
+(-)4121 4140 w
+7 R f
+(1)4171 4140 w
+10 R f
+(\()4222 4180 w
+10 S1 f
+()4263 4180 w
+4263 4180 m
+75 build_12
+4338 4180 m
+10 R f
+(,)4346 4180 w
+10 S1 f
+()4379 4180 w
+4379 4180 m
+75 build_12
+4454 4180 m
+10 R f
+(\))4462 4180 w
+10 S f
+(p)4511 4180 w
+7 I f
+(a)4571 4140 w
+7 S f
+(-)4622 4140 w
+7 S1 f
+()4672 4140 w
+4672 4140 m
+53 build_12
+4725 4140 m
+10 R f
+(\( 1)1 91 1 4741 4180 t
+10 S f
+(- p)1 126 1 4848 4180 t
+10 R f
+(\))4982 4180 w
+7 I f
+(n)5026 4140 w
+7 S f
+(-)5077 4140 w
+7 I f
+(a)5127 4140 w
+7 S f
+(-)5178 4140 w
+7 S1 f
+()5228 4140 w
+5228 4140 m
+53 build_12
+5281 4140 m
+10 S f
+(\374)5289 4078 w
+(\375)5289 4178 w
+(\376)5289 4278 w
+10 R f
+(We then form)2 554 1 720 4570 t
+10 I f
+(p)870 4920 w
+10 R f
+(\()928 4920 w
+10 I f
+(a)969 4920 w
+10 R f
+(\))1027 4920 w
+10 S f
+(=)1117 4920 w
+7 R f
+(0)1228 4990 w
+10 S f
+(\362)1221 4920 w
+7 R f
+(1)1229 4820 w
+10 I f
+(p)1279 4920 w
+10 R f
+(\()1337 4920 w
+10 S f
+(p)1378 4920 w
+10 R f
+(,)1441 4920 w
+10 I f
+(a)1474 4920 w
+10 R f
+(\))1532 4920 w
+10 I f
+(d)1581 4920 w
+10 S f
+(p)1639 4920 w
+10 R f
+(and)720 5270 w
+10 I f
+(p)870 5570 w
+10 R f
+(\()928 5570 w
+10 S f
+(p)969 5570 w
+(\357)1024 5587 w
+10 I f
+(a)1072 5570 w
+10 R f
+(\))1130 5570 w
+10 S f
+(=)1220 5570 w
+10 I f
+(p)1324 5570 w
+10 R f
+(\()1382 5570 w
+10 S f
+(p)1423 5570 w
+10 R f
+(,)1486 5570 w
+10 I f
+(a)1519 5570 w
+10 R f
+(\))1577 5570 w
+10 I f
+(/ p)1 86 1 1618 5570 t
+10 R f
+(\()1712 5570 w
+10 I f
+(a)1753 5570 w
+10 R f
+(\))1811 5570 w
+(which is then integrated to give)5 1257 1 720 5870 t
+10 I f
+(E)870 6220 w
+10 R f
+(\()939 6220 w
+10 S f
+(p)980 6220 w
+(\357)1035 6237 w
+10 I f
+(a)1083 6220 w
+10 R f
+(\))1141 6220 w
+10 S f
+(=)1231 6220 w
+7 R f
+(0)1342 6290 w
+10 S f
+(\362)1335 6220 w
+7 R f
+(1)1343 6120 w
+10 S f
+(p)1393 6220 w
+10 I f
+(p)1456 6220 w
+10 R f
+(\()1514 6220 w
+10 S f
+(p)1555 6220 w
+(\357)1610 6237 w
+10 I f
+(a)1658 6220 w
+10 R f
+(\))1716 6220 w
+10 I f
+(d)1765 6220 w
+10 S f
+(p)1823 6220 w
+(=)1239 6800 w
+10 I f
+(r)1426 6930 w
+(B)1707 7000 w
+10 R f
+(\()1776 7000 w
+10 I f
+(A)1817 7000 w
+10 S f
+(+)1902 7000 w
+10 S1 f
+()1973 7000 w
+1973 7000 m
+75 build_12
+2048 7000 m
+10 R f
+(,)2056 7000 w
+10 I f
+(N)2089 7000 w
+10 S f
+(-)2180 7000 w
+10 I f
+(A)2251 7000 w
+10 S f
+(+)2336 7000 w
+10 S1 f
+()2407 7000 w
+2407 7000 m
+75 build_12
+2482 7000 m
+10 R f
+(\))2490 7000 w
+10 I f
+(B)1490 6870 w
+10 R f
+(\()1559 6870 w
+10 I f
+(A)1600 6870 w
+10 S f
+(+)1685 6870 w
+10 I f
+(a)1756 6870 w
+10 S f
+(+)1830 6870 w
+10 S1 f
+()1901 6870 w
+1901 6870 m
+75 build_12
+1976 6870 m
+10 R f
+(,)1984 6870 w
+10 I f
+(N)2017 6870 w
+10 S f
+(-)2108 6870 w
+10 I f
+(A)2179 6870 w
+10 S f
+(+)2264 6870 w
+10 I f
+(n)2335 6870 w
+10 S f
+(-)2409 6870 w
+10 I f
+(a)2480 6870 w
+10 S f
+(+)2554 6870 w
+10 S1 f
+()2625 6870 w
+2625 6870 m
+75 build_12
+2700 6870 m
+10 R f
+(\))2708 6870 w
+10 S1 f
+(_ _________________________)1 1281 1 1475 6900 t
+10 S f
+(+)2823 6930 w
+10 R f
+(\( 1)1 91 1 2927 6930 t
+10 S f
+(-)3034 6930 w
+10 I f
+(r)3105 6930 w
+10 R f
+(\))3152 6930 w
+10 I f
+(B)3443 7000 w
+10 R f
+(\()3512 7000 w
+10 S1 f
+()3553 7000 w
+3553 7000 m
+75 build_12
+3628 7000 m
+10 R f
+(,)3636 7000 w
+10 S1 f
+()3669 7000 w
+3669 7000 m
+75 build_12
+3744 7000 m
+10 R f
+(\))3752 7000 w
+10 I f
+(B)3226 6870 w
+10 R f
+(\()3295 6870 w
+10 I f
+(a)3336 6870 w
+10 S f
+(+)3410 6870 w
+10 S1 f
+()3481 6870 w
+3481 6870 m
+75 build_12
+3556 6870 m
+10 R f
+(,)3564 6870 w
+10 I f
+(n)3597 6870 w
+10 S f
+(-)3671 6870 w
+10 I f
+(a)3742 6870 w
+10 S f
+(+)3816 6870 w
+10 S1 f
+()3887 6870 w
+3887 6870 m
+75 build_12
+3962 6870 m
+10 R f
+(\))3970 6870 w
+10 S1 f
+(_ ________________)1 807 1 3211 6900 t
+10 I f
+(r)1368 6670 w
+(B)1678 6740 w
+10 R f
+(\()1747 6740 w
+10 I f
+(A)1788 6740 w
+10 S f
+(+)1873 6740 w
+10 S1 f
+()1944 6740 w
+1944 6740 m
+75 build_12
+2019 6740 m
+10 R f
+(,)2027 6740 w
+10 I f
+(N)2060 6740 w
+10 S f
+(-)2151 6740 w
+10 I f
+(A)2222 6740 w
+10 S f
+(+)2307 6740 w
+10 S1 f
+()2378 6740 w
+2378 6740 m
+75 build_12
+2453 6740 m
+10 R f
+(\))2461 6740 w
+10 I f
+(B)1432 6610 w
+10 R f
+(\()1501 6610 w
+10 I f
+(A)1542 6610 w
+10 S f
+(+)1627 6610 w
+10 I f
+(a)1698 6610 w
+10 S f
+(+)1772 6610 w
+10 R f
+(1)1843 6610 w
+10 S1 f
+()1901 6610 w
+1901 6610 m
+75 build_12
+1976 6610 m
+10 R f
+(,)1984 6610 w
+10 I f
+(N)2017 6610 w
+10 S f
+(-)2108 6610 w
+10 I f
+(A)2179 6610 w
+10 S f
+(+)2264 6610 w
+10 I f
+(n)2335 6610 w
+10 S f
+(-)2409 6610 w
+10 I f
+(a)2480 6610 w
+10 S f
+(+)2554 6610 w
+10 S1 f
+()2625 6610 w
+2625 6610 m
+75 build_12
+2700 6610 m
+10 R f
+(\))2708 6610 w
+10 S1 f
+(_ __________________________)1 1339 1 1417 6640 t
+10 S f
+(+)2823 6670 w
+10 R f
+(\( 1)1 91 1 2927 6670 t
+10 S f
+(-)3034 6670 w
+10 I f
+(r)3105 6670 w
+10 R f
+(\))3152 6670 w
+10 I f
+(B)3472 6740 w
+10 R f
+(\()3541 6740 w
+10 S1 f
+()3582 6740 w
+3582 6740 m
+75 build_12
+3657 6740 m
+10 R f
+(,)3665 6740 w
+10 S1 f
+()3698 6740 w
+3698 6740 m
+75 build_12
+3773 6740 m
+10 R f
+(\))3781 6740 w
+10 I f
+(B)3226 6610 w
+10 R f
+(\()3295 6610 w
+10 I f
+(a)3336 6610 w
+10 S f
+(+)3410 6610 w
+10 R f
+(1)3481 6610 w
+10 S1 f
+()3539 6610 w
+3539 6610 m
+75 build_12
+3614 6610 m
+10 R f
+(,)3622 6610 w
+10 I f
+(n)3655 6610 w
+10 S f
+(-)3729 6610 w
+10 I f
+(a)3800 6610 w
+10 S f
+(+)3874 6610 w
+10 S1 f
+()3945 6610 w
+3945 6610 m
+75 build_12
+4020 6610 m
+10 R f
+(\))4028 6610 w
+10 S1 f
+(_ _________________)1 865 1 3211 6640 t
+(_______________________________________________________)1353 6770 w
+10 R f
+(This can be approximated in various ways, but it is practical to calculate it directly using the relationship)17 4184 1 720 7280 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 15 15
+%%Page: 16 16
+DpostDict begin
+/saveobj save def
+mark
+16 pagesetup
+10 R f
+(- 16 -)2 216 1 2772 480 t
+10 I f
+(B)870 1000 w
+10 R f
+(\()939 1000 w
+10 I f
+(x)980 1000 w
+10 R f
+(,)1032 1000 w
+10 I f
+(y)1065 1000 w
+10 R f
+(\))1117 1000 w
+10 S f
+(=)1207 1000 w
+(G)1342 1070 w
+10 R f
+(\()1410 1070 w
+10 I f
+(x)1451 1070 w
+10 S f
+(+)1544 1070 w
+10 I f
+(y)1648 1070 w
+10 R f
+(\))1700 1070 w
+10 S f
+(G)1336 940 w
+10 R f
+(\()1404 940 w
+10 I f
+(x)1445 940 w
+10 R f
+(\))1497 940 w
+10 S f
+(G)1546 940 w
+10 R f
+(\()1614 940 w
+10 I f
+(y)1655 940 w
+10 R f
+(\))1707 940 w
+10 S1 f
+(_ ________)1 434 1 1321 970 t
+10 R f
+(The parameter)1 595 1 720 1230 t
+10 I f
+(r)1357 1230 w
+10 R f
+( can be)2 318(, which denotes the relevance of the residual corpus to the conditional sample,)12 3326 2 1396 1230 t
+( conditional)1 510( basic interpretation is the fraction of words that have)9 2456( Its)1 186(estimated in various ways.)3 1168 4 720 1350 t
+( given a set of)4 572( Thus)1 253( to their global probabilities \(as estimated from the residual sample\).)10 2763(probabilities close)1 732 4 720 1470 t
+(estimates of conditional probabilities, one can estimate)6 2273 1 720 1590 t
+10 I f
+(r)3031 1590 w
+10 R f
+( few)1 186(as the fraction of them which lie within a)8 1746 2 3108 1590 t
+( using the words)3 682( estimate is performed)3 911( This)1 235(standard deviations of the corresponding global probabilities.)6 2492 4 720 1710 t
+( Alternatively)1 586( conditional sample.)2 826(which are observed in the)4 1065 3 720 1830 t
+10 I f
+(r)3231 1830 w
+10 R f
+(can be regarded as a free parameter of the)8 1736 1 3304 1830 t
+( it could be varied for each)6 1141( Although)1 440( task.)1 223(method and adjusted to produce optimal results on a speci\256c)9 2516 4 720 1950 t
+(word, we have used)3 828 1 720 2070 t
+10 I f
+(r)1585 2070 w
+10 S f
+(=)1673 2070 w
+10 R f
+( all words in the sense disambiguation application, and)8 2278( for)1 153(0. 8)1 133 3 1777 2070 t
+10 I f
+(r)4377 2070 w
+10 S f
+(=)4465 2070 w
+10 R f
+( for all)2 288(0. 98)1 183 2 4569 2070 t
+(words in the author identi\256cation application.)5 1821 1 720 2190 t
+%INFO[SECTION: LEVEL = 1, NUMBER = 10.  , HEADING = Example of the Interpolation Procedure]
+9 B f
+( of the Interpolation Procedure)4 1197(10. Example)1 499 2 720 2430 t
+10 R f
+( the words that play an important)6 1333(Table 6 gives a sense of what the interpolation procedure does for some of)13 2987 2 720 2610 t
+( of)1 138(role in disambiguating between the two senses)6 2045 2 720 2730 t
+10 I f
+(duty)2958 2730 w
+10 R f
+( that the)2 382( Recall)1 335(in the Canadian Hansards.)3 1138 3 3185 2730 t
+( local)1 229( The)1 215(interpolation procedure combines local probability estimates with global probability estimates.)9 3876 3 720 2850 t
+( more relavent; the global)4 1046(estimates are obtained from the conditioned sample and are therefore considered)10 3274 2 720 2970 t
+( less)1 196(probability estimates are obtained from the entire corpus and are therefore less relevant, but also)14 4124 2 720 3090 t
+(subject to sparse data issues.)4 1140 1 720 3210 t
+( obtained by extracting a 100-word window surrounding each of the 60)11 3106(The conditioned samples are)3 1214 2 720 3390 t
+( selected by randomly sampling instances of)6 1782( training sets were)3 738( The)1 208(training examples.)1 741 4 720 3510 t
+10 I f
+(duty)4216 3510 w
+10 R f
+(in the Hansards)2 625 1 4415 3510 t
+(until 60 instances were found that were translated as)8 2106 1 720 3630 t
+10 I f
+(droit)2854 3630 w
+10 R f
+(and 60 instances were found that were translated)7 1963 1 3077 3630 t
+(as)720 3750 w
+10 I f
+(devoir)831 3750 w
+10 R f
+( \256rst set of 60 are used to construct the model for the tax sense of)15 2649(. The)1 233 2 1086 3750 t
+10 I f
+(duty)3996 3750 w
+10 R f
+(and the second set of)4 845 1 4195 3750 t
+(60 are used to construct the model for the obligation sense of)11 2438 1 720 3870 t
+10 I f
+(duty)3183 3870 w
+10 R f
+(.)3355 3870 w
+(The column labeled ``freq'' shows the number of times that each word appeared in the conditioned sample.)16 4320 1 720 4050 t
+( the word)2 393(For example, the count of 50 for)6 1349 2 720 4170 t
+10 I f
+(countervailing)2495 4170 w
+10 R f
+(indicates that)1 538 1 3111 4170 t
+10 I f
+(countervailing)3682 4170 w
+10 R f
+(appeared 50 times)2 742 1 4298 4170 t
+(within the 100-word window of an instance of)7 1885 1 720 4290 t
+10 I f
+(duty)2635 4290 w
+10 R f
+(that was translated as)3 866 1 2837 4290 t
+10 I f
+(droit)3733 4290 w
+10 R f
+( fact,)1 205( is a remarkable)3 649(. This)1 258 3 3928 4290 t
+(given that)1 399 1 720 4410 t
+10 I f
+(countervailing)1146 4410 w
+10 R f
+( like)1 176( is much less surprising to \256nd a common word)9 1915( It)1 113(is a fairly unusual word.)4 976 4 1756 4410 t
+10 I f
+(to)4962 4410 w
+10 R f
+(appearing quite often \(228 times\) in the other conditioned sample.)9 2641 1 720 4530 t
+( of)1 131(The second column \(labeled ``weight''\) models the fact that 50 instances)10 3136 2 720 4710 t
+10 I f
+(countervailing)4035 4710 w
+10 R f
+(are more)1 374 1 4666 4710 t
+(surprising than 228 instances of)4 1279 1 720 4830 t
+10 I f
+(to)2026 4830 w
+10 R f
+( sample)1 309( weights for a word are its log likelihood in the conditioned)11 2395(. The)1 232 3 2104 4830 t
+( \256rst column, the product of these log likelihoods)8 2049( The)1 215( likelihood in the global corpus.)5 1322(compared with its)2 734 4 720 4950 t
+( in the training set, of the word for determining which)10 2200(and the frequencies, is a measure of the importance,)8 2120 2 720 5070 t
+( that words with large scores do seem to intuitively distinguish)10 2535( Note)1 247( belong to.)2 431(sense the training examples)3 1107 4 720 5190 t
+(the two senses, at least in the Canadian Hansards.)8 1980 1 720 5310 t
+(There are obviously some biases introduced by the unusual nature of this corpus, which is hardly a balanced)17 4320 1 720 5490 t
+( the set of words listed in Table 6 under the obligation sense of)13 2589( example,)1 395( For)1 196(sample of general language.)3 1140 4 720 5610 t
+10 I f
+(duty)720 5730 w
+10 R f
+( the fact that the Hansards contain a fair amount of boilerplate of the form:)14 3131(is heavily in\257uenced by)3 982 2 927 5730 t
+( honour and duty to present petitions duly signed)8 2043( pursuant to standing order..., I have the)7 1673(``Mr. speaker,)1 604 3 720 5850 t
+(by... of my electors...''.)3 937 1 720 5970 t
+( model score \(the)3 726(Table 6 gives the 15 words with the largest product \(shown as the \256rst column\) of the)16 3594 2 720 6150 t
+(second column\) and the frequency in the 6000 word training corpus \(the third column\).)13 3483 1 720 6270 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 16 16
+%%Page: 17 17
+DpostDict begin
+/saveobj save def
+mark
+17 pagesetup
+10 R f
+(- 17 -)2 216 1 2772 480 t
+10 S f
+(_ ________________________________________________________________________________)1 4037 1 861 860 t
+10 R f
+(Table 6: Selected Portions of Two Models)6 1693 1 911 980 t
+(tax sense of)2 471 1 1547 1100 t
+10 I f
+(duty)2043 1100 w
+10 R f
+(obligation sense of)2 755 1 3449 1100 t
+10 I f
+(duty)4229 1100 w
+10 R f
+( weight freq word)3 1087( weight*freq)1 1004(weight*freq weight freq word)3 1569 3 911 1220 t
+10 S f
+(_ ________________________________________________________________________________)1 4037 1 861 1240 t
+10 R f
+( petitions)1 500( 20)1 404( 3.2)1 577( 64)1 378( countervailing)1 757( 50)1 354(285 5.7)1 702 7 1039 1360 t
+( to)1 233( 228)1 354( 0.26)1 502( 59.28)1 841( duties)1 419( 26)1 354(111.8 4.3)1 702 7 1039 1480 t
+( 134)1 354( 0.42)1 502( 56.28)1 966( u.s)1 294( 37)1 354(99.9 2.7)1 652 6 1089 1600 t
+10 S f
+(\357)4366 1600 w
+10 R f
+( petition)1 461( 17)1 479( 3)1 502( 51)1 756( trade)1 379( 43)1 354(73.1 1.7)1 652 7 1089 1720 t
+( pursuant)1 499( 17)1 404( 2.8)1 502( 47.6)1 808( states)1 402( 39)1 354(70.2 1.8)1 652 7 1089 1840 t
+( mr)1 266( 89)1 354( 0.52)1 502( 46.28)1 902( duty)1 358( 21)1 354(69.3 3.3)1 652 7 1089 1960 t
+( honour)1 438( 14)1 404( 2.7)1 502( 37.8)1 658( softwood)1 552( 19)1 354(68.4 3.6)1 652 7 1089 2080 t
+( order)1 365( 27)1 404( 1.4)1 502( 37.8)1 780( united)1 430( 36)1 354(68.4 1.9)1 652 7 1089 2200 t
+( present)1 443( 18)1 479( 2)1 502( 36)1 628( rescinds)1 507( 7)1 354(58.8 8.4)1 652 7 1089 2320 t
+( proceedings)1 637( 12)1 404( 2.8)1 502( 33.6)1 747( lumber)1 463( 18)1 429(54 3)1 577 7 1089 2440 t
+( prescription)1 632( 9)1 404( 3.5)1 502( 31.5)1 702( shingles)1 508( 12)1 354(50.4 4.2)1 652 7 1089 2560 t
+( house)1 388( 36)1 354( 0.87)1 502( 31.32)1 814( shakes)1 446( 12)1 354(50.4 4.2)1 652 7 1089 2680 t
+( reject)1 376( 9)1 404( 3.3)1 502( 29.7)1 930( 35)1 280( 13)1 354(46.8 3.6)1 652 7 1089 2800 t
+( boundaries)1 593( 7)1 404( 4.2)1 502( 29.4)1 747( against)1 463( 22)1 354(46.2 2.1)1 652 7 1089 2920 t
+( electoral)1 498( 7)1 404( 4.1)1 502( 28.7)1 676( canadian)1 534( 38)1 354(41.8 1.1)1 652 7 1089 3040 t
+10 S f
+( \347)1 -4037(_ ________________________________________________________________________________)1 4037 2 861 3060 t
+(\347)861 2960 w
+(\347)861 2860 w
+(\347)861 2760 w
+(\347)861 2660 w
+(\347)861 2560 w
+(\347)861 2460 w
+(\347)861 2360 w
+(\347)861 2260 w
+(\347)861 2160 w
+(\347)861 2060 w
+(\347)861 1960 w
+(\347)861 1860 w
+(\347)861 1760 w
+(\347)861 1660 w
+(\347)861 1560 w
+(\347)861 1460 w
+(\347)861 1360 w
+(\347)861 1260 w
+(\347)861 1160 w
+(\347)861 1060 w
+(\347)861 960 w
+(\347)2927 3060 w
+(\347)2927 3000 w
+(\347)2927 2900 w
+(\347)2927 2800 w
+(\347)2927 2700 w
+(\347)2927 2600 w
+(\347)2927 2500 w
+(\347)2927 2400 w
+(\347)2927 2300 w
+(\347)2927 2200 w
+(\347)2927 2100 w
+(\347)2927 2000 w
+(\347)2927 1900 w
+(\347)2927 1800 w
+(\347)2927 1700 w
+(\347)2927 1600 w
+(\347)2927 1500 w
+(\347)2927 1400 w
+(\347)2927 1300 w
+(\347)2927 1200 w
+(\347)2927 1100 w
+(\347)4898 3060 w
+(\347)4898 2960 w
+(\347)4898 2860 w
+(\347)4898 2760 w
+(\347)4898 2660 w
+(\347)4898 2560 w
+(\347)4898 2460 w
+(\347)4898 2360 w
+(\347)4898 2260 w
+(\347)4898 2160 w
+(\347)4898 2060 w
+(\347)4898 1960 w
+(\347)4898 1860 w
+(\347)4898 1760 w
+(\347)4898 1660 w
+(\347)4898 1560 w
+(\347)4898 1460 w
+(\347)4898 1360 w
+(\347)4898 1260 w
+(\347)4898 1160 w
+(\347)4898 1060 w
+(\347)4898 960 w
+10 R f
+( and global probabilities in this way, we are able to estimate considerably)12 2944(By interpolating between the local)4 1376 2 720 3240 t
+( interpolation procedure)2 991( The)1 221(more parameters than there are data points \(words\) in the training corpus.)11 3108 3 720 3360 t
+( this way, it becomes)4 921( In)1 153( to another.)2 492(assumes that one selection of natural language is roughly similar)9 2754 4 720 3480 t
+(feasible to estimate the 2)4 1001 1 720 3600 t
+10 I f
+(V)1729 3600 w
+10 S f
+(~)1831 3580 w
+(~)1831 3605 w
+10 R f
+( one for each word in the vocabulary and each of the two)12 2283( parameters,)1 489(200 , 000)2 341 3 1927 3600 t
+( of course, assuming that words are pairwise independent and that all of the correlations)14 3661( are,)1 181(senses. We)1 478 3 720 3720 t
+(between words are zero.)3 968 1 720 3840 t
+%INFO[SECTION: LEVEL = 2, NUMBER = 10.1  , HEADING = Context Width]
+10 I f
+( Width)1 264(10.1 Context)1 536 2 720 4140 t
+10 R f
+( work has all focused on words that are)8 1611( Previous)1 406( relevant to distinguishing senses?)4 1390(How wide a context is)4 913 4 720 4440 t
+( approach)1 394( This)1 232( concordance line being the largest context used.)7 1968(quite nearby, with Black's use of an entire)7 1726 4 720 4560 t
+( that ``a context consisting of one or two words has an)11 2265(appears to stem from Kaplan's \(1950\) observation)6 2055 2 720 4680 t
+( the disambiguation)2 795(effectiveness not markedly different from that of the whole sentence,'' when people do)12 3525 2 720 4800 t
+( or two)2 307( same observation, that people can do the disambiguation task effectively with just one)13 3611(task. The)1 402 3 720 4920 t
+( as)1 113( However,)1 445( Choueka and Lusignam \(1985\).)4 1310(words of context, is demonstrated in a more recent paper by)10 2452 4 720 5040 t
+( things may not be the)5 931(has been found in chess playing programs, attempting to model the way people do)13 3389 2 720 5160 t
+(best way for a computer to do the same task.)9 1780 1 720 5280 t
+( context)1 321(Since we are concerned with disambiguation in a large corpus, we can have virtually any amount of)16 3999 2 720 5640 t
+( following \256gure shows that in the Hansards,)7 1849( The)1 213( its relevance and utility.)4 1017( question is)2 474( The)1 214(that we want.)2 553 6 720 5760 t
+(context is)1 386 1 720 5880 t
+10 I f
+(relevant)1131 5880 w
+10 R f
+(to disambiguating nouns, up to ten thousand words away.)8 2299 1 1483 5880 t
+10 B f
+(Remote Context is Informative)3 1316 1 2222 6180 t
+10 H f
+( word,)1 290( horizontal axis shows the distance of context words from an ambiguous)11 3373( The)1 245(Figure 1.)1 412 4 720 6300 t
+( context words at the speci\256ed)5 1376(while the vertical scale shows the percent correct when using ten)10 2944 2 720 6420 t
+( deviation)1 439( vertical lines show the mean and standard)7 1959( The)1 237(distance in doing the disambiguation.)4 1685 4 720 6540 t
+( choices, 50 percent represents chance)5 1783( two equiprobable)2 807( With)1 263(of mean for six disambiguations.)4 1467 4 720 6660 t
+( remains above chance for ten word contexts up to ten thousand)11 3080(performance. Performance)1 1240 2 720 6780 t
+(words away from the ambiguous word.)5 1717 1 720 6900 t
+10 R f
+(To make Figure 1 we trained models for each of the six chosen words on sixty examples of each of the two)21 4320 1 720 7200 t
+( the)1 171( For)1 213( side of the ambiguous word.)5 1280(main senses, using a context window of \256fty words to either)10 2656 4 720 7320 t
+( the models on the words occurring in the)8 1771(remaining test sample of 90 words for each sense, we scored)10 2549 2 720 7440 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 17 17
+%%Page: 18 18
+DpostDict begin
+/saveobj save def
+mark
+18 pagesetup
+10 R f
+(- 18 -)2 216 1 2772 480 t
+( test thus asks, if you did)6 1040( This)1 237(intervals [\261w\2615,\261w] and [w, w+5] words away from the ambiguous word.)10 3043 3 720 960 t
+( the ten words at least)5 1003(not know any of the intervening words, would)7 2030 2 720 1080 t
+10 I f
+(w)3805 1080 w
+10 R f
+(words away be useful for)4 1116 1 3924 1080 t
+( answer is ``yes'' for any)5 1034(disambiguation? The)1 873 2 720 1200 t
+10 I f
+(w)2658 1200 w
+10 R f
+( found this)2 440( We)1 194(less than ten thousand, for the Hansards.)6 1650 3 2756 1200 t
+( can be seen to)4 631(surprising, given the focus of previous quantitative models on nearby context, although it)12 3689 2 720 1320 t
+( result could be different for)5 1127( The)1 206( length within the \257oor debates.)5 1271(relate to some kind of maximum discourse)6 1716 4 720 1440 t
+(verbs or adjectives.)2 773 1 720 1560 t
+(Of course, the information at a remote distance may just duplicate information from the nearby context.)15 4320 1 720 1800 t
+( is what the)3 473(The question for building a practical model)6 1767 2 720 1920 t
+10 I f
+(marginal)2990 1920 w
+10 R f
+(value of information at some distance is.)6 1653 1 3387 1920 t
+(Figure 2 addresses this question.)4 1302 1 720 2040 t
+10 B f
+(Wide Contexts are Useful)3 1090 1 2335 2340 t
+10 H f
+( the maximum distance of context words from an ambiguous)9 2704( horizontal axis shows)3 987( The)1 231(Figure 2.)1 398 4 720 2460 t
+( words out to the)4 767(word, while the vertical scale shows the percent correct when using all context)12 3553 2 720 2580 t
+( performance rises very rapidly with the \256rst few)8 2293( While)1 328( disambiguation.)1 753(speci\256ed distance in)2 946 4 720 2700 t
+( and is not worse by \256fty)6 1197(words, it clearly continues to improve through about twenty words,)9 3123 2 720 2820 t
+(words.)720 2940 w
+10 R f
+( 2, we again trained models for each of the six chosen words on sixty examples of each of)18 3674(To make Figure)2 646 2 720 3240 t
+(the two main senses, using a)5 1203 1 720 3360 t
+10 S f
+(\261)1961 3360 w
+10 R f
+( the remaining test sample of 90 words for each)9 2007( For)1 201( window.)1 384(50 context)1 432 4 2016 3360 t
+( in the intervals [\261w,\2611] and [1,w] words away from the)10 2244(sense, we scored the models on the words occurring)8 2076 2 720 3480 t
+( distance, what is)3 706( test thus asks, given that you do know all the words out to some)14 2678( This)1 235(ambiguous word.)1 701 4 720 3600 t
+( largest contribution is, not surprisingly, from the closest)8 2346( The)1 215(the value of a few more words further out.)8 1759 3 720 3720 t
+( the context is clearly marginally valuable out to twenty words, and possibly valuable as)14 3605(words. However,)1 715 2 720 3840 t
+(far as \256fty words.)3 704 1 720 3960 t
+( widest previous context used was)5 1392( The)1 211( standard for our models.)4 1025(We have use \256fty words of context as the)8 1692 4 720 4200 t
+(about)720 4320 w
+10 S f
+(\261)976 4320 w
+10 R f
+( performance from 85% to ??? to 90%??? for disambiguating two)10 2696( improvement in)2 679( The)1 214(six words.)1 420 4 1031 4320 t
+(equiprobable senses represents and important gain from using \256fty word context over six word context.)14 4130 1 720 4440 t
+%INFO[SECTION: LEVEL = 2, NUMBER = 10.2  , HEADING = Number of Training Examples]
+10 I f
+( of Training Examples)3 892(10.2 Number)1 547 2 720 4740 t
+10 R f
+( of examples of each sense used for training, but has accepted)11 2504(Previous work has not controlled the number)6 1816 2 720 5040 t
+( expect the quality of the models built to depend on)10 2114( We)1 194( frequencies of each sense.)4 1089(the naturally occurring)2 923 4 720 5160 t
+( training, and we would like to control this source of variability as we)13 2949(the number of examples used for)5 1371 2 720 5280 t
+( would also like to know what performance one can expect from models trained on)14 3352( We)1 192(study other factors.)2 776 3 720 5400 t
+(relatively few examples, since most types and most senses do not have many examples.)13 3498 1 720 5520 t
+(Figure 3 shows the effect of varying the number of training examples.)11 2795 1 720 5820 t
+10 B f
+(Just a Few Training Examples do Surprisingly Well)7 2217 1 1771 6000 t
+10 H f
+( shows the number of examples used in training while the vertical)11 2994( horizontal axis)2 685( The)1 237(Figure 3.)1 404 4 720 6120 t
+( performance increases)2 1104( The)1 257(scale shows the mean percent correct in six disambiguations.)8 2959 3 720 6240 t
+(rapidly for the \256rst few examples, and seems to have reached a maximum by 50 or 60 examples.)17 4295 1 720 6360 t
+10 R f
+( give models that achieve 75 percent accuracy while ten give 80 percent)12 3050(As few as three examples will)5 1270 2 720 6660 t
+( while accuracy would suffer some, models of some utility could be built for senses)14 3645(accuracy. Thus,)1 675 2 720 6780 t
+(occurring just a few times in a corpus.)7 1525 1 720 6900 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 18 18
+%%Page: 19 19
+DpostDict begin
+/saveobj save def
+mark
+19 pagesetup
+10 R f
+(- 19 -)2 216 1 2772 480 t
+%INFO[SECTION: LEVEL = 2, NUMBER = 10.3  , HEADING = Training with Errors]
+10 I f
+( with Errors)2 490(10.3 Training)1 576 2 720 960 t
+10 R f
+( if training materials)3 825( Yet)1 198( in the training materials.)4 1018(Previous authors have not considered the effect of errors)8 2279 4 720 1260 t
+( scale, there will need to be considerable automatic assistance, and there will)12 3132(are to be collected on a large)6 1188 2 720 1380 t
+( if models can be built from materials with errors, then an iterated selection of)14 3142( Also,)1 266( errors.)1 284(clearly be some)2 628 4 720 1500 t
+(materials by the model may allow collecting a better training set.)10 2594 1 720 1620 t
+( the training)2 527(We constructed training sets with errors by deliberately making 10, 20, or 30 percent of)14 3793 2 720 1860 t
+( examples were used for training,)5 1355( Fifty)1 250( given sense be examples from the alternative sense.)8 2127(materials for a)2 588 4 720 1980 t
+(with a)1 247 1 720 2100 t
+10 S f
+(\261)992 2100 w
+10 R f
+( 7 shows the mean percent error for our six nouns.)10 2004( Table)1 277(\256fty word context.)2 741 3 1047 2100 t
+(Table 7: Errors in the Training Materials are Acceptable)8 2244 1 1758 2400 t
+10 S f
+(_ ________________________________)1 1642 1 2059 2420 t
+10 R f
+( 10 20 30)3 750( 0)1 452(% errors)1 340 3 2109 2540 t
+10 S f
+(_ ________________________________)1 1642 1 2059 2560 t
+10 R f
+(% coverage)1 467 1 2109 2680 t
+( 16)1 250(50 1.4 4 8)3 925 2 2476 2800 t
+( 12 19)2 500( 8)1 325(80 7)1 350 3 2476 2920 t
+( 17 22)2 500( 12)1 325(100 10)1 400 3 2426 3040 t
+10 S f
+( \347)1 -1642(_ ________________________________)1 1642 2 2059 3060 t
+(\347)2059 3020 w
+(\347)2059 2920 w
+(\347)2059 2820 w
+(\347)2059 2720 w
+(\347)2059 2620 w
+(\347)2059 2520 w
+(\347)3701 3060 w
+(\347)3701 3020 w
+(\347)3701 2920 w
+(\347)3701 2820 w
+(\347)3701 2720 w
+(\347)3701 2620 w
+(\347)3701 2520 w
+10 R f
+( percent coverage means)3 1015( Fifty)1 256( of contamination and three levels of coverage.)7 1950(Table 7 shows three levels)4 1099 4 720 3360 t
+( observations)1 536( Two)1 239( the discrimination score is the largest.)6 1576(selecting the half of the test examples for which)8 1969 4 720 3480 t
+( at 10 percent errors input, the output errors have only increased from 10)13 2964( First,)1 264( are important.)2 595(on this table)2 497 4 720 3600 t
+( to about ten percent errors with little degradation of)9 2142( we can accommodate up)4 1036( Thus)1 257(percent to 12 percent.)3 885 4 720 3720 t
+( errors of twenty to thirty percent result in about half)10 2152( at \256fty percent coverage, input)5 1267(performance. Second,)1 901 3 720 3840 t
+( had obtained a set of examples with no more than twenty to)12 2528( if one)2 277( Therefore)1 453(as many errors on output.)4 1062 4 720 3960 t
+( that had less)3 549(thirty percent, one could iterate example selection just once or twice and have example sets)14 3771 2 720 4080 t
+(than ten percent errors.)3 919 1 720 4200 t
+%INFO[SECTION: LEVEL = 2, NUMBER = 10.4  , HEADING = Factors in Evaluating Performance]
+10 I f
+( in Evaluating Performance)3 1113(10.4 Factors)1 536 2 720 4500 t
+10 R f
+( different conventions and conditions so that)6 1944(The reports of performance in previous work each use)8 2376 2 720 4800 t
+( Stone \(1975\) report ``kappa,'' and do not give the equation for this)12 2866( and)1 184( Kelly)1 287(comparison is not easy.)3 983 4 720 4920 t
+( describe kappa as ``simply a re\256nement of raw)8 2023( They)1 271( book length treatment.)3 975(measure despite having a)3 1051 4 720 5040 t
+( a)1 81( reference is given, but we have not obtained)8 1891( A)1 135(percent agreement, to correct for chance agreement.'')6 2213 4 720 5160 t
+( of)1 133( Figure 6 of Chapter III shows kappa for ``semantic'' disambiguations, the sort)12 3441( Their)1 290(copy of it.)2 456 4 720 5280 t
+( performance reported is given in the table as 49 cases with kappa)12 2759( The)1 216( studied.)1 350(disambiguation we have)2 995 4 720 5400 t
+( with kappa between 0.9 and 1.0.)6 1335(between 0 and 0.7, 25 cases with kappa between 0.7 and 0.9, and 18 cases)14 2985 2 720 5520 t
+( the groups, representing each group by its)7 1732(For a rough interpretation of this data, we took an average over)11 2588 2 720 5640 t
+( ``just under 90)3 628( report that the raw percent correct overall is)8 1804( They)1 259( mean kappa is thus 0.59.)5 1033(midpoint. The)1 596 5 720 5760 t
+( plausible guess at the percent correct)6 1508( A)1 124( .69.)1 177(percent,'' while the same table shows that the overall kappa is)10 2511 4 720 5880 t
+( is no indication of how many senses were)8 1972( There)1 317(for the semantic distinctions is .59*.9/.69=.77.)5 2031 3 720 6000 t
+( is clear that all of the words in the test)10 1638( It)1 120( likely.)1 287(disambiguated for each word, although two is the most)8 2275 4 720 6120 t
+(data were attempted, so coverage was 100 percent.)7 2024 1 720 6240 t
+( best of the three)4 685( The)1 210( for each word.)3 618(Black \(1988\) reports several measures, including raw percent correct,)8 2807 4 720 6480 t
+( the words had)3 603( of)1 115( Four)1 246(methods that he studied achieved 75 percent correct averaged over the \256ve words.)12 3356 4 720 6600 t
+( was)1 195( Coverage)1 446(four senses while one had three senses, so this was a deliberately dif\256cult set of words.)15 3679 3 720 6720 t
+(again 100 percent.)2 734 1 720 6840 t
+( words and one one 54)5 971(Dagan \(1991\) reports on two small experiments, one on 105 ambiguous Hebrew)11 3349 2 720 7080 t
+( his methods made a decision for)6 1363( the \256gures he gives for the two,)7 1350( Combining)1 510(ambiguous German words.)2 1097 4 720 7200 t
+( percent)1 320( were correct in 91 of the 105 cases, for an 87)11 1833( They)1 256(105 of the 159 cases, for a 66 percent coverage.)9 1911 4 720 7320 t
+( is not clear how many senses per word were considered; two is most)13 2759( It)1 111( the 66 percent coverage.)4 999(accuracy at)1 451 4 720 7440 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 19 19
+%%Page: 20 20
+DpostDict begin
+/saveobj save def
+mark
+20 pagesetup
+10 R f
+(- 20 -)2 216 1 2772 480 t
+(likely.)720 960 w
+( of)1 117(The following \256gure shows the accuracy versus coverage \(similar to the precision versus recall \256gures)14 4203 2 720 1200 t
+(information retrieval\) for our methods on two equiprobable senses.)8 2676 1 720 1320 t
+10 B f
+(Errors Fall for Decreased Coverage)4 1523 1 2118 1620 t
+10 H f
+( The)1 246( coverage while the vertical scale shows error rate.)8 2388( horizontal axis shows)3 1029( The)1 245(Figure 4.)1 412 5 720 1740 t
+( for small decreases in coverage, because most of the errors occur for)12 3256(error rate drops quickly)3 1064 2 720 1860 t
+(cases with little information.)3 1226 1 720 1980 t
+10 R f
+( that it is important to state a coverage in comparing accuracies, because the error rate)15 3589(This \256gure shows)2 731 2 720 2280 t
+( 66 percent coverage, the error rate is about a quarter of)11 2280( At)1 156(drops quickly for small decreases in coverage.)6 1884 3 720 2400 t
+(its value at 100 percent coverage.)5 1335 1 720 2520 t
+( states error rates for naturally occurring frequencies of senses rather than for controlled)13 3724(Previous work)1 596 2 720 2760 t
+( con\257ates the value of the information from the method and the)11 2637( This)1 238( as we do.)3 429(equiprobable frequencies)1 1016 4 720 2880 t
+( are)1 161( when the methods)3 794( However,)1 454(information one starts with by knowing the frequencies of the senses.)10 2911 4 720 3000 t
+( estimate of the power of the)6 1250(applied, both sources of information would certainly be used, thus some)10 3070 2 720 3120 t
+( error rate for 100 percent coverage as a)8 1651( following \256gure shows the)4 1122( The)1 212(combined sources is appropriate.)3 1335 4 720 3240 t
+(function of the probability of the major sense.)7 1831 1 720 3360 t
+10 B f
+(Overall Errors Depend on Prior Information)5 1918 1 1921 3660 t
+10 H f
+( the prior fraction for the major sense while the vertical scale)11 2704( horizontal axis shows)3 987( The)1 231(Figure 5.)1 398 4 720 3780 t
+( dotted lines show minimum of)5 1364( The)1 232( the combination of prior and context.)6 1671(shows the error rate for)4 1053 4 720 3900 t
+( from the)2 428( the information)2 722( Unless)1 377(the two errors; the combination should do better than either.)9 2793 4 720 4020 t
+(prior is comparable to that from the context, there is little improvement over the context alone.)15 4151 1 720 4140 t
+10 R f
+( is constructed by using the data from our six words as hypothetically coming from words whose)16 3884(This \256gure)1 436 2 720 4440 t
+(major sense has the probability)4 1283 1 720 4560 t
+10 I f
+(P)2038 4560 w
+7 I f
+(M)2110 4580 w
+10 R f
+( minor sense has the probability)5 1319(while the)1 379 2 2211 4560 t
+10 I f
+(p)3943 4560 w
+7 I f
+(m)4004 4580 w
+10 R f
+( test examples are)3 739(. The)1 239 2 4062 4560 t
+( \()1 41(scored by adding log)3 898 2 720 4680 t
+10 I f
+(P)1667 4680 w
+7 I f
+(M)1739 4700 w
+10 I f
+(/ p)1 86 1 1813 4680 t
+7 I f
+(m)1910 4700 w
+10 R f
+( of)1 130( counting the number)3 915( After)1 281(\) to the previously discussed likelihoods.)5 1738 4 1976 4680 t
+(correct test cases for each sense \(the fraction correct)8 2184 1 720 4800 t
+10 I f
+(C)2942 4800 w
+7 I f
+(M)3020 4820 w
+10 R f
+( sense will be higher than the)6 1237(for the ``major'')2 679 2 3124 4800 t
+(fraction)720 4920 w
+10 I f
+(c)1061 4920 w
+7 I f
+(m)1116 4940 w
+10 R f
+( sense\), they are averaged by calculating)6 1656(for the ``minor'')2 671 2 1205 4920 t
+10 I f
+(P)3564 4920 w
+7 I f
+(M)3636 4940 w
+10 I f
+(C)3710 4920 w
+7 I f
+(M)3788 4940 w
+10 S f
+(+)3903 4920 w
+10 I f
+(p)4007 4920 w
+7 I f
+(m)4068 4940 w
+10 I f
+(c)4134 4920 w
+7 I f
+(m)4189 4940 w
+10 R f
+( values of)2 402(. For)1 221 2 4247 4920 t
+10 I f
+(P)4902 4920 w
+7 I f
+(M)4974 4940 w
+10 R f
+(other than 0.5, two such weighted averages are averaged, one from taking each sense as the ``major'' sense.)17 4301 1 720 5040 t
+( The)1 232( the errors from the prior and the context as a dotted line.)12 2600(The \256gure shows the minimum of)5 1488 3 720 5280 t
+( \256gure shows,)2 598( The)1 225( than either alone, as indeed it does.)7 1568(combination of the evidence should do better)6 1929 4 720 5400 t
+( as that from the context, there will be)8 1557(however, that unless the information from the prior is about as good)11 2763 2 720 5520 t
+( degree of dominance of the major sense in a set of ambiguous words)13 2803( The)1 208(little gained by the combination.)4 1309 3 720 5640 t
+( corpus, many will be)4 871( the list of words is generated outside the)8 1645( If)1 117(will depend on how the words are chosen.)7 1687 4 720 5760 t
+( six words were chosen from)5 1180( Our)1 211( will be quite high.)4 777(nearly unambiguous in the corpus, so the dominance)7 2152 4 720 5880 t
+( are de\256nitely ambiguous in the Hansards, and which have a well populated minor sense.)14 3858(ords which)1 462 2 720 6000 t
+( dominance for the six is .77; we expect most sets of words to have higher)15 3257(Nevertheless, the average)2 1063 2 720 6120 t
+( context and)2 506( a dominance of .77, the methods give 92% accuracy at 100% coverage when)13 3193(dominance. At)1 621 3 720 6240 t
+(prior information are combined.)3 1281 1 720 6360 t
+( was generated by a non-literal use of the data, that is, we could study the combination)16 3530(The previous \256gure)2 790 2 720 6600 t
+( values of the priors for the words we have)9 1875(of prior and context information for other than the actual)9 2445 2 720 6720 t
+( different senses,)2 683( non-literal use of our data is to make arti\256cial ``words'' with known)12 2799(considered. Another)1 838 3 720 6840 t
+( can make arti\256cial ``words'' by combining arbitrary sets of)9 2419( We)1 191( not to be different.)4 780(or example sets known)3 930 4 720 6960 t
+( can make sets of examples with no known)8 1762( We)1 194( as the drug/drogue set with the land/pays set.)8 1871(senses, such)1 493 4 720 7080 t
+( making)1 332( In)1 140( of our larger sense sets, such as the land/terre set.)10 2065(difference by making a random split of one)7 1783 4 720 7200 t
+( research that is limited by the)6 1330( In)1 154( words.)1 315(combinations, we have used senses from additional English)7 2521 4 720 7320 t
+( believe)1 317( We)1 192( training materials, these combinations are a new way to extend given materials.)12 3248(availability of)1 563 4 720 7440 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 20 20
+%%Page: 21 21
+DpostDict begin
+/saveobj save def
+mark
+21 pagesetup
+10 R f
+(- 21 -)2 216 1 2772 480 t
+( they could easily)3 720(it is a valid extension, because the differences that we are studying are large enough that)15 3600 2 720 960 t
+( fact, in French they do have different words.)8 1801( In)1 133(have different words.)2 850 3 720 1080 t
+( more than 150 examples of a third or fourth sense translated by a)13 2776(Although we did not \256nd words with)6 1544 2 720 1320 t
+( have studied some synthetic words composed by joining pairs of the words we)13 3244(different French words we)3 1076 2 720 1440 t
+( methods give an average accuracy of)6 1548( The)1 213( synthetic words thus all have four senses.)7 1730( These)1 295(have studied.)1 534 5 720 1560 t
+( to \(drug+duty, duty+land, land+sentence, sentence+position,)5 2777(82 percent correct when applied)4 1543 2 720 1680 t
+( that although the percent correct has dropped, the information)9 2504( Not)1 201(position+language, and language+drug\).)2 1615 3 720 1800 t
+( information in an n-way choice in which)7 1664( simple approximation to the)4 1162( A)1 125(provided by the method has risen.)5 1369 4 720 1920 t
+10 I f
+(f)720 2040 w
+7 I f
+(C)759 2060 w
+10 R f
+(is the fraction correct is:)4 970 1 839 2040 t
+10 I f
+(log)870 2400 w
+10 R f
+(\()1006 2400 w
+10 I f
+(n)1047 2400 w
+10 R f
+(\))1105 2400 w
+10 S f
+(+)1195 2400 w
+10 I f
+(f)1307 2400 w
+7 I f
+(C)1346 2420 w
+10 R f
+(log \()1 169 1 1409 2400 t
+10 I f
+(f)1602 2400 w
+7 I f
+(C)1641 2420 w
+10 R f
+(\))1704 2400 w
+10 S f
+(+)1794 2400 w
+10 R f
+(\()1898 2400 w
+10 I f
+(n)1939 2400 w
+10 S f
+(-)2013 2400 w
+10 R f
+(1 \))1 91 1 2084 2400 t
+(\()2224 2470 w
+10 I f
+(n)2265 2470 w
+10 S f
+(-)2339 2470 w
+10 R f
+(1 \))1 91 1 2410 2470 t
+10 I f
+(f)2316 2320 w
+7 I f
+(C)2355 2340 w
+10 S1 f
+(_ ______)1 307 1 2210 2370 t
+10 I f
+(log)2535 2400 w
+10 R f
+(\( 1)1 91 1 2671 2400 t
+10 S f
+(-)2778 2400 w
+10 I f
+(f)2857 2400 w
+7 I f
+(C)2896 2420 w
+10 R f
+(\))2959 2400 w
+( is exact for)3 507( equation)1 381( The)1 217(where the logs are to the base 2.)7 1364 4 720 2750 t
+10 I f
+(n)3227 2750 w
+10 S f
+(=)3301 2750 w
+10 R f
+(2, and assumes an equal distribution for)6 1668 1 3372 2750 t
+(wrong answers for)2 758 1 720 2870 t
+10 I f
+(n)1511 2870 w
+10 S f
+(>)1585 2870 w
+10 R f
+( choice is .53 bits, while)5 1004( information from 90 percent correct on a two way)9 2092(2. The)1 288 3 1656 2870 t
+(the information from 82 percent correct on a four way choice is about 1.32 bits.)14 3177 1 720 2990 t
+( reports, the more important)4 1186(While we have tried in this section to compare performance with previous)11 3134 2 720 3230 t
+( should also)2 486( It)1 115(comment is that coverage and number of senses disambiguated affect performance strongly.)11 3719 3 720 3350 t
+( affect performance, and that there)5 1382(be apparent that what kinds of sense differences are chosen for study will)12 2938 2 720 3470 t
+(is no way to compare these differences yet.)7 1723 1 720 3590 t
+%INFO[SECTION: LEVEL = 1, NUMBER = 11.  , HEADING = Locating Additional Examples of a Sense]
+9 B f
+( Additional Examples of a Sense)5 1235(11. Locating)1 499 2 720 3950 t
+10 R f
+(Given a few examples of a sense of a word, we want to \256nd some additional senses.)16 3349 1 720 4250 t
+( discrimination)1 612( The)1 214( can be built as a variation of the Bayesian discrimination model.)11 2696(An aid for this task)4 798 4 720 4490 t
+(model calls for comparing two sets of conditional probabilities via:)9 2684 1 720 4610 t
+10 I f
+(P)895 5040 w
+10 R f
+(\()964 5040 w
+10 I f
+(sense)1005 5040 w
+7 R f
+(2)1232 5060 w
+10 R f
+(\))1283 5040 w
+10 I f
+(P)895 4890 w
+10 R f
+(\()964 4890 w
+10 I f
+(sense)1005 4890 w
+7 R f
+(1)1232 4910 w
+10 R f
+(\))1283 4890 w
+10 S1 f
+(_ _________)1 451 1 880 4940 t
+10 S f
+(=)1398 4970 w
+10 I f
+(p)1527 5040 w
+10 R f
+(\()1585 5040 w
+10 I f
+(sense)1626 5040 w
+7 R f
+(2)1853 5060 w
+10 R f
+(\))1904 5040 w
+10 I f
+(p)1527 4890 w
+10 R f
+(\()1585 4890 w
+10 I f
+(sense)1626 4890 w
+7 R f
+(1)1853 4910 w
+10 R f
+(\))1904 4890 w
+10 S1 f
+(_ ________)1 440 1 1512 4940 t
+10 S f
+(\264)1978 4970 w
+10 I f
+(L)2066 5040 w
+10 R f
+(\()2130 5040 w
+10 I f
+(sense)2171 5040 w
+7 R f
+(2)2398 5060 w
+10 R f
+(\))2449 5040 w
+10 I f
+(L)2066 4890 w
+10 R f
+(\()2130 4890 w
+10 I f
+(sense)2171 4890 w
+7 R f
+(1)2398 4910 w
+10 R f
+(\))2449 4890 w
+10 S1 f
+(_ ________)1 446 1 2051 4940 t
+10 S f
+(=)1414 5420 w
+10 I f
+(p)1543 5490 w
+10 R f
+(\()1601 5490 w
+10 I f
+(sense)1642 5490 w
+7 R f
+(2)1869 5510 w
+10 R f
+(\))1920 5490 w
+10 I f
+(p)1543 5340 w
+10 R f
+(\()1601 5340 w
+10 I f
+(sense)1642 5340 w
+7 R f
+(1)1869 5360 w
+10 R f
+(\))1920 5340 w
+10 S1 f
+(_ ________)1 440 1 1528 5390 t
+7 I f
+(i)2079 5590 w
+15 S f
+(P)2031 5520 w
+10 I f
+(p)2171 5490 w
+10 R f
+(\()2229 5490 w
+10 I f
+(word)2270 5490 w
+7 I f
+(i)2487 5510 w
+10 S f
+(\357)2548 5507 w
+10 I f
+(sense)2629 5490 w
+7 R f
+(2)2856 5510 w
+10 R f
+(\))2907 5490 w
+7 I f
+(i)2075 5360 w
+15 S f
+(P)2027 5290 w
+10 I f
+(p)2175 5260 w
+10 R f
+(\()2233 5260 w
+10 I f
+(word)2274 5260 w
+7 I f
+(i)2491 5280 w
+10 S f
+(\357)2552 5277 w
+10 I f
+(sense)2633 5260 w
+7 R f
+(1)2860 5280 w
+10 R f
+(\))2911 5260 w
+10 S1 f
+(_ ___________________)1 963 1 1996 5390 t
+10 R f
+( one set of conditional probabilities, rather than two, we)9 2287(Since this task deals with only one sense, and just)9 2033 2 720 5870 t
+( the neighborhood of)3 841( can compare the likelihood that a word comes from)9 2109( We)1 191(need to modify the approach.)4 1179 4 720 5990 t
+( is)1 112( This)1 248( the likelihood that it comes from some random place in the corpus.)12 2940(the exempli\256ed sense to)3 1020 4 720 6110 t
+(accomplished by using the global probabilities)5 2178 1 720 6230 t
+10 I f
+(p)2985 6230 w
+10 R f
+(\()3043 6230 w
+10 I f
+(word)3084 6230 w
+7 I f
+(i)3301 6250 w
+10 R f
+(\) in the above equation instead of)6 1703 1 3337 6230 t
+10 I f
+(p)720 6350 w
+10 R f
+(\()778 6350 w
+10 I f
+(word)819 6350 w
+7 I f
+(i)1036 6370 w
+10 S f
+(\357)1097 6367 w
+10 I f
+(sense)1178 6350 w
+10 R f
+( the word in question is)5 956( the resulting score is positive, then the neighborhood of)9 2275( When)1 291(2 \).)1 116 4 1402 6350 t
+(more like the neighborhoods of the exempli\256ed sense than it is like the global distribution.)14 3618 1 720 6470 t
+( we would expect to do at picking out other examples of the)12 2403(The more training examples there are, the better)7 1917 2 720 6710 t
+( following \256gure shows)3 953( The)1 207( useful the procedure.)3 870(desired sense, but the fewer examples we need, the more)9 2290 4 720 6830 t
+(accuracy for the entire set of examples with positive score and for the ten percent with the best scores.)18 4076 1 720 6950 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 21 21
+%%Page: 22 22
+DpostDict begin
+/saveobj save def
+mark
+22 pagesetup
+10 R f
+(- 22 -)2 216 1 2772 480 t
+10 B f
+(Additional Examples can be Found Easily)5 1790 1 1985 960 t
+10 H f
+( training, while the vertical)4 1174( horizontal axis shows the number of examples used for)9 2513( The)1 233(Figure 6.)1 400 4 720 1080 t
+( when one sense alone is compared to the global probabilities.)10 2905(scale shows precision or recall)4 1415 2 720 1200 t
+( shows precision \(examples of desired sense retrieved/all examples retrieved\),)9 3685(The solid line)2 635 2 720 1320 t
+( retrieved/all examples of desired)4 1508(while the dotted line shows recall \(examples of desired sense)9 2812 2 720 1440 t
+( examples are used for training, while recall rises as the)10 2510( is high however many)4 1010(sense\). Precision)1 800 3 720 1560 t
+(representativeness of the training examples increases.)5 2427 1 720 1680 t
+10 R f
+( on)1 139(The \256gure is constructed using examples trained)6 2014 2 720 1980 t
+10 S f
+(\261)2912 1980 w
+10 R f
+(50 word contexts, with the same context used for)8 2073 1 2967 1980 t
+( retrieval task, to \256nd examples of desired documents)8 2157( task is analogous to an information)6 1451(recognition. This)1 712 3 720 2100 t
+( we have shown)3 664( Therefore)1 450( question\).)1 430(\(the desired sense\) out of a given library \(the set of all the words in)14 2776 4 720 2220 t
+( is remarkable that precision is high even)7 1681( It)1 117( \256gure.)1 289(the standard IR measures of precision and recall in the)9 2233 4 720 2340 t
+( makes the technique of de\256nite use for)7 1600( This)1 232( examples of the desired sense are presented.)7 1817(when only a few)3 671 4 720 2460 t
+( the low recall for this condition warns that the)9 1984( However,)1 453( given sense.)2 539(\256nding additional examples of a)4 1344 4 720 2580 t
+( cases and not)3 677(retrieved examples will probably be over speci\256c, closely resembling the training)10 3643 2 720 2700 t
+(representing the sense as a whole.)5 1352 1 720 2820 t
+%INFO[SECTION: LEVEL = 1, NUMBER = 12.  , HEADING = Testing Whether Two Sets of Examples Differ in Sense]
+9 B f
+( Whether Two Sets of Examples Differ in Sense)8 1819(12. Testing)1 444 2 720 3180 t
+10 R f
+(Given two sets of examples, we want to make a decision to leave them separate or to join them.)18 3816 1 720 3480 t
+( from the multiplicity of French words used to)8 2001( setting arises)2 580( One)1 234(This task occurs in several settings.)5 1505 4 720 3720 t
+( instance, Table 8 shows three examples of)7 1741( For)1 193( English words.)2 633(translate most)1 563 4 720 3840 t
+10 I f
+(sentence)3879 3840 w
+10 R f
+(that were translated)2 789 1 4251 3840 t
+(with)720 3960 w
+10 I f
+(peine)923 3960 w
+10 R f
+(and three examples of)3 878 1 1164 3960 t
+10 I f
+(sentence)2067 3960 w
+10 R f
+(that were translated with)3 984 1 2435 3960 t
+10 I f
+(sentence)3444 3960 w
+10 R f
+(.)3787 3960 w
+10 B f
+(Table 8: Concordances for ``Sentence'')4 1669 1 720 4260 t
+10 I f
+(sentence / peine)2 637 1 720 4380 t
+10 R f
+(it seems pretty clear that he did not serve the)9 1783 1 720 4500 t
+10 S f
+(>)2528 4500 w
+10 R f
+(sentence)2583 4500 w
+10 S f
+(<)2926 4500 w
+10 R f
+(that was imposed upon him)4 1100 1 3006 4500 t
+(in other words , we are increasing his)7 1491 1 1012 4620 t
+10 S f
+(>)2528 4620 w
+10 R f
+(sentence)2583 4620 w
+10 S f
+(<)2926 4620 w
+10 R f
+(. SENT he was given a sentence of 10 years)9 1751 1 3006 4620 t
+(after one-third of a)3 750 1 1753 4740 t
+10 S f
+(>)2528 4740 w
+10 R f
+(sentence)2583 4740 w
+10 S f
+(<)2926 4740 w
+10 R f
+(has been served . SENT parole is granted because)8 1986 1 3006 4740 t
+10 I f
+(sentence / sentence)2 764 1 720 4860 t
+10 R f
+(48 are serving a life)4 792 1 1711 4980 t
+10 S f
+(>)2528 4980 w
+10 R f
+(sentence)2583 4980 w
+10 S f
+(<)2926 4980 w
+10 R f
+(for \256rst degree murder)3 900 1 3006 4980 t
+(he can consider mercy . SENT if the)7 1452 1 1051 5100 t
+10 S f
+(>)2528 5100 w
+10 R f
+(sentence)2583 5100 w
+10 S f
+(<)2926 5100 w
+10 R f
+(is for capital punishment ,)4 1041 1 3006 5100 t
+(when somebody is given a three-year)5 1488 1 1015 5220 t
+10 S f
+(>)2528 5220 w
+10 R f
+(sentence)2583 5220 w
+10 S f
+(<)2926 5220 w
+10 R f
+(, indeed he should not be released after serving six months .)11 2388 1 3006 5220 t
+(It seems obvious that these two groups should be joined, but can we test this automatically?)15 3664 1 720 5520 t
+( of examples of)3 645(As another example, Table 9 gives a number)7 1841 2 720 5820 t
+10 I f
+(duty)3240 5820 w
+10 R f
+(, separated by the previous word, either)6 1628 1 3412 5820 t
+10 I f
+(countervailing duty)1 780 1 720 5940 t
+10 R f
+(or)1525 5940 w
+10 I f
+(my duty)1 313 1 1633 5940 t
+10 R f
+(.)1946 5940 w
+10 B f
+(Table 9: Concordances for ``Duty'')4 1503 1 720 6240 t
+10 I f
+(countervailing duty)1 780 1 720 6360 t
+10 R f
+(the antidumping and countervailing)3 1424 1 1449 6480 t
+10 S f
+(>)2898 6480 w
+10 R f
+(duty)2953 6480 w
+10 S f
+(<)3131 6480 w
+10 R f
+(statutes of the parties)3 846 1 3211 6480 t
+(there must be new rules applied to countervailing)7 1972 1 901 6600 t
+10 S f
+(>)2898 6600 w
+10 R f
+(duties)2953 6600 w
+10 S f
+(<)3192 6600 w
+10 R f
+(and subsidies)1 536 1 3272 6600 t
+(the government will open the door to a countervailing)8 2153 1 720 6720 t
+10 S f
+(>)2898 6720 w
+10 R f
+(duty)2953 6720 w
+10 S f
+(<)3131 6720 w
+10 I f
+(my duty)1 313 1 720 6960 t
+10 R f
+(it is not my)3 454 1 2419 7080 t
+10 S f
+(>)2898 7080 w
+10 R f
+(duty)2953 7080 w
+10 S f
+(<)3131 7080 w
+10 R f
+(to defend them , but i think that to be perfectly fair)11 2025 1 3211 7080 t
+(mr . speaker , it is my)6 866 1 2007 7200 t
+10 S f
+(>)2898 7200 w
+10 R f
+(duty)2953 7200 w
+10 S f
+(<)3131 7200 w
+10 R f
+(and honour to present to the house)6 1376 1 3211 7200 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 22 22
+%%Page: 23 23
+DpostDict begin
+/saveobj save def
+mark
+23 pagesetup
+10 R f
+(- 23 -)2 216 1 2772 480 t
+(In this case, it is clear that the groups should not be joined, but can we determine this automatically?)18 4012 1 720 960 t
+( models)1 325( could build models of each set and see how well the)11 2215( We)1 198(A number of tests suggest themselves.)5 1582 4 720 1200 t
+( scores.)1 305(differentiate the sets, or we could build a model of either one set and see how highly the other set)19 4015 2 720 1320 t
+( cases that)2 426(We could measure the effect of the models by means or medians of scores or by the percent of)18 3894 2 720 1440 t
+( but quickly rejected counting)4 1297( gathered data on these nine procedures,)6 1760( We)1 215(were correctly classi\256ed.)2 1048 4 720 1560 t
+( also quickly)2 547( We)1 206( scores.)1 317(correctly classi\256ed cases, which was a coarser measure than mean or median)11 3250 4 720 1680 t
+( model.)1 305(dropped tests based on building two models as they did not perform as well as those based on one)18 4015 2 720 1800 t
+( we)1 149( Thus)1 257(The mean and median scores performed just about as well, and we focused on the mean scores.)16 3914 3 720 1920 t
+(discuss two tests here, based on modeling the larger group or the smaller group and scoring the other.)17 4052 1 720 2040 t
+( section: build a model of one group of examples)9 2172(The procedure is thus similar that of the previous)8 2148 2 720 2280 t
+( the)1 148(compared to the global population, score each example in the other group using the model and compare)16 4172 2 720 2400 t
+( standard is derived by applying the procedure to two known conditions, the)12 3086( The)1 209( a standard.)2 465(mean score to)2 560 4 720 2520 t
+( were)1 236( known to be the same)5 991( Groups)1 363(groups being known to be different, and known to be the same.)11 2730 4 720 2640 t
+( groups were constructed by)4 1141(constructed by sampling from one English/French set, and maximally different)9 3179 2 720 2760 t
+( larger group was held at 64 examples)7 1593( The)1 216( set from each of two different Engish words.)8 1898(taking one E/F)2 613 4 720 2880 t
+( made)1 248( hundred trials were)3 813( One)1 222(while the smaller group was varied from 8 to 64 examples by factors of 2.)14 3037 4 720 3000 t
+(for each of the same sense decisions and for each of the different sense decisions, resampling the original)17 4320 1 720 3120 t
+( turned out to)3 539( a model on the smaller group and scoring it on the larger group)13 2549( Building)1 401(groups for each trial.)3 831 4 720 3240 t
+( following table shows its performance:)5 1584( The)1 205(be more accurate.)2 705 3 720 3360 t
+10 B f
+(Table 9: Different Contexts Can Be Identi\256ed Automatically)7 2573 1 1593 3660 t
+10 S f
+(_ ________________________________)1 1624 1 2068 3680 t
+10 R f
+( on)1 125( errors)1 407( on)1 125( errors)1 382(examples of)1 485 5 2118 3800 t
+( different)1 670( same)1 360(minor sense)1 480 3 2118 3920 t
+( 2)1 494(8 18)1 634 2 2360 4040 t
+( 1)1 494(16 18)1 684 2 2310 4160 t
+( 1)1 494(32 18)1 684 2 2310 4280 t
+( 1)1 494(64 18)1 684 2 2310 4400 t
+10 S f
+( \347)1 -1624(_ ________________________________)1 1624 2 2068 4420 t
+(\347)2068 4380 w
+(\347)2068 4280 w
+(\347)2068 4180 w
+(\347)2068 4080 w
+(\347)2068 3980 w
+(\347)2068 3880 w
+(\347)2068 3780 w
+(\347)3692 4420 w
+(\347)3692 4380 w
+(\347)3692 4280 w
+(\347)3692 4180 w
+(\347)3692 4080 w
+(\347)3692 3980 w
+(\347)3692 3880 w
+(\347)3692 3780 w
+10 R f
+( for same groups are of course higher than scores for the different groups; we took as the)17 3640(The mean scores)2 680 2 720 4720 t
+( as the same)3 497( higher mean on one particular test was scored)8 1891( A)1 127(decision point the mean of these two means.)7 1805 4 720 4840 t
+( table shows)2 514( The)1 215( as different senses.)3 811(sense while a lower mean score than this decision point was scored)11 2780 4 720 4960 t
+( when the)2 422( However,)1 457( quite reliably.)2 614(that groups of examples from different senses can be distinguished)9 2827 4 720 5080 t
+( that two)2 360( judgements)1 490( Thus)1 254(groups are actually the same, they appear to be different about one time in \256ve.)14 3216 4 720 5200 t
+( set of judgements that call for)6 1227(groups are the same will have very few instances of different groups, but the)13 3093 2 720 5320 t
+( using this)2 432( Experience)1 508( will need to be examined to \256nd the cases that are actually the same.)14 2899(a difference)1 481 4 720 5440 t
+( out this)2 363(technique on groups differing in French tag, and in groups differing in some collocate bears)14 3957 2 720 5560 t
+( if they are marked)4 821( But)1 212( groups are marked as the same, then they are the same.)11 2406(conclusion: when the)2 881 4 720 5680 t
+(different, they may still be the same.)6 1459 1 720 5800 t
+%INFO[SECTION: LEVEL = 1, NUMBER = 13.  , HEADING = Testing Whether One Set of Examples Contains Subsets Differing in Sense]
+9 B f
+( Whether One Set of Examples Contains Subsets Differing in Sense)10 2575(13. Testing)1 444 2 720 6160 t
+10 R f
+( to determine whether one set of examples needs to be split into two or)14 2936(A harder task than the previous is)6 1384 2 720 6460 t
+( Thus)1 250( to test whether two sets of examples should be joined.)10 2184( previous section describes how)4 1274( The)1 206(more sets.)1 406 5 720 6580 t
+( than the remote)3 670(one way to test whether a single set needs to be split is to split it by some criterion other)19 3650 2 720 6700 t
+(context, and ask whether there are distinct senses represented among the fragments.)11 3339 1 720 6820 t
+( the target)2 419(One way of splitting a set of examples that we have studied is to use the few words nearest to)19 3901 2 720 7060 t
+( can then ask whether they can be distinguished by more distant context.)12 2893( We)1 188(word to form subgroups.)3 988 3 720 7180 t
+( a context of)3 499( Use)1 206( use is as follows.)4 712(The procedure we)2 719 4 720 7420 t
+10 S f
+(\261)2882 7420 w
+10 R f
+( Let)1 184(two words to build a Bayesian model.)6 1519 2 2937 7420 t
+10 I f
+(w)4666 7420 w
+7 I f
+(i)4744 7440 w
+10 R f
+(be the)1 242 1 4798 7420 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 23 23
+%%Page: 24 24
+DpostDict begin
+/saveobj save def
+mark
+24 pagesetup
+10 R f
+(- 24 -)2 216 1 2772 480 t
+(model weight for the)3 844 1 720 960 t
+10 I f
+(i)1592 960 w
+7 I f
+(th)1631 920 w
+10 R f
+( the vocabulary,)2 644(word in)1 311 2 1722 960 t
+10 I f
+(i)2704 960 w
+10 S f
+(=)2781 960 w
+10 R f
+(1 ,)1 83 1 2885 960 t
+(. . .)2 125 1 3001 935 t
+10 I f
+(V)3159 960 w
+10 R f
+(. Let)1 210 1 3220 960 t
+10 I f
+(f)3457 960 w
+7 I f
+(i)3496 980 w
+10 R f
+(be the raw frequency of the)5 1103 1 3551 960 t
+10 I f
+(i)4681 960 w
+7 I f
+(th)4720 920 w
+10 R f
+(word.)4810 960 w
+( vocabulary by)2 631(Then sort the)2 563 2 720 1080 t
+10 I f
+(f)1958 1080 w
+7 I f
+(i)1997 1100 w
+10 I f
+(W)2033 1080 w
+7 I f
+(i)2127 1100 w
+10 R f
+( is the cumulative weight for each word in the vocabulary in)11 2613(. This)1 272 2 2155 1080 t
+( this product has several)4 985( While)1 300( products indicate important words.)4 1442( Large)1 288(recognizing the training sample.)3 1305 5 720 1200 t
+(applications, here we just want to select the top)8 2025 1 720 1320 t
+10 I f
+(k)2787 1320 w
+10 S f
+(~)2872 1300 w
+(~)2872 1325 w
+10 R f
+( are important in a narrow window)6 1494(10 words that)2 578 2 2968 1320 t
+( are important collocates of the target word.)7 1746(model. These)1 563 2 720 1440 t
+( instance,)1 380( For)1 192( that these collocate split groups are almost always entirely one sense.)11 2823(Our \256rst observation is)3 925 4 720 1680 t
+( price, paraphernalia,)2 865(the \256rst ten collocates for drug are prescription, prices, illicit, food, abuse, generic,)12 3455 2 720 1800 t
+( the other of drug,)4 746( sets formed by taking these collocates are all one sense or)11 2397( The)1 211(alcohol, and traf\256cking.)2 966 4 720 1920 t
+( top ten collocates for each of our six nouns, we)10 1920( the sixty sets formed by taking the)7 1416( In)1 135(and have no mixture.)3 849 4 720 2040 t
+(found just two or three cases that were not pure, and they were over 90 percent in purity.)17 3539 1 720 2160 t
+( is exempli\256ed by some collocate group within the \256rst ten groups)11 2657(Our second observation is that each sense)6 1663 2 720 2400 t
+( the drug example, for instance, prescription clearly identi\256es medicinal drugs)10 3147( In)1 136( our six nouns.)3 598(for each of)2 439 4 720 2520 t
+( in the list because in the phrase ``Food and Drug Act'' drug)12 2436( is)1 93( Food)1 257(and illicit identi\256es, well, illicit drugs.)5 1534 4 720 2640 t
+(is translated by drogue.)3 932 1 720 2760 t
+( always leave several groups, even when just one sense is split.)11 2702(Unfortunately, the rejoining techniques)3 1618 2 720 3000 t
+( just by looking)3 632(However, the technique is still quit useful in automating this task, because a person can tell)15 3688 2 720 3120 t
+(at the collocates what senses are involved, and can easily group the collocates to form initial training sets.)17 4224 1 720 3240 t
+%INFO[SECTION: LEVEL = 1, NUMBER = 14.  , HEADING = Constructing Training Sets]
+9 B f
+( Training Sets)2 541(14. Constructing)1 664 2 720 3600 t
+10 R f
+( a model for each word, or for each sense of each)11 2102(One method of doing sense discrimination is to build)8 2218 2 720 3900 t
+( the ability to build such models)6 1314( Given)1 299( the given senses.)3 714(word, training the models on sets of examples of)8 1993 4 720 4020 t
+( research has been done using a)6 1317( date)1 200( To)1 170(from training sets, the method still requires sets of training sets.)10 2633 4 720 4140 t
+( discrimination methods alone do)4 1349( The)1 210(few words for which the training sets could be constructed by hand.)11 2761 3 720 4260 t
+( training material does not)4 1109(not solve the sense discrimination problem, because the hand construction of)10 3211 2 720 4380 t
+( is)1 94( None)1 269( section sets outs several possible machine aids for the construction of training sets.)13 3374( This)1 231(scale up.)1 352 5 720 4500 t
+(totally automatic.)1 700 1 720 4620 t
+( consists of using)3 698( It)1 113( the \256rst method ``cold tagging.'')5 1342(We call)1 308 4 720 4860 t
+10 I f
+(all)3208 4860 w
+10 R f
+(the examples of a word as the training set.)8 1699 1 3341 4860 t
+( results cited above on training from a set of examples with errors, then cold tagging will give a)18 3922(Given the)1 398 2 720 4980 t
+( provided that the major sense accounts for at least sixty to)11 2520(useful model of the major sense of a word)8 1800 2 720 5100 t
+( be used to iterate, training)5 1130( examples selected by the initial model can)7 1815( The)1 219(seventy percent of the uses.)4 1156 4 720 5220 t
+( human judgement required is whether the word)7 1972( The)1 213( a set with less spurious examples.)6 1422(another model on)2 713 4 720 5340 t
+(has such a predominant use.)4 1123 1 720 5460 t
+( does not usually)3 717(A second cold tagging from the examples rejected by the model for the primary sense)14 3603 2 720 5700 t
+( some of the other methods described below can be used on this)12 2606( However,)1 445( one sense.)2 445(produce a model for)3 824 4 720 5820 t
+(residue.)720 5940 w
+( of all examples on the)5 932( is possible to split the set)6 1053( It)1 115(Another method was discussed in the previous section.)7 2220 4 720 6180 t
+( methods here are reliable when they call)7 1644( The)1 206( the target word and then to rejoin the collocates.)9 1961(collocates of)1 509 4 720 6300 t
+( human judgement required is)4 1229( The)1 214( separate.)1 385(for joining two such groups, but they leave too many groups)10 2492 4 720 6420 t
+( classes)1 329( method typically creates)3 1085( The)1 233(thus to join groups of examples that have disjoint collocates.)9 2673 4 720 6540 t
+( the)1 155( building models on the classes formed, the remainder of)9 2332( After)1 267(containing about half of the examples.)5 1566 4 720 6660 t
+( methods are needed for the examples which do not fall into any of the)14 2859( Additional)1 481( scored.)1 313(examples can be)2 667 4 720 6780 t
+(classes so formed.)2 729 1 720 6900 t
+( applied)1 327( We)1 196( on one corpus can be used to select training sets for models on another corpus.)15 3281(Models built)1 516 4 720 7140 t
+( precision of the models on the AP was)8 1565( The)1 205( AP wire corpus.)3 671(the models trained on Hansard examples to the)7 1879 4 720 7260 t
+( by selecting the highest scoring examples for a given model, the)11 2646( However,)1 445( Hansard.)1 387(far below that on the)4 842 4 720 7380 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 24 24
+%%Page: 25 25
+DpostDict begin
+/saveobj save def
+mark
+25 pagesetup
+10 R f
+(- 25 -)2 216 1 2772 480 t
+( following)1 420( The)1 211( the resulting examples as a training set with errors.)9 2112(error rate is usually low enough to use)7 1577 4 720 960 t
+( AP by a model trained on the)7 1294(table shows error rates for the top quarter of examples selected from the)12 3026 2 720 1080 t
+(Hansards.)720 1200 w
+10 B f
+(Table 10: Models Can Usually be Transferred between Corpora)8 2726 1 1517 1500 t
+10 S f
+(_ _________________________________________)1 2062 1 1849 1520 t
+10 R f
+( \(percent\))1 384( errors)1 385( examples)1 402(word quality)1 788 4 1899 1640 t
+( minor)1 389(major minor major)2 1063 2 2409 1760 t
+( 12)1 386( 2)1 365( 2331)1 440(drug 46)1 701 4 1899 1880 t
+( 0)1 386( 0)1 365( 12)1 440(duty 41)1 701 4 1899 2000 t
+( 90)1 386( 2)1 365( 50)1 440(land 961)1 701 4 1899 2120 t
+( 55)1 386( 2)1 365( 88)1 440(language 60)1 701 4 1899 2240 t
+( 23)1 386( 33)1 365( 60)1 440(position 106)1 701 4 1899 2360 t
+( 44)1 386( 0)1 365( 60)1 440(sentence 614)1 701 4 1899 2480 t
+10 S f
+( \347)1 -2062(_ _________________________________________)1 2062 2 1849 2500 t
+(\347)1849 2420 w
+(\347)1849 2320 w
+(\347)1849 2220 w
+(\347)1849 2120 w
+(\347)1849 2020 w
+(\347)1849 1920 w
+(\347)1849 1820 w
+(\347)1849 1720 w
+(\347)1849 1620 w
+(\347)2334 2500 w
+(\347)2334 2460 w
+(\347)2334 2360 w
+(\347)2334 2260 w
+(\347)2334 2160 w
+(\347)2334 2060 w
+(\347)2334 1960 w
+(\347)2334 1860 w
+(\347)2334 1760 w
+(\347)3164 2500 w
+(\347)3164 2460 w
+(\347)3164 2360 w
+(\347)3164 2260 w
+(\347)3164 2160 w
+(\347)3164 2060 w
+(\347)3164 1960 w
+(\347)3164 1860 w
+(\347)3164 1760 w
+(\347)3911 2500 w
+(\347)3911 2420 w
+(\347)3911 2320 w
+(\347)3911 2220 w
+(\347)3911 2120 w
+(\347)3911 2020 w
+(\347)3911 1920 w
+(\347)3911 1820 w
+(\347)3911 1720 w
+(\347)3911 1620 w
+10 R f
+( of the selected examples, selecting the maximum of 60 or the)11 2485(The errors are calculated for a random sample)7 1835 2 720 2800 t
+( table shows that in each of the six cases, the model for the major sense in the)17 3248( The)1 214(number of examples.)2 858 3 720 2920 t
+( this was)2 368( However,)1 449( or less.)2 326(Hansards can generate a set of AP training examples with thirty percent error)12 3177 4 720 3040 t
+( judgement would be)3 901( Human)1 364( six models for minor senses in the Hansards.)8 1972(only true for three of the)5 1083 4 720 3160 t
+( instance,)1 388( For)1 200( for additional techniques.)3 1076(required to supervise this transfer process, marking some groups)8 2656 4 720 3280 t
+( the major sense to subtract examples from the set of minor sense examples)13 3295(using the AP model for)4 1025 2 720 3400 t
+(improves its quality.)2 820 1 720 3520 t
+( a small experiment, we considered the)6 1561( In)1 134(Known synonyms can assist in building models for minor senses.)9 2625 3 720 3760 t
+(targets)720 3880 w
+10 I f
+(tongue, duty,)1 529 1 1021 3880 t
+10 R f
+(and)1585 3880 w
+10 I f
+(land)1764 3880 w
+10 R f
+(, and the synonyms)3 802 1 1942 3880 t
+10 I f
+(language, tax)1 554 1 2779 3880 t
+10 R f
+(, and)1 204 1 3333 3880 t
+10 I f
+(country)3571 3880 w
+10 R f
+( the Hansard corpus, we)4 997(. In)1 167 2 3876 3880 t
+( then applied the synonym cold tag model to \(a\))9 1921( We)1 189( these six words.)3 669(constructed cold tag models of each of)6 1541 4 720 4000 t
+( own)1 204(the entire set of target examples, and \(b\) the set of target examples which scored negatively on their)17 4116 2 720 4120 t
+( following table shows the results.)5 1366( The)1 205(cold tag model.)2 619 3 720 4240 t
+10 B f
+(Table 11: Known Synonyms can Help Build Training Sets)8 2472 1 1644 4420 t
+10 S f
+(_ _____________________________________________________________)1 3091 1 1334 4440 t
+10 R f
+( model)1 275( synonym)1 517( model)1 275( synonym)1 517( sense)1 241( target)1 422(synonym target)1 744 7 1384 4560 t
+( accuracy)1 792(percent accuracy)1 971 2 2323 4680 t
+( major)1 258( not)1 568(all target)1 352 3 2941 4800 t
+( 75)1 792( 90)1 705( 50)1 434(language tongue)1 789 4 1384 4920 t
+( 75)1 792( 90)1 705( 50)1 528(tax duty)1 695 4 1384 5040 t
+( 85)1 792( 50)1 705( 25)1 534(country land)1 689 4 1384 5160 t
+10 S f
+( \347)1 -3091(_ _____________________________________________________________)1 3091 2 1334 5180 t
+(\347)1334 5140 w
+(\347)1334 5040 w
+(\347)1334 4940 w
+(\347)1334 4840 w
+(\347)1334 4740 w
+(\347)1334 4640 w
+(\347)1334 4540 w
+(\347)4425 5180 w
+(\347)4425 5140 w
+(\347)4425 5040 w
+(\347)4425 4940 w
+(\347)4425 4840 w
+(\347)4425 4740 w
+(\347)4425 4640 w
+(\347)4425 4540 w
+10 R f
+( sense as predominant as \256fty percent can have a set of training examples selected)14 3326(The table suggests that a)4 994 2 720 5480 t
+( the synonym model is not strong enough if the target sense)11 2412( However,)1 443( a model for a synonym.)5 986(by applying)1 479 4 720 5600 t
+( be useful to run the synonym model on the residue from the)12 2486( this case, however, it may)5 1087( In)1 138(is a minor one.)3 609 4 720 5720 t
+( set with acceptably few)4 1000( these few examples, this gave a training)7 1689( On)1 182(cold tag model for the target word.)6 1449 4 720 5840 t
+( needed to determine whether application to the entire)8 2175( judgement would be)3 847( Human)1 346(errors in all three cases.)4 952 4 720 5960 t
+( a network of synonyms were constructed from one corpus,)9 2367( If)1 116(set, or to the residue would be a better option.)9 1837 3 720 6080 t
+( an automatic training of examples on another corpus using direct)10 2788(there would be the prospect of quite)6 1532 2 720 6200 t
+(models to construct training sets and models of known synonyms to validate the directly constructed set, or)16 4320 1 720 6320 t
+(to \257ag them for human attention if they failed.)8 1851 1 720 6440 t
+( incremental tagger that requires only)5 1499(As a \256nal fallback, the methods described here can be used to make an)13 2821 2 720 6680 t
+( procedure is)2 541( The)1 218( to reviewing all examples.)4 1131(one third as many judgements from a person as compared)9 2430 4 720 6800 t
+( The)1 228( class.)1 267( computer selects an example at random to start, and the person assigns it a)14 3306(simple. The)1 519 4 720 6920 t
+( any time, the computer selects its next)7 1561( At)1 152(computer than builds a model of the class from the one example.)11 2607 3 720 7040 t
+( examples that it)3 703(example from among those that score negatively on all models, so as to ask about the)15 3617 2 720 7160 t
+( examples reduces the number that the person needs to examine,)10 2624( preselection of)2 629( This)1 235(cannot classify well.)2 832 4 720 7280 t
+(by a factor of about three.)5 1030 1 720 7400 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 25 25
+%%Page: 26 26
+DpostDict begin
+/saveobj save def
+mark
+26 pagesetup
+10 R f
+(- 26 -)2 216 1 2772 480 t
+%INFO[SECTION: LEVEL = 1, NUMBER = 15.  , HEADING = Conclusions]
+9 B f
+(15. Conclusions)1 624 1 720 960 t
+10 R f
+( in natural language processing)4 1350(Word sense disambiguation has been recognized as a major problem)9 2970 2 720 1260 t
+( to the slowness of progress has been the vagueness of)10 2168( contributory factor)2 778( One)1 217(research for over forty years.)4 1157 4 720 1380 t
+( distinctions marked as sense difference in dictionaries are based on a)11 3016( fact,)1 220( In)1 154(the notion of a sense.)4 930 4 720 1500 t
+( number of complements, syntactic features, etymology,)6 2358(multiplicity of factors, such as part of speech,)7 1962 2 720 1620 t
+( one dictionary has some unknown mixture of these and other criteria as)12 3070( Any)1 238(capitalization, and topic.)2 1012 3 720 1740 t
+( senseless to try to reproduce the exact distinctions made by any one)12 3065(goals, and it therefore seems)4 1255 2 720 1860 t
+( fundamental suggestion on sense discrimination is that the problem should be)11 3415( most)1 245(dictionary. Our)1 660 3 720 1980 t
+( relates to sense differences that)5 1456( work described here)3 947( The)1 243(analysed into component subproblems.)3 1674 4 720 2100 t
+(correspond to topic differences.)3 1263 1 720 2220 t
+( both qualitative or symbolic)4 1170( While)1 299( has also deterred progress.)4 1103(The scale of sense discrimination problems)5 1748 4 720 2460 t
+( The)1 212( depended on hand prepared materials.)5 1575(and quantitative methods have been tried repeatedly, each has)8 2533 3 720 2580 t
+( on hand prepared semantic networks and the quantitative methods have)10 2908(qualitative methods have depended)3 1412 2 720 2700 t
+( have achieved considerable progress recently by taking)7 2300( We)1 198( training materials.)2 772(depended on hand tagged)3 1050 4 720 2820 t
+( depending on small amounts of)5 1330( than)1 206( Rather)1 325(advantage of a new source of testing and training materials.)9 2459 4 720 2940 t
+(hand-labeled text, we have been making use of relatively large amounts of parallel text, text such as the)17 4320 1 720 3060 t
+( be used in lieu of)5 733( translation can often)3 849( The)1 208(Canadian Hansards, which are available in multiple languages.)7 2530 4 720 3180 t
+( example, consider the polysemous word)5 1741(hand-labeling. For)1 786 2 720 3300 t
+10 I f
+(drug)3294 3300 w
+10 R f
+(, which has two major senses: \(1\) a)7 1557 1 3483 3300 t
+( a number of sense \(2\) examples by extracting)8 2016( can collect)2 496( We)1 209(medical drug, and \(2\), an illicit drug.)6 1599 4 720 3420 t
+(instances that are translated as)4 1228 1 720 3540 t
+10 I f
+(drogue)1978 3540 w
+10 R f
+( to acquire considerable amounts of)5 1442( this way, we have been able)6 1174(. In)1 163 3 2261 3540 t
+(testing and training material for study of quantitative methods.)8 2501 1 720 3660 t
+( quantitative disambiguation methods that)4 1762(This testing and training material has enabled us to develop)9 2558 2 720 3900 t
+( The)1 213(achieve 92 percent accuracy in discriminating between two senses corresponding to different topics.)12 4107 2 720 4020 t
+( amount of training materials has allowed us to study the methods for discriminating classes)14 3717(relatively large)1 603 2 720 4140 t
+( have used the class of Bayesian decision)7 1693( We)1 195( this problem.)2 567(of examples, and to optimize the methods for)7 1865 4 720 4260 t
+( context that should be)4 965( \256nd that the width of)5 934( We)1 202(models used previously in author identi\256cation work.)6 2219 4 720 4380 t
+( has been considered previously for sense)6 1873(considered for topic identi\256cation is much greater than)7 2447 2 720 4500 t
+( results obtained with these)4 1096( The)1 207( can be quite useful.)4 809(discrimination models, and that as few as ten examples)8 2208 4 720 4620 t
+(models seem to be substantially better than previously reported results, although comparisons are dif\256cult.)13 4254 1 720 4740 t
+( to overcome the bottleneck of quantitative methods: the need for)10 2757(We have also suggested several ways)5 1563 2 720 4980 t
+( human involvement, but each can)5 1400( of the methods does away with)6 1307( None)1 273(examples whose sense is known.)4 1340 4 720 5100 t
+( could form the basis of the part of a lexicographer's workbench devoted to)13 3033( They)1 257(reduce the work required.)3 1030 3 720 5220 t
+(determining sense differences that correspond to topic differences.)7 2654 1 720 5340 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 26 26
+%%Page: 27 27
+DpostDict begin
+/saveobj save def
+mark
+27 pagesetup
+10 R f
+(- 27 -)2 216 1 2772 480 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = References]
+10 I f
+(References)720 960 w
+10 R f
+( Translation of Languages,'' in)4 1243( \(1960\), ``Automatic)2 829(1. Bar-Hillel)1 580 3 795 1140 t
+10 I f
+(Advances in Computers)2 951 1 3473 1140 t
+10 R f
+(, Donald Booth)2 616 1 4424 1140 t
+(and R. E. Meagher, eds., Academic, New York.)7 1906 1 970 1260 t
+( Ezra \(1987\),)2 539(2. Black,)1 433 2 795 1440 t
+10 I f
+( of English Word Senses)4 1008(Towards Computational Discrimination)2 1624 2 1800 1440 t
+10 R f
+(, Ph. D. thesis,)3 608 1 4432 1440 t
+(City University of New York.)4 1196 1 970 1560 t
+( of English Word Senses,'')4 1139( Ezra \(1988\), ``An Experiment in Computational Discrimination)7 2673(3. Black,)1 433 3 795 1740 t
+10 I f
+(IBM Journal of Research and Development)5 1738 1 970 1860 t
+10 R f
+(, v 32, pp 185-194.)4 758 1 2708 1860 t
+( Della Pietra, and Robert Mercer \(1991\), ``Word Sense)8 2266( Peter, Stephen Della Pietra, Vincent)5 1507(4. Brown,)1 472 3 795 2040 t
+(Disambiguation using Statistical Methods,'')3 1881 1 970 2160 t
+10 I f
+(Proceedings of the 29th Annual Meeting of the)7 2127 1 2913 2160 t
+(Association for Computational Linguistics)3 1700 1 970 2280 t
+10 R f
+(, pp 264-270.)2 533 1 2670 2280 t
+( ``Aligning Sentences in Parallel Corpora,'')5 1822( Peter, Jennifer Lai, and Robert Mercer \(1991\))7 1951(5. Brown,)1 472 3 795 2460 t
+10 I f
+( 29th Annual Meeting of the Association for Computational Linguistics)9 2925(Proceedings of the)2 769 2 970 2580 t
+10 R f
+(, pp 169-)2 376 1 4664 2580 t
+(176.)970 2700 w
+( Yaacov, and Serge Lusignam \(1985\), ``Disambiguation by Short Contexts,'')9 3211(6. Choueka,)1 555 2 795 2880 t
+10 I f
+(Computers)4601 2880 w
+(and the Humanities)2 783 1 970 3000 t
+10 R f
+(, v 19. pp. 147-158.)4 783 1 1753 3000 t
+( Unrestricted)1 543( Kenneth \(1989\), ``A Stochastic Parts Program an Noun Phrase Parser for)11 3208(7. Church,)1 494 3 795 3180 t
+(Text,'')970 3300 w
+10 I f
+( International Conference on Acoustics, Speech and Signal Processing)8 2980(Proceeding, IEEE)1 746 2 1289 3300 t
+10 R f
+(,)5015 3300 w
+(Glasgow.)970 3420 w
+( D. A. \(1986\),)3 560(8. Cruse,)1 433 2 795 3600 t
+10 I f
+(Lexical Semantics)1 724 1 1813 3600 t
+10 R f
+(, Cambridge University Press, Cambridge, England.)5 2079 1 2537 3600 t
+( Ido, Alon Itai, and Ulrike Schwall \(1991\), ``Two Languages are more Informative than One,'')14 3785(9. Dagan,)1 460 2 795 3780 t
+10 I f
+( 29th Annual Meeting of the Association for Computational Linguistics)9 2925(Proceedings of the)2 769 2 970 3900 t
+10 R f
+(, pp 130-)2 376 1 4664 3900 t
+(137.)970 4020 w
+( the)1 148( Charles, and Sue Atkins, ``Word Meaning: Starting where MRD's Stop,'' invited talk at)13 3552(10. Fillmore,)1 595 3 745 4200 t
+(29th Annual Meeting of the Association for Computational Linguistics.)8 2863 1 970 4320 t
+( Richard \(1977\), ``)3 757(11. Granger,)1 576 2 745 4500 t
+10 I f
+(FOUL-UP)2078 4500 w
+10 R f
+( out meanings of words from context,'')6 1591(A program that \256gures)3 916 2 2533 4500 t
+10 I f
+(IJCAII-77)970 4620 w
+10 R f
+(, pp. 172-178.)2 558 1 1374 4620 t
+( Marti \(1991\) ??? Waterloo Conference.)5 1600(12. Hearst,)1 510 2 745 4800 t
+( ``Discovering Sublanguage Discovery,'' in)4 1865( Lynette \(1986\),)2 702(13. Hirschman,)1 688 3 745 4980 t
+10 I f
+(Analyzing Language in)2 986 1 4054 4980 t
+(Restricted Domains)1 812 1 970 5100 t
+10 R f
+( Richard Kittredge, eds., Lawrence Erlbaum, Hillsdale,)6 2318(, Ralph Grishman and)3 940 2 1782 5100 t
+(New Jersey.)1 487 1 970 5220 t
+( Graeme \(???\) ``Semantic Interpretation and Ambiguity,'')6 2313(14. Hirst,)1 450 2 745 5400 t
+( in King, M. \(ed.\))4 830( P. \(1984\) ``Machine Translation at the TAUM Group,'')8 2499(15. Isabelle,)1 560 3 745 5580 t
+10 I f
+(Machine)4691 5580 w
+(Translation Today: The State of the Art)6 1579 1 970 5700 t
+10 R f
+(, Edinburgh University Press.)3 1180 1 2549 5700 t
+( Howard \(1988\))2 637(16. Jackson,)1 566 2 745 5880 t
+10 I f
+(Words and their Meaning)3 1030 1 1973 5880 t
+10 R f
+(, Longman, London.)2 819 1 3003 5880 t
+( and Uri Zernik \(1990\),)4 950( Paul, George Krupka, Susan McRoy, Lisa Rau, Norman Sondheimer,)9 2829(17. Jacobs,)1 516 3 745 6060 t
+(``Generic Text Processing: A Progress Report,'')5 1944 1 970 6180 t
+10 I f
+( Language)1 427(Proceedings DARPA Speech and Natural)4 1671 2 2942 6180 t
+(Workshop)970 6300 w
+10 R f
+(, pp. 359-364.)2 558 1 1375 6300 t
+( in Context,'' cited in)4 890( Abraham \(1950\), ``An Experimental Study of Ambiguity)7 2363(18. Kaplan,)1 538 3 745 6480 t
+10 I f
+(Mechanical)4569 6480 w
+(Translation)970 6600 w
+10 R f
+(, v. 1, nos. 1-3.)4 597 1 1438 6600 t
+( Edward, and Phillip Stone \(1975\),)5 1476(19. Kelly,)1 472 2 745 6780 t
+10 I f
+(Computer Recognition of English Word Senses)5 1970 1 2736 6780 t
+10 R f
+(, North-)1 334 1 4706 6780 t
+(Holland, Amsterdam.)1 863 1 970 6900 t
+( Francis \(1967\),)2 689( H., and W.)3 538(20. Kucera,)1 537 3 745 7080 t
+10 I f
+(Computational Analysis of Present-day American English)5 2454 1 2561 7080 t
+10 R f
+(,)5015 7080 w
+(Brown University Press, Providence.)3 1479 1 970 7200 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 27 27
+%%Page: 28 28
+DpostDict begin
+/saveobj save def
+mark
+28 pagesetup
+10 R f
+(- 28 -)2 216 1 2772 480 t
+( Ice)1 165( Michael \(1986\), ``Automatic Sense Disambiguation: How to tell a Pine Cone from an)13 3686(21. Lesk,)1 444 3 745 960 t
+(Cream Cone,'')1 595 1 970 1080 t
+10 I f
+(Proceeding of the 1986 SIGDOC Conference)5 1821 1 1592 1080 t
+10 R f
+( Computing Machinery,)2 960(, Association for)2 667 2 3413 1080 t
+(New York.)1 443 1 970 1200 t
+( Group Limited, eds. \(1978\),)4 1206(22. Longman)1 608 2 745 1380 t
+10 I f
+(Longman Dictionary of Contemporary English)4 1942 1 2624 1380 t
+10 R f
+(, Longman,)1 474 1 4566 1380 t
+(Burnt Mill, England.)2 834 1 970 1500 t
+( Pidgin Translation,'' in)3 1027( Margaret \(1967\), ``Mechanical)3 1325(23. Masterson,)1 666 3 745 1680 t
+10 I f
+(Machine Translation)1 864 1 3810 1680 t
+10 R f
+(, Donald)1 366 1 4674 1680 t
+(Booth, ed., Wiley, 1967.)3 983 1 970 1800 t
+( Fredrick, and David Wallace \(1964\))5 1508(24. Mosteller,)1 633 2 745 1980 t
+10 I f
+(Inference and Disputed Authorship: The Federalist)5 2096 1 2919 1980 t
+10 R f
+(,)5015 1980 w
+(Addison-Wesley, Reading, Massachusetts.)2 1706 1 970 2100 t
+( W. v. O. \(1960\),)4 682(25. Quine,)1 494 2 745 2280 t
+10 I f
+(Word and Object)2 688 1 1946 2280 t
+10 R f
+(, MIT Press, Cambridge.)3 988 1 2634 2280 t
+( \(1977\), ``Viewing Parsing as Word Sense Discrimination,'' in)8 2529( Charles)1 331(26. Reiger,)1 516 3 745 2460 t
+10 I f
+(A Survey of Linguistic)3 892 1 4148 2460 t
+(Science)970 2580 w
+10 R f
+(, W. Dingall, ed., Greylock.)4 1109 1 1274 2580 t
+( et al. \(eds.\) \(1987\))4 827( J., Hanks, P., Fox, G., Moon, R., Stock, P.)9 1862(27. Sinclair,)1 561 3 745 2760 t
+10 I f
+(Collins Cobuild English)2 1003 1 4037 2760 t
+(Language Dictionary,)1 883 1 970 2880 t
+10 R f
+(Collins, London and Glasgow.)3 1225 1 1878 2880 t
+( ``Parsing and Comprehending with Word Experts \(A Theory and its)10 3106( Steven \(198X\),)2 705(28. Small,)1 484 3 745 3060 t
+(Realization\),'' in WHERE???)2 1194 1 970 3180 t
+( Dunphy, M. S. Smith, and D. M. Ogilvie \(1966\),)9 2122( Phillip, D. C.)3 602(29. Stone,)1 478 3 745 3360 t
+10 I f
+( A)1 127(The General Inquirer:)2 925 2 3988 3360 t
+(Computer Approach to Content Analysis)4 1628 1 970 3480 t
+10 R f
+(, MIT Press, Cambridge.)3 988 1 2598 3480 t
+( Text Files,'' in)3 646( Donald \(1987\), ``Knowledge Resource Tools for Accessing Large)8 2724(30. Walker,)1 543 3 745 3660 t
+10 I f
+(Machine)4691 3660 w
+( Methodological Issues)2 957(Translation: Theoretical and)2 1194 2 970 3780 t
+10 R f
+(, Sergei Nirenberg, ed., Cambridge University)5 1919 1 3121 3780 t
+(Press, Cambridge, England.)2 1113 1 970 3900 t
+( U. \(1980\),)2 438(31. Weinreich,)1 665 2 745 4080 t
+10 I f
+(On Semantics)1 552 1 1873 4080 t
+10 R f
+(, University of Pennsylvania Press, Philadelphia.)5 1949 1 2425 4080 t
+( Stephen \(1973\), ``Learning to Disambiguate,'')5 1903(32. Weiss,)1 494 2 745 4260 t
+10 I f
+( Retrival)1 351(Information Storage and)2 995 2 3170 4260 t
+10 R f
+(, v. 9, pp 33-)4 524 1 4516 4260 t
+(41.)970 4380 w
+( Multiple Meaning,'' in)3 983( Victor \(1955\), ``Syntax and the Prolem of)7 1787(33. Yngve,)1 516 3 745 4560 t
+10 I f
+(Machine Translation of)2 971 1 4069 4560 t
+(Languages)970 4680 w
+10 R f
+(, William Locke and Donald Booth, eds., Wiley, New York.)9 2405 1 1409 4680 t
+( \(1990\) ``Tagging Word Senses in Corpus: The Needle in the Haystack Revisited,'')12 3600( Uri)1 179(34. Zernik,)1 516 3 745 4860 t
+(WHERE???)970 4980 w
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 28 28
+%%Page: 29 29
+DpostDict begin
+/saveobj save def
+mark
+29 pagesetup
+10 R f
+(- 29 -)2 216 1 2772 480 t
+%INFO[SECTION: LEVEL = 2, NUMBER = none, HEADING = Appendix]
+10 I f
+(Appendix)720 960 w
+10 CW f
+(double)720 1260 w
+(loggam\(z\) double z; {)3 1260 1 840 1380 t
+(if\(z<30\) return\(lgamma\(z\)\);)1 1620 1 840 1500 t
+(return\(0.9189385+\(z-.5\)*log\(z\)- z + log\(1+.08333333/z\)\); })4 3480 1 840 1620 t
+(void)720 1860 w
+(train_one_model\(n_terms, approximate_zeros, global_probs,)2 4200 1 840 1980 t
+(local_counts,N,V,p_wild\))720 2100 w
+(double n_terms, *global_probs, *local_counts, N, V, p_wild;)6 3540 1 780 2220 t
+(int approximate_zeros;)1 1320 1 780 2340 t
+({int i, term;)2 780 1 720 2580 t
+( w1,)1 317( pc, renorm, unseen,)3 1251(double fd, sumpc, sumft, fdt, pdt, pt, ps1,)7 2692 3 780 2700 t
+(w2, A, n, a;)3 720 1 720 2820 t
+(double f0, f1, p0, p1, k0, k1, lgsum, lgfix, lgA, lgNA, p, lam;)12 3780 1 780 2940 t
+(f0 = .5;)2 480 1 900 3180 t
+(f1 = .5;)2 480 1 900 3300 t
+(n = n_terms;)2 720 1 780 3540 t
+(p = p_wild;)2 660 1 780 3660 t
+(sumpc = sumft = 0;)4 1080 1 780 3780 t
+(lgfix = loggam\(\(double\) \(N+1\)\)+loggam\(n+1\)-loggam\(N+n+1\)+ 2*loggam\(f1\))4 4260 1 780 3900 t
+(- loggam\(2*f1\);)1 900 1 720 4020 t
+(for\(i=0; i<V; i++\) {)3 1200 1 780 4140 t
+( word counts over document*/)4 1680( /*input:)1 840(local[i] = local_counts[i];)2 1620 3 900 4260 t
+(a = \(double\) local_counts[i];)3 1740 1 900 4380 t
+(if\(approximate_zeros && a == 0\) continue;)5 2460 1 900 4500 t
+( of term in doc*/)4 1020( /*prob)1 1380(pdt = a/n;)2 600 3 900 4620 t
+(pt=global_probs[i];)900 4740 w
+( frequency*/)1 720( /*global)1 1560(A = pt*N;)2 540 3 900 4860 t
+(lgA = loggam\(A+a+1-f0\)-loggam\(A+1-f0\)-loggam\(a+1-f1\);)2 3180 1 900 4980 t
+(lgNA = loggam\(N-A+n-a+1-f0\)-loggam\(N-A+1-f0\)-loggam\(n -a+1-f1\);)3 3780 1 900 5100 t
+( lgfix;)1 420( +)1 180(lgsum = lgA + lgNA)4 1080 3 900 5220 t
+(p1 = \(a+1-f1\)/\(n+2*\(1-f1\)\);)2 1620 1 900 5340 t
+(p0 = \(A +a +1-f0\)/\(N +n +2*\(1-f0\)\);)6 2100 1 900 5460 t
+(k1 = 1;)2 420 1 900 5580 t
+(k0 = exp\(lgsum\);)2 960 1 900 5700 t
+(lam = \(p*k1\)/\( \(1-p\)*k0 + p*k1\);)5 1920 1 900 5820 t
+( raw result*/)2 780( /*the)1 540(pc= \(1-lam\)*p0 +lam*p1;)2 1380 3 900 5940 t
+( %8g)1 334( lgNA:)1 514( %8g)1 274( lgA:)1 393( %d lgfix: %g)3 879(fprintf\(stdout, "i:)1 1746 6 900 6060 t
+( %8g p0: %8g p1 %8g0,)5 1770(lgsum: %8g k0: %8g lam:)4 2028 2 720 6180 t
+(i,lgfix,lgA,lgNA,lgsum,k0,lam,p0,p1\);)720 6300 w
+( %8g a= %8g0,N,A,n,a\);)3 1320( n=)1 300( %8g A= %8g)3 660( N=)1 300(fprintf\(stdout, ")1 1020 5 900 6420 t
+(local[i] = pc;)2 840 1 900 6540 t
+(sumpc += pc;)2 720 1 900 6660 t
+(sumft += pt;)2 720 1 900 6780 t
+(})780 6900 w
+(renorm = 1/\(sumpc+\(1-sumft\)\);)2 1740 1 780 7020 t
+(unseen = log\( 1/\(sumpc+\(1-sumft\)\)\);)3 2100 1 780 7140 t
+(fprintf\(stdout,)780 7260 w
+( unseen= %g; renorm= %g; sumpg)5 1830("bayesian prior prob= %g n = %g;)6 1950 2 1260 7380 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 29 29
+%%Page: 30 30
+DpostDict begin
+/saveobj save def
+mark
+30 pagesetup
+10 R f
+(- 30 -)2 216 1 2772 480 t
+10 CW f
+(= %g; sumpc = %g0,)4 1080 1 720 960 t
+(p, n, unseen, renorm, sumft, sumpc\);)5 2160 1 1260 1080 t
+(for\(i = 0; i < V; i++\) {)7 1440 1 840 1200 t
+(if\(!approximate_zeros || local[i]>0\){)2 2220 1 900 1320 t
+( * renorm;)2 600( local[i])1 600(local[i] =)1 600 3 1020 1440 t
+(if\(approximate_zeros && fabs\(\(double\)local[i]\) < .01\) local[i] = 0;)7 4020 1 1020 1560 t
+(})900 1680 w
+(else local[i] = global_probs[i]*renorm;)3 2340 1 900 1800 t
+(} })1 180 1 780 1920 t
+cleartomark
+showpage
+saveobj restore
+end
+%%EndPage: 30 30
+%%Trailer
+DpostDict begin
+done
+end
+%%Pages: 30
+%%DocumentFonts: Times-Bold Helvetica Times-Italic Courier Times-Roman Symbol Times-Roman

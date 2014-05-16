@@ -1,0 +1,530 @@
+
+<!DOCTYPE html>
+<html><!-- InstanceBegin template="/Templates/nanocenter-standard.dwt.php" codeOutsideHTMLIsLocked="true" -->
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="author" content="University of Maryland NanoCenter" />
+	<meta name="description" content="" />
+	<meta name="keywords" content="" />
+  <meta name="google-site-verification" content="DWOal-diUvh8tSrH3R0mubIDZNtVXkhWJoXABqi83AM" />
+	<!-- InstanceParam name="page-title-section" type="boolean" value="false" -->
+	
+	<!-- InstanceBeginEditable name="title" -->
+	<title>Maryland NanoCenter</title>
+	<!-- InstanceEndEditable -->
+			<meta name="google-site-verification" content="DWOal-diUvh8tSrH3R0mubIDZNtVXkhWJoXABqi83AM" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="author" content="University of Maryland NanoCenter" />
+		
+		<link rel="shortcut icon" href="/favicon.gif" />
+		<link rel="stylesheet" type="text/css" href="/lib/css/reset.css" media="screen, print" />
+		<link rel="stylesheet" type="text/css" href="/lib/css/text.css" media="screen, print" />
+		<link rel="stylesheet" type="text/css" href="/lib/css/grid.css" media="screen, print" />
+ 		<link rel="stylesheet" type="text/css" href="/lib/css/nav.css" media="screen, print" />
+		<link rel="stylesheet" type="text/css" href="/lib/css/960.css" media="screen, print" />
+		<link rel="stylesheet" type="text/css" href="/lib/css/nanocenter.css" media="screen, print" />
+		<link rel="stylesheet" type="text/css" href="/lib/css/slideshow.css" media="screen, print" />
+		<link rel="stylesheet" type="text/css" href="/lib/js/jquery/css/smoothness/jquery-ui-1.8.7.custom.css" media="screen, print" />
+
+		<script type="text/javascript" src="/lib/js/jquery/js/jquery-1.4.4.min.js"></script>
+		<script type="text/javascript" src="/lib/js/jquery/js/jquery-ui-1.8.7.custom.min.js"></script>
+		<script type="text/javascript" src="/scheduler/functions.js"></script>
+		<script type="text/javascript" src="/lib/js/nanocenter.js"></script>
+		<script type="text/javascript" src="/lib/js/jquery/plugins/maxSize/maxSize.min.js"></script>
+		<script type="text/javascript" src="/lib/js/jquery/plugins/hoverIntent/jquery.hoverIntent_r6.minified.js"></script>
+		<script type="text/javascript" src="/lib/js/jquery/plugins/form/jquery.form.js"></script>
+		<script type="text/javascript" src="/lib/js/jquery/plugins/simpletip-1.3.1/jquery.simpletip-1.3.1.min.js"></script>
+		<script type="text/javascript" src="/lib/js/rounded.js"></script>
+		<script type="text/javascript" src="/lib/js/jquery/plugins/waypoints/waypoints.min.js"></script>
+		<script type="text/javascript" src="/lib/js/jquery/plugins/nivo-slider/jquery.nivo.slider.pack.js"></script>
+    <link rel="stylesheet" href="/lib/js/jquery/plugins/nivo-slider/nivo-slider.css" type="text/css" media="screen" />
+    <link rel="stylesheet" href="/lib/js/jquery/plugins/nivo-slider/themes/nanocenter/nivo-slider-nanocenter.css" type="text/css" media="screen" />
+		<!--	Not using these scripts yet
+		<script type="text/javascript" src="/lib/js/jquery/plugins/jeditable/jquery.jeditable.mini.js"></script>
+		<script type="text/javascript" src="/lib/js/modernizr-1.6.min.js"></script>
+		-->
+		<script type="text/javascript">
+		  var _gaq = _gaq || [];
+		  _gaq.push(['_setAccount', 'UA-85113-1']);
+		  _gaq.push(['_trackPageview']);
+		
+		  //(function() {
+			//var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+			//ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+			//var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+		  //})();
+
+		  $(document).ready(function() {
+		  offset = 960 - 240 + (($(window).width() - 960) / 2);
+		  $('#page-nav').css('left',offset);
+		  $('#top-menu-container').delay(200).animate({height: 'toggle'}, 500, function() {});
+			$('#page-nav').waypoint(function(event, direction) {
+				if (direction === 'down') {
+					$(this).addClass('float-module');
+				} else {
+					$(this).removeClass('float-module');
+				}
+			});
+			
+			return false;
+		  });
+		  $(window).resize(function() {
+		  	if ($(window).width() > 960) {
+			  offset = 960 - 240 + (($(window).width() - 960) / 2);
+			  $('#page-nav').css('left',offset);
+		  	}
+		  });
+		</script>
+			<!-- InstanceBeginEditable name="head" -->
+	<style type="text/css">
+	#pub-list ul{
+		margin:0 -10px 0 -10px;
+	}
+	.slider-wrapper {
+		margin-bottom:10px;
+	}
+	</style>
+<!-- InstanceEndEditable -->
+</head>
+<body>
+	<div id="top-menu-container">
+			<div id="top-menu">
+				<ul class="nav main">
+					<li class=""><a href="/"><img src="/images/web/logo.nanocenter.white.menu.png" alt="Maryland NanoCenter Logo" /></a>
+          	<ul>
+              <li><a href="/fablab/">FabLab</a></li>
+            	<li><a href="/labs/NISP/">NispLab</a></li>
+            	<li><a href="/nanoopticslab/">NanoOptics Lab</a></li>
+            </ul>
+          </li>
+					<li class="about"><a href="/about/">About</a>
+						<ul>
+							<li><a href="/about/">Overview</a></li>
+							<li><a href="/about/director/">Director</a></li>
+							<li><a href="/about/staff/">Staff</a></li>
+							<li><a href="/about/jobs/">Job Opportunities</a></li>
+							<li><a href="/about/logos/">Logos</a></li>
+							<li><a href="/about/directions/">Directions</a></li>
+							<li><a href="/about/contact/">Contact</a></li>
+						</ul>
+					</li>
+					<li class="faculty"><a href="/faculty/">Faculty</a></li>
+					<li class="news"><a href="/news/">News</a>
+						<ul>
+							<li><a href="/news/">Newsroom</a></li>
+							<li><a href="/news/news_search.php">Search</a></li>
+							<li><a href="/news/news_archives.php">Archives</a></li>
+							<li><a href="/news/press_releases.php">Press Releases</a></li>
+							<li><a href="/rss/">RSS Feed</a></li>
+						</ul>
+					</li>
+					<li class="events"><a href="/events/">Events</a>
+						<ul>
+							<li><a href="/events/">Event List</a></li>
+							<li><a href="/events/nanocolloquium/">Nanocolloquium</a></li>
+							<li><a href="/nanoday/">NanoDay</a></li>
+						</ul>
+					</li>
+					<li class="facilities"><a href="/facilities/">Facilities</a>
+						<ul>
+							<li><a href="/facilities/">Overview</a></li>
+							<li><a href="/facilities/become-a-user">Become A User</a></li>
+							<li><a href="/fablab/">FabLab</a></li>
+							<li><a href="/labs/NISP/">NispLab</a></li>
+							<li><a href="/nanoopticslab/">NanoOptics Lab</a></li>
+							<li><a href="/facilities/partner/">NanoCenter Partner Labs</a>
+								<ul>
+									<li><a href="">SAC</a></li>
+									<li><a href="">LAMP</a></li>
+									<li><a href="">NBSL</a></li>
+									</ul>
+							</li>
+							<li><a href="/facilities/other/">Other UMD Labs</a>
+							</li>
+						</ul>
+					</li>
+					<li class="equipment"><a href="/equipment/">Equipment</a>
+						<ul>
+							<li><a href="/equipment/">Equipment List</a></li>
+							<li><a href="/scheduler/">Equipment Scheduler</a></li>
+						</ul>
+					</li>
+					<li class="connections"><a href="/connections/">Connections</a>
+						<ul>
+							<li><a href="/connections/">Overview</a></li>
+							<li><a href="/connections/centers/">Centers &amp; Institutes</a></li>
+							<li><a href="/connections/programs/">Programs</a>
+								<ul>
+									<li><a href="/connections/programs/emerging-leaders/">Emerging Leaders</a></li>
+									<li><a href="/connections/programs/ew-postdoc/">Ellen Williams Post Doc</a></li>
+									<li><a href="/connections/programs/cnst/">CNST Collaboration</a></li>
+									<li><a href="/connections/programs/sparks/">Sparks Symposium</a></li>
+								</ul>
+							</li>
+						</ul>
+					</li>
+					<li class="research"><a href="/research/">Research</a>
+						<ul>
+							<li><a href="/research/">Overview</a></li>
+							<li><a href="/research/publications/">Publications</a>
+								<ul>
+									<li><a href="/research/publications/submit.php">Submit a Publication</a></li>
+								</ul>
+							</li>
+							<li><a href="/research/acknowledge/">Acknowledge</a></li>
+							<li><a href="/research/threads/">Threads</a>
+								<ul>
+									<li><a href="/research/threads/biotech">Biotech</a></li>
+									<li><a href="/research/threads/energy">Energy</a></li>
+								</ul>
+							</li>
+							<li><a href="/research/proposals/">Proposals</a>
+								<ul>
+									<li><a href="/proposals/efrc/">EFRC</a></li>
+								</ul>
+							</li>
+							<!-- <li><a href="/research/faculty/">Faculty Profiles</a></li> -->
+							<!-- <li><a href="/research/patents/">Patents</a></li> -->
+							<!-- <li><a href="/research/media/">Media Coverage</a></li> -->
+						</ul>
+					</li>
+					<li class="education"><a href="/education/">Education</a>
+						<ul>
+							<li><a href="/education/">Overview</a></li>
+							<li><a href="/education/enma181/">Intro to Nanotechnology</a></li>
+							<li><a href="/education/nano-minor/">Nano Minor</a>
+								<ul>
+									<li><a href="/education/nano-minor/courses/">Courses</a></li>
+									<!-- <li><a href="/education/nano-minor/model">Model Program</a></li> -->
+								</ul>
+							</li>
+						</ul>
+					</li>
+          <!-- 
+					<li class="secondary help">
+						<a href="/help" title="Help Section">Help</a>
+					</li>
+          -->
+				</ul>
+			</div>
+		</div>
+		<div id="nanocenter-header-container">
+			<div id="nanocenter-header" style="background:url(/images/web/header_backgrounds/2.jpg) no-repeat;">
+			<div id="nanocenter-header-fade-overlay">
+				<div id="nanocenter-header-logo">
+					<a href="/"><img src="/images/logos/nanocenter/logo.nanocenter.white.png" alt="NanoCenter Logo" /></a>
+				</div>
+				<div id="nanocenter-header-search">
+					<a href="/login.php"><strong>Login</strong></a> |
+							  <a href="/register.php"><strong>Register</strong></a>					<!-- Google CSE Search Box Begins  -->
+					<form action="/search.php" id="searchbox_007626350928369927294:rai-gn7lyee">
+					  	<input type="hidden" name="cx" value="007626350928369927294:rai-gn7lyee" />
+					  	<input type="hidden" name="cof" value="FORID:11" />
+					  	<input type="text" name="q" size="25" /><br />
+				  		<input class="button" type="submit" name="sa" value="Search" />
+					</form>
+					<!-- <script type="text/javascript" src="http://www.google.com/coop/cse/brand?form=searchbox_007626350928369927294%3Arai-gn7lyee&amp;lang=en"></script> -->
+					<!-- Google CSE Search Box Ends -->
+				</div>
+				<div class="clear"></div>
+			</div>
+			</div>
+		</div>
+		<div class="clear"></div>
+		<div class="container_16" id="nanocenter-content">
+			<div id="page-top">
+				<span style="float:left;">May 15, 2014</span>
+				<span style="float:right;padding-right:5px;">
+					<a href="http://www.umd.edu/">UMD Home</a>
+					<a href="/fablab/">FabLab</a>
+					<a href="/labs/NISP/">NispLab</a>
+					<a href="/nanoopticslab/">NanoOptics Lab</a>
+				</span>
+			</div>
+			<div class="clear"></div>
+		<div class="grid_16" id="sub-top">
+		<ul id="breadcrumb">
+			<li><a href="/">Home</a></li>
+			<!-- InstanceBeginEditable name="breadcrumb" --> <!-- InstanceEndEditable -->
+		</ul>
+		<ul id="page-utils">
+			<!-- <li><a href="">Share</a></li> -->
+			<li><a href="javascript:window.print()">Print</a></li>
+		</ul>
+	</div>
+	<div class="clear"></div>
+
+	
+
+	<!-- CONTENT START -->
+		<!-- InstanceBeginEditable name="content" -->
+	<div class="grid_12" id="wrapper">
+		<div class="slider-wrapper theme-nanocenter">
+			<div class="nivoSlider" id="slider">
+				<img src="/images/highlights/highlight.nanoday2014.jpg" data-thumb="/images/highlights/highlight.nanoday2014.thumb.jpg" alt=""  title="#nanoday-caption" />
+      	<img src="/images/highlights/highlight.fablab.wafer.jpg" data-thumb="/images/highlights/highlight.fablab.wafer.thumb.jpg" alt=""  title="#fablab-caption" />
+				<img src="/images/highlights/highlight.nisplab.jpg" data-thumb="/images/highlights/highlight.nisplab.thumb.jpg" alt=""  title="#nisplab-caption" />
+        <img src="/images/highlights/highlight.education.jpg" data-thumb="/images/highlights/highlight.education.thumb.jpg" alt=""  title="#education-caption" />
+      </div>
+
+      <div id="nanoday-caption" class="nivo-caption">
+        <h2 class="slide-title">NanoDay 2014</h2>
+        <img src="/images/logos/nanocenter/logo.nanoday.2014.png" />
+        <p>The NanoCenter is hosting NanoDay 2014 on Wed, June 11.  The event will feature plenary talks by prominent 
+        scientists in nanoscience, a poster session for breaking research, and networking opportunities.</p>
+        <!-- <p>Additionally, there will be workshops for SEM, TEM, and FIB the following two days hosted by the NispLab.</p> -->
+        <p><a href="/nanoday/">Click here for NanoDay info</a></p>
+      </div>
+      
+      
+      <div id="fablab-caption" class="nivo-caption">
+        <h2 class="slide-title">NanoCenter FabLab</h2>
+        <p>Our class 1000 clean room is open to all faculty, students, researchers,
+          government labs and companies.</p>
+        <p>The FabLab staff have combined over 100 years of fabrication experience using
+          standard techniques for deposition, lithography and metrology.</p>
+        <p><a href="/labs/FabLab/">Learn more about the FabLab</a></p>
+      </div>
+
+      <div id="nisplab-caption" class="nivo-caption">
+        <h2 class="slide-title">NanoCenter NispLab</h2>
+        <p>The NispLab gives researchers the capability to visualize and characterize
+          their research by utilizing the lastest in SEM and TEM technology.  Our staff
+          can train you to use our equipment or handle the job for you.</p>
+        <p></p>
+        <p><a href="/labs/NISP/">Learn more about using the NispLab</a></p>
+      </div>
+
+      <div id="education-caption" class="nivo-caption right">
+        <h2 class="slide-title">Nanoscience Education</h2>
+        <p>The Materials Science and Engineering Deptartment offers an <a href="/education/enma181/">Intro
+          to Nanotechnology</a> (ENMA181) 1 credit course to give insight to
+          this tiny world.  Additionally, an <a href="/education/nano-minor/">Interdisciplinary Minor</a> can be earned
+          by students from Engineering, Physics, or Chemistry.</p>
+        <p><a href="/education/">Learn more about nano education</a></p>
+      </div>
+		</div>
+		<script type="text/javascript">
+			$(window).load(function(){
+				$("#slider").nivoSlider({
+						effect:"fade",
+						animSpeed:500,
+						pauseTime:10000,
+						startSlide:0,
+						directionNav:true,
+						controlNav:true,
+						controlNavThumbs:true,
+						pauseOnHover:true,
+						manualAdvance:false,
+						afterChange: function() {
+							if ($('#slider').data("nivo:vars").currentSlide == 3) {
+								$('.nivo-caption').animate({left:'+=420'});
+							}
+							if ($('#slider').data("nivo:vars").currentSlide != 3 && $('.nivo-caption').css('left') != '0px') {
+								$('.nivo-caption').animate({left:'-=420'});
+							}
+						}
+				});
+								
+				$('.nivo-controlNav').animate({
+					bottom: '-=50'
+				}, function() {
+					$('a.nivo-control').fadeTo('slow', 0.7);
+				});
+	
+				$('.nivo-controlNav').hoverIntent(
+					function() {
+						$('.nivo-controlNav').animate({
+							bottom: '+=65'
+						});
+					},
+					function() {
+						$('.nivo-controlNav').animate({
+							bottom: '-=65'
+						});
+					}
+				);
+	
+				$('a.nivo-control').hoverIntent(
+					function() {
+						$(this).fadeTo('slow', 1.0);
+					},
+					function() {
+						$(this).fadeTo('slow', 0.7);
+					}
+				);
+			});
+    </script>
+
+		<div class="grid_6 grid_no_margin">
+			<div class="box nanocenter-module facilities">
+				<h2><a href="/facilities/become-a-user/" title="Learn about our facilities">Want to Use Our Facilities?</a></h2>
+				<div class="block">
+					<p>The NanoCenter labs include the <a href="/fablab/">FabLab</a> and
+					<a href="/nisplab/">NispLab</a>.
+					In addition to these resources, access to	<a href="/facilities/shared/">other shared equipment</a> are
+					located in <a href="/facilities/partner/">partner labs</a>
+					accross campus to cover the gamut of research necessities.
+					</p>
+					<p>We strive to deliver high quality tools, advice and service to our
+					entire research	community.  If you are interested in doing research in one of
+					<a href="/facilities/shared/">our labs</a>, then
+					<a href="/facilities/become-a-user/">click here for more information</a>.
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="grid_6" style="margin:0 0 0 20px;">
+			<div class="box about">
+				<h2><a href="/about/">About the NanoCenter</a></h2>
+				<div class="block">
+					<p>The Maryland NanoCenter is the hub of a network of interdisciplinary researchers,
+						faculty, labs, and organizations with the goal of advancing the knowledge and understanding of
+						all things nano.</p>
+					<p>This website is here for information on our efforts, encourage collaborations, and facilitate
+						our current users.  While you are here, you can use this website to:
+					</p>
+					<ul>
+						<li><a href="/about/">Learn about us in the About section</a></li>
+						<li><a href="/faculty/">Browse our searchable faculty list</a></li>
+						<li><a href="/facilities/become-a-user/">sign up to use our fabrication tools and electron microscopes</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+		<div class="grid_12">
+			<div class="box" id="pub-list">
+				<h2><a href="/research/publications/" title="View our publications list">Recent Publications</a></h2>
+					<ul>
+					<li style="display:block;padding:15px 5px;margin:0;background-color:#efefef;border-bottom:solid 1px #bbb;">
+					1. <strong>Voltage gated ion and molecule transport in engineered nanochannels: theory, fabrication and applications</strong><br />Weihua Guan, Sylvia Xin Li, Mark A Reed<br />
+						<i><strong>Nanotechnology</strong></i>, 2014-03, 25 (12), pp.122001-<br /><a href="http://dx.doi.org/10.1088/0957-4484/25/12/122001" target="_blank">doi: 10.1088/0957-4484/25/12/122001</a>				</li>
+						<li style="display:block;padding:15px 5px;margin:0;background-color:#fff;border-bottom:solid 1px #bbb;">
+					2. <strong>Copper-Stabilized Sulfur-Microporous Carbon Cathodes for Li-S Batteries</strong><br />Shiyou Zheng, Feng Yi, Zhipeng Li, Yujie Zhu, Yunhua Xu, Chao Luo, Junhe Yang, Chunsheng Wang<br />
+						<i><strong>Advanced Functional Materials</strong></i>, 2014-03,  (), pp.<br /><a href="http://dx.doi.org/10.1002/adfm.201304156" target="_blank">doi: 10.1002/adfm.201304156</a>				</li>
+						<li style="display:block;padding:15px 5px;margin:0;background-color:#efefef;border-bottom:solid 1px #bbb;">
+					3. <strong>Interface scattering in polycrystalline thermoelectrics</strong><br />Adrian Popescu, Paul M. Haney<br />
+						<i><strong>Journal of Applied Physics</strong></i>, 2014-03, 115 (12), pp.123701<br /><a href="http://dx.doi.org/10.1063/1.4869259" target="_blank">doi: 10.1063/1.4869259</a>				</li>
+			</ul>
+					<p><a href="/research/publications/">View Our Full Publication List</a>
+			</div>
+		</div>
+
+	</div>
+
+	<div class="grid_4">
+		<div id="news" class="box nanocenter-module news">
+					<h2><a href="/news/">News</a>
+		</h2>
+		<div class="block">
+
+
+
+
+
+
+
+
+        <p class="caption4">
+	<b>Call for Papers: NanoDay 2014</b>
+        <a href="news/news_story.php?id=8155">More&raquo;</a></p>
+
+
+        <p class="caption4">
+	<b>Alumnus and Whiting-Turner CEO Regan to Speak at Spring Commencement</b>
+        <a href="news/news_story.php?id=8143">More&raquo;</a></p>
+
+
+        <p class="caption4">
+	<b>Smithsonian Secretary Clough To Deliver Special Lecture at UMD</b>
+        <a href="news/news_story.php?id=8135">More&raquo;</a></p>
+
+
+
+
+
+		</div>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				//$('#news table tbody tr:last-child').css('display', 'none');
+				$('#news a').attr('href').replace(/(&)/, "&amp;");
+			});
+		</script>
+			<div class="clear"></div>
+		</div>
+		<div id="events" class="box nanocenter-module events">
+					<h2><a href="/events/">Events</a></h2>
+		<div class="block"><p class="rightHeader">Upcoming Events</p><p class="caption4"><b>June 11, 2014 10:00 a.m.</b><br>
+Nanoday 2014&nbsp;<a href="events/index.php?mode=&amp;d=9393">More&raquo;</a></p>
+<p class="caption4"><b>June 17, 2014 9:30 a.m.</b><br>
+NanoCenter NISP Lab SEM Summer Short Course&nbsp;<a href="events/index.php?mode=&amp;d=9464">More&raquo;</a></p>
+<p class="caption4"><b>June 24, 2014 9:30 a.m.</b><br>
+NanoCenter NISP Lab TEM Summer Short Course&nbsp;<a href="events/index.php?mode=&amp;d=9141">More&raquo;</a></p>
+
+
+
+
+		</div>			<script>
+			  $(document).ready(
+				function() {
+				  $('#events').find('p.rightHeader').hide();
+				}
+			  );
+			</script>
+		</div>
+		<div class="box"> <img src="/images/media/info_sheets.png" alt="" /> Download a PDF copy of our Information Sheets for:
+			<ul>
+				<li><a href="/about/nanocenter_info_sheet.pdf">NanoCenter</a></li>
+				<li><a href="/about/fablab_info_sheet.pdf">FabLab</a></li>
+				<li><a href="/about/nisplab_info_sheet.pdf">NispLab</a></li>
+			</ul>
+		</div>
+    
+    <div style="text-align:center;">
+    	<a href="https://twitter.com/UMDNanoCenter" class="twitter-follow-button" data-show-count="false" data-size="large">Follow @UMDNanoCenter</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+    </div>
+	</div>
+
+	<div class="clear"></div>
+
+	<div class="grid_8">
+	</div>
+
+	<div class="clear"></div>
+	<script>
+		$(document).ready(function(){
+			$('#home-row2').height($('#home-row2').height());
+		});
+	</script>
+<!-- InstanceEndEditable -->
+		<!-- CONTENT END -->
+	<div class="clear"></div>
+	</div>
+		<div class="clear"></div>
+		<div class="container_16" id="site-info">
+			<p><span class="footer-section-head">Colleges</span>
+				<a href="http://www.eng.umd.edu/">A. James Clark School of Engineering</a><br />
+				<a href="http://www.cmns.umd.edu/">The College of Computer, Mathematical, and Natural Sciences</a>
+			</p>
+			<p><span class="footer-section-head">Communicate</span>
+				<a href="/about/contact/">Contact Us</a><br />
+				<a href="/about/contact/webmaster/">Contact the Webmaster</a><br />
+				<a href="http://twitter.com/#!/UMDNanoCenter">Follow us on Twitter<img src="/images/logos/media/twitter-bird-dark-bgs.png" style="width:25px;margin:-5px -5px -5px 0;" alt="Twitter logo" /></a>
+			</p>
+			<p><span class="footer-section-head">Links</span>
+				<a href="http://www.nethics.umd.edu/dive-in/privacy.html">Privacy Policy</a><br />
+				<a href="/sitemap/">Sitemap</a><br />
+				<a href="/rss/" class="rss-link" style="display:inline;">RSS</a>
+			</p>
+			<p><span class="footer-section-head" style="display:inline;">Copyright</span>
+				<a href="http://www.umd.edu/"><img src="/images/logos/umd/umd-globe-white-text-small.png" style="border:0;float:right;" alt="The University of Maryland" title="The University of Maryland" /></a>
+				<a href="http://www.umd.edu/">University of Maryland</a><br />
+				2004-2014			</p>
+			<div class="clear"></div>
+			<!-- <script type="text/javascript" src="/lib/js/wz_tooltip.js"></script> -->
+		</div>
+	</body>
+<!-- InstanceEnd --></html>
