@@ -8,6 +8,7 @@ __author__ = 'elpiniki'
         #hashmapfile.close()
         #library for stemming PorterStemmer--better than Lancaster one
 #######################################################################################################################
+import unicodedata
 from bs4 import BeautifulSoup
 from collections import Counter, defaultdict
 import re
@@ -16,7 +17,7 @@ import json
 import requests
 from nltk import PorterStemmer
 
-path = "/home/elpiniki/ReSe/tools/"
+path = "/home/elpiniki/rese/ReSe/tools/"
 
 stopWords = [ "a", "i", "it", "am", "at", "on", "in", "to", "too", "very", \
                  "of", "from", "here", "even", "the", "but", "and", "is", "my", \
@@ -47,15 +48,17 @@ for file in os.listdir(path):
         try:
             r = requests.get(fileurl)
             print fileurl
-            data = r.text
-            soup = BeautifulSoup(data)
+            html = r.text
+            soup = BeautifulSoup(html)
             try:
                 filetitle = soup.title.string #get the title of the html file
                 print filetitle
             except AttributeError:
                 pass
-            text = data.lower() #make all the letters lowercase to ignore the case during the retrieval
-            word_list = re.split('\s+|(?<!\d)[,.](?!\d)(?<!\))(?<!@)(?<!\t)(?<!-)', text)
+
+            utext = soup.get_text()
+            text = unicodedata.normalize('NFKD', utext).encode('ascii', 'ignore') #make all the letters lowercase to ignore the case during the retrieval
+            word_list = re.split('\s+|(?<!\d)[,.](?!\d)(?<!\))(?<!@)(?<!\t)(?<!-)', text.lower())
 
             for i in word_list:
                 t = st.stem(i)
