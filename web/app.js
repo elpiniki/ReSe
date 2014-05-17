@@ -16,18 +16,31 @@ app.get('/', function(req, res){
 });
 
 app.get('/getResults', function(req, res){
-    //if (!req.query.term) {}
-    console.log("[Elpiniki's Server] Received term: " + req.query.term);
-    var results = db[req.query.term];
-    // grafeis ton algori8mo sou: apo ta results => sto 1 Result
-    var result = results[0];
-    qresults = {
-        "title" : result.doc
-        ,   "score" : result.tf
-        ,   "link"  : result.doc
-    };
-    res.set('Access-Control-Allow-Origin', '*');
-    res.json(qresults);
+  //if (!req.query.term) {}
+  console.log("[Elpiniki's Server] Received term: " + req.query.term);
+
+  var sh = require("execSync");
+  var result = sh.exec("bash -c 'python ./tools/stem.py '" + req.query.term);
+  console.log("[Elpiniki's Server] code: " + result.code);
+  console.log("[Elpiniki's Server] out: " + result.stdout);
+  var validJSON = result.stdout.replace(/'/g,'"');
+  console.log(validJSON);
+  var stemmed  = JSON.parse(validJSON);
+
+  console.log(stemmed);
+  console.log(stemmed[0]);
+
+  var results = db[stemmed[0]];
+
+  // grafeis ton algori8mo sou: apo ta results => sto 1 Result
+  var result = results[0];
+  qresults = {
+      "title" : result.title
+  ,   "score" : result.tf
+  ,   "link"  : result.doc
+  };
+  res.set('Access-Control-Allow-Origin', '*');
+  res.json(qresults);
 }) ;
 
 /**

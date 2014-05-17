@@ -8,6 +8,9 @@
   "license": "ISC",
   "dependencies": {
     "ejs": "^1.0.0",
-    "express": "^4.1.0"
+    "exec-sync": "^0.1.6",
+    "execSync": "^1.0.1-pre",
+    "express": "^4.1.0",
+    "shelljs": "^0.3.0"
   }
 }
