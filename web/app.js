@@ -20,7 +20,7 @@ app.get('/getResults', function(req, res){
   console.log("[Elpiniki's Server] Received term: " + req.query.term);
 
   var sh = require("execSync");
-  var result = sh.exec("bash -c 'python ./tools/stem.py '" + req.query.term);
+  var result = sh.exec("bash -c './tools/stem.py " + req.query.term + "'");
   console.log("[Elpiniki's Server] code: " + result.code);
   console.log("[Elpiniki's Server] out: " + result.stdout);
   var validJSON = result.stdout.replace(/'/g,'"');
@@ -28,17 +28,31 @@ app.get('/getResults', function(req, res){
   var stemmed  = JSON.parse(validJSON);
 
   console.log(stemmed);
-  console.log(stemmed[0]);
 
-  var results = db[stemmed[0]];
+  var documents = {}
+  // Object iteration
+  for (var i = 0; i < stemmed.length; i++) {
+    word = stemmed[i];
+    var results = db[word];
+    for (var j = 0; j < results.length; j++) {
+      var df = results.length;
+      var N = 450;
+      var score = (1 + Math.log(1+Math.log(result.tf))) * Math.log(N+1/df);
+      if (documents[j.doc]) {
+        documents[j.doc].score = documents[j.doc].score + score;
+      } else {
+        documents[j.doc] = {"title": j.title, "score": score}
+      }
+    };
+  };
 
   // grafeis ton algori8mo sou: apo ta results => sto 1 Result
   var result = results[0];
-  qresults = {
-      "title" : result.title
-  ,   "score" : result.tf
-  ,   "link"  : result.doc
-  };
+  var qresults = {
+    "doc1" : {"title":"Document1", "score":6}
+  , "doc2" : {"title":"Document2", "score":3}
+  , "doc3" : {"title":"Document3", "score":13}
+  }
   res.set('Access-Control-Allow-Origin', '*');
   res.json(qresults);
 }) ;

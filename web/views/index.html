@@ -23,8 +23,24 @@
                     dataType: 'json',
                     success: function (resp) {
                         var resultDiv = document.getElementById('results');
-                        var respContents = "<h4>" + resp.title + " <small>(Score: " + resp.score + ")</small></h4><blockquote>";
-                        respContents += "<h5><p><a href='"+ resp.link +"'>" + resp.link.replace("http://","") + "</a></p></h5></blockquote>"
+                        var respContents = "";
+                        var data = resp;
+
+                        // Sort results based on score
+                        var output = [];
+                        for (var key in data) {
+                            data[key].key = key;   // save key so you can access it from the array (will modify original data)
+                            output.push(data[key]);
+                        }
+
+                        output.sort(function(a,b) {
+                            return(b.score - a.score);
+                        });
+
+                        for (var i =0; i< output.length; i++) {
+                          respContents += "<h4>" + output[i].title + " <small>(Score: " + output[i].score + ")</small></h4><blockquote>";
+                          respContents += "<h5><p><a href='"+ output[i].key +"'>" + output[i].key.replace("http://","") + "</a></p></h5></blockquote>"
+                        }
                         resultDiv.innerHTML = respContents;
                         $("#results").fadeIn(1000);
                     },
