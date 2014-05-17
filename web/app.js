@@ -15,6 +15,32 @@ app.get('/', function(req, res){
   res.render('index.html');
 });
 
+function getResults(wList, db, N) {
+  var documents = {}
+  // Object iteration
+  for (var i = 0; i < wList.length; i++) {
+    word = wList[i];
+    var results = db[word];
+    for (var j = 0; j < results.length; j++) {
+      var df = results.length;
+      var score = (1 + Math.log(1+Math.log(results[j].tf))) * Math.log((N+1)/df);
+      console.log("CALC: " + 1 + " tf:" + results[j].tf + " innerlog:" + Math.log(results[j].tf) + " idf:" + Math.log((N+1)/df));
+      console.log("df: " + df + ", Word: " + word + ", Doc: " + results[j].doc + ", Score: " + score)
+
+      console.log(documents[results[j].doc]);
+
+      if (documents[results[j].doc]) {
+        documents[results[j].doc].score = (documents[results[j].doc].score + score);
+        console.log("update score");
+      } else {
+        documents[results[j].doc] = {"title": results[j].title, "score": score};
+        console.log("add to doc: " + documents[results[j].doc])
+      }
+    }
+  }
+  return documents;
+}
+
 app.get('/getResults', function(req, res){
   //if (!req.query.term) {}
   console.log("[Elpiniki's Server] Received term: " + req.query.term);
@@ -28,33 +54,25 @@ app.get('/getResults', function(req, res){
   var stemmed  = JSON.parse(validJSON);
 
   console.log(stemmed);
+  var db1 = {
+    "energy": [{"tf":1, "doc":"doc1", "title":"T1" }, {"tf":8, "doc":"doc2", "title":"T1"}, {"tf":3, "doc":"doc3", "title":"T1"}]
+  , "pizza" : [{"tf":2, "doc":"doc2", "title":"T1"}, {"tf":3, "doc":"doc3", "title":"T1"}, {"tf":8, "doc":"doc4", "title":"T1"}]
+  }
 
-  var documents = {}
-  // Object iteration
-  for (var i = 0; i < stemmed.length; i++) {
-    word = stemmed[i];
-    var results = db[word];
-    for (var j = 0; j < results.length; j++) {
-      var df = results.length;
-      var N = 450;
-      var score = (1 + Math.log(1+Math.log(result.tf))) * Math.log(N+1/df);
-      if (documents[j.doc]) {
-        documents[j.doc].score = documents[j.doc].score + score;
-      } else {
-        documents[j.doc] = {"title": j.title, "score": score}
-      }
-    };
-  };
+  //var documents = getResults(["energy", "pizza"], db1, 4); // This is used
+  //for testing
+  var documents = getResults(stemmed, db, 450);
+
+  console.log(documents);
 
   // grafeis ton algori8mo sou: apo ta results => sto 1 Result
-  var result = results[0];
   var qresults = {
     "doc1" : {"title":"Document1", "score":6}
   , "doc2" : {"title":"Document2", "score":3}
   , "doc3" : {"title":"Document3", "score":13}
   }
   res.set('Access-Control-Allow-Origin', '*');
-  res.json(qresults);
+  res.json(documents);
 }) ;
 
 /**
