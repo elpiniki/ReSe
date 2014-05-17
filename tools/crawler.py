@@ -26,8 +26,8 @@ def urljoin(base, url):
         (url.scheme, url.netloc, path, url.params, url.query, None)
     )
 
-require_url = "http://www.udel.edu/" #remain at this domain while crawling 
-url = "http://www.ece.udel.edu/"  #start from this url
+require_url = "http://www.bu.edu/" #remain at this domain while crawling
+url = "http://nislab.bu.edu/"  #start from this url
 
 #we do not want to visit any page twice so we keep historical records already seen
 unvisited = {url}  #stack of urls to visit and scrape

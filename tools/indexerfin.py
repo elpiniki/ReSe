@@ -4,43 +4,25 @@ __author__ = 'elpiniki'
 #try to repeat for all html files in the directory
                 #rec = {'Term' : word, 'TF' : word_count[word], 'Filename' : file}
                 #hashmapfile.write(str(rec) + "\n")
-                #print rec
-        #hashmapfile.close()
         #library for stemming PorterStemmer--better than Lancaster one
 #######################################################################################################################
+import unicodedata
 from bs4 import BeautifulSoup
 from collections import Counter, defaultdict
-import urllib2
 import re
 import os
 import json
+import requests
 from nltk import PorterStemmer
 
-path = "/home/elpiniki/Documents/ReSe/tools/"
+path = "/home/elpiniki/Documents/ReSe/tools/finaldb/"
 
 stopWords = [ "a", "i", "it", "am", "at", "on", "in", "to", "too", "very", \
                  "of", "from", "here", "even", "the", "but", "and", "is", "my", \
-                 "them", "then", "this", "that", "than", "though", "so", "are", " ", ""]
-#stemEndings = [ "-s", "-es", "-ed", "-er", "-ly" "-ing", "-'s", "-s'"]
+                 "them", "then", "this", "that", "than", "though", "so", "are", " ", "", "php", "gif"]
 
-def parsetext(f):
-    soup = BeautifulSoup(f)
-    t = soup.get_text()
-    return t
-
-def gettitle(f):
-    soup = BeautifulSoup(f)
-    titlef = soup.title.string
-    return titlef
-
-def replace_all(file, dic):
-    for line in file:
-        for i, j in dic.iteritems():
-            file.write(line.replace(i, j))
-    return file
-
-#function for url mapping
-def url(filename):
+#function for url mapping given the html file name created by crawler
+def find_url(filename):
     mapfile = open("data", "r")
     mydict = {}
     for line in mapfile:
@@ -51,38 +33,47 @@ def url(filename):
             urllink = mydict[key]
             return urllink
 
-def titlefind(url):
-    soup = BeautifulSoup(urllib2.urlopen(url))
-    titlef = soup.title.string
-    return titlef
-
-st = PorterStemmer()
+##Initialization
+st = PorterStemmer() #stemmer
 new_word_list = []
-index = defaultdict(list) #includes all the terms of ALL the html files
-mapfile = open("data", "r")
+index = defaultdict(list) #includes all the terms of all the html files
+mapfile = open("data", "r") #open data file for the mapping
 
+##Main indexing
 for file in os.listdir(path):
     if file.endswith(".html"):
-        htmlfile = open(file, "r")
-        text = parsetext(htmlfile)
-        text = text.lower() #make all the letters lowercase to ignore the case during the retrieval
-        word_list = re.split('\s+|(?<!\d)[,.](?!\d)(?<!\))(?<!@)(?<!\t)(?<!-)', text)
+        fileurl = find_url(file) #get the url of the html file
+        try:
+            r = requests.get(fileurl)
+            print fileurl
+            html = r.text
+            soup = BeautifulSoup(html)
+            try:
+                filetitle1 = soup.title.string #get the title of the html file
+                filetitle = ''.join(char for char in filetitle1 if char.islower() or char.isupper() or char.isspace())
+                print filetitle
+            except AttributeError:
+                pass
 
-        for i in word_list:
-            t = st.stem(i)
-            new_word_list.append(t)
-        word_count = Counter(new_word_list)
+            utext = soup.get_text()
+            text = unicodedata.normalize('NFKD', utext).encode('ascii', 'ignore') #make all the letters lowercase to ignore the case during the retrieval
+            word_list = re.split('\s+|(?<!\d)[,.](?!\d)(?<!\))(?<!@)(?<!\t)(?<!-)', text.lower())
 
-        for word, count in word_count.iteritems():
-            print (word, " ", count);
-            if word not in stopWords:
-                link = url(file)
-                title = titlefind(str(link))
-                index[word].append(("{" + json.dumps('tf')+ ": "  + str(count), json.dumps('doc') + ": " + json.dumps(str(link))+", " + json.dumps('title') +": " + json.dumps(str(link)) +"}"))
-newlist = list(index.items())
+            for i in word_list:
+                t = st.stem(i)
+                new_word_list.append(t)
+            word_count = Counter(new_word_list)
 
-t = json.dumps(newlist)
-
+            for word, count in word_count.iteritems():
+                if word not in stopWords and (re.match("^[a-z]*$", word)):
+                    try:
+                        index[word].append(("{" + json.dumps('tf')+ ": " + str(count), json.dumps('doc') + ": " + json.dumps(str(fileurl))+", " + json.dumps('title') +": " + json.dumps(str(filetitle)) +"}"))
+                    except UnicodeEncodeError:
+                        pass
+        except requests.exceptions.HTTPError: #by using requests check for errors at the http
+            pass
+        except requests.exceptions.MissingSchema:
+            pass
 dbfile = open("dbjson.json", "a")
 dbfile.write("{\n\t")
 for word in index:
@@ -93,8 +84,6 @@ for word in index:
     dbfile.write("\n")
 dbfile.write("}")
 dbfile.close()
-
-dic = {"'":"", "(":"{", ")":"}"}
 
 dbfile1 = open("dbjson.json", "r")
 dbfile2 = open("dbjson2.json", "w")
@@ -118,4 +107,3 @@ for line in dbfile3:
     dbfile4.write(line.replace(")",""))
 dbfile3.close()
 dbfile4.close()
-
