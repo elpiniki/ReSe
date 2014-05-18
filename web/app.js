@@ -25,12 +25,12 @@ function getResults(wList, db, N) {
       var df = results.length;
       if (results[j].title.indexOf(word)){
         console.log("FOUND!")
-        n = 10
+        n = 15
       } else {
         console.log("NOT!");
         n = 0
       }
-      var score = (1 + Math.log(1+Math.log(results[j].tf))) * Math.log((N+1)/df) + n;
+      var score = ((1 + Math.log(1+Math.log(results[j].tf)))/(0.05+0.05*(results[j].l/12470))) * Math.log((N+1)/df) + n;
       console.log("CALC: " + 1 + " tf:" + results[j].tf + " innerlog:" + Math.log(results[j].tf) + " idf:" + Math.log((N+1)/df));
       console.log("df: " + df + ", Word: " + word + ", Doc: " + results[j].doc + ", Score: " + score)
 
@@ -76,7 +76,7 @@ app.get('/getResults', function(req, res){
 
   //var documents = getResults(["energy", "pizza"], db1, 4); // This is used
   //for testing
-  var documents = getResults(chopped, db, 450);
+  var documents = getResults(chopped, db, 373);
 
   //console.log(documents);
 
