@@ -19,6 +19,14 @@ stopWords = [ "a", "i", "it", "am", "at", "on", "in", "to", "too", "very", \
                  "of", "from", "here", "even", "the", "but", "and", "is", "my", \
                  "them", "then", "this", "that", "than", "though", "so", "are", " ", "", "php", "gif"]
 
+def avg(list):
+    sum = 0
+    for elm in list:
+        sum += elm
+    average = sum/(len(list))
+    return average
+
+
 #function for url mapping given the html file name created by crawler
 def find_url(filename):
     mapfile = open("data", "r")
@@ -34,6 +42,7 @@ def find_url(filename):
 ##Initialization
 st = PorterStemmer() #stemmer
 new_word_list = []
+length_list = []
 index = defaultdict(list) #includes all the terms of all the html files
 mapfile = open("data", "r") #open data file for the mapping
 
@@ -55,17 +64,18 @@ for file in os.listdir(path):
 ##Find all terms: main indexer
             utext = soup.get_text()
             text = unicodedata.normalize('NFKD', utext).encode('ascii', 'ignore') #make all the letters ascii
+            length = len(text)
+            length_list.append(length)
+            print length
             word_list = re.split('\s+|(?<!\d)[,.](?!\d)(?<!\))(?<!@)(?<!\t)(?<!-)', text.lower()) #make all the letters lower case and split
             #for i in word_list:
             #    t = st.stem(i) #stem the word
             #    new_word_list.append(t) #create a new list with stem words
             word_count = Counter(word_list)
-            print word_count #output for each html word frequency after stemming
             for word, count in word_count.items():
                 if word not in stopWords and (re.match("^[a-z]*$", word)):
-                    print word + ": " + str(count) +" " + str(fileurl)
                     try:
-                        index[word].append(("{" + json.dumps('tf')+ ": " + str(count), json.dumps('doc') + ": " + json.dumps(str(fileurl))+", " + json.dumps('title') +": " + json.dumps(str(filetitle)) +"}"))
+                        index[word].append(("{" + json.dumps('tf')+ ": " + str(count), json.dumps('doc') + ": " + json.dumps(str(fileurl))+", " + json.dumps('title') +": " + json.dumps(str(filetitle)) +", " + json.dumps('length') + ": " + json.dumps(str(length)) + "} "))
                     except UnicodeEncodeError:
                         pass
         except requests.exceptions.HTTPError: #by using requests check for errors at the http
@@ -106,3 +116,6 @@ for line in dbfile3:
     dbfile4.write(line.replace(")",""))
 dbfile3.close()
 dbfile4.close()
+
+print length_list
+print avg(length_list)
