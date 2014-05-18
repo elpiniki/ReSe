@@ -1,6 +1,4 @@
 __author__ = 'elpiniki'
-#!/usr/env python
-#use of hashmap
 #try to repeat for all html files in the directory
                 #rec = {'Term' : word, 'TF' : word_count[word], 'Filename' : file}
                 #hashmapfile.write(str(rec) + "\n")
@@ -15,7 +13,7 @@ import json
 import requests
 from nltk import PorterStemmer
 
-path = "/home/elpiniki/Documents/ReSe/tools/finaldb/"
+path = "/home/elpiniki/Documents/ReSe/tools/finaldb"
 
 stopWords = [ "a", "i", "it", "am", "at", "on", "in", "to", "too", "very", \
                  "of", "from", "here", "even", "the", "but", "and", "is", "my", \
@@ -39,13 +37,13 @@ new_word_list = []
 index = defaultdict(list) #includes all the terms of all the html files
 mapfile = open("data", "r") #open data file for the mapping
 
-##Main indexing
+##Find title and url for all HTML files
 for file in os.listdir(path):
     if file.endswith(".html"):
         fileurl = find_url(file) #get the url of the html file
         try:
             r = requests.get(fileurl)
-            print fileurl
+            #print fileurl
             html = r.text
             soup = BeautifulSoup(html)
             try:
@@ -54,18 +52,18 @@ for file in os.listdir(path):
                 print filetitle
             except AttributeError:
                 pass
-
+##Find all terms: main indexer
             utext = soup.get_text()
-            text = unicodedata.normalize('NFKD', utext).encode('ascii', 'ignore') #make all the letters lowercase to ignore the case during the retrieval
-            word_list = re.split('\s+|(?<!\d)[,.](?!\d)(?<!\))(?<!@)(?<!\t)(?<!-)', text.lower())
-
-            for i in word_list:
-                t = st.stem(i)
-                new_word_list.append(t)
-            word_count = Counter(new_word_list)
-
-            for word, count in word_count.iteritems():
+            text = unicodedata.normalize('NFKD', utext).encode('ascii', 'ignore') #make all the letters ascii
+            word_list = re.split('\s+|(?<!\d)[,.](?!\d)(?<!\))(?<!@)(?<!\t)(?<!-)', text.lower()) #make all the letters lower case and split
+            #for i in word_list:
+            #    t = st.stem(i) #stem the word
+            #    new_word_list.append(t) #create a new list with stem words
+            word_count = Counter(word_list)
+            print word_count #output for each html word frequency after stemming
+            for word, count in word_count.items():
                 if word not in stopWords and (re.match("^[a-z]*$", word)):
+                    print word + ": " + str(count) +" " + str(fileurl)
                     try:
                         index[word].append(("{" + json.dumps('tf')+ ": " + str(count), json.dumps('doc') + ": " + json.dumps(str(fileurl))+", " + json.dumps('title') +": " + json.dumps(str(filetitle)) +"}"))
                     except UnicodeEncodeError:
@@ -74,6 +72,7 @@ for file in os.listdir(path):
             pass
         except requests.exceptions.MissingSchema:
             pass
+
 dbfile = open("dbjson.json", "a")
 dbfile.write("{\n\t")
 for word in index:
