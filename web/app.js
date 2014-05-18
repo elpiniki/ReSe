@@ -21,9 +21,16 @@ function getResults(wList, db, N) {
   for (var i = 0; i < wList.length; i++) {
     word = wList[i];
     var results = db[word];
-    for (var j = 0; j < results.length; j++) {
+    for (var j = 0; j < results.length && j < 10; j++) {
       var df = results.length;
-      var score = (1 + Math.log(1+Math.log(results[j].tf))) * Math.log((N+1)/df);
+      if (results[j].title.indexOf(word)){
+        console.log("FOUND!")
+        n = 10
+      } else {
+        console.log("NOT!");
+        n = 0
+      }
+      var score = (1 + Math.log(1+Math.log(results[j].tf))) * Math.log((N+1)/df) + n;
       console.log("CALC: " + 1 + " tf:" + results[j].tf + " innerlog:" + Math.log(results[j].tf) + " idf:" + Math.log((N+1)/df));
       console.log("df: " + df + ", Word: " + word + ", Doc: " + results[j].doc + ", Score: " + score)
 
@@ -43,17 +50,25 @@ function getResults(wList, db, N) {
 
 app.get('/getResults', function(req, res){
   //if (!req.query.term) {}
+  var useStemming = false;
+  var chopped = [];
   console.log("[Elpiniki's Server] Received term: " + req.query.term);
 
-  var sh = require("execSync");
-  var result = sh.exec("bash -c './tools/stem.py " + req.query.term + "'");
-  console.log("[Elpiniki's Server] code: " + result.code);
-  console.log("[Elpiniki's Server] out: " + result.stdout);
-  var validJSON = result.stdout.replace(/'/g,'"');
-  console.log(validJSON);
-  var stemmed  = JSON.parse(validJSON);
+  if (useStemming) {
+      var sh = require("execSync");
+      var result = sh.exec("bash -c './tools/stem.py " + req.query.term + "'");
+      console.log("[Elpiniki's Server] code: " + result.code);
 
-  console.log(stemmed);
+      console.log("[Elpiniki's Server] out: " + result.stdout);
+      var validJSON = result.stdout.replace(/'/g, '"');
+      console.log(validJSON);
+      chopped = JSON.parse(validJSON);
+
+      console.log(chopped);
+  } else {
+      chopped = req.query.term.split(/\s+/);
+      console.log(chopped)
+  }
   var db1 = {
     "energy": [{"tf":1, "doc":"doc1", "title":"T1" }, {"tf":8, "doc":"doc2", "title":"T1"}, {"tf":3, "doc":"doc3", "title":"T1"}]
   , "pizza" : [{"tf":2, "doc":"doc2", "title":"T1"}, {"tf":3, "doc":"doc3", "title":"T1"}, {"tf":8, "doc":"doc4", "title":"T1"}]
@@ -61,9 +76,9 @@ app.get('/getResults', function(req, res){
 
   //var documents = getResults(["energy", "pizza"], db1, 4); // This is used
   //for testing
-  var documents = getResults(stemmed, db, 450);
+  var documents = getResults(chopped, db, 450);
 
-  console.log(documents);
+  //console.log(documents);
 
   // grafeis ton algori8mo sou: apo ta results => sto 1 Result
   var qresults = {
